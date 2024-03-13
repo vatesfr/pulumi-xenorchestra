@@ -19,9 +19,9 @@ package main
 import (
 	_ "embed"
 
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	xenorchestra "github.com/vatesfr/terraform-provider-xenorchestra/xoa"
+	xenorchestra "github.com/belfhi/pulumi-xenorchestra/provider"
 	"github.com/belfhi/pulumi-xenorchestra/provider/pkg/version"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 )
 
 //go:embed schema-embed.json

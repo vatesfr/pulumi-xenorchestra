@@ -58,7 +58,7 @@ func Provider() tfbridge.ProviderInfo {
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		// Instantiate the Terraform provider
-		P:    shimv2.NewProvider(xenorchestra.New(version.Version)()),
+		P:    shimv2.NewProvider(xenorchestra.Provider()),
 		Name: "xenorchestra",
 		// DisplayName is a way to be able to change the casing of the provider
 		// name when being displayed on the Pulumi registry
@@ -88,7 +88,7 @@ func Provider() tfbridge.ProviderInfo {
 		Repository: "https://github.com/belfhi/pulumi-xenorchestra",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
-		GitHubOrg:    "",
+		GitHubOrg:    "vatesfr",
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		Config:       map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if

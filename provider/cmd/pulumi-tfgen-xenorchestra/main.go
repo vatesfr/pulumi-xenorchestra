@@ -15,9 +15,9 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
-	xenorchestra "github.com/vatesfr/terraform-provider-xenorchestra/xoa"
+	xenorchestra "github.com/belfhi/pulumi-xenorchestra/provider"
 	"github.com/belfhi/pulumi-xenorchestra/provider/pkg/version"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 )
 
 func main() {

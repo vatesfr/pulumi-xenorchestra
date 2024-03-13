@@ -1,1 +1,364 @@
-{}
+{
+    "auto-aliasing": {
+        "resources": {
+            "xenorchestra_acl": {
+                "current": "xenorchestra:index/acl:Acl"
+            },
+            "xenorchestra_bonded_network": {
+                "current": "xenorchestra:index/bondedNetwork:BondedNetwork",
+                "fields": {
+                    "pif_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "xenorchestra_cloud_config": {
+                "current": "xenorchestra:index/cloudConfig:CloudConfig"
+            },
+            "xenorchestra_network": {
+                "current": "xenorchestra:index/network:Network"
+            },
+            "xenorchestra_resource_set": {
+                "current": "xenorchestra:index/resourceSet:ResourceSet",
+                "fields": {
+                    "limit": {
+                        "maxItemsOne": false
+                    },
+                    "objects": {
+                        "maxItemsOne": false
+                    },
+                    "subjects": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "xenorchestra_vdi": {
+                "current": "xenorchestra:index/vdi:Vdi"
+            },
+            "xenorchestra_vm": {
+                "current": "xenorchestra:index/vm:Vm",
+                "fields": {
+                    "blocked_operations": {
+                        "maxItemsOne": false
+                    },
+                    "cdrom": {
+                        "maxItemsOne": true
+                    },
+                    "disk": {
+                        "maxItemsOne": false
+                    },
+                    "ipv4_addresses": {
+                        "maxItemsOne": false
+                    },
+                    "ipv6_addresses": {
+                        "maxItemsOne": false
+                    },
+                    "network": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "ipv4_addresses": {
+                                    "maxItemsOne": false
+                                },
+                                "ipv6_addresses": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            }
+        },
+        "datasources": {
+            "xenorchestra_cloud_config": {
+                "current": "xenorchestra:index/getCloudConfig:getCloudConfig"
+            },
+            "xenorchestra_host": {
+                "current": "xenorchestra:index/getHost:getHost",
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "xenorchestra_hosts": {
+                "current": "xenorchestra:index/getHosts:getHosts",
+                "fields": {
+                    "hosts": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "tags": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "xenorchestra_network": {
+                "current": "xenorchestra:index/getNetwork:getNetwork"
+            },
+            "xenorchestra_pif": {
+                "current": "xenorchestra:index/getPif:getPif"
+            },
+            "xenorchestra_pool": {
+                "current": "xenorchestra:index/getPool:getPool"
+            },
+            "xenorchestra_resource_set": {
+                "current": "xenorchestra:index/getResourceSet:getResourceSet"
+            },
+            "xenorchestra_sr": {
+                "current": "xenorchestra:index/getSr:getSr",
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "xenorchestra_template": {
+                "current": "xenorchestra:index/getTemplate:getTemplate"
+            },
+            "xenorchestra_user": {
+                "current": "xenorchestra:index/getUser:getUser"
+            },
+            "xenorchestra_vdi": {
+                "current": "xenorchestra:index/getVdi:getVdi",
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "xenorchestra_vms": {
+                "current": "xenorchestra:index/getVms:getVms",
+                "fields": {
+                    "vms": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "blocked_operations": {
+                                    "maxItemsOne": false
+                                },
+                                "disk": {
+                                    "maxItemsOne": false
+                                },
+                                "ipv4_addresses": {
+                                    "maxItemsOne": false
+                                },
+                                "ipv6_addresses": {
+                                    "maxItemsOne": false
+                                },
+                                "network": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "ipv4_addresses": {
+                                                "maxItemsOne": false
+                                            },
+                                            "ipv6_addresses": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "tags": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "auto-settings": {},
+    "renames": {
+        "resources": {
+            "xenorchestra:index/acl:Acl": "xenorchestra_acl",
+            "xenorchestra:index/bondedNetwork:BondedNetwork": "xenorchestra_bonded_network",
+            "xenorchestra:index/cloudConfig:CloudConfig": "xenorchestra_cloud_config",
+            "xenorchestra:index/network:Network": "xenorchestra_network",
+            "xenorchestra:index/resourceSet:ResourceSet": "xenorchestra_resource_set",
+            "xenorchestra:index/vdi:Vdi": "xenorchestra_vdi",
+            "xenorchestra:index/vm:Vm": "xenorchestra_vm"
+        },
+        "functions": {
+            "xenorchestra:index/getCloudConfig:getCloudConfig": "xenorchestra_cloud_config",
+            "xenorchestra:index/getHost:getHost": "xenorchestra_host",
+            "xenorchestra:index/getHosts:getHosts": "xenorchestra_hosts",
+            "xenorchestra:index/getNetwork:getNetwork": "xenorchestra_network",
+            "xenorchestra:index/getPif:getPif": "xenorchestra_pif",
+            "xenorchestra:index/getPool:getPool": "xenorchestra_pool",
+            "xenorchestra:index/getResourceSet:getResourceSet": "xenorchestra_resource_set",
+            "xenorchestra:index/getSr:getSr": "xenorchestra_sr",
+            "xenorchestra:index/getTemplate:getTemplate": "xenorchestra_template",
+            "xenorchestra:index/getUser:getUser": "xenorchestra_user",
+            "xenorchestra:index/getVdi:getVdi": "xenorchestra_vdi",
+            "xenorchestra:index/getVms:getVms": "xenorchestra_vms"
+        },
+        "renamedProperties": {
+            "xenorchestra:index/VmDisk:VmDisk": {
+                "nameDescription": "name_description",
+                "nameLabel": "name_label",
+                "srId": "sr_id",
+                "vbdId": "vbd_id",
+                "vdiId": "vdi_id"
+            },
+            "xenorchestra:index/VmNetwork:VmNetwork": {
+                "ipv4Addresses": "ipv4_addresses",
+                "ipv6Addresses": "ipv6_addresses",
+                "macAddress": "mac_address",
+                "networkId": "network_id"
+            },
+            "xenorchestra:index/bondedNetwork:BondedNetwork": {
+                "bondMode": "bond_mode",
+                "defaultIsLocked": "default_is_locked",
+                "nameDescription": "name_description",
+                "nameLabel": "name_label",
+                "pifIds": "pif_ids",
+                "poolId": "pool_id"
+            },
+            "xenorchestra:index/getHost:getHost": {
+                "memoryUsage": "memory_usage",
+                "nameLabel": "name_label",
+                "poolId": "pool_id"
+            },
+            "xenorchestra:index/getHosts:getHosts": {
+                "poolId": "pool_id",
+                "sortBy": "sort_by",
+                "sortOrder": "sort_order"
+            },
+            "xenorchestra:index/getHostsHost:getHostsHost": {
+                "memoryUsage": "memory_usage",
+                "nameLabel": "name_label",
+                "poolId": "pool_id"
+            },
+            "xenorchestra:index/getNetwork:getNetwork": {
+                "nameLabel": "name_label",
+                "poolId": "pool_id"
+            },
+            "xenorchestra:index/getPif:getPif": {
+                "hostId": "host_id",
+                "poolId": "pool_id"
+            },
+            "xenorchestra:index/getPool:getPool": {
+                "nameLabel": "name_label"
+            },
+            "xenorchestra:index/getSr:getSr": {
+                "nameLabel": "name_label",
+                "physicalUsage": "physical_usage",
+                "poolId": "pool_id",
+                "srType": "sr_type"
+            },
+            "xenorchestra:index/getTemplate:getTemplate": {
+                "nameLabel": "name_label",
+                "poolId": "pool_id"
+            },
+            "xenorchestra:index/getUser:getUser": {
+                "searchInSession": "search_in_session"
+            },
+            "xenorchestra:index/getVdi:getVdi": {
+                "nameLabel": "name_label",
+                "poolId": "pool_id"
+            },
+            "xenorchestra:index/getVms:getVms": {
+                "poolId": "pool_id",
+                "powerState": "power_state"
+            },
+            "xenorchestra:index/getVmsVm:getVmsVm": {
+                "affinityHost": "affinity_host",
+                "autoPoweron": "auto_poweron",
+                "blockedOperations": "blocked_operations",
+                "cloneType": "clone_type",
+                "cloudConfig": "cloud_config",
+                "cloudNetworkConfig": "cloud_network_config",
+                "coreOs": "core_os",
+                "cpuCap": "cpu_cap",
+                "cpuWeight": "cpu_weight",
+                "disks": "disk",
+                "expNestedHvm": "exp_nested_hvm",
+                "highAvailability": "high_availability",
+                "hvmBootFirmware": "hvm_boot_firmware",
+                "ipv4Addresses": "ipv4_addresses",
+                "ipv6Addresses": "ipv6_addresses",
+                "memoryMax": "memory_max",
+                "nameDescription": "name_description",
+                "nameLabel": "name_label",
+                "networks": "network",
+                "powerState": "power_state",
+                "resourceSet": "resource_set",
+                "startDelay": "start_delay",
+                "waitForIp": "wait_for_ip"
+            },
+            "xenorchestra:index/getVmsVmDisk:getVmsVmDisk": {
+                "nameDescription": "name_description",
+                "nameLabel": "name_label",
+                "srId": "sr_id",
+                "vbdId": "vbd_id",
+                "vdiId": "vdi_id"
+            },
+            "xenorchestra:index/getVmsVmNetwork:getVmsVmNetwork": {
+                "ipv4Addresses": "ipv4_addresses",
+                "ipv6Addresses": "ipv6_addresses",
+                "macAddress": "mac_address",
+                "networkId": "network_id"
+            },
+            "xenorchestra:index/network:Network": {
+                "defaultIsLocked": "default_is_locked",
+                "nameDescription": "name_description",
+                "nameLabel": "name_label",
+                "poolId": "pool_id",
+                "sourcePifDevice": "source_pif_device"
+            },
+            "xenorchestra:index/resourceSet:ResourceSet": {
+                "limits": "limit"
+            },
+            "xenorchestra:index/vdi:Vdi": {
+                "nameLabel": "name_label",
+                "srId": "sr_id"
+            },
+            "xenorchestra:index/vm:Vm": {
+                "affinityHost": "affinity_host",
+                "autoPoweron": "auto_poweron",
+                "blockedOperations": "blocked_operations",
+                "cloneType": "clone_type",
+                "cloudConfig": "cloud_config",
+                "cloudNetworkConfig": "cloud_network_config",
+                "coreOs": "core_os",
+                "cpuCap": "cpu_cap",
+                "cpuWeight": "cpu_weight",
+                "destroyCloudConfigVdiAfterBoot": "destroy_cloud_config_vdi_after_boot",
+                "disks": "disk",
+                "expNestedHvm": "exp_nested_hvm",
+                "highAvailability": "high_availability",
+                "hvmBootFirmware": "hvm_boot_firmware",
+                "installationMethod": "installation_method",
+                "ipv4Addresses": "ipv4_addresses",
+                "ipv6Addresses": "ipv6_addresses",
+                "memoryMax": "memory_max",
+                "nameDescription": "name_description",
+                "nameLabel": "name_label",
+                "networks": "network",
+                "powerState": "power_state",
+                "resourceSet": "resource_set",
+                "startDelay": "start_delay",
+                "waitForIp": "wait_for_ip"
+            },
+            "xenorchestra:index:Provider": {
+                "retryMaxTime": "retry_max_time",
+                "retryMode": "retry_mode"
+            }
+        },
+        "renamedConfigProperties": {
+            "retryMaxTime": "retry_max_time",
+            "retryMode": "retry_mode"
+        }
+    }
+}
