@@ -13,12 +13,12 @@ RUN apt-get update && \
 # Install bridged provider prerequisites
 # See README.md
 
-# Install go 
-ARG GO_VERSION=1.18.3
+# Install go
+ARG GO_VERSION=1.21.7
 RUN rm -rf /usr/local/go && \
     wget -O ${GO_VERSION}.tar.gz https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz && \
     tar -C /usr/local -xzf ${GO_VERSION}.tar.gz && \
-    rm ${GO_VERSION}.tar.gz 
+    rm ${GO_VERSION}.tar.gz
 
 ENV GOPATH=/root/go
 ENV PATH=$PATH:/usr/local/go/bin

@@ -12,22 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//go:generate go run ./generate.go
-
 package main
 
 import (
-	_ "embed"
-
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	xyz "github.com/pulumi/pulumi-xyz/provider"
-	"github.com/pulumi/pulumi-xyz/provider/pkg/version"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
+	xenorchestra "github.com/vatesfr/terraform-provider-xenorchestra/xoa"
+	"github.com/belfhi/pulumi-xenorchestra/provider/pkg/version"
 )
-
-//go:embed schema-embed.json
-var pulumiSchema []byte
 
 func main() {
 	// Modify the path to point to the new provider
-	tfbridge.Main("xyz", version.Version, xyz.Provider(), pulumiSchema)
+	tfgen.Main("xenorchestra", version.Version, xenorchestra.Provider())
 }
