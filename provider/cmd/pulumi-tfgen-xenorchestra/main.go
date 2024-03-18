@@ -15,8 +15,8 @@
 package main
 
 import (
-	xenorchestra "github.com/belfhi/pulumi-xenorchestra/provider"
-	"github.com/belfhi/pulumi-xenorchestra/provider/pkg/version"
+	xenorchestra "github.com/vatesfr/pulumi-xenorchestra/provider"
+	"github.com/vatesfr/pulumi-xenorchestra/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 )
 

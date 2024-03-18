@@ -30,7 +30,7 @@ import (
 	// Replace this provider with the provider you are bridging.
 	xenorchestra "github.com/vatesfr/terraform-provider-xenorchestra/xoa"
 
-	"github.com/belfhi/pulumi-xenorchestra/provider/pkg/version"
+	"github.com/vatesfr/pulumi-xenorchestra/provider/pkg/version"
 )
 
 // all of the token components used below.
@@ -85,7 +85,7 @@ func Provider() tfbridge.ProviderInfo {
 		Keywords:   []string{"pulumi", "xenorchestra", "category/cloud"},
 		License:    "Apache-2.0",
 		Homepage:   "https://www.pulumi.com",
-		Repository: "https://github.com/belfhi/pulumi-xenorchestra",
+		Repository: "https://github.com/vatesfr/pulumi-xenorchestra",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
 		GitHubOrg:    "vatesfr",
