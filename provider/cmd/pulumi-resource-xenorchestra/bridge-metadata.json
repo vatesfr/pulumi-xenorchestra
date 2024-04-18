@@ -212,6 +212,7 @@
                 "vdiId": "vdi_id"
             },
             "xenorchestra:index/VmNetwork:VmNetwork": {
+                "expectedIpCidr": "expected_ip_cidr",
                 "ipv4Addresses": "ipv4_addresses",
                 "ipv6Addresses": "ipv6_addresses",
                 "macAddress": "mac_address",
@@ -294,8 +295,7 @@
                 "networks": "network",
                 "powerState": "power_state",
                 "resourceSet": "resource_set",
-                "startDelay": "start_delay",
-                "waitForIp": "wait_for_ip"
+                "startDelay": "start_delay"
             },
             "xenorchestra:index/getVmsVmDisk:getVmsVmDisk": {
                 "nameDescription": "name_description",
@@ -305,6 +305,7 @@
                 "vdiId": "vdi_id"
             },
             "xenorchestra:index/getVmsVmNetwork:getVmsVmNetwork": {
+                "expectedIpCidr": "expected_ip_cidr",
                 "ipv4Addresses": "ipv4_addresses",
                 "ipv6Addresses": "ipv6_addresses",
                 "macAddress": "mac_address",
@@ -348,8 +349,7 @@
                 "networks": "network",
                 "powerState": "power_state",
                 "resourceSet": "resource_set",
-                "startDelay": "start_delay",
-                "waitForIp": "wait_for_ip"
+                "startDelay": "start_delay"
             },
             "xenorchestra:index:Provider": {
                 "retryMaxTime": "retry_max_time",

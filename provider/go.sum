@@ -2370,6 +2370,8 @@ github.com/vatesfr/terraform-provider-xenorchestra v0.29.0 h1:N6ZyRGQb/pIBcaUXHx
 github.com/vatesfr/terraform-provider-xenorchestra v0.29.0/go.mod h1:GvxH0mHA3KAM1WXs3oIA+zfQQxKrolIIrTT7M3fmrWk=
 github.com/vatesfr/terraform-provider-xenorchestra/client v0.0.0-20240307013444-d4f82b566195 h1:3mEcLZepvJu3b5sI3VBFlWy8p/p/e414P0qTnnqupIA=
 github.com/vatesfr/terraform-provider-xenorchestra/client v0.0.0-20240307013444-d4f82b566195/go.mod h1:qu/D/zw83f4vThCU6ttHxe2o4cGgOnFn9/uRNi+K8bI=
+github.com/vatesfr/terraform-provider-xenorchestra/client v0.0.0-20240320231457-516842d718d7 h1:CiKffq28f1yH6nGqXmejoCJYNSaHOJbsmO3vYE+5X4k=
+github.com/vatesfr/terraform-provider-xenorchestra/client v0.0.0-20240320231457-516842d718d7/go.mod h1:qu/D/zw83f4vThCU6ttHxe2o4cGgOnFn9/uRNi+K8bI=
 github.com/vishvananda/netlink v0.0.0-20181108222139-023a6dafdcdf/go.mod h1:+SR5DhBJrl6ZM7CoCKvpw5BKroDKQ+PJqOg65H/2ktk=
 github.com/vishvananda/netlink v1.1.0/go.mod h1:cTgwzPIzzgDAYoQrMm0EdrjRUBkTqKYppBueQtXaqoE=
 github.com/vishvananda/netlink v1.1.1-0.20201029203352-d40f9887b852/go.mod h1:twkDnbuQxJYemMlGd4JFIcuhgX83tXhKS2B/PRMpOho=

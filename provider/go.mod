@@ -205,7 +205,7 @@ require (
 	github.com/uber/jaeger-client-go v2.30.0+incompatible // indirect
 	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect
 	github.com/ulikunitz/xz v0.5.10 // indirect
-	github.com/vatesfr/terraform-provider-xenorchestra/client v0.0.0-20240307013444-d4f82b566195 // indirect
+	github.com/vatesfr/terraform-provider-xenorchestra/client v0.0.0-20240320231457-516842d718d7 // indirect
 	github.com/vmihailenco/msgpack v4.0.4+incompatible // indirect
 	github.com/vmihailenco/msgpack/v5 v5.4.1 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
