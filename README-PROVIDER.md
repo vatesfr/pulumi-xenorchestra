@@ -1,12 +1,12 @@
-# Foo Resource Provider
+# Xen Orchestra Provider
 
-The Foo Resource Provider lets you manage [Foo](http://example.com) resources.
+The Xen Orchestra Provider lets you manage [Xen Orchestra](https://github.com/vatesfr/xen-orchestra) resources.
 
 ## Installing
 
 This package is available for several languages/platforms:
 
-### Node.js (JavaScript/TypeScript)
+<!-- ### Node.js (JavaScript/TypeScript)
 
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
@@ -18,7 +18,7 @@ or `yarn`:
 
 ```bash
 yarn add @pulumi/foo
-```
+``` -->
 
 ### Python
 
