@@ -1,4 +1,4 @@
-module github.com/belfhi/pulumi-xenorchestra/provider
+module github.com/vatesfr/pulumi-xenorchestra/provider
 
 go 1.21
 
@@ -7,7 +7,7 @@ replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraf
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.69.0
 	github.com/pulumi/pulumi/sdk/v3 v3.98.0
-	github.com/vatesfr/terraform-provider-xenorchestra v0.28.1-0.20240307013444-d4f82b566195
+	github.com/vatesfr/terraform-provider-xenorchestra v0.29.0
 )
 
 require (
@@ -236,7 +236,7 @@ require (
 	google.golang.org/genproto/googleapis/api v0.0.0-20231106174013-bbf56f31fb17 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20231106174013-bbf56f31fb17 // indirect
 	google.golang.org/grpc v1.61.1 // indirect
-	google.golang.org/protobuf v1.32.0 // indirect
+	google.golang.org/protobuf v1.33.0 // indirect
 	gopkg.in/square/go-jose.v2 v2.6.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect

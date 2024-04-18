@@ -1,5 +1,5 @@
 ARG UBUNTU_VERSION=latest
-FROM ubuntu:${UBUNTU_VERSION}
+FROM --platform=linux/amd64  ubuntu:${UBUNTU_VERSION}
 
 # Update apt-get and install various needed utilities
 RUN apt-get update && \

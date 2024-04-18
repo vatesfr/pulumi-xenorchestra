@@ -2,7 +2,7 @@ PROJECT_NAME := xenorchestra Package
 
 SHELL            := /bin/bash
 PACK             := xenorchestra
-ORG              := belfhi
+ORG              := vatesfr
 PROJECT          := github.com/${ORG}/pulumi-${PACK}
 NODE_MODULE_NAME := @pulumi/${PACK}
 TF_NAME          := ${PACK}
