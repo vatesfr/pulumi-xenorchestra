@@ -67,7 +67,7 @@ func Provider() tfbridge.ProviderInfo {
 		// Change this to your personal name (or a company name) that you
 		// would like to be shown in the Pulumi Registry if this package is published
 		// there.
-		Publisher: "Pulumi",
+		Publisher: "Vates",
 		// LogoURL is optional but useful to help identify your package in the Pulumi Registry
 		// if this package is published there.
 		//
@@ -77,8 +77,8 @@ func Provider() tfbridge.ProviderInfo {
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/
-		PluginDownloadURL: "",
-		Description:       "A Pulumi package for creating and managing xenorchestra cloud resources.",
+		PluginDownloadURL: "https://github.com/vatesfr/pulumi-xenorchestra/releases/",
+		Description:       "A Pulumi package for creating and managing Xen Orchestra cloud resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
 		// https://www.pulumi.com/docs/guides/pulumi-packages/schema/#package.
@@ -91,34 +91,55 @@ func Provider() tfbridge.ProviderInfo {
 		GitHubOrg:    "vatesfr",
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		Config:       map[string]*tfbridge.SchemaInfo{
-			// Add any required configuration here, or remove the example below if
-			// no additional points are required.
-			// "region": {
-			// 	Type: tfbridge.MakeType("region", "Region"),
+			// "url": {
 			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"AWS_REGION", "AWS_DEFAULT_REGION"},
-			// 	},
+			// 		EnvVars: []string{"XOA_URL"},
+			// 	}
 			// },
+			// "username": {
+			// 	Default: &tfbridge.DefaultInfo{
+			// 		EnvVars: []string{"XOA_USERNAME"},
+			// 	}
+			// },
+			// "password": {
+			// 	Default: &tfbridge.DefaultInfo{
+			// 		EnvVars: []string{"XOA_PASSWORD"},
+			// 	}
+			// },
+			// "token": {
+			// 	Default: &tfbridge.DefaultInfo{
+			// 		EnvVars: []string{"XOA_TOKEN"},
+			// 	}
+			// },
+			// "insecure": {
+			// 	Default: &tfbridge.DefaultInfo{
+			// 		EnvVars: []string{"XOA_INSECURE"},
+			// 	}
+			// }
 		},
 		PreConfigureCallback: preConfigureCallback,
-		Resources:            map[string]*tfbridge.ResourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi type. Two examples
-			// are below - the single line form is the common case. The multi-line form is
-			// needed only if you wish to override types or other default options.
-			//
-			// "aws_iam_role": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "IamRole")}
-			//
-			// "aws_acm_certificate": {
-			// 	Tok: tfbridge.MakeResource(mainPkg, mainMod, "Certificate"),
-			// 	Fields: map[string]*tfbridge.SchemaInfo{
-			// 		"tags": {Type: tfbridge.MakeType(mainPkg, "Tags")},
-			// 	},
-			// },
+		Resources: map[string]*tfbridge.ResourceInfo{
+			"xenorchestra_acl":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Acl")},
+			"xenorchestra_bonded_network": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "XoaBondedNetwork")},
+			"xenorchestra_cloud_config":   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "CloudConfig")},
+			"xenorchestra_network":        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "XoaNetwork")},
+			"xenorchestra_resource_set":   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ResourceSet")},
+			"xenorchestra_vdi":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Vdi")},
+			"xenorchestra_vm":             {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Vm")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi function. An example
-			// is below.
-			// "aws_ami": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAmi")},
+			"xenorchestra_cloud_config": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaCloudConfig")},
+			"xenorchestra_host":         {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaHost")},
+			"xenorchestra_hosts":        {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaHosts")},
+			"xenorchestra_network":      {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaNetwork")},
+			"xenorchestra_pif":          {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaPif")},
+			"xenorchestra_pool":         {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaPool")},
+			"xenorchestra_resource_set": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaResourceSet")},
+			"xenorchestra_sr":           {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaStorageRepository")},
+			"xenorchestra_template":     {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaTemplate")},
+			"xenorchestra_user":         {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaUser")},
+			"xenorchestra_vdi":          {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaVdi")},
+			"xenorchestra_vms":          {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaVms")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
@@ -142,7 +163,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: path.Join(
-				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", mainPkg),
+				fmt.Sprintf("github.com/vatesfr/pulumi-%[1]s/sdk/", mainPkg),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				mainPkg,

@@ -1,3 +1,3 @@
-module github.com/belfhi/pulumi-xenorchestra/examples
+module github.com//pulumi-xenorchestra/examples
 
 go 1.21

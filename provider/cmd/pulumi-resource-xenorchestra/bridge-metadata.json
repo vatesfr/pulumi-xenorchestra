@@ -5,7 +5,14 @@
                 "current": "xenorchestra:index/acl:Acl"
             },
             "xenorchestra_bonded_network": {
-                "current": "xenorchestra:index/bondedNetwork:BondedNetwork",
+                "current": "xenorchestra:index/xoaBondedNetwork:XoaBondedNetwork",
+                "past": [
+                    {
+                        "name": "xenorchestra:index/bondedNetwork:BondedNetwork",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "pif_ids": {
                         "maxItemsOne": false
@@ -16,7 +23,14 @@
                 "current": "xenorchestra:index/cloudConfig:CloudConfig"
             },
             "xenorchestra_network": {
-                "current": "xenorchestra:index/network:Network"
+                "current": "xenorchestra:index/xoaNetwork:XoaNetwork",
+                "past": [
+                    {
+                        "name": "xenorchestra:index/network:Network",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "xenorchestra_resource_set": {
                 "current": "xenorchestra:index/resourceSet:ResourceSet",
@@ -74,10 +88,24 @@
         },
         "datasources": {
             "xenorchestra_cloud_config": {
-                "current": "xenorchestra:index/getCloudConfig:getCloudConfig"
+                "current": "xenorchestra:index/getXoaCloudConfig:getXoaCloudConfig",
+                "past": [
+                    {
+                        "name": "xenorchestra:index/getCloudConfig:getCloudConfig",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "xenorchestra_host": {
-                "current": "xenorchestra:index/getHost:getHost",
+                "current": "xenorchestra:index/getXoaHost:getXoaHost",
+                "past": [
+                    {
+                        "name": "xenorchestra:index/getHost:getHost",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -85,7 +113,14 @@
                 }
             },
             "xenorchestra_hosts": {
-                "current": "xenorchestra:index/getHosts:getHosts",
+                "current": "xenorchestra:index/getXoaHosts:getXoaHosts",
+                "past": [
+                    {
+                        "name": "xenorchestra:index/getHosts:getHosts",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "hosts": {
                         "maxItemsOne": false,
@@ -103,19 +138,54 @@
                 }
             },
             "xenorchestra_network": {
-                "current": "xenorchestra:index/getNetwork:getNetwork"
+                "current": "xenorchestra:index/getXoaNetwork:getXoaNetwork",
+                "past": [
+                    {
+                        "name": "xenorchestra:index/getNetwork:getNetwork",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "xenorchestra_pif": {
-                "current": "xenorchestra:index/getPif:getPif"
+                "current": "xenorchestra:index/getXoaPif:getXoaPif",
+                "past": [
+                    {
+                        "name": "xenorchestra:index/getPif:getPif",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "xenorchestra_pool": {
-                "current": "xenorchestra:index/getPool:getPool"
+                "current": "xenorchestra:index/getXoaPool:getXoaPool",
+                "past": [
+                    {
+                        "name": "xenorchestra:index/getPool:getPool",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "xenorchestra_resource_set": {
-                "current": "xenorchestra:index/getResourceSet:getResourceSet"
+                "current": "xenorchestra:index/getXoaResourceSet:getXoaResourceSet",
+                "past": [
+                    {
+                        "name": "xenorchestra:index/getResourceSet:getResourceSet",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "xenorchestra_sr": {
-                "current": "xenorchestra:index/getSr:getSr",
+                "current": "xenorchestra:index/getXoaStorageRepository:getXoaStorageRepository",
+                "past": [
+                    {
+                        "name": "xenorchestra:index/getSr:getSr",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -123,13 +193,34 @@
                 }
             },
             "xenorchestra_template": {
-                "current": "xenorchestra:index/getTemplate:getTemplate"
+                "current": "xenorchestra:index/getXoaTemplate:getXoaTemplate",
+                "past": [
+                    {
+                        "name": "xenorchestra:index/getTemplate:getTemplate",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "xenorchestra_user": {
-                "current": "xenorchestra:index/getUser:getUser"
+                "current": "xenorchestra:index/getXoaUser:getXoaUser",
+                "past": [
+                    {
+                        "name": "xenorchestra:index/getUser:getUser",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "xenorchestra_vdi": {
-                "current": "xenorchestra:index/getVdi:getVdi",
+                "current": "xenorchestra:index/getXoaVdi:getXoaVdi",
+                "past": [
+                    {
+                        "name": "xenorchestra:index/getVdi:getVdi",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -137,7 +228,14 @@
                 }
             },
             "xenorchestra_vms": {
-                "current": "xenorchestra:index/getVms:getVms",
+                "current": "xenorchestra:index/getXoaVms:getXoaVms",
+                "past": [
+                    {
+                        "name": "xenorchestra:index/getVms:getVms",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "vms": {
                         "maxItemsOne": false,
@@ -178,7 +276,82 @@
             }
         }
     },
-    "auto-settings": {},
+    "auto-settings": {
+        "resources": {
+            "xenorchestra_bonded_network": {
+                "aliases": [
+                    "xenorchestra:index/bondedNetwork:BondedNetwork"
+                ]
+            },
+            "xenorchestra_network": {
+                "aliases": [
+                    "xenorchestra:index/network:Network"
+                ]
+            }
+        },
+        "datasources": {
+            "xenorchestra_cloud_config": {
+                "renames": [
+                    "xenorchestra:index/getCloudConfig:getCloudConfig"
+                ]
+            },
+            "xenorchestra_host": {
+                "renames": [
+                    "xenorchestra:index/getHost:getHost"
+                ]
+            },
+            "xenorchestra_hosts": {
+                "renames": [
+                    "xenorchestra:index/getHosts:getHosts"
+                ]
+            },
+            "xenorchestra_network": {
+                "renames": [
+                    "xenorchestra:index/getNetwork:getNetwork"
+                ]
+            },
+            "xenorchestra_pif": {
+                "renames": [
+                    "xenorchestra:index/getPif:getPif"
+                ]
+            },
+            "xenorchestra_pool": {
+                "renames": [
+                    "xenorchestra:index/getPool:getPool"
+                ]
+            },
+            "xenorchestra_resource_set": {
+                "renames": [
+                    "xenorchestra:index/getResourceSet:getResourceSet"
+                ]
+            },
+            "xenorchestra_sr": {
+                "renames": [
+                    "xenorchestra:index/getSr:getSr"
+                ]
+            },
+            "xenorchestra_template": {
+                "renames": [
+                    "xenorchestra:index/getTemplate:getTemplate"
+                ]
+            },
+            "xenorchestra_user": {
+                "renames": [
+                    "xenorchestra:index/getUser:getUser"
+                ]
+            },
+            "xenorchestra_vdi": {
+                "renames": [
+                    "xenorchestra:index/getVdi:getVdi"
+                ]
+            },
+            "xenorchestra_vms": {
+                "renames": [
+                    "xenorchestra:index/getVms:getVms"
+                ]
+            }
+        }
+    },
     "renames": {
         "resources": {
             "xenorchestra:index/acl:Acl": "xenorchestra_acl",
