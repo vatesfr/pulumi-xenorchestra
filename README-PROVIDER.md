@@ -25,10 +25,10 @@ yarn add @pulumi/foo
 To use from Python, install using `pip`:
 
 ```bash
-pip install pulumi_foo
+tbd
 ```
 
-### Go
+<!-- ### Go
 
 To use from Go, use `go get` to grab the latest version of the library:
 
@@ -42,15 +42,23 @@ To use from .NET, install using `dotnet add package`:
 
 ```bash
 dotnet add package Pulumi.Foo
-```
+``` -->
 
 ## Configuration
 
-The following configuration points are available for the `foo` provider:
+The following configuration points are available for the `xen-orchestra` provider:
 
-- `foo:apiKey` (environment: `FOO_API_KEY`) - the API key for `foo`
-- `foo:region` (environment: `FOO_REGION`) - the region in which to deploy resources
+- `xenorchestra:url` (environment: `XOA_URL`) - the URL for the Xen Orchestra websockets endpoint. Starts with `wss://`
+Set either:
+- `xenorchestra:username` (environment: `XOA_USERNAME`) - the username for Xen Orchestra
+- `xenorchestra:password` (environment: `XOA_PASSWORD`) - the password for Xen Orchestra
+Or:
+- `xenorchestra:token` (environment: `XOA_TOKEN`) - API token for Xen Orchestra
+
+- `xenorchestra:insecure` (environment: `XOA_INSECURE`) - set to any value to disable SSL verification, false by default. Only use if you are using a self-signed certificate and know what you are doing.
+
 
 ## Reference
-
-For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/foo/api-docs/).
+TBD
+<!--
+For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/foo/api-docs/). -->
