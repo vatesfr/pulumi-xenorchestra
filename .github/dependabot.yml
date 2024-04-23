@@ -18,3 +18,10 @@ updates:
       timezone: "Europe/Berlin"
     allow:
       - dependency-type: "all"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    open-pull-requests-limit: 20
+    schedule:
+      interval: "daily"
+      time: "05:00"
+      timezone: "Europe/Berlin"
