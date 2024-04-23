@@ -73,11 +73,11 @@ func Provider() tfbridge.ProviderInfo {
 		//
 		// You may host a logo on a domain you control or add an SVG logo for your package
 		// in your repository and use the raw content URL for that file as your logo URL.
-		LogoURL: "",
+		LogoURL: "https://github.com/vatesfr/xen-orchestra/raw/587da7b1336da1acbd7783555b863a9fd00e2893/@xen-orchestra/web/public/favicon.svg",
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/
-		PluginDownloadURL: "https://github.com/vatesfr/pulumi-xenorchestra/releases/",
+		PluginDownloadURL: "github://api.github.com/vatesfr/pulumi-xenorchestra",
 		Description:       "A Pulumi package for creating and managing Xen Orchestra cloud resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
@@ -92,29 +92,29 @@ func Provider() tfbridge.ProviderInfo {
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		Config:       map[string]*tfbridge.SchemaInfo{
 			// "url": {
-			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"XOA_URL"},
-			// 	}
+			//     Default: &tfbridge.DefaultInfo{
+			//         EnvVars: []string{"XOA_URL"},
+			//     }
 			// },
 			// "username": {
-			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"XOA_USERNAME"},
-			// 	}
+			//     Default: &tfbridge.DefaultInfo{
+			//         EnvVars: []string{"XOA_USERNAME"},
+			//     }
 			// },
 			// "password": {
-			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"XOA_PASSWORD"},
-			// 	}
+			//     Default: &tfbridge.DefaultInfo{
+			//         EnvVars: []string{"XOA_PASSWORD"},
+			//     }
 			// },
 			// "token": {
-			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"XOA_TOKEN"},
-			// 	}
+			//     Default: &tfbridge.DefaultInfo{
+			//         EnvVars: []string{"XOA_TOKEN"},
+			//     }
 			// },
 			// "insecure": {
-			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"XOA_INSECURE"},
-			// 	}
+			//     Default: &tfbridge.DefaultInfo{
+			//         EnvVars: []string{"XOA_INSECURE"},
+			//     }
 			// }
 		},
 		PreConfigureCallback: preConfigureCallback,

@@ -65,4 +65,3 @@ RUN apt-get update && \
 # Install Pulumi
 RUN curl -fsSL https://get.pulumi.com | sh
 ENV PATH=$PATH:/root/.pulumi/bin
-
