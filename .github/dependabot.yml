@@ -9,6 +9,14 @@ updates:
       timezone: "Europe/Berlin"
     allow:
       - dependency-type: "all"
+    groups:
+      minor-and-patch:
+        applies-to: version-updates
+        patterns:
+        - "*"
+        update-types:
+        - "minor"
+        - "patch"
   - package-ecosystem: "gomod"
     directory: "sdk/"
     open-pull-requests-limit: 20
@@ -18,6 +26,17 @@ updates:
       timezone: "Europe/Berlin"
     allow:
       - dependency-type: "all"
+    groups:
+      minor-and-patch:
+        applies-to: version-updates
+        patterns:
+        - "*"
+        update-types:
+        - "minor"
+        - "patch"
+ignore:
+  - dependency-name: "@angular*"
+    update-types: ["version-update:semver-major"]
   - package-ecosystem: "github-actions"
     directory: "/"
     open-pull-requests-limit: 20
