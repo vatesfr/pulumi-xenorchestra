@@ -15,7 +15,7 @@ updates:
         patterns:
         - "*"
         exclude-patterns:
-        - "github.com/pulumi/pulumi/*"
+        - "github.com/pulumi/pulumi*"
         update-types:
         - "minor"
         - "patch"
@@ -34,7 +34,7 @@ updates:
         patterns:
         - "*"
         exclude-patterns:
-        - "github.com/pulumi/pulumi/*"
+        - "github.com/pulumi/pulumi*"
         update-types:
         - "minor"
         - "patch"
