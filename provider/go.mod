@@ -63,7 +63,7 @@ require (
 	github.com/charmbracelet/bubbles v0.18.0 // indirect
 	github.com/charmbracelet/bubbletea v0.26.2 // indirect
 	github.com/charmbracelet/lipgloss v0.10.0 // indirect
-	github.com/cheggaaa/pb v1.0.29 // indirect
+	github.com/cheggaaa/pb v2.0.7+incompatible // indirect
 	github.com/cloudflare/circl v1.3.8 // indirect
 	github.com/cyphar/filepath-securejoin v0.2.5 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
@@ -238,6 +238,12 @@ require (
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240506185236-b8a5c65736ae // indirect
 	google.golang.org/grpc v1.63.2 // indirect
 	google.golang.org/protobuf v1.34.1 // indirect
+	gopkg.in/VividCortex/ewma.v1 v1.1.1 // indirect
+	gopkg.in/cheggaaa/pb.v2 v2.0.7 // indirect
+	gopkg.in/fatih/color.v1 v1.7.0 // indirect
+	gopkg.in/mattn/go-colorable.v0 v0.1.0 // indirect
+	gopkg.in/mattn/go-isatty.v0 v0.0.4 // indirect
+	gopkg.in/mattn/go-runewidth.v0 v0.0.4 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	lukechampine.com/frand v1.4.2 // indirect
