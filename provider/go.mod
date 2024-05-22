@@ -6,7 +6,7 @@ replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraf
 
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.82.0
-	github.com/pulumi/pulumi/sdk/v3 v3.114.0
+	github.com/pulumi/pulumi/sdk/v3 v3.116.1
 	github.com/vatesfr/terraform-provider-xenorchestra v0.29.1-0.20240422141711-0315be62e43a
 )
 
@@ -176,7 +176,7 @@ require (
 	github.com/pulumi/pulumi-java/pkg v0.11.0 // indirect
 	github.com/pulumi/pulumi-terraform-bridge/x/muxer v0.0.8 // indirect
 	github.com/pulumi/pulumi-yaml v1.7.0 // indirect
-	github.com/pulumi/pulumi/pkg/v3 v3.114.0 // indirect
+	github.com/pulumi/pulumi/pkg/v3 v3.116.1 // indirect
 	github.com/pulumi/schema-tools v0.1.2 // indirect
 	github.com/pulumi/terraform-diff-reader v0.0.2 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
