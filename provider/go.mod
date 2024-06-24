@@ -6,7 +6,7 @@ replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraf
 
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.84.0
-	github.com/pulumi/pulumi/sdk/v3 v3.118.0
+	github.com/pulumi/pulumi/sdk/v3 v3.121.0
 	github.com/vatesfr/terraform-provider-xenorchestra v0.29.1-0.20240422141711-0315be62e43a
 )
 
@@ -176,10 +176,11 @@ require (
 	github.com/posener/complete v1.2.3 // indirect
 	github.com/pulumi/appdash v0.0.0-20231130102222-75f619a67231 // indirect
 	github.com/pulumi/esc v0.9.1 // indirect
+	github.com/pulumi/inflector v0.1.1 // indirect
 	github.com/pulumi/pulumi-java/pkg v0.12.0 // indirect
 	github.com/pulumi/pulumi-terraform-bridge/x/muxer v0.0.8 // indirect
 	github.com/pulumi/pulumi-yaml v1.8.0 // indirect
-	github.com/pulumi/pulumi/pkg/v3 v3.118.0 // indirect
+	github.com/pulumi/pulumi/pkg/v3 v3.121.0 // indirect
 	github.com/pulumi/schema-tools v0.1.2 // indirect
 	github.com/pulumi/terraform-diff-reader v0.0.2 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
@@ -224,7 +225,7 @@ require (
 	gocloud.dev v0.37.0 // indirect
 	gocloud.dev/secrets/hashivault v0.37.0 // indirect
 	golang.org/x/crypto v0.24.0 // indirect
-	golang.org/x/exp v0.0.0-20240416160154-fe59bbe5cc7f // indirect
+	golang.org/x/exp v0.0.0-20240604190554-fc45aab8b7f8 // indirect
 	golang.org/x/mod v0.18.0 // indirect
 	golang.org/x/net v0.26.0 // indirect
 	golang.org/x/oauth2 v0.21.0 // indirect
