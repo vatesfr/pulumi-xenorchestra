@@ -1,12 +1,13 @@
 module github.com/vatesfr/pulumi-xenorchestra/provider
 
 go 1.21
+toolchain go1.22.5
 
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20240229143312-4f60ee4e2975
 
 require (
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.86.0
-	github.com/pulumi/pulumi/sdk/v3 v3.121.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.87.0
+	github.com/pulumi/pulumi/sdk/v3 v3.124.0
 	github.com/vatesfr/terraform-provider-xenorchestra v0.29.1-0.20240422141711-0315be62e43a
 )
 
@@ -178,8 +179,9 @@ require (
 	github.com/pulumi/inflector v0.2.1 // indirect
 	github.com/pulumi/pulumi-java/pkg v0.12.0 // indirect
 	github.com/pulumi/pulumi-terraform-bridge/x/muxer v0.0.8 // indirect
-	github.com/pulumi/pulumi-yaml v1.9.0 // indirect
-	github.com/pulumi/pulumi/pkg/v3 v3.121.0 // indirect
+	github.com/pulumi/pulumi-yaml v1.9.1 // indirect
+	github.com/pulumi/pulumi/pkg/v3 v3.124.0 // indirect
+	github.com/pulumi/schema-tools v0.1.2 // indirect
 	github.com/pulumi/terraform-diff-reader v0.0.2 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/rogpeppe/go-internal v1.12.0 // indirect
