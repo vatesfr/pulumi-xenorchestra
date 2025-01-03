@@ -14,7 +14,7 @@ RUN apt-get update && \
 # See README.md
 
 # Install go
-ARG GO_VERSION=1.22.8
+ARG GO_VERSION=1.23.4
 RUN rm -rf /usr/local/go && \
     wget -O ${GO_VERSION}.tar.gz https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz && \
     tar -C /usr/local -xzf ${GO_VERSION}.tar.gz && \
@@ -35,32 +35,9 @@ RUN rm -rf /usr/local/bin/pulumictl && \
     wget -O pulumictl.${PULUMICTL_VERSION}.tar.gz https://github.com/pulumi/pulumictl/releases/download/${PULUMICTL_VERSION}/pulumictl-${PULUMICTL_VERSION}-linux-amd64.tar.gz && \
     tar -C /usr/local/bin -xzf pulumictl.${PULUMICTL_VERSION}.tar.gz
 
-# Install nodejs
-ARG NODEJS_VERSION=v21.7.3
-ARG NODEJS_PKG=node-${NODEJS_VERSION}-linux-x64
-ARG NODEJS_TARBALL=${NODEJS_PKG}.tar.xz
-RUN rm -rf /usr/local/node && \
-    wget -O ${NODEJS_TARBALL} https://nodejs.org/dist/${NODEJS_VERSION}/${NODEJS_TARBALL} && \
-    tar -C /usr/local -xf ${NODEJS_TARBALL} && \
-    mv /usr/local/${NODEJS_PKG} /usr/local/node
-
-ENV PATH=$PATH:/usr/local/node/bin
-
-# Install yarn
-RUN npm install --global yarn
-
 # Install python and related items
 RUN apt-get install -y python3 && \
     apt-get install -y python3-setuptools
-
-# Install .NET
-# https://stackoverflow.com/questions/73753672/a-fatal-error-occurred-the-folder-usr-share-dotnet-host-fxr-does-not-exist
-RUN apt-get remove dotnet* && \
-    apt-get remove aspnetcore* && \
-    apt-get remove netstandard&
-
-RUN apt-get update && \
-    apt-get install dotnet-sdk-6.0 -y
 
 # Install Pulumi
 RUN curl -fsSL https://get.pulumi.com | sh
