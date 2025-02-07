@@ -1,0 +1,5 @@
+{
+  "resource": true,
+  "name": "xenorchestra",
+  "server": "github://api.github.com/vatesfr/pulumi-xenorchestra"
+}
