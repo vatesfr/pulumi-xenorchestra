@@ -20,6 +20,7 @@ import (
 	_ "embed"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+
 	xenorchestra "github.com/vatesfr/pulumi-xenorchestra/provider"
 	"github.com/vatesfr/pulumi-xenorchestra/provider/pkg/version"
 )
