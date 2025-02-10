@@ -63,7 +63,8 @@ jobs:
       - name: Update path
         run: echo "${{ github.workspace }}/bin" >> "$GITHUB_PATH"
       - name: Restore makefile progress
-        run: make --touch provider schema
+        # touch generate to avoir sdk regeneration, see bug https://github.com/pulumi/pulumi-tf-provider-boilerplate/issues/224
+        run: make --touch provider schema generate
       - name: Build SDK
         run: make build_${{ matrix.language }}
       - name: Check worktree clean
