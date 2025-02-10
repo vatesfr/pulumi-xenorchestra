@@ -1,6 +1,6 @@
 {
     "name": "@pulumi/xenorchestra",
-    "version": "${VERSION}",
+    "version": "1.3.3",
     "description": "A Pulumi package for creating and managing Xen Orchestra cloud resources.",
     "keywords": [
         "pulumi",
