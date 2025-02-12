@@ -21,14 +21,13 @@ import (
 	// Allow embedding bridge-metadata.json in the provider.
 	_ "embed"
 
+	xenorchestra "github.com/vatesfr/terraform-provider-xenorchestra/xoa"
+
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-
-	// Replace this provider with the provider you are bridging.
-	xenorchestra "github.com/vatesfr/terraform-provider-xenorchestra/xoa"
 
 	"github.com/vatesfr/pulumi-xenorchestra/provider/pkg/version"
 )
