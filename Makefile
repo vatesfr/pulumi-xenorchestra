@@ -143,6 +143,7 @@ build_nodejs: .make/build_nodejs
 .make/generate_nodejs: .make/install_plugins bin/$(CODEGEN)
 	$(GEN_ENVS) $(WORKING_DIR)/bin/$(CODEGEN) nodejs --out sdk/nodejs/
 	printf "module fake_nodejs_module // Exclude this directory from Go tools\n\ngo 1.17\n" > sdk/nodejs/go.mod
+	sed -i 's/$${VERSION}/$(PROVIDER_VERSION)/g' sdk/nodejs/package.json
 	@touch $@
 .make/build_nodejs: .make/generate_nodejs
 	cd sdk/nodejs/ && \
@@ -159,6 +160,7 @@ build_python: .make/build_python
 	$(GEN_ENVS) $(WORKING_DIR)/bin/$(CODEGEN) python --out sdk/python/
 	printf "module fake_python_module // Exclude this directory from Go tools\n\ngo 1.17\n" > sdk/python/go.mod
 	cp README.md sdk/python/
+	sed -i -r 's/(VERSION = ")[0-9]+.[0-9]+.[0-9]+(")/\1$(PROVIDER_VERSION)\2/g' sdk/python/setup.py
 	@touch $@
 .make/build_python: .make/generate_python
 	cd sdk/python/ && \
