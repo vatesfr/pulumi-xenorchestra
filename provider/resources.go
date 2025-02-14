@@ -141,7 +141,7 @@ func Provider() tfbridge.ProviderInfo {
 			"xenorchestra_vms":          {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaVms")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
-			PackageName: "@vatesfr/pulumi-xenorchestra",
+			PackageName: "@vates/pulumi-xenorchestra",
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^3.0.0",
