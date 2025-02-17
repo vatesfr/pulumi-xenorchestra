@@ -10,6 +10,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as xenorchestra from "@pulumi/xenorchestra";
+ * import * as xenorchestra from "@vates/pulumi-xenorchestra";
  *
  * const net = xenorchestra.getXoaNetwork({
  *     nameLabel: "Pool-wide network associated with eth0",
@@ -73,6 +74,7 @@ export interface GetXoaNetworkResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as xenorchestra from "@pulumi/xenorchestra";
+ * import * as xenorchestra from "@vates/pulumi-xenorchestra";
  *
  * const net = xenorchestra.getXoaNetwork({
  *     nameLabel: "Pool-wide network associated with eth0",

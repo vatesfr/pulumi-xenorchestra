@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as xenorchestra from "@pulumi/xenorchestra";
+ * import * as xenorchestra from "@vates/pulumi-xenorchestra";
  *
  * const demo = new xenorchestra.CloudConfig("demo", {
  *     name: "cloud config name",

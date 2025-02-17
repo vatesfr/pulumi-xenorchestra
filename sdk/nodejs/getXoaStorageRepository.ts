@@ -10,6 +10,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as xenorchestra from "@pulumi/xenorchestra";
+ * import * as xenorchestra from "@vates/pulumi-xenorchestra";
  *
  * const localStorage = xenorchestra.getXoaStorageRepository({
  *     nameLabel: "Your storage repository label",
@@ -99,6 +100,7 @@ export interface GetXoaStorageRepositoryResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as xenorchestra from "@pulumi/xenorchestra";
+ * import * as xenorchestra from "@vates/pulumi-xenorchestra";
  *
  * const localStorage = xenorchestra.getXoaStorageRepository({
  *     nameLabel: "Your storage repository label",

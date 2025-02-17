@@ -10,6 +10,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as xenorchestra from "@pulumi/xenorchestra";
+ * import * as xenorchestra from "@vates/pulumi-xenorchestra";
  *
  * const eth0 = xenorchestra.getXoaPif({
  *     device: "eth0",
@@ -96,6 +97,7 @@ export interface GetPifResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as xenorchestra from "@pulumi/xenorchestra";
+ * import * as xenorchestra from "@vates/pulumi-xenorchestra";
  *
  * const eth0 = xenorchestra.getXoaPif({
  *     device: "eth0",

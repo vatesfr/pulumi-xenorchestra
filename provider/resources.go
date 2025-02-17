@@ -160,6 +160,11 @@ func Provider() tfbridge.ProviderInfo {
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
 			},
+			PyProject: struct {
+				Enabled bool
+			}{
+				Enabled: true, // Enable pyproject.toml generation
+			},
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: path.Join(

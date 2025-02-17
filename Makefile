@@ -160,7 +160,7 @@ build_python: .make/build_python
 	$(GEN_ENVS) $(WORKING_DIR)/bin/$(CODEGEN) python --out sdk/python/
 	printf "module fake_python_module // Exclude this directory from Go tools\n\ngo 1.17\n" > sdk/python/go.mod
 	cp README.md sdk/python/
-	sed -i -r 's/(VERSION = ")[0-9]+.[0-9]+.[0-9]+(")/\1$(PROVIDER_VERSION)\2/g' sdk/python/setup.py
+	sed -i -r 's/(version = ")[0-9]+.[0-9]+.[0-9]+(")/\1$(PROVIDER_VERSION)\2/g' sdk/python/pyproject.toml
 	@touch $@
 .make/build_python: .make/generate_python
 	cd sdk/python/ && \
