@@ -158,7 +158,7 @@ require (
 	github.com/pulumi/appdash v0.0.0-20231130102222-75f619a67231 // indirect
 	github.com/pulumi/esc v0.11.1 // indirect
 	github.com/pulumi/inflector v0.2.1 // indirect
-	github.com/pulumi/pulumi-java/pkg v1.0.0 // indirect
+	github.com/pulumi/pulumi-java/pkg v1.3.0 // indirect
 	github.com/pulumi/pulumi-yaml v1.13.0 // indirect
 	github.com/pulumi/pulumi/pkg/v3 v3.148.0 // indirect
 	github.com/pulumi/schema-tools v0.1.2 // indirect
