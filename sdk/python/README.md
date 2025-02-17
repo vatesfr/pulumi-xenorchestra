@@ -1,71 +1,73 @@
 # Xen Orchestra Provider
 
-The provider on top of Xen Orchestra to manage XCP-ng resources.
-The releases of this package are hosted on the DESY Gitlab [here](https://gitlab.desy.de/cloud-public/pulumi-xenorchestra). 
-Pull Requests from dependabot are managed here and then synced back to our Gitlab.
-Only Python packages are released for the provider since we cannot test it for other languages.
+The Xen Orchestra Provider lets you manage [Xen Orchestra](https://github.com/vatesfr/xen-orchestra) resources.
 
-## Installing 
+## Installing
 
-If you want to use this provider in your python Code you need to install the python package
-from the Gitlab pypi registry:
+This package is available for several languages/platforms:
+
+### Node.js (JavaScript/TypeScript)
+
+To use from JavaScript or TypeScript in Node.js, install using either `npm`:
+
+```bash
+npm install @vates/pulumi-xenorchestra
 ```
-pip install pulumi-xenorchestra --index-url https://gitlab.desy.de/api/v4/projects/14393/packages/pypi/simple
+
+or `yarn`:
+
+```bash
+yarn add @vates/pulumi-xenorchestra
 ```
-Then you can run the following command to install the plugin (the golang binary) from the gitlab releaes page:
+
+### Python
+
+To use from Python, install using `pip`:
+
+```bash
+pip install pulumi-xenorchestra
 ```
-pulumi plugin install resource xenorchestra 1.2.0 --server https://gitlab.desy.de/cloud-public/pulumi-xenorchestra/-/releases/v1.2.0/downloads/
-````
+
+### Go
+
+To use from Go, use `go get` to grab the latest version of the library:
+
+```bash
+go get github.com/vatesfr/pulumi-xenorchestra/sdk
+```
+
+<!-- ### .NET
+
+To use from .NET, install using `dotnet add package`:
+
+```bash
+dotnet add package Pulumi.Foo
+``` -->
+
+## Configuration
+
+Use `pulumi config set xenorchestra:<option>` or pass options to the constructor of new xenorchestra.Provider.
+
+The following configuration points are available for the `xenorchestra` provider:
+
+- `xenorchestra:url` (environment: `XOA_URL`) - the URL for the Xen Orchestra websockets endpoint. Starts with `wss://`
+Set either:
+- `xenorchestra:username` (environment: `XOA_USERNAME`) - the username for Xen Orchestra
+- `xenorchestra:password` (environment: `XOA_PASSWORD`) - the password for Xen Orchestra
+Or:
+- `xenorchestra:token` (environment: `XOA_TOKEN`) - API token for Xen Orchestra
+
+- `xenorchestra:insecure` (environment: `XOA_INSECURE`) - set to any value to disable SSL verification, false by default. Only use if you are using a self-signed certificate and know what you are doing.
 
 ## Usage
 
-in your `__main__.py` set up the Xen-Orchestra provider for pulumi in the following way:
-```
-import pulumi_xenorchestra as xoa
+See [examples.md](./docs/examples.md) for examples.
 
-xoa_provider = xoa.Provider(
-    "xenorchestra",
-    xoa.ProviderArgs(
-        url=Output.secret(secret_data["xoa_url"]),
-        token=Output.secret(secret_data["xoa_token"]),
-        insecure=False,
-)
-```
+## Building
 
-You can then une the provider to create a Virtual Machine:
+See [contributing](CONTRIBUTING.md) for details on how to build and contribute to this provider.
 
-```
-xoa.Vm(
-    resource_name=machine.name,
-    name_label=machine.name,
-    name_description="XOA VM",
-    cpus=4,
-    memory_max=8590000000,
-    template=template.id,
-    tags=["pulumi"],
-    cloud_config=pathlib.Path("./config/cloudinit-xen-static.yaml").read_text()
-    ),
-    disks=[
-        xoa.VmDiskArgs(
-            sr_id=machine.storage_repository_id,
-            name_label="OS",
-            size=34361835520,
-        ),
-    ],
-    networks=[
-        xoa.VmNetworkArgs(
-            network_id=network.id,
-            mac_address=map_ip_to_mac(
-                machine.ipv4_address,
-                separator=":",
-            ),
-        ),
-    ],
-    opts=pulumi.ResourceOptions(
-        provider=xoa_provider,
-        # Do not recreate node with new credentials
-        ignore_changes=["cloud_config"],
-        parent=self,
-    ),
-)
-```
+## Reference
+TBD
+<!--
+For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/foo/api-docs/). -->
