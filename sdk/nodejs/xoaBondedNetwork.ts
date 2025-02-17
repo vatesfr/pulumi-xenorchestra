@@ -12,6 +12,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as xenorchestra from "@pulumi/xenorchestra";
+ * import * as xenorchestra from "@vates/pulumi-xenorchestra";
  *
  * const host1 = xenorchestra.getXoaHost({
  *     nameLabel: "Your host",

@@ -10,6 +10,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as xenorchestra from "@pulumi/xenorchestra";
+ * import * as xenorchestra from "@vates/pulumi-xenorchestra";
  *
  * const template = xenorchestra.getXoaTemplate({
  *     nameLabel: "Ubuntu Bionic Beaver 18.04",
@@ -66,6 +67,7 @@ export interface GetXoaTemplateResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as xenorchestra from "@pulumi/xenorchestra";
+ * import * as xenorchestra from "@vates/pulumi-xenorchestra";
  *
  * const template = xenorchestra.getXoaTemplate({
  *     nameLabel: "Ubuntu Bionic Beaver 18.04",
