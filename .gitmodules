@@ -1,4 +1,0 @@
-[submodule "terraform-provider-xenorchestra"]
-	path = upstream
-	url = https://github.com/vatesfr/terraform-provider-xenorchestra.git
-	branch = master

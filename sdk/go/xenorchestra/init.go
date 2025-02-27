@@ -8,7 +8,7 @@ import (
 
 	"github.com/blang/semver"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/vatesfr/pulumi-xenorchestra/sdk/go/xenorchestra/internal"
+	"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra/internal"
 )
 
 type module struct {
@@ -23,12 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "xenorchestra:index/acl:Acl":
 		r = &Acl{}
-	case "xenorchestra:index/bondedNetwork:BondedNetwork":
-		r = &BondedNetwork{}
 	case "xenorchestra:index/cloudConfig:CloudConfig":
 		r = &CloudConfig{}
-	case "xenorchestra:index/network:Network":
-		r = &Network{}
 	case "xenorchestra:index/resourceSet:ResourceSet":
 		r = &ResourceSet{}
 	case "xenorchestra:index/vdi:Vdi":
@@ -77,17 +73,7 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"xenorchestra",
-		"index/bondedNetwork",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"xenorchestra",
 		"index/cloudConfig",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"xenorchestra",
-		"index/network",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

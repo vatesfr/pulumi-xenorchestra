@@ -70,8 +70,8 @@ class VmArgs:
                be rescheduled.
         :param pulumi.Input[bool] auto_poweron: If the VM will automatically turn on. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] blocked_operations: List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-               hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list
-               can be found here
+               hard_shutdown, pause, shutdown, suspend, destroy. See:
+               https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
         :param pulumi.Input['VmCdromArgs'] cdrom: The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
                from `xe template-list`) and install the OS from the following ISO.
         :param pulumi.Input[str] clone_type: The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to
@@ -259,8 +259,8 @@ class VmArgs:
     def blocked_operations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-        hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list
-        can be found here
+        hard_shutdown, pause, shutdown, suspend, destroy. See:
+        https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
         """
         return pulumi.get(self, "blocked_operations")
 
@@ -553,8 +553,8 @@ class _VmState:
                be rescheduled.
         :param pulumi.Input[bool] auto_poweron: If the VM will automatically turn on. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] blocked_operations: List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-               hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list
-               can be found here
+               hard_shutdown, pause, shutdown, suspend, destroy. See:
+               https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
         :param pulumi.Input['VmCdromArgs'] cdrom: The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
                from `xe template-list`) and install the OS from the following ISO.
         :param pulumi.Input[str] clone_type: The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to
@@ -688,8 +688,8 @@ class _VmState:
     def blocked_operations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-        hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list
-        can be found here
+        hard_shutdown, pause, shutdown, suspend, destroy. See:
+        https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
         """
         return pulumi.get(self, "blocked_operations")
 
@@ -1087,8 +1087,8 @@ class Vm(pulumi.CustomResource):
                be rescheduled.
         :param pulumi.Input[bool] auto_poweron: If the VM will automatically turn on. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] blocked_operations: List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-               hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list
-               can be found here
+               hard_shutdown, pause, shutdown, suspend, destroy. See:
+               https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
         :param pulumi.Input[Union['VmCdromArgs', 'VmCdromArgsDict']] cdrom: The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
                from `xe template-list`) and install the OS from the following ISO.
         :param pulumi.Input[str] clone_type: The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to
@@ -1285,8 +1285,8 @@ class Vm(pulumi.CustomResource):
                be rescheduled.
         :param pulumi.Input[bool] auto_poweron: If the VM will automatically turn on. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] blocked_operations: List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-               hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list
-               can be found here
+               hard_shutdown, pause, shutdown, suspend, destroy. See:
+               https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
         :param pulumi.Input[Union['VmCdromArgs', 'VmCdromArgsDict']] cdrom: The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
                from `xe template-list`) and install the OS from the following ISO.
         :param pulumi.Input[str] clone_type: The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to
@@ -1385,8 +1385,8 @@ class Vm(pulumi.CustomResource):
     def blocked_operations(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-        hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list
-        can be found here
+        hard_shutdown, pause, shutdown, suspend, destroy. See:
+        https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
         """
         return pulumi.get(self, "blocked_operations")
 
