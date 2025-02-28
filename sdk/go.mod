@@ -1,4 +1,4 @@
-module github.com/vatesfr/pulumi-xenorchestra/sdk
+module github.com/vatesfr/pulumi-xenorchestra/sdk/v2
 
 go 1.22
 

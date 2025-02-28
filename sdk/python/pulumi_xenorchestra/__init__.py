@@ -6,20 +6,7 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .acl import *
-from .bonded_network import *
 from .cloud_config import *
-from .get_cloud_config import *
-from .get_host import *
-from .get_hosts import *
-from .get_network import *
-from .get_pif import *
-from .get_pool import *
-from .get_resource_set import *
-from .get_sr import *
-from .get_template import *
-from .get_user import *
-from .get_vdi import *
-from .get_vms import *
 from .get_xoa_cloud_config import *
 from .get_xoa_host import *
 from .get_xoa_hosts import *
@@ -32,7 +19,6 @@ from .get_xoa_template import *
 from .get_xoa_user import *
 from .get_xoa_vdi import *
 from .get_xoa_vms import *
-from .network import *
 from .provider import *
 from .resource_set import *
 from .vdi import *
@@ -62,26 +48,10 @@ _utilities.register(
  },
  {
   "pkg": "xenorchestra",
-  "mod": "index/bondedNetwork",
-  "fqn": "pulumi_xenorchestra",
-  "classes": {
-   "xenorchestra:index/bondedNetwork:BondedNetwork": "BondedNetwork"
-  }
- },
- {
-  "pkg": "xenorchestra",
   "mod": "index/cloudConfig",
   "fqn": "pulumi_xenorchestra",
   "classes": {
    "xenorchestra:index/cloudConfig:CloudConfig": "CloudConfig"
-  }
- },
- {
-  "pkg": "xenorchestra",
-  "mod": "index/network",
-  "fqn": "pulumi_xenorchestra",
-  "classes": {
-   "xenorchestra:index/network:Network": "Network"
   }
  },
  {
