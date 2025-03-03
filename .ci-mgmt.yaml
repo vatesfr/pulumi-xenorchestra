@@ -13,7 +13,7 @@ upstream-provider-repo: terraform-provider-xenorchestra
 
 # major version of the current provider - used in make files
 # This should always be set by all providers as this is key to go module paths.
-major-version: 1
+major-version: 2
 
 # Enable using the terraform converter for example generation.
 pulumiConvert: 1

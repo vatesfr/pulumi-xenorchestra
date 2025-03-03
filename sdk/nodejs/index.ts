@@ -10,75 +10,10 @@ export type Acl = import("./acl").Acl;
 export const Acl: typeof import("./acl").Acl = null as any;
 utilities.lazyLoad(exports, ["Acl"], () => require("./acl"));
 
-export { BondedNetworkArgs, BondedNetworkState } from "./bondedNetwork";
-export type BondedNetwork = import("./bondedNetwork").BondedNetwork;
-export const BondedNetwork: typeof import("./bondedNetwork").BondedNetwork = null as any;
-utilities.lazyLoad(exports, ["BondedNetwork"], () => require("./bondedNetwork"));
-
 export { CloudConfigArgs, CloudConfigState } from "./cloudConfig";
 export type CloudConfig = import("./cloudConfig").CloudConfig;
 export const CloudConfig: typeof import("./cloudConfig").CloudConfig = null as any;
 utilities.lazyLoad(exports, ["CloudConfig"], () => require("./cloudConfig"));
-
-export { GetCloudConfigArgs, GetCloudConfigResult, GetCloudConfigOutputArgs } from "./getCloudConfig";
-export const getCloudConfig: typeof import("./getCloudConfig").getCloudConfig = null as any;
-export const getCloudConfigOutput: typeof import("./getCloudConfig").getCloudConfigOutput = null as any;
-utilities.lazyLoad(exports, ["getCloudConfig","getCloudConfigOutput"], () => require("./getCloudConfig"));
-
-export { GetHostArgs, GetHostResult, GetHostOutputArgs } from "./getHost";
-export const getHost: typeof import("./getHost").getHost = null as any;
-export const getHostOutput: typeof import("./getHost").getHostOutput = null as any;
-utilities.lazyLoad(exports, ["getHost","getHostOutput"], () => require("./getHost"));
-
-export { GetHostsArgs, GetHostsResult, GetHostsOutputArgs } from "./getHosts";
-export const getHosts: typeof import("./getHosts").getHosts = null as any;
-export const getHostsOutput: typeof import("./getHosts").getHostsOutput = null as any;
-utilities.lazyLoad(exports, ["getHosts","getHostsOutput"], () => require("./getHosts"));
-
-export { GetNetworkArgs, GetNetworkResult, GetNetworkOutputArgs } from "./getNetwork";
-export const getNetwork: typeof import("./getNetwork").getNetwork = null as any;
-export const getNetworkOutput: typeof import("./getNetwork").getNetworkOutput = null as any;
-utilities.lazyLoad(exports, ["getNetwork","getNetworkOutput"], () => require("./getNetwork"));
-
-export { GetPifArgs, GetPifResult, GetPifOutputArgs } from "./getPif";
-export const getPif: typeof import("./getPif").getPif = null as any;
-export const getPifOutput: typeof import("./getPif").getPifOutput = null as any;
-utilities.lazyLoad(exports, ["getPif","getPifOutput"], () => require("./getPif"));
-
-export { GetPoolArgs, GetPoolResult, GetPoolOutputArgs } from "./getPool";
-export const getPool: typeof import("./getPool").getPool = null as any;
-export const getPoolOutput: typeof import("./getPool").getPoolOutput = null as any;
-utilities.lazyLoad(exports, ["getPool","getPoolOutput"], () => require("./getPool"));
-
-export { GetResourceSetArgs, GetResourceSetResult, GetResourceSetOutputArgs } from "./getResourceSet";
-export const getResourceSet: typeof import("./getResourceSet").getResourceSet = null as any;
-export const getResourceSetOutput: typeof import("./getResourceSet").getResourceSetOutput = null as any;
-utilities.lazyLoad(exports, ["getResourceSet","getResourceSetOutput"], () => require("./getResourceSet"));
-
-export { GetSrArgs, GetSrResult, GetSrOutputArgs } from "./getSr";
-export const getSr: typeof import("./getSr").getSr = null as any;
-export const getSrOutput: typeof import("./getSr").getSrOutput = null as any;
-utilities.lazyLoad(exports, ["getSr","getSrOutput"], () => require("./getSr"));
-
-export { GetTemplateArgs, GetTemplateResult, GetTemplateOutputArgs } from "./getTemplate";
-export const getTemplate: typeof import("./getTemplate").getTemplate = null as any;
-export const getTemplateOutput: typeof import("./getTemplate").getTemplateOutput = null as any;
-utilities.lazyLoad(exports, ["getTemplate","getTemplateOutput"], () => require("./getTemplate"));
-
-export { GetUserArgs, GetUserResult, GetUserOutputArgs } from "./getUser";
-export const getUser: typeof import("./getUser").getUser = null as any;
-export const getUserOutput: typeof import("./getUser").getUserOutput = null as any;
-utilities.lazyLoad(exports, ["getUser","getUserOutput"], () => require("./getUser"));
-
-export { GetVdiArgs, GetVdiResult, GetVdiOutputArgs } from "./getVdi";
-export const getVdi: typeof import("./getVdi").getVdi = null as any;
-export const getVdiOutput: typeof import("./getVdi").getVdiOutput = null as any;
-utilities.lazyLoad(exports, ["getVdi","getVdiOutput"], () => require("./getVdi"));
-
-export { GetVmsArgs, GetVmsResult, GetVmsOutputArgs } from "./getVms";
-export const getVms: typeof import("./getVms").getVms = null as any;
-export const getVmsOutput: typeof import("./getVms").getVmsOutput = null as any;
-utilities.lazyLoad(exports, ["getVms","getVmsOutput"], () => require("./getVms"));
 
 export { GetXoaCloudConfigArgs, GetXoaCloudConfigResult, GetXoaCloudConfigOutputArgs } from "./getXoaCloudConfig";
 export const getXoaCloudConfig: typeof import("./getXoaCloudConfig").getXoaCloudConfig = null as any;
@@ -140,11 +75,6 @@ export const getXoaVms: typeof import("./getXoaVms").getXoaVms = null as any;
 export const getXoaVmsOutput: typeof import("./getXoaVms").getXoaVmsOutput = null as any;
 utilities.lazyLoad(exports, ["getXoaVms","getXoaVmsOutput"], () => require("./getXoaVms"));
 
-export { NetworkArgs, NetworkState } from "./network";
-export type Network = import("./network").Network;
-export const Network: typeof import("./network").Network = null as any;
-utilities.lazyLoad(exports, ["Network"], () => require("./network"));
-
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
@@ -191,12 +121,8 @@ const _module = {
         switch (type) {
             case "xenorchestra:index/acl:Acl":
                 return new Acl(name, <any>undefined, { urn })
-            case "xenorchestra:index/bondedNetwork:BondedNetwork":
-                return new BondedNetwork(name, <any>undefined, { urn })
             case "xenorchestra:index/cloudConfig:CloudConfig":
                 return new CloudConfig(name, <any>undefined, { urn })
-            case "xenorchestra:index/network:Network":
-                return new Network(name, <any>undefined, { urn })
             case "xenorchestra:index/resourceSet:ResourceSet":
                 return new ResourceSet(name, <any>undefined, { urn })
             case "xenorchestra:index/vdi:Vdi":
@@ -213,9 +139,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("xenorchestra", "index/acl", _module)
-pulumi.runtime.registerResourceModule("xenorchestra", "index/bondedNetwork", _module)
 pulumi.runtime.registerResourceModule("xenorchestra", "index/cloudConfig", _module)
-pulumi.runtime.registerResourceModule("xenorchestra", "index/network", _module)
 pulumi.runtime.registerResourceModule("xenorchestra", "index/resourceSet", _module)
 pulumi.runtime.registerResourceModule("xenorchestra", "index/vdi", _module)
 pulumi.runtime.registerResourceModule("xenorchestra", "index/vm", _module)
