@@ -10,7 +10,7 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`xenorchestra` Terraform Provider](https://github.com/vatesfr/terraform-provider-xenorchestra).",
     "repository": "https://github.com/vatesfr/pulumi-xenorchestra",
-    "logoUrl": "https://github.com/vatesfr/xen-orchestra/raw/587da7b1336da1acbd7783555b863a9fd00e2893/@xen-orchestra/web/public/favicon.svg",
+    "logoUrl": "https://raw.githubusercontent.com/vatesfr/pulumi-xenorchestra/8c71624229d953d4fb7d4843d5483e53e21b9459/logo_xo.png",
     "pluginDownloadURL": "github://api.github.com/vatesfr/pulumi-xenorchestra",
     "publisher": "Vates",
     "meta": {

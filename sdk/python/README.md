@@ -2,6 +2,8 @@
 
 The Xen Orchestra Provider lets you manage [Xen Orchestra](https://github.com/vatesfr/xen-orchestra) resources.
 
+![XO logo](./logo_xo.png)
+
 ## Installing
 
 This package is available for several languages/platforms:
