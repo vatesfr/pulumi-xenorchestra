@@ -43,7 +43,7 @@ export interface VmDisk {
     /**
      * The size in bytes for the disk.
      */
-    size: pulumi.Input<number>;
+    size: pulumi.Input<string>;
     /**
      * The storage repository ID to use.
      */

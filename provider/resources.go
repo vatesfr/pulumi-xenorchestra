@@ -15,8 +15,10 @@
 package xenorchestra
 
 import (
+	"context"
 	"fmt"
 	"path"
+	"strconv"
 
 	// Allow embedding bridge-metadata.json in the provider.
 	_ "embed"
@@ -24,6 +26,7 @@ import (
 	xenorchestra "github.com/vatesfr/terraform-provider-xenorchestra/xoa"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/info"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
@@ -47,6 +50,29 @@ const (
 // for example `stringValue(vars, "accessKey")`.
 func preConfigureCallback(resource.PropertyMap, shim.ResourceConfig) error {
 	return nil
+}
+
+var transformFromState info.PropertyTransform = func(c context.Context, r resource.PropertyMap) (resource.PropertyMap, error) {
+	// Transform the disk size from a string to a number
+	if r["disk"].IsObject() {
+		disks := r["disk"].ObjectValue()
+		for k, v := range disks {
+			if v.IsObject() {
+				disk := v.ObjectValue()
+				if disk["size"].IsString() {
+					size, err := strconv.Atoi(disk["size"].StringValue())
+					if err != nil {
+						return nil, err
+					}
+					disks[k] = resource.NewNumberProperty(float64(size))
+				}
+			}
+		}
+		r["disk"] = resource.NewObjectProperty(disks)
+
+	}
+
+	return r, nil
 }
 
 //go:embed cmd/pulumi-resource-xenorchestra/bridge-metadata.json
@@ -124,7 +150,19 @@ func Provider() tfbridge.ProviderInfo {
 			"xenorchestra_network":        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "XoaNetwork")},
 			"xenorchestra_resource_set":   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ResourceSet")},
 			"xenorchestra_vdi":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Vdi")},
-			"xenorchestra_vm":             {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Vm")},
+			"xenorchestra_vm": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Vm"),
+				// Xen Orchestra VMs have a disk size that is a number in the Terraform state but a string in Pulumi
+				// This is to work around the issue with dotnet SDK int type coded in 32 bits limiting the disk size
+				TransformFromState: transformFromState,
+				Fields: map[string]*info.Schema{
+					"disk": {Elem: &info.Schema{Fields: map[string]*info.Schema{
+						"size": {
+							Type: "string",
+						},
+					}}},
+				},
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"xenorchestra_cloud_config": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaCloudConfig")},
