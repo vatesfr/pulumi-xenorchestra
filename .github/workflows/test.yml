@@ -85,4 +85,5 @@ jobs:
         - go
         - nodejs
         - python
+        - dotnet
         testTarget: [local]
