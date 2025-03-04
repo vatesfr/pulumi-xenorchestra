@@ -106,7 +106,7 @@ class VmDisk(dict):
 
     def __init__(__self__, *,
                  name_label: str,
-                 size: int,
+                 size: str,
                  sr_id: str,
                  attached: Optional[bool] = None,
                  name_description: Optional[str] = None,
@@ -115,7 +115,7 @@ class VmDisk(dict):
                  vdi_id: Optional[str] = None):
         """
         :param str name_label: The name for the disk
-        :param int size: The size in bytes for the disk.
+        :param str size: The size in bytes for the disk.
         :param str sr_id: The storage repository ID to use.
         :param bool attached: Whether the device should be attached to the VM.
         :param str name_description: The description for the disk
@@ -145,7 +145,7 @@ class VmDisk(dict):
 
     @property
     @pulumi.getter
-    def size(self) -> int:
+    def size(self) -> str:
         """
         The size in bytes for the disk.
         """

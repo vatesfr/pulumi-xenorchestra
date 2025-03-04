@@ -36,7 +36,7 @@ import (
 //					&xenorchestra.VmDiskArgs{
 //						SrId:      pulumi.String(localStorage.Id),
 //						NameLabel: pulumi.String("Ubuntu Bionic Beaver 18.04_imavo"),
-//						Size:      pulumi.Int(32212254720),
+//						Size:      pulumi.String("32212254720"),
 //					},
 //				},
 //			})

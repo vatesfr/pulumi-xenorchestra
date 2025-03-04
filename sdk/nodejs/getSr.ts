@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * const demo_vm = new xenorchestra.Vm("demo-vm", {disks: [{
  *     srId: localStorage.then(localStorage => localStorage.id),
  *     nameLabel: "Ubuntu Bionic Beaver 18.04_imavo",
- *     size: 32212254720,
+ *     size: "32212254720",
  * }]});
  * ```
  */
@@ -110,7 +110,7 @@ export interface GetSrResult {
  * const demo_vm = new xenorchestra.Vm("demo-vm", {disks: [{
  *     srId: localStorage.then(localStorage => localStorage.id),
  *     nameLabel: "Ubuntu Bionic Beaver 18.04_imavo",
- *     size: 32212254720,
+ *     size: "32212254720",
  * }]});
  * ```
  */

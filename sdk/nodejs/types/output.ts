@@ -437,7 +437,7 @@ export interface VmDisk {
     /**
      * The size in bytes for the disk.
      */
-    size: number;
+    size: string;
     /**
      * The storage repository ID to use.
      */

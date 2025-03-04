@@ -174,7 +174,7 @@ def get_sr(name_label: Optional[str] = None,
     demo_vm = xenorchestra.Vm("demo-vm", disks=[{
         "sr_id": local_storage.id,
         "name_label": "Ubuntu Bionic Beaver 18.04_imavo",
-        "size": 32212254720,
+        "size": "32212254720",
     }])
     ```
 
@@ -217,7 +217,7 @@ def get_sr_output(name_label: Optional[pulumi.Input[str]] = None,
     demo_vm = xenorchestra.Vm("demo-vm", disks=[{
         "sr_id": local_storage.id,
         "name_label": "Ubuntu Bionic Beaver 18.04_imavo",
-        "size": 32212254720,
+        "size": "32212254720",
     }])
     ```
 
