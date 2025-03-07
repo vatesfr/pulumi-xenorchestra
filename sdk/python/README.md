@@ -38,13 +38,13 @@ To use from Go, use `go get` to grab the latest version of the library:
 go get github.com/vatesfr/pulumi-xenorchestra/sdk
 ```
 
-<!-- ### .NET
+### .NET
 
 To use from .NET, install using `dotnet add package`:
 
 ```bash
-dotnet add package Pulumi.Foo
-``` -->
+dotnet add package Pulumi.Xenorchestra
+```
 
 ## Configuration
 
@@ -63,13 +63,12 @@ Or:
 
 ## Usage
 
-See [examples.md](./docs/examples.md) for examples.
+See [docs](./docs/_index_.md) for examples.
 
 ## Building
 
 See [contributing](CONTRIBUTING.md) for details on how to build and contribute to this provider.
 
 ## Reference
-TBD
-<!--
-For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/foo/api-docs/). -->
+
+For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/xenorchestra/api-docs/).
