@@ -38,14 +38,14 @@ class GetSrResult:
         if name_label and not isinstance(name_label, str):
             raise TypeError("Expected argument 'name_label' to be a str")
         pulumi.set(__self__, "name_label", name_label)
-        if physical_usage and not isinstance(physical_usage, int):
-            raise TypeError("Expected argument 'physical_usage' to be a int")
+        if physical_usage and not isinstance(physical_usage, float):
+            raise TypeError("Expected argument 'physical_usage' to be a float")
         pulumi.set(__self__, "physical_usage", physical_usage)
         if pool_id and not isinstance(pool_id, str):
             raise TypeError("Expected argument 'pool_id' to be a str")
         pulumi.set(__self__, "pool_id", pool_id)
-        if size and not isinstance(size, int):
-            raise TypeError("Expected argument 'size' to be a int")
+        if size and not isinstance(size, float):
+            raise TypeError("Expected argument 'size' to be a float")
         pulumi.set(__self__, "size", size)
         if sr_type and not isinstance(sr_type, str):
             raise TypeError("Expected argument 'sr_type' to be a str")
@@ -53,8 +53,8 @@ class GetSrResult:
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
-        if usage and not isinstance(usage, int):
-            raise TypeError("Expected argument 'usage' to be a int")
+        if usage and not isinstance(usage, float):
+            raise TypeError("Expected argument 'usage' to be a float")
         pulumi.set(__self__, "usage", usage)
         if uuid and not isinstance(uuid, str):
             raise TypeError("Expected argument 'uuid' to be a str")
@@ -86,7 +86,7 @@ class GetSrResult:
 
     @property
     @pulumi.getter(name="physicalUsage")
-    def physical_usage(self) -> int:
+    def physical_usage(self) -> float:
         """
         The physical storage size.
         """
@@ -102,7 +102,7 @@ class GetSrResult:
 
     @property
     @pulumi.getter
-    def size(self) -> int:
+    def size(self) -> float:
         """
         The storage size.
         """
@@ -126,7 +126,7 @@ class GetSrResult:
 
     @property
     @pulumi.getter
-    def usage(self) -> int:
+    def usage(self) -> float:
         """
         The current usage for this storage repository.
         """

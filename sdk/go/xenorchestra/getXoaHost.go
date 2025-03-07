@@ -67,9 +67,9 @@ type GetXoaHostResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The memory size of the host.
-	Memory int `pulumi:"memory"`
+	Memory float64 `pulumi:"memory"`
 	// The memory usage of the host.
-	MemoryUsage int `pulumi:"memoryUsage"`
+	MemoryUsage float64 `pulumi:"memoryUsage"`
 	// The name label of the host.
 	NameLabel string `pulumi:"nameLabel"`
 	// Id of the pool that the host belongs to.
@@ -125,13 +125,13 @@ func (o GetXoaHostResultOutput) Id() pulumi.StringOutput {
 }
 
 // The memory size of the host.
-func (o GetXoaHostResultOutput) Memory() pulumi.IntOutput {
-	return o.ApplyT(func(v GetXoaHostResult) int { return v.Memory }).(pulumi.IntOutput)
+func (o GetXoaHostResultOutput) Memory() pulumi.Float64Output {
+	return o.ApplyT(func(v GetXoaHostResult) float64 { return v.Memory }).(pulumi.Float64Output)
 }
 
 // The memory usage of the host.
-func (o GetXoaHostResultOutput) MemoryUsage() pulumi.IntOutput {
-	return o.ApplyT(func(v GetXoaHostResult) int { return v.MemoryUsage }).(pulumi.IntOutput)
+func (o GetXoaHostResultOutput) MemoryUsage() pulumi.Float64Output {
+	return o.ApplyT(func(v GetXoaHostResult) float64 { return v.MemoryUsage }).(pulumi.Float64Output)
 }
 
 // The name label of the host.

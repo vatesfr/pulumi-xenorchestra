@@ -23,7 +23,7 @@ class VmArgs:
     def __init__(__self__, *,
                  cpus: pulumi.Input[int],
                  disks: pulumi.Input[Sequence[pulumi.Input['VmDiskArgs']]],
-                 memory_max: pulumi.Input[int],
+                 memory_max: pulumi.Input[float],
                  name_label: pulumi.Input[str],
                  networks: pulumi.Input[Sequence[pulumi.Input['VmNetworkArgs']]],
                  template: pulumi.Input[str],
@@ -58,7 +58,7 @@ class VmArgs:
                filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs' { "max": 4, "number": 2 } # Updating the VM
                to use 3 CPUs would happen without stopping/starting the VM # Updating the VM to use 5 CPUs would stop/start the VM ```
         :param pulumi.Input[Sequence[pulumi.Input['VmDiskArgs']]] disks: The disk the VM will have access to.
-        :param pulumi.Input[int] memory_max: The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
+        :param pulumi.Input[float] memory_max: The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
                value is greater than the dynamic memory max. This can be determined with the following command: ``` $ xo-cli
                xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic' [ 2147483648, #
                memory dynamic min 4294967296 # memory dynamic max (4GB) ] # Updating the VM to use 3GB of memory would happen without
@@ -179,7 +179,7 @@ class VmArgs:
 
     @property
     @pulumi.getter(name="memoryMax")
-    def memory_max(self) -> pulumi.Input[int]:
+    def memory_max(self) -> pulumi.Input[float]:
         """
         The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
         value is greater than the dynamic memory max. This can be determined with the following command: ``` $ xo-cli
@@ -190,7 +190,7 @@ class VmArgs:
         return pulumi.get(self, "memory_max")
 
     @memory_max.setter
-    def memory_max(self, value: pulumi.Input[int]):
+    def memory_max(self, value: pulumi.Input[float]):
         pulumi.set(self, "memory_max", value)
 
     @property
@@ -535,7 +535,7 @@ class _VmState:
                  installation_method: Optional[pulumi.Input[str]] = None,
                  ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 memory_max: Optional[pulumi.Input[int]] = None,
+                 memory_max: Optional[pulumi.Input[float]] = None,
                  name_description: Optional[pulumi.Input[str]] = None,
                  name_label: Optional[pulumi.Input[str]] = None,
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input['VmNetworkArgs']]]] = None,
@@ -577,7 +577,7 @@ class _VmState:
         :param pulumi.Input[str] installation_method: This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_addresses: This is only accessible if guest-tools is installed in the VM and if `expected_ip_cidr` is set on any network
                interfaces. This will contain a list of the ipv6 addresses across all network interfaces in order.
-        :param pulumi.Input[int] memory_max: The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
+        :param pulumi.Input[float] memory_max: The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
                value is greater than the dynamic memory max. This can be determined with the following command: ``` $ xo-cli
                xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic' [ 2147483648, #
                memory dynamic min 4294967296 # memory dynamic max (4GB) ] # Updating the VM to use 3GB of memory would happen without
@@ -898,7 +898,7 @@ class _VmState:
 
     @property
     @pulumi.getter(name="memoryMax")
-    def memory_max(self) -> Optional[pulumi.Input[int]]:
+    def memory_max(self) -> Optional[pulumi.Input[float]]:
         """
         The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
         value is greater than the dynamic memory max. This can be determined with the following command: ``` $ xo-cli
@@ -909,7 +909,7 @@ class _VmState:
         return pulumi.get(self, "memory_max")
 
     @memory_max.setter
-    def memory_max(self, value: Optional[pulumi.Input[int]]):
+    def memory_max(self, value: Optional[pulumi.Input[float]]):
         pulumi.set(self, "memory_max", value)
 
     @property
@@ -1065,7 +1065,7 @@ class Vm(pulumi.CustomResource):
                  host: Optional[pulumi.Input[str]] = None,
                  hvm_boot_firmware: Optional[pulumi.Input[str]] = None,
                  installation_method: Optional[pulumi.Input[str]] = None,
-                 memory_max: Optional[pulumi.Input[int]] = None,
+                 memory_max: Optional[pulumi.Input[float]] = None,
                  name_description: Optional[pulumi.Input[str]] = None,
                  name_label: Optional[pulumi.Input[str]] = None,
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VmNetworkArgs', 'VmNetworkArgsDict']]]]] = None,
@@ -1109,7 +1109,7 @@ class Vm(pulumi.CustomResource):
                Defaults to empty string
         :param pulumi.Input[str] hvm_boot_firmware: The firmware to use for the VM. Possible values are `bios` and `uefi`.
         :param pulumi.Input[str] installation_method: This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
-        :param pulumi.Input[int] memory_max: The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
+        :param pulumi.Input[float] memory_max: The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
                value is greater than the dynamic memory max. This can be determined with the following command: ``` $ xo-cli
                xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic' [ 2147483648, #
                memory dynamic min 4294967296 # memory dynamic max (4GB) ] # Updating the VM to use 3GB of memory would happen without
@@ -1167,7 +1167,7 @@ class Vm(pulumi.CustomResource):
                  host: Optional[pulumi.Input[str]] = None,
                  hvm_boot_firmware: Optional[pulumi.Input[str]] = None,
                  installation_method: Optional[pulumi.Input[str]] = None,
-                 memory_max: Optional[pulumi.Input[int]] = None,
+                 memory_max: Optional[pulumi.Input[float]] = None,
                  name_description: Optional[pulumi.Input[str]] = None,
                  name_label: Optional[pulumi.Input[str]] = None,
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VmNetworkArgs', 'VmNetworkArgsDict']]]]] = None,
@@ -1262,7 +1262,7 @@ class Vm(pulumi.CustomResource):
             installation_method: Optional[pulumi.Input[str]] = None,
             ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            memory_max: Optional[pulumi.Input[int]] = None,
+            memory_max: Optional[pulumi.Input[float]] = None,
             name_description: Optional[pulumi.Input[str]] = None,
             name_label: Optional[pulumi.Input[str]] = None,
             networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VmNetworkArgs', 'VmNetworkArgsDict']]]]] = None,
@@ -1309,7 +1309,7 @@ class Vm(pulumi.CustomResource):
         :param pulumi.Input[str] installation_method: This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_addresses: This is only accessible if guest-tools is installed in the VM and if `expected_ip_cidr` is set on any network
                interfaces. This will contain a list of the ipv6 addresses across all network interfaces in order.
-        :param pulumi.Input[int] memory_max: The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
+        :param pulumi.Input[float] memory_max: The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
                value is greater than the dynamic memory max. This can be determined with the following command: ``` $ xo-cli
                xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic' [ 2147483648, #
                memory dynamic min 4294967296 # memory dynamic max (4GB) ] # Updating the VM to use 3GB of memory would happen without
@@ -1523,7 +1523,7 @@ class Vm(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="memoryMax")
-    def memory_max(self) -> pulumi.Output[int]:
+    def memory_max(self) -> pulumi.Output[float]:
         """
         The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
         value is greater than the dynamic memory max. This can be determined with the following command: ``` $ xo-cli

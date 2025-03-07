@@ -137,7 +137,7 @@
                     "description": "Indicates the order of the block device.\n"
                 },
                 "size": {
-                    "type": "integer",
+                    "type": "number",
                     "description": "The size in bytes for the disk.\n"
                 },
                 "srId": {
@@ -1526,7 +1526,7 @@
                     "description": "This is only accessible if guest-tools is installed in the VM and if `expected_ip_cidr` is set on any network\ninterfaces. This will contain a list of the ipv6 addresses across all network interfaces in order.\n"
                 },
                 "memoryMax": {
-                    "type": "integer",
+                    "type": "number",
                     "description": "The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new\nvalue is greater than the dynamic memory max. This can be determined with the following command: ``` $ xo-cli\nxo.getAllObjects filter='json:{\"id\": \"cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8\"}' | jq '.[].memory.dynamic' [ 2147483648, #\nmemory dynamic min 4294967296 # memory dynamic max (4GB) ] # Updating the VM to use 3GB of memory would happen without\nstopping/starting the VM # Updating the VM to use 5GB of memory would stop/start the VM ```\n"
                 },
                 "nameDescription": {
@@ -1669,7 +1669,7 @@
                     "description": "This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.\n"
                 },
                 "memoryMax": {
-                    "type": "integer",
+                    "type": "number",
                     "description": "The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new\nvalue is greater than the dynamic memory max. This can be determined with the following command: ``` $ xo-cli\nxo.getAllObjects filter='json:{\"id\": \"cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8\"}' | jq '.[].memory.dynamic' [ 2147483648, #\nmemory dynamic min 4294967296 # memory dynamic max (4GB) ] # Updating the VM to use 3GB of memory would happen without\nstopping/starting the VM # Updating the VM to use 5GB of memory would stop/start the VM ```\n"
                 },
                 "nameDescription": {
@@ -1826,7 +1826,7 @@
                         "description": "This is only accessible if guest-tools is installed in the VM and if `expected_ip_cidr` is set on any network\ninterfaces. This will contain a list of the ipv6 addresses across all network interfaces in order.\n"
                     },
                     "memoryMax": {
-                        "type": "integer",
+                        "type": "number",
                         "description": "The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new\nvalue is greater than the dynamic memory max. This can be determined with the following command: ``` $ xo-cli\nxo.getAllObjects filter='json:{\"id\": \"cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8\"}' | jq '.[].memory.dynamic' [ 2147483648, #\nmemory dynamic min 4294967296 # memory dynamic max (4GB) ] # Updating the VM to use 3GB of memory would happen without\nstopping/starting the VM # Updating the VM to use 5GB of memory would stop/start the VM ```\n"
                     },
                     "nameDescription": {
@@ -2236,11 +2236,11 @@
                     },
                     "memory": {
                         "description": "The memory size of the host.\n",
-                        "type": "integer"
+                        "type": "number"
                     },
                     "memoryUsage": {
                         "description": "The memory usage of the host.\n",
-                        "type": "integer"
+                        "type": "number"
                     },
                     "nameLabel": {
                         "description": "The name label of the host.\n",
@@ -2568,7 +2568,7 @@
         },
         "xenorchestra:index/getSr:getSr": {
             "deprecationMessage": "xenorchestra.index/getsr.getSr has been deprecated in favor of xenorchestra.index/getxoastoragerepository.getXoaStorageRepository",
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as xenorchestra from \"@pulumi/xenorchestra\";\nimport * as xenorchestra from \"@vates/pulumi-xenorchestra\";\n\nconst localStorage = xenorchestra.getXoaStorageRepository({\n    nameLabel: \"Your storage repository label\",\n});\nconst demo_vm = new xenorchestra.Vm(\"demo-vm\", {disks: [{\n    srId: localStorage.then(localStorage =\u003e localStorage.id),\n    nameLabel: \"Ubuntu Bionic Beaver 18.04_imavo\",\n    size: 32212254720,\n}]});\n```\n```python\nimport pulumi\nimport pulumi_xenorchestra as xenorchestra\n\nlocal_storage = xenorchestra.get_xoa_storage_repository(name_label=\"Your storage repository label\")\ndemo_vm = xenorchestra.Vm(\"demo-vm\", disks=[{\n    \"sr_id\": local_storage.id,\n    \"name_label\": \"Ubuntu Bionic Beaver 18.04_imavo\",\n    \"size\": 32212254720,\n}])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Xenorchestra = Pulumi.Xenorchestra;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var localStorage = Xenorchestra.GetXoaStorageRepository.Invoke(new()\n    {\n        NameLabel = \"Your storage repository label\",\n    });\n\n    var demo_vm = new Xenorchestra.Vm(\"demo-vm\", new()\n    {\n        Disks = new[]\n        {\n            new Xenorchestra.Inputs.VmDiskArgs\n            {\n                SrId = localStorage.Apply(getXoaStorageRepositoryResult =\u003e getXoaStorageRepositoryResult.Id),\n                NameLabel = \"Ubuntu Bionic Beaver 18.04_imavo\",\n                Size = 32212254720,\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/vatesfr/pulumi-xenorchestra/sdk/go/xenorchestra\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tlocalStorage, err := xenorchestra.GetXoaStorageRepository(ctx, \u0026xenorchestra.GetXoaStorageRepositoryArgs{\n\t\t\tNameLabel: \"Your storage repository label\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = xenorchestra.NewVm(ctx, \"demo-vm\", \u0026xenorchestra.VmArgs{\n\t\t\tDisks: xenorchestra.VmDiskArray{\n\t\t\t\t\u0026xenorchestra.VmDiskArgs{\n\t\t\t\t\tSrId:      pulumi.String(localStorage.Id),\n\t\t\t\t\tNameLabel: pulumi.String(\"Ubuntu Bionic Beaver 18.04_imavo\"),\n\t\t\t\t\tSize:      pulumi.Int(32212254720),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.xenorchestra.XenorchestraFunctions;\nimport com.pulumi.xenorchestra.inputs.GetXoaStorageRepositoryArgs;\nimport com.pulumi.xenorchestra.Vm;\nimport com.pulumi.xenorchestra.VmArgs;\nimport com.pulumi.xenorchestra.inputs.VmDiskArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var localStorage = XenorchestraFunctions.getXoaStorageRepository(GetXoaStorageRepositoryArgs.builder()\n            .nameLabel(\"Your storage repository label\")\n            .build());\n\n        var demo_vm = new Vm(\"demo-vm\", VmArgs.builder()\n            .disks(VmDiskArgs.builder()\n                .srId(localStorage.applyValue(getXoaStorageRepositoryResult -\u003e getXoaStorageRepositoryResult.id()))\n                .nameLabel(\"Ubuntu Bionic Beaver 18.04_imavo\")\n                .size(32212254720)\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  demo-vm:\n    type: xenorchestra:Vm\n    properties:\n      disks:\n        - srId: ${localStorage.id}\n          nameLabel: Ubuntu Bionic Beaver 18.04_imavo\n          size: 3.221225472e+10\nvariables:\n  localStorage:\n    fn::invoke:\n      function: xenorchestra:getXoaStorageRepository\n      arguments:\n        nameLabel: Your storage repository label\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as xenorchestra from \"@pulumi/xenorchestra\";\nimport * as xenorchestra from \"@vates/pulumi-xenorchestra\";\n\nconst localStorage = xenorchestra.getXoaStorageRepository({\n    nameLabel: \"Your storage repository label\",\n});\nconst demo_vm = new xenorchestra.Vm(\"demo-vm\", {disks: [{\n    srId: localStorage.then(localStorage =\u003e localStorage.id),\n    nameLabel: \"Ubuntu Bionic Beaver 18.04_imavo\",\n    size: 32212254720,\n}]});\n```\n```python\nimport pulumi\nimport pulumi_xenorchestra as xenorchestra\n\nlocal_storage = xenorchestra.get_xoa_storage_repository(name_label=\"Your storage repository label\")\ndemo_vm = xenorchestra.Vm(\"demo-vm\", disks=[{\n    \"sr_id\": local_storage.id,\n    \"name_label\": \"Ubuntu Bionic Beaver 18.04_imavo\",\n    \"size\": 32212254720,\n}])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Xenorchestra = Pulumi.Xenorchestra;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var localStorage = Xenorchestra.GetXoaStorageRepository.Invoke(new()\n    {\n        NameLabel = \"Your storage repository label\",\n    });\n\n    var demo_vm = new Xenorchestra.Vm(\"demo-vm\", new()\n    {\n        Disks = new[]\n        {\n            new Xenorchestra.Inputs.VmDiskArgs\n            {\n                SrId = localStorage.Apply(getXoaStorageRepositoryResult =\u003e getXoaStorageRepositoryResult.Id),\n                NameLabel = \"Ubuntu Bionic Beaver 18.04_imavo\",\n                Size = 32212254720,\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/vatesfr/pulumi-xenorchestra/sdk/go/xenorchestra\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tlocalStorage, err := xenorchestra.GetXoaStorageRepository(ctx, \u0026xenorchestra.GetXoaStorageRepositoryArgs{\n\t\t\tNameLabel: \"Your storage repository label\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = xenorchestra.NewVm(ctx, \"demo-vm\", \u0026xenorchestra.VmArgs{\n\t\t\tDisks: xenorchestra.VmDiskArray{\n\t\t\t\t\u0026xenorchestra.VmDiskArgs{\n\t\t\t\t\tSrId:      pulumi.String(localStorage.Id),\n\t\t\t\t\tNameLabel: pulumi.String(\"Ubuntu Bionic Beaver 18.04_imavo\"),\n\t\t\t\t\tSize:      pulumi.Float64(32212254720),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.xenorchestra.XenorchestraFunctions;\nimport com.pulumi.xenorchestra.inputs.GetXoaStorageRepositoryArgs;\nimport com.pulumi.xenorchestra.Vm;\nimport com.pulumi.xenorchestra.VmArgs;\nimport com.pulumi.xenorchestra.inputs.VmDiskArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var localStorage = XenorchestraFunctions.getXoaStorageRepository(GetXoaStorageRepositoryArgs.builder()\n            .nameLabel(\"Your storage repository label\")\n            .build());\n\n        var demo_vm = new Vm(\"demo-vm\", VmArgs.builder()\n            .disks(VmDiskArgs.builder()\n                .srId(localStorage.applyValue(getXoaStorageRepositoryResult -\u003e getXoaStorageRepositoryResult.id()))\n                .nameLabel(\"Ubuntu Bionic Beaver 18.04_imavo\")\n                .size(32212254720)\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  demo-vm:\n    type: xenorchestra:Vm\n    properties:\n      disks:\n        - srId: ${localStorage.id}\n          nameLabel: Ubuntu Bionic Beaver 18.04_imavo\n          size: 3.221225472e+10\nvariables:\n  localStorage:\n    fn::invoke:\n      function: xenorchestra:getXoaStorageRepository\n      arguments:\n        nameLabel: Your storage repository label\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getSr.\n",
                 "properties": {
@@ -2610,7 +2610,7 @@
                     },
                     "physicalUsage": {
                         "description": "The physical storage size.\n",
-                        "type": "integer"
+                        "type": "number"
                     },
                     "poolId": {
                         "description": "The Id of the pool the storage repository exists on.\n",
@@ -2618,7 +2618,7 @@
                     },
                     "size": {
                         "description": "The storage size.\n",
-                        "type": "integer"
+                        "type": "number"
                     },
                     "srType": {
                         "description": "The type of storage repository (lvm, udev, iso, user, etc).\n",
@@ -2633,7 +2633,7 @@
                     },
                     "usage": {
                         "description": "The current usage for this storage repository.\n",
-                        "type": "integer"
+                        "type": "number"
                     },
                     "uuid": {
                         "description": "uuid of the storage repository. This is equivalent to the id.\n",
@@ -2940,11 +2940,11 @@
                     },
                     "memory": {
                         "description": "The memory size of the host.\n",
-                        "type": "integer"
+                        "type": "number"
                     },
                     "memoryUsage": {
                         "description": "The memory usage of the host.\n",
-                        "type": "integer"
+                        "type": "number"
                     },
                     "nameLabel": {
                         "description": "The name label of the host.\n",
@@ -3266,7 +3266,7 @@
             }
         },
         "xenorchestra:index/getXoaStorageRepository:getXoaStorageRepository": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as xenorchestra from \"@pulumi/xenorchestra\";\nimport * as xenorchestra from \"@vates/pulumi-xenorchestra\";\n\nconst localStorage = xenorchestra.getXoaStorageRepository({\n    nameLabel: \"Your storage repository label\",\n});\nconst demo_vm = new xenorchestra.Vm(\"demo-vm\", {disks: [{\n    srId: localStorage.then(localStorage =\u003e localStorage.id),\n    nameLabel: \"Ubuntu Bionic Beaver 18.04_imavo\",\n    size: 32212254720,\n}]});\n```\n```python\nimport pulumi\nimport pulumi_xenorchestra as xenorchestra\n\nlocal_storage = xenorchestra.get_xoa_storage_repository(name_label=\"Your storage repository label\")\ndemo_vm = xenorchestra.Vm(\"demo-vm\", disks=[{\n    \"sr_id\": local_storage.id,\n    \"name_label\": \"Ubuntu Bionic Beaver 18.04_imavo\",\n    \"size\": 32212254720,\n}])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Xenorchestra = Pulumi.Xenorchestra;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var localStorage = Xenorchestra.GetXoaStorageRepository.Invoke(new()\n    {\n        NameLabel = \"Your storage repository label\",\n    });\n\n    var demo_vm = new Xenorchestra.Vm(\"demo-vm\", new()\n    {\n        Disks = new[]\n        {\n            new Xenorchestra.Inputs.VmDiskArgs\n            {\n                SrId = localStorage.Apply(getXoaStorageRepositoryResult =\u003e getXoaStorageRepositoryResult.Id),\n                NameLabel = \"Ubuntu Bionic Beaver 18.04_imavo\",\n                Size = 32212254720,\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/vatesfr/pulumi-xenorchestra/sdk/go/xenorchestra\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tlocalStorage, err := xenorchestra.GetXoaStorageRepository(ctx, \u0026xenorchestra.GetXoaStorageRepositoryArgs{\n\t\t\tNameLabel: \"Your storage repository label\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = xenorchestra.NewVm(ctx, \"demo-vm\", \u0026xenorchestra.VmArgs{\n\t\t\tDisks: xenorchestra.VmDiskArray{\n\t\t\t\t\u0026xenorchestra.VmDiskArgs{\n\t\t\t\t\tSrId:      pulumi.String(localStorage.Id),\n\t\t\t\t\tNameLabel: pulumi.String(\"Ubuntu Bionic Beaver 18.04_imavo\"),\n\t\t\t\t\tSize:      pulumi.Int(32212254720),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.xenorchestra.XenorchestraFunctions;\nimport com.pulumi.xenorchestra.inputs.GetXoaStorageRepositoryArgs;\nimport com.pulumi.xenorchestra.Vm;\nimport com.pulumi.xenorchestra.VmArgs;\nimport com.pulumi.xenorchestra.inputs.VmDiskArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var localStorage = XenorchestraFunctions.getXoaStorageRepository(GetXoaStorageRepositoryArgs.builder()\n            .nameLabel(\"Your storage repository label\")\n            .build());\n\n        var demo_vm = new Vm(\"demo-vm\", VmArgs.builder()\n            .disks(VmDiskArgs.builder()\n                .srId(localStorage.applyValue(getXoaStorageRepositoryResult -\u003e getXoaStorageRepositoryResult.id()))\n                .nameLabel(\"Ubuntu Bionic Beaver 18.04_imavo\")\n                .size(32212254720)\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  demo-vm:\n    type: xenorchestra:Vm\n    properties:\n      disks:\n        - srId: ${localStorage.id}\n          nameLabel: Ubuntu Bionic Beaver 18.04_imavo\n          size: 3.221225472e+10\nvariables:\n  localStorage:\n    fn::invoke:\n      function: xenorchestra:getXoaStorageRepository\n      arguments:\n        nameLabel: Your storage repository label\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as xenorchestra from \"@pulumi/xenorchestra\";\nimport * as xenorchestra from \"@vates/pulumi-xenorchestra\";\n\nconst localStorage = xenorchestra.getXoaStorageRepository({\n    nameLabel: \"Your storage repository label\",\n});\nconst demo_vm = new xenorchestra.Vm(\"demo-vm\", {disks: [{\n    srId: localStorage.then(localStorage =\u003e localStorage.id),\n    nameLabel: \"Ubuntu Bionic Beaver 18.04_imavo\",\n    size: 32212254720,\n}]});\n```\n```python\nimport pulumi\nimport pulumi_xenorchestra as xenorchestra\n\nlocal_storage = xenorchestra.get_xoa_storage_repository(name_label=\"Your storage repository label\")\ndemo_vm = xenorchestra.Vm(\"demo-vm\", disks=[{\n    \"sr_id\": local_storage.id,\n    \"name_label\": \"Ubuntu Bionic Beaver 18.04_imavo\",\n    \"size\": 32212254720,\n}])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Xenorchestra = Pulumi.Xenorchestra;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var localStorage = Xenorchestra.GetXoaStorageRepository.Invoke(new()\n    {\n        NameLabel = \"Your storage repository label\",\n    });\n\n    var demo_vm = new Xenorchestra.Vm(\"demo-vm\", new()\n    {\n        Disks = new[]\n        {\n            new Xenorchestra.Inputs.VmDiskArgs\n            {\n                SrId = localStorage.Apply(getXoaStorageRepositoryResult =\u003e getXoaStorageRepositoryResult.Id),\n                NameLabel = \"Ubuntu Bionic Beaver 18.04_imavo\",\n                Size = 32212254720,\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/vatesfr/pulumi-xenorchestra/sdk/go/xenorchestra\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tlocalStorage, err := xenorchestra.GetXoaStorageRepository(ctx, \u0026xenorchestra.GetXoaStorageRepositoryArgs{\n\t\t\tNameLabel: \"Your storage repository label\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = xenorchestra.NewVm(ctx, \"demo-vm\", \u0026xenorchestra.VmArgs{\n\t\t\tDisks: xenorchestra.VmDiskArray{\n\t\t\t\t\u0026xenorchestra.VmDiskArgs{\n\t\t\t\t\tSrId:      pulumi.String(localStorage.Id),\n\t\t\t\t\tNameLabel: pulumi.String(\"Ubuntu Bionic Beaver 18.04_imavo\"),\n\t\t\t\t\tSize:      pulumi.Float64(32212254720),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.xenorchestra.XenorchestraFunctions;\nimport com.pulumi.xenorchestra.inputs.GetXoaStorageRepositoryArgs;\nimport com.pulumi.xenorchestra.Vm;\nimport com.pulumi.xenorchestra.VmArgs;\nimport com.pulumi.xenorchestra.inputs.VmDiskArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var localStorage = XenorchestraFunctions.getXoaStorageRepository(GetXoaStorageRepositoryArgs.builder()\n            .nameLabel(\"Your storage repository label\")\n            .build());\n\n        var demo_vm = new Vm(\"demo-vm\", VmArgs.builder()\n            .disks(VmDiskArgs.builder()\n                .srId(localStorage.applyValue(getXoaStorageRepositoryResult -\u003e getXoaStorageRepositoryResult.id()))\n                .nameLabel(\"Ubuntu Bionic Beaver 18.04_imavo\")\n                .size(32212254720)\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  demo-vm:\n    type: xenorchestra:Vm\n    properties:\n      disks:\n        - srId: ${localStorage.id}\n          nameLabel: Ubuntu Bionic Beaver 18.04_imavo\n          size: 3.221225472e+10\nvariables:\n  localStorage:\n    fn::invoke:\n      function: xenorchestra:getXoaStorageRepository\n      arguments:\n        nameLabel: Your storage repository label\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getXoaStorageRepository.\n",
                 "properties": {
@@ -3308,7 +3308,7 @@
                     },
                     "physicalUsage": {
                         "description": "The physical storage size.\n",
-                        "type": "integer"
+                        "type": "number"
                     },
                     "poolId": {
                         "description": "The Id of the pool the storage repository exists on.\n",
@@ -3316,7 +3316,7 @@
                     },
                     "size": {
                         "description": "The storage size.\n",
-                        "type": "integer"
+                        "type": "number"
                     },
                     "srType": {
                         "description": "The type of storage repository (lvm, udev, iso, user, etc).\n",
@@ -3331,7 +3331,7 @@
                     },
                     "usage": {
                         "description": "The current usage for this storage repository.\n",
-                        "type": "integer"
+                        "type": "number"
                     },
                     "uuid": {
                         "description": "uuid of the storage repository. This is equivalent to the id.\n",

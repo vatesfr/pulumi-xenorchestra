@@ -35,11 +35,11 @@ class GetHostResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if memory and not isinstance(memory, int):
-            raise TypeError("Expected argument 'memory' to be a int")
+        if memory and not isinstance(memory, float):
+            raise TypeError("Expected argument 'memory' to be a float")
         pulumi.set(__self__, "memory", memory)
-        if memory_usage and not isinstance(memory_usage, int):
-            raise TypeError("Expected argument 'memory_usage' to be a int")
+        if memory_usage and not isinstance(memory_usage, float):
+            raise TypeError("Expected argument 'memory_usage' to be a float")
         pulumi.set(__self__, "memory_usage", memory_usage)
         if name_label and not isinstance(name_label, str):
             raise TypeError("Expected argument 'name_label' to be a str")
@@ -69,7 +69,7 @@ class GetHostResult:
 
     @property
     @pulumi.getter
-    def memory(self) -> int:
+    def memory(self) -> float:
         """
         The memory size of the host.
         """
@@ -77,7 +77,7 @@ class GetHostResult:
 
     @property
     @pulumi.getter(name="memoryUsage")
-    def memory_usage(self) -> int:
+    def memory_usage(self) -> float:
         """
         The memory usage of the host.
         """

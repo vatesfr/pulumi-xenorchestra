@@ -36,7 +36,7 @@ import (
 //					&xenorchestra.VmDiskArgs{
 //						SrId:      pulumi.String(localStorage.Id),
 //						NameLabel: pulumi.String("Ubuntu Bionic Beaver 18.04_imavo"),
-//						Size:      pulumi.Int(32212254720),
+//						Size:      pulumi.Float64(32212254720),
 //					},
 //				},
 //			})
@@ -77,17 +77,17 @@ type GetXoaStorageRepositoryResult struct {
 	// The name of the storage repository to look up
 	NameLabel string `pulumi:"nameLabel"`
 	// The physical storage size.
-	PhysicalUsage int `pulumi:"physicalUsage"`
+	PhysicalUsage float64 `pulumi:"physicalUsage"`
 	// The Id of the pool the storage repository exists on.
 	PoolId *string `pulumi:"poolId"`
 	// The storage size.
-	Size int `pulumi:"size"`
+	Size float64 `pulumi:"size"`
 	// The type of storage repository (lvm, udev, iso, user, etc).
 	SrType string `pulumi:"srType"`
 	// The tags (labels) applied to the given entity.
 	Tags []string `pulumi:"tags"`
 	// The current usage for this storage repository.
-	Usage int `pulumi:"usage"`
+	Usage float64 `pulumi:"usage"`
 	// uuid of the storage repository. This is equivalent to the id.
 	Uuid string `pulumi:"uuid"`
 }
@@ -146,8 +146,8 @@ func (o GetXoaStorageRepositoryResultOutput) NameLabel() pulumi.StringOutput {
 }
 
 // The physical storage size.
-func (o GetXoaStorageRepositoryResultOutput) PhysicalUsage() pulumi.IntOutput {
-	return o.ApplyT(func(v GetXoaStorageRepositoryResult) int { return v.PhysicalUsage }).(pulumi.IntOutput)
+func (o GetXoaStorageRepositoryResultOutput) PhysicalUsage() pulumi.Float64Output {
+	return o.ApplyT(func(v GetXoaStorageRepositoryResult) float64 { return v.PhysicalUsage }).(pulumi.Float64Output)
 }
 
 // The Id of the pool the storage repository exists on.
@@ -156,8 +156,8 @@ func (o GetXoaStorageRepositoryResultOutput) PoolId() pulumi.StringPtrOutput {
 }
 
 // The storage size.
-func (o GetXoaStorageRepositoryResultOutput) Size() pulumi.IntOutput {
-	return o.ApplyT(func(v GetXoaStorageRepositoryResult) int { return v.Size }).(pulumi.IntOutput)
+func (o GetXoaStorageRepositoryResultOutput) Size() pulumi.Float64Output {
+	return o.ApplyT(func(v GetXoaStorageRepositoryResult) float64 { return v.Size }).(pulumi.Float64Output)
 }
 
 // The type of storage repository (lvm, udev, iso, user, etc).
@@ -171,8 +171,8 @@ func (o GetXoaStorageRepositoryResultOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // The current usage for this storage repository.
-func (o GetXoaStorageRepositoryResultOutput) Usage() pulumi.IntOutput {
-	return o.ApplyT(func(v GetXoaStorageRepositoryResult) int { return v.Usage }).(pulumi.IntOutput)
+func (o GetXoaStorageRepositoryResultOutput) Usage() pulumi.Float64Output {
+	return o.ApplyT(func(v GetXoaStorageRepositoryResult) float64 { return v.Usage }).(pulumi.Float64Output)
 }
 
 // uuid of the storage repository. This is equivalent to the id.

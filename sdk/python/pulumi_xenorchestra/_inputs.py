@@ -114,7 +114,7 @@ if not MYPY:
         """
         The name for the disk
         """
-        size: pulumi.Input[int]
+        size: pulumi.Input[float]
         """
         The size in bytes for the disk.
         """
@@ -143,7 +143,7 @@ elif False:
 class VmDiskArgs:
     def __init__(__self__, *,
                  name_label: pulumi.Input[str],
-                 size: pulumi.Input[int],
+                 size: pulumi.Input[float],
                  sr_id: pulumi.Input[str],
                  attached: Optional[pulumi.Input[bool]] = None,
                  name_description: Optional[pulumi.Input[str]] = None,
@@ -152,7 +152,7 @@ class VmDiskArgs:
                  vdi_id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name_label: The name for the disk
-        :param pulumi.Input[int] size: The size in bytes for the disk.
+        :param pulumi.Input[float] size: The size in bytes for the disk.
         :param pulumi.Input[str] sr_id: The storage repository ID to use.
         :param pulumi.Input[bool] attached: Whether the device should be attached to the VM.
         :param pulumi.Input[str] name_description: The description for the disk
@@ -186,14 +186,14 @@ class VmDiskArgs:
 
     @property
     @pulumi.getter
-    def size(self) -> pulumi.Input[int]:
+    def size(self) -> pulumi.Input[float]:
         """
         The size in bytes for the disk.
         """
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: pulumi.Input[int]):
+    def size(self, value: pulumi.Input[float]):
         pulumi.set(self, "size", value)
 
     @property
