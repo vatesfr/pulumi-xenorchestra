@@ -11,7 +11,7 @@ The Pulumi `Xenorchestra` provider is available as a package in all Pulumi langu
 * JavaScript/TypeScript: [`@vates/pulumi-xenorchestra`](https://www.npmjs.com/package/@vates/pulumi-xenorchestra)
 * Python: [`pulumi-xenorchestra`](https://pypi.org/project/pulumi-xenorchestra/)
 * Go: [`github.com/vatesfr/pulumi-xenorchestra/sdk`](https://pkg.go.dev/github.com/vatesfr/pulumi-xenorchestra/sdk)
-* .NET: TODO
+* .NET: [`Pulumi.Xenorchestra`](https://www.nuget.org/packages/Pulumi.Xenorchestra)
 
 ### Provider Binary
 
