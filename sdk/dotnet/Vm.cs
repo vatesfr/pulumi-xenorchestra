@@ -141,7 +141,7 @@ namespace Pulumi.Xenorchestra
         /// stopping/starting the VM # Updating the VM to use 5GB of memory would stop/start the VM ```
         /// </summary>
         [Output("memoryMax")]
-        public Output<int> MemoryMax { get; private set; } = null!;
+        public Output<double> MemoryMax { get; private set; } = null!;
 
         /// <summary>
         /// The description of the VM.
@@ -381,7 +381,7 @@ namespace Pulumi.Xenorchestra
         /// stopping/starting the VM # Updating the VM to use 5GB of memory would stop/start the VM ```
         /// </summary>
         [Input("memoryMax", required: true)]
-        public Input<int> MemoryMax { get; set; } = null!;
+        public Input<double> MemoryMax { get; set; } = null!;
 
         /// <summary>
         /// The description of the VM.
@@ -621,7 +621,7 @@ namespace Pulumi.Xenorchestra
         /// stopping/starting the VM # Updating the VM to use 5GB of memory would stop/start the VM ```
         /// </summary>
         [Input("memoryMax")]
-        public Input<int>? MemoryMax { get; set; }
+        public Input<double>? MemoryMax { get; set; }
 
         /// <summary>
         /// The description of the VM.

@@ -32,7 +32,7 @@ namespace Pulumi.Xenorchestra.Outputs
         /// <summary>
         /// The size in bytes for the disk.
         /// </summary>
-        public readonly string Size;
+        public readonly double Size;
         /// <summary>
         /// The storage repository ID to use.
         /// </summary>
@@ -50,7 +50,7 @@ namespace Pulumi.Xenorchestra.Outputs
 
             string? position,
 
-            string size,
+            double size,
 
             string srId,
 

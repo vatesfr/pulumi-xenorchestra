@@ -35,7 +35,7 @@ namespace Pulumi.Xenorchestra
         ///             {
         ///                 SrId = localStorage.Apply(getXoaStorageRepositoryResult =&gt; getXoaStorageRepositoryResult.Id),
         ///                 NameLabel = "Ubuntu Bionic Beaver 18.04_imavo",
-        ///                 Size = "32212254720",
+        ///                 Size = 32212254720,
         ///             },
         ///         },
         ///     });
@@ -70,7 +70,7 @@ namespace Pulumi.Xenorchestra
         ///             {
         ///                 SrId = localStorage.Apply(getXoaStorageRepositoryResult =&gt; getXoaStorageRepositoryResult.Id),
         ///                 NameLabel = "Ubuntu Bionic Beaver 18.04_imavo",
-        ///                 Size = "32212254720",
+        ///                 Size = 32212254720,
         ///             },
         ///         },
         ///     });
@@ -105,7 +105,7 @@ namespace Pulumi.Xenorchestra
         ///             {
         ///                 SrId = localStorage.Apply(getXoaStorageRepositoryResult =&gt; getXoaStorageRepositoryResult.Id),
         ///                 NameLabel = "Ubuntu Bionic Beaver 18.04_imavo",
-        ///                 Size = "32212254720",
+        ///                 Size = 32212254720,
         ///             },
         ///         },
         ///     });
@@ -201,7 +201,7 @@ namespace Pulumi.Xenorchestra
         /// <summary>
         /// The physical storage size.
         /// </summary>
-        public readonly int PhysicalUsage;
+        public readonly double PhysicalUsage;
         /// <summary>
         /// The Id of the pool the storage repository exists on.
         /// </summary>
@@ -209,7 +209,7 @@ namespace Pulumi.Xenorchestra
         /// <summary>
         /// The storage size.
         /// </summary>
-        public readonly int Size;
+        public readonly double Size;
         /// <summary>
         /// The type of storage repository (lvm, udev, iso, user, etc).
         /// </summary>
@@ -221,7 +221,7 @@ namespace Pulumi.Xenorchestra
         /// <summary>
         /// The current usage for this storage repository.
         /// </summary>
-        public readonly int Usage;
+        public readonly double Usage;
         /// <summary>
         /// uuid of the storage repository. This is equivalent to the id.
         /// </summary>
@@ -235,17 +235,17 @@ namespace Pulumi.Xenorchestra
 
             string nameLabel,
 
-            int physicalUsage,
+            double physicalUsage,
 
             string? poolId,
 
-            int size,
+            double size,
 
             string srType,
 
             ImmutableArray<string> tags,
 
-            int usage,
+            double usage,
 
             string uuid)
         {

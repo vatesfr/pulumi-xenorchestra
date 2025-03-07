@@ -266,7 +266,7 @@ type VmDisk struct {
 	// Indicates the order of the block device.
 	Position *string `pulumi:"position"`
 	// The size in bytes for the disk.
-	Size int `pulumi:"size"`
+	Size float64 `pulumi:"size"`
 	// The storage repository ID to use.
 	SrId  string  `pulumi:"srId"`
 	VbdId *string `pulumi:"vbdId"`
@@ -294,7 +294,7 @@ type VmDiskArgs struct {
 	// Indicates the order of the block device.
 	Position pulumi.StringPtrInput `pulumi:"position"`
 	// The size in bytes for the disk.
-	Size pulumi.IntInput `pulumi:"size"`
+	Size pulumi.Float64Input `pulumi:"size"`
 	// The storage repository ID to use.
 	SrId  pulumi.StringInput    `pulumi:"srId"`
 	VbdId pulumi.StringPtrInput `pulumi:"vbdId"`
@@ -373,8 +373,8 @@ func (o VmDiskOutput) Position() pulumi.StringPtrOutput {
 }
 
 // The size in bytes for the disk.
-func (o VmDiskOutput) Size() pulumi.IntOutput {
-	return o.ApplyT(func(v VmDisk) int { return v.Size }).(pulumi.IntOutput)
+func (o VmDiskOutput) Size() pulumi.Float64Output {
+	return o.ApplyT(func(v VmDisk) float64 { return v.Size }).(pulumi.Float64Output)
 }
 
 // The storage repository ID to use.

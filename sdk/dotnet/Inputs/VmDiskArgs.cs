@@ -40,7 +40,7 @@ namespace Pulumi.Xenorchestra.Inputs
         /// The size in bytes for the disk.
         /// </summary>
         [Input("size", required: true)]
-        public Input<string> Size { get; set; } = null!;
+        public Input<double> Size { get; set; } = null!;
 
         /// <summary>
         /// The storage repository ID to use.

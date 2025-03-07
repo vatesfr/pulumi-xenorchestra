@@ -124,21 +124,89 @@ func Provider() tfbridge.ProviderInfo {
 			"xenorchestra_network":        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "XoaNetwork")},
 			"xenorchestra_resource_set":   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ResourceSet")},
 			"xenorchestra_vdi":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Vdi")},
-			"xenorchestra_vm":             {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Vm")},
+			"xenorchestra_vm": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Vm"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					// memory_max and disk size should be a u64 since it describes bytes sizes.
+					//
+					// The Pulumi schema doesn't support u64 (or i64), so we
+					// are converting to a float64, which should get us at
+					// least 2^52 bits of precision while minimizing the
+					// breaking change (int -> float) for our users.
+					"memory_max": {
+						Type: "number",
+					},
+					"disk": {Elem: &tfbridge.SchemaInfo{Fields: map[string]*tfbridge.SchemaInfo{
+						"size": {
+							Type: "number",
+						},
+					}}},
+				},
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"xenorchestra_cloud_config": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaCloudConfig")},
-			"xenorchestra_host":         {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaHost")},
-			"xenorchestra_hosts":        {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaHosts")},
-			"xenorchestra_network":      {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaNetwork")},
-			"xenorchestra_pif":          {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaPif")},
-			"xenorchestra_pool":         {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaPool")},
-			"xenorchestra_resource_set": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaResourceSet")},
-			"xenorchestra_sr":           {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaStorageRepository")},
-			"xenorchestra_template":     {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaTemplate")},
-			"xenorchestra_user":         {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaUser")},
-			"xenorchestra_vdi":          {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaVdi")},
-			"xenorchestra_vms":          {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaVms")},
+			"xenorchestra_host": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaHost"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					// memory and memory_usage should be a u64 since it describes bytes sizes.
+					//
+					// The Pulumi schema doesn't support u64 (or i64), so we
+					// are converting to a float64, which should get us at
+					// least 2^52 bits of precision while minimizing the
+					// breaking change (int -> float) for our users.
+					"memory": {
+						Type: "number",
+					},
+					"memory_usage": {
+						Type: "number",
+					},
+				},
+			},
+			"xenorchestra_hosts":   {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaHosts")},
+			"xenorchestra_network": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaNetwork")},
+			"xenorchestra_pif":     {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaPif")},
+			"xenorchestra_pool":    {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaPool")},
+			"xenorchestra_resource_set": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaResourceSet"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"limit": {Elem: &tfbridge.SchemaInfo{Fields: map[string]*tfbridge.SchemaInfo{
+						// quantity should be a u64 since it describes bytes sizes.
+						//
+						// The Pulumi schema doesn't support u64 (or i64), so we
+						// are converting to a float64, which should get us at
+						// least 2^52 bits of precision while minimizing the
+						// breaking change (int -> float) for our users.
+						"quantity": {
+							Type: "number",
+						},
+					}}},
+				},
+			},
+			"xenorchestra_sr": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaStorageRepository"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					// size, physical_usage and usage should be a u64 since it describes bytes sizes.
+					//
+					// The Pulumi schema doesn't support u64 (or i64), so we
+					// are converting to a float64, which should get us at
+					// least 2^52 bits of precision while minimizing the
+					// breaking change (int -> float) for our users.
+					"size": {
+						Type: "number",
+					},
+					"physical_usage": {
+						Type: "number",
+					},
+					"usage": {
+						Type: "number",
+					},
+				},
+			},
+			"xenorchestra_template": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaTemplate")},
+			"xenorchestra_user":     {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaUser")},
+			"xenorchestra_vdi":      {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaVdi")},
+			"xenorchestra_vms":      {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaVms")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			PackageName: "@vates/pulumi-xenorchestra",

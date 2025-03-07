@@ -162,11 +162,11 @@ namespace Pulumi.Xenorchestra
         /// <summary>
         /// The memory size of the host.
         /// </summary>
-        public readonly int Memory;
+        public readonly double Memory;
         /// <summary>
         /// The memory usage of the host.
         /// </summary>
-        public readonly int MemoryUsage;
+        public readonly double MemoryUsage;
         /// <summary>
         /// The name label of the host.
         /// </summary>
@@ -186,9 +186,9 @@ namespace Pulumi.Xenorchestra
 
             string id,
 
-            int memory,
+            double memory,
 
-            int memoryUsage,
+            double memoryUsage,
 
             string nameLabel,
 

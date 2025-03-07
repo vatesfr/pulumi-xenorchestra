@@ -69,7 +69,7 @@ type Vm struct {
 	// xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic' [ 2147483648, #
 	// memory dynamic min 4294967296 # memory dynamic max (4GB) ] # Updating the VM to use 3GB of memory would happen without
 	// stopping/starting the VM # Updating the VM to use 5GB of memory would stop/start the VM```
-	MemoryMax pulumi.IntOutput `pulumi:"memoryMax"`
+	MemoryMax pulumi.Float64Output `pulumi:"memoryMax"`
 	// The description of the VM.
 	NameDescription pulumi.StringPtrOutput `pulumi:"nameDescription"`
 	// The name of the VM.
@@ -194,7 +194,7 @@ type vmState struct {
 	// xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic' [ 2147483648, #
 	// memory dynamic min 4294967296 # memory dynamic max (4GB) ] # Updating the VM to use 3GB of memory would happen without
 	// stopping/starting the VM # Updating the VM to use 5GB of memory would stop/start the VM```
-	MemoryMax *int `pulumi:"memoryMax"`
+	MemoryMax *float64 `pulumi:"memoryMax"`
 	// The description of the VM.
 	NameDescription *string `pulumi:"nameDescription"`
 	// The name of the VM.
@@ -272,7 +272,7 @@ type VmState struct {
 	// xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic' [ 2147483648, #
 	// memory dynamic min 4294967296 # memory dynamic max (4GB) ] # Updating the VM to use 3GB of memory would happen without
 	// stopping/starting the VM # Updating the VM to use 5GB of memory would stop/start the VM```
-	MemoryMax pulumi.IntPtrInput
+	MemoryMax pulumi.Float64PtrInput
 	// The description of the VM.
 	NameDescription pulumi.StringPtrInput
 	// The name of the VM.
@@ -350,7 +350,7 @@ type vmArgs struct {
 	// xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic' [ 2147483648, #
 	// memory dynamic min 4294967296 # memory dynamic max (4GB) ] # Updating the VM to use 3GB of memory would happen without
 	// stopping/starting the VM # Updating the VM to use 5GB of memory would stop/start the VM```
-	MemoryMax int `pulumi:"memoryMax"`
+	MemoryMax float64 `pulumi:"memoryMax"`
 	// The description of the VM.
 	NameDescription *string `pulumi:"nameDescription"`
 	// The name of the VM.
@@ -425,7 +425,7 @@ type VmArgs struct {
 	// xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic' [ 2147483648, #
 	// memory dynamic min 4294967296 # memory dynamic max (4GB) ] # Updating the VM to use 3GB of memory would happen without
 	// stopping/starting the VM # Updating the VM to use 5GB of memory would stop/start the VM```
-	MemoryMax pulumi.IntInput
+	MemoryMax pulumi.Float64Input
 	// The description of the VM.
 	NameDescription pulumi.StringPtrInput
 	// The name of the VM.
@@ -649,8 +649,8 @@ func (o VmOutput) Ipv6Addresses() pulumi.StringArrayOutput {
 // xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic' [ 2147483648, #
 // memory dynamic min 4294967296 # memory dynamic max (4GB) ] # Updating the VM to use 3GB of memory would happen without
 // stopping/starting the VM # Updating the VM to use 5GB of memory would stop/start the VM```
-func (o VmOutput) MemoryMax() pulumi.IntOutput {
-	return o.ApplyT(func(v *Vm) pulumi.IntOutput { return v.MemoryMax }).(pulumi.IntOutput)
+func (o VmOutput) MemoryMax() pulumi.Float64Output {
+	return o.ApplyT(func(v *Vm) pulumi.Float64Output { return v.MemoryMax }).(pulumi.Float64Output)
 }
 
 // The description of the VM.
