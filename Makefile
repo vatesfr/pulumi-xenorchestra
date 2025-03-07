@@ -104,6 +104,7 @@ build_dotnet: .make/build_dotnet
 	cd sdk/dotnet/ && \
 		printf "module fake_dotnet_module // Exclude this directory from Go tools\n\ngo 1.17\n" > go.mod && \
 		echo "$(PROVIDER_VERSION)" >version.txt
+	sed -i -r 's/(<\/PackageIcon>)/\1\n    <Version>$(PROVIDER_VERSION)<\/Version>\n/g' sdk/dotnet/Pulumi.Xenorchestra.csproj
 	@touch $@
 .make/build_dotnet: .make/generate_dotnet
 	cd sdk/dotnet/ && dotnet build
