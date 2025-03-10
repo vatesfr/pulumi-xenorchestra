@@ -15,7 +15,7 @@ Note that the Xen Orchestra Pulumi provider is a based on the [Terraform Xen Orc
 
 Those examples uses `pulumi config set xenorchestra:token --secret` and `pulumi config set xenorchestra:url <url>` to configure the provider.
 
-{{< chooser language "python,go,typescript,dotnet" >}}
+{{< chooser language "python,go,typescript,csharp,yaml" >}}
 {{% choosable language python %}}
 
 ```python
@@ -169,7 +169,7 @@ ssh_authorized_keys:
 
 {{% /choosable %}}
 
-{{% choosable language dotnet %}}
+{{% choosable language csharp %}}
 
 ```csharp
 using System.Collections.Generic;
@@ -217,6 +217,49 @@ return await Deployment.RunAsync(() =>
         ["vp_ip"] = vm.Ipv4Addresses.Apply(ipv4Addresses => ipv4Addresses)
     };
 });
+```
+{{% /choosable %}}
+
+{{% choosable language yaml %}}
+
+```yaml
+name: test-yaml
+description: A minimal Pulumi YAML program
+runtime: yaml
+config: {'pulumi:tags': {value: {'pulumi:template': yaml}}}
+variables: 
+  templateId:
+    fn::invoke:
+      function: xenorchestra:getXoaTemplate
+      arguments:
+        nameLabel: "Debian 12 Cloud-init (Hub)"
+        poolId: "pool-id"
+      return: id
+resources:
+  vm:
+    type: xenorchestra:Vm
+    properties:
+      nameLabel: "Pulumi example"
+      nameDescription: "Example with pulumi yam provider"
+      tags:
+        - pulumi
+      cpus: 1
+      memoryMax: 1073733632
+      template: ${templateId}
+      cloudConfig: |
+        #cloud-config
+        ssh_authorized_keys:
+            - ...
+      disks:
+        - nameLabel: "OS"
+          size: 4294967296
+          srId: "sr-id"
+      networks:
+        - networkId: "network-id"
+      powerState: "Running"
+
+outputs: 
+  vmIp: ${vm.ipv4Addresses}
 ```
 
 {{% /choosable %}}
