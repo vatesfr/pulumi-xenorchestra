@@ -2,7 +2,7 @@
 ---
 title: Xen Orchestra
 meta_desc: Provides an overview of the Xen Orchestra Provider for Pulumi.
-layout: overview
+layout: package
 ---
 
 The Xen Orchestra Provider lets you manage [Xen Orchestra](https://github.com/vatesfr/xen-orchestra) resources.

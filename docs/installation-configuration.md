@@ -1,7 +1,7 @@
 ---
 title: Xenorchestra Installation & Configuration
 meta_desc: Information on how to install the Xenorchestra provider.
-layout: installation
+layout: package
 ---
 
 ## Installation
