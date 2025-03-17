@@ -2,13 +2,13 @@ module github.com/vatesfr/pulumi-xenorchestra/provider
 
 go 1.23.2
 
-toolchain go1.23.4
+toolchain go1.24.1
 
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20250124205414-92ccb3765401
 
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.103.0
-	github.com/pulumi/pulumi/sdk/v3 v3.150.0
+	github.com/pulumi/pulumi/sdk/v3 v3.156.0
 	github.com/vatesfr/terraform-provider-xenorchestra v0.29.1-0.20240422141711-0315be62e43a
 )
 
