@@ -2292,10 +2292,10 @@ github.com/ulikunitz/xz v0.5.5/go.mod h1:2bypXElzHzzJZwzH67Y6wb67pO62Rzfn7BSiF4A
 github.com/ulikunitz/xz v0.5.10/go.mod h1:nbz6k7qbPmH4IRqmfOplQw/tblSgqTqBwxkY0oWt/14=
 github.com/ulikunitz/xz v0.5.12 h1:37Nm15o69RwBkXM0J6A5OlE67RZTfzUxTj8fB3dfcsc=
 github.com/ulikunitz/xz v0.5.12/go.mod h1:nbz6k7qbPmH4IRqmfOplQw/tblSgqTqBwxkY0oWt/14=
-github.com/vatesfr/terraform-provider-xenorchestra v0.29.1-0.20240422141711-0315be62e43a h1:VlKPWAdC3Po9RY53iP3H9K4AcJo+L5RjzOqqt3GaxkA=
-github.com/vatesfr/terraform-provider-xenorchestra v0.29.1-0.20240422141711-0315be62e43a/go.mod h1:GvxH0mHA3KAM1WXs3oIA+zfQQxKrolIIrTT7M3fmrWk=
-github.com/vatesfr/terraform-provider-xenorchestra/client v0.0.0-20240320231457-516842d718d7 h1:CiKffq28f1yH6nGqXmejoCJYNSaHOJbsmO3vYE+5X4k=
-github.com/vatesfr/terraform-provider-xenorchestra/client v0.0.0-20240320231457-516842d718d7/go.mod h1:qu/D/zw83f4vThCU6ttHxe2o4cGgOnFn9/uRNi+K8bI=
+github.com/vatesfr/terraform-provider-xenorchestra v0.31.1 h1:bXh0eMVYXrtgS0mKL2EucOEHeFA9e7ZiVY/b5TZ8mks=
+github.com/vatesfr/terraform-provider-xenorchestra v0.31.1/go.mod h1:/S5JRMCdZjArSYo6i6l2nfGDX5u2RvoDAQHHLHFu7K0=
+github.com/vatesfr/xenorchestra-go-sdk v1.0.0 h1:zvzHsYzyLC3W2NPK/IVujFrg3XQ6bcDjPBkQAKmFJYE=
+github.com/vatesfr/xenorchestra-go-sdk v1.0.0/go.mod h1:UiMo2zLd34/jYFU7omq3+9daoRLJQOrzqOre7bV0UG0=
 github.com/vmihailenco/msgpack v3.3.3+incompatible/go.mod h1:fy3FlTQTDXWkZ7Bh6AcGMlsjHatGryHQYUTf1ShIgkk=
 github.com/vmihailenco/msgpack v4.0.1+incompatible/go.mod h1:fy3FlTQTDXWkZ7Bh6AcGMlsjHatGryHQYUTf1ShIgkk=
 github.com/vmihailenco/msgpack v4.0.4+incompatible h1:dSLoQfGFAo3F6OoNhwUmLwVgaUXK79GlxNBwueZn0xI=
