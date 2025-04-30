@@ -48,8 +48,8 @@ export class Vm extends pulumi.CustomResource {
     public readonly autoPoweron!: pulumi.Output<boolean | undefined>;
     /**
      * List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-     * hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list
-     * can be found here
+     * hard_shutdown, pause, shutdown, suspend, destroy. See:
+     * https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
      */
     public readonly blockedOperations!: pulumi.Output<string[] | undefined>;
     /**
@@ -283,8 +283,8 @@ export interface VmState {
     autoPoweron?: pulumi.Input<boolean>;
     /**
      * List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-     * hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list
-     * can be found here
+     * hard_shutdown, pause, shutdown, suspend, destroy. See:
+     * https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
      */
     blockedOperations?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -416,8 +416,8 @@ export interface VmArgs {
     autoPoweron?: pulumi.Input<boolean>;
     /**
      * List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-     * hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list
-     * can be found here
+     * hard_shutdown, pause, shutdown, suspend, destroy. See:
+     * https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
      */
     blockedOperations?: pulumi.Input<pulumi.Input<string>[]>;
     /**

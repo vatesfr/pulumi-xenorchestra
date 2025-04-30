@@ -1,10 +1,13 @@
-module github.com //pulumi-xenorchestra/examples
+module github.com/vatesfr/pulumi-xenorchestra/examples
 
 go 1.22
 
-toolchain go1.23.4
+toolchain go1.22.11
 
-require github.com/pulumi/pulumi/pkg/v3 v3.148.0
+require (
+	github.com/pulumi/pulumi/pkg/v3 v3.148.0
+	github.com/stretchr/testify v1.10.0
+)
 
 require (
 	cloud.google.com/go v0.112.1 // indirect
@@ -16,7 +19,7 @@ require (
 	cloud.google.com/go/storage v1.39.1 // indirect
 	dario.cat/mergo v1.0.0 // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/azcore v1.11.1 // indirect
-	github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.6.0 // indirect
+	github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.7.0 // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/internal v1.8.0 // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/keyvault/azkeys v0.10.0 // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/keyvault/internal v0.7.1 // indirect
@@ -137,7 +140,6 @@ require (
 	github.com/skeema/knownhosts v1.3.0 // indirect
 	github.com/spf13/cobra v1.8.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/stretchr/testify v1.10.0 // indirect
 	github.com/texttheater/golang-levenshtein v1.0.1 // indirect
 	github.com/uber/jaeger-client-go v2.30.0+incompatible // indirect
 	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect

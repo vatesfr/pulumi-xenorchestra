@@ -76,7 +76,7 @@ jobs:
           kind: all
           email: bot@pulumi.com
           username: pulumi-bot
-          automerge: fase
+          automerge: true
           target-version: ${{ steps.target_version.outputs.version }}
           allow-missing-docs: true
       - name: Comment on upgrade issue if automated PR failed
@@ -85,4 +85,3 @@ jobs:
         run: |
           issue_number=$(gh issue list --search "pulumiupgradeproviderissue" --repo "${{ github.repository }}" --json=number --jq=".[0].number")
           gh issue comment "${issue_number}" --repo "${{ github.repository }}" --body "Failed to create automatic PR: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/"
-

@@ -2,7 +2,8 @@
     "auto-aliasing": {
         "resources": {
             "xenorchestra_acl": {
-                "current": "xenorchestra:index/acl:Acl"
+                "current": "xenorchestra:index/acl:Acl",
+                "majorVersion": 2
             },
             "xenorchestra_bonded_network": {
                 "current": "xenorchestra:index/xoaBondedNetwork:XoaBondedNetwork",
@@ -13,6 +14,7 @@
                         "majorVersion": 0
                     }
                 ],
+                "majorVersion": 2,
                 "fields": {
                     "pif_ids": {
                         "maxItemsOne": false
@@ -20,7 +22,8 @@
                 }
             },
             "xenorchestra_cloud_config": {
-                "current": "xenorchestra:index/cloudConfig:CloudConfig"
+                "current": "xenorchestra:index/cloudConfig:CloudConfig",
+                "majorVersion": 2
             },
             "xenorchestra_network": {
                 "current": "xenorchestra:index/xoaNetwork:XoaNetwork",
@@ -30,10 +33,12 @@
                         "inCodegen": true,
                         "majorVersion": 0
                     }
-                ]
+                ],
+                "majorVersion": 2
             },
             "xenorchestra_resource_set": {
                 "current": "xenorchestra:index/resourceSet:ResourceSet",
+                "majorVersion": 2,
                 "fields": {
                     "limit": {
                         "maxItemsOne": false
@@ -47,10 +52,12 @@
                 }
             },
             "xenorchestra_vdi": {
-                "current": "xenorchestra:index/vdi:Vdi"
+                "current": "xenorchestra:index/vdi:Vdi",
+                "majorVersion": 2
             },
             "xenorchestra_vm": {
                 "current": "xenorchestra:index/vm:Vm",
+                "majorVersion": 2,
                 "fields": {
                     "blocked_operations": {
                         "maxItemsOne": false
@@ -95,7 +102,8 @@
                         "inCodegen": true,
                         "majorVersion": 0
                     }
-                ]
+                ],
+                "majorVersion": 2
             },
             "xenorchestra_host": {
                 "current": "xenorchestra:index/getXoaHost:getXoaHost",
@@ -106,6 +114,7 @@
                         "majorVersion": 0
                     }
                 ],
+                "majorVersion": 2,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -121,6 +130,7 @@
                         "majorVersion": 0
                     }
                 ],
+                "majorVersion": 2,
                 "fields": {
                     "hosts": {
                         "maxItemsOne": false,
@@ -145,7 +155,8 @@
                         "inCodegen": true,
                         "majorVersion": 0
                     }
-                ]
+                ],
+                "majorVersion": 2
             },
             "xenorchestra_pif": {
                 "current": "xenorchestra:index/getXoaPif:getXoaPif",
@@ -155,7 +166,8 @@
                         "inCodegen": true,
                         "majorVersion": 0
                     }
-                ]
+                ],
+                "majorVersion": 2
             },
             "xenorchestra_pool": {
                 "current": "xenorchestra:index/getXoaPool:getXoaPool",
@@ -165,7 +177,8 @@
                         "inCodegen": true,
                         "majorVersion": 0
                     }
-                ]
+                ],
+                "majorVersion": 2
             },
             "xenorchestra_resource_set": {
                 "current": "xenorchestra:index/getXoaResourceSet:getXoaResourceSet",
@@ -175,7 +188,8 @@
                         "inCodegen": true,
                         "majorVersion": 0
                     }
-                ]
+                ],
+                "majorVersion": 2
             },
             "xenorchestra_sr": {
                 "current": "xenorchestra:index/getXoaStorageRepository:getXoaStorageRepository",
@@ -186,6 +200,7 @@
                         "majorVersion": 0
                     }
                 ],
+                "majorVersion": 2,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -200,7 +215,8 @@
                         "inCodegen": true,
                         "majorVersion": 0
                     }
-                ]
+                ],
+                "majorVersion": 2
             },
             "xenorchestra_user": {
                 "current": "xenorchestra:index/getXoaUser:getXoaUser",
@@ -210,7 +226,8 @@
                         "inCodegen": true,
                         "majorVersion": 0
                     }
-                ]
+                ],
+                "majorVersion": 2
             },
             "xenorchestra_vdi": {
                 "current": "xenorchestra:index/getXoaVdi:getXoaVdi",
@@ -221,6 +238,7 @@
                         "majorVersion": 0
                     }
                 ],
+                "majorVersion": 2,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -236,6 +254,7 @@
                         "majorVersion": 0
                     }
                 ],
+                "majorVersion": 2,
                 "fields": {
                     "vms": {
                         "maxItemsOne": false,
@@ -279,75 +298,13 @@
     "auto-settings": {
         "resources": {
             "xenorchestra_bonded_network": {
-                "aliases": [
+                "renames": [
                     "xenorchestra:index/bondedNetwork:BondedNetwork"
                 ]
             },
             "xenorchestra_network": {
-                "aliases": [
+                "renames": [
                     "xenorchestra:index/network:Network"
-                ]
-            }
-        },
-        "datasources": {
-            "xenorchestra_cloud_config": {
-                "renames": [
-                    "xenorchestra:index/getCloudConfig:getCloudConfig"
-                ]
-            },
-            "xenorchestra_host": {
-                "renames": [
-                    "xenorchestra:index/getHost:getHost"
-                ]
-            },
-            "xenorchestra_hosts": {
-                "renames": [
-                    "xenorchestra:index/getHosts:getHosts"
-                ]
-            },
-            "xenorchestra_network": {
-                "renames": [
-                    "xenorchestra:index/getNetwork:getNetwork"
-                ]
-            },
-            "xenorchestra_pif": {
-                "renames": [
-                    "xenorchestra:index/getPif:getPif"
-                ]
-            },
-            "xenorchestra_pool": {
-                "renames": [
-                    "xenorchestra:index/getPool:getPool"
-                ]
-            },
-            "xenorchestra_resource_set": {
-                "renames": [
-                    "xenorchestra:index/getResourceSet:getResourceSet"
-                ]
-            },
-            "xenorchestra_sr": {
-                "renames": [
-                    "xenorchestra:index/getSr:getSr"
-                ]
-            },
-            "xenorchestra_template": {
-                "renames": [
-                    "xenorchestra:index/getTemplate:getTemplate"
-                ]
-            },
-            "xenorchestra_user": {
-                "renames": [
-                    "xenorchestra:index/getUser:getUser"
-                ]
-            },
-            "xenorchestra_vdi": {
-                "renames": [
-                    "xenorchestra:index/getVdi:getVdi"
-                ]
-            },
-            "xenorchestra_vms": {
-                "renames": [
-                    "xenorchestra:index/getVms:getVms"
                 ]
             }
         }
