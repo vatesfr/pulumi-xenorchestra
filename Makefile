@@ -13,7 +13,7 @@ GOTESTARGS := ""
 WORKING_DIR := $(shell pwd)
 PULUMI_PROVIDER_BUILD_PARALLELISM ?=
 PULUMI_CONVERT := 1
-PULUMI_MISSING_DOCS_ERROR := true
+PULUMI_MISSING_DOCS_ERROR := false
 
 # Override during CI using `make [TARGET] PROVIDER_VERSION=""` or by setting a PROVIDER_VERSION environment variable
 # Local & branch builds will just used this fixed default version unless specified
@@ -104,7 +104,6 @@ build_dotnet: .make/build_dotnet
 	cd sdk/dotnet/ && \
 		printf "module fake_dotnet_module // Exclude this directory from Go tools\n\ngo 1.17\n" > go.mod && \
 		echo "$(PROVIDER_VERSION)" >version.txt
-	sed -i -r 's/(<\/PackageIcon>)/\1\n    <Version>$(PROVIDER_VERSION)<\/Version>\n/g' sdk/dotnet/Pulumi.Xenorchestra.csproj
 	@touch $@
 .make/build_dotnet: .make/generate_dotnet
 	cd sdk/dotnet/ && dotnet build
@@ -149,7 +148,7 @@ build_nodejs: .make/build_nodejs
 	cd sdk/nodejs/ && \
 		yarn install && \
 		yarn run tsc && \
-		cp ../../README.md ../../LICENSE* package.json yarn.lock ./bin/
+		cp ../../README.md ../../LICENSE package.json yarn.lock ./bin/
 	@touch $@
 .PHONY: generate_nodejs build_nodejs
 
@@ -198,11 +197,11 @@ install_nodejs_sdk: .make/install_nodejs_sdk
 install_python_sdk:
 .PHONY: install_dotnet_sdk install_go_sdk install_java_sdk install_nodejs_sdk install_python_sdk
 
-lint_provider: provider
+lint_provider: upstream
 	cd provider && golangci-lint run --path-prefix provider -c ../.golangci.yml
 # `lint_provider.fix` is a utility target meant to be run manually
 # that will run the linter and fix errors when possible.
-lint_provider.fix:
+lint_provider.fix: upstream
 	cd provider && golangci-lint run --path-prefix provider -c ../.golangci.yml --fix
 .PHONY: lint_provider lint_provider.fix
 build_provider_cmd = cd provider && GOOS=$(1) GOARCH=$(2) CGO_ENABLED=0 go build $(PULUMI_PROVIDER_BUILD_PARALLELISM) -o "$(3)" -ldflags "$(LDFLAGS)" $(PROJECT)/$(PROVIDER_PATH)/cmd/$(PROVIDER)
