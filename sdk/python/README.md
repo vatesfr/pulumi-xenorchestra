@@ -63,7 +63,7 @@ Or:
 
 ## Usage
 
-See [docs](./docs/_index_.md) for examples.
+See [docs](./docs/_index.md) for examples.
 
 ## Building
 

@@ -30,8 +30,8 @@ namespace Pulumi.Xenorchestra
 
         /// <summary>
         /// List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-        /// hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list
-        /// can be found here
+        /// hard_shutdown, pause, shutdown, suspend, destroy. See:
+        /// https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
         /// </summary>
         [Output("blockedOperations")]
         public Output<ImmutableArray<string>> BlockedOperations { get; private set; } = null!;
@@ -271,8 +271,8 @@ namespace Pulumi.Xenorchestra
 
         /// <summary>
         /// List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-        /// hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list
-        /// can be found here
+        /// hard_shutdown, pause, shutdown, suspend, destroy. See:
+        /// https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
         /// </summary>
         public InputList<string> BlockedOperations
         {
@@ -490,8 +490,8 @@ namespace Pulumi.Xenorchestra
 
         /// <summary>
         /// List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-        /// hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list
-        /// can be found here
+        /// hard_shutdown, pause, shutdown, suspend, destroy. See:
+        /// https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
         /// </summary>
         public InputList<string> BlockedOperations
         {
