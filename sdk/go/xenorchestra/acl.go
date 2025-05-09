@@ -9,7 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/vatesfr/pulumi-xenorchestra/sdk/go/xenorchestra/internal"
+	"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra/internal"
 )
 
 // ## Example Usage
@@ -20,7 +20,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/vatesfr/pulumi-xenorchestra/sdk/go/xenorchestra"
+//	"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra"
 //
 // )
 //

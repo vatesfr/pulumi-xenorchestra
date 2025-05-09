@@ -9,7 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/vatesfr/pulumi-xenorchestra/sdk/go/xenorchestra/internal"
+	"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra/internal"
 )
 
 // ## Example Usage
@@ -22,8 +22,8 @@ type Vm struct {
 	// If the VM will automatically turn on. Defaults to `false`.
 	AutoPoweron pulumi.BoolPtrOutput `pulumi:"autoPoweron"`
 	// List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-	// hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list
-	// can be found here
+	// hard_shutdown, pause, shutdown, suspend, destroy. See:
+	// https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
 	BlockedOperations pulumi.StringArrayOutput `pulumi:"blockedOperations"`
 	// The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
 	// from `xe template-list`) and install the OS from the following ISO.
@@ -147,8 +147,8 @@ type vmState struct {
 	// If the VM will automatically turn on. Defaults to `false`.
 	AutoPoweron *bool `pulumi:"autoPoweron"`
 	// List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-	// hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list
-	// can be found here
+	// hard_shutdown, pause, shutdown, suspend, destroy. See:
+	// https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
 	BlockedOperations []string `pulumi:"blockedOperations"`
 	// The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
 	// from `xe template-list`) and install the OS from the following ISO.
@@ -225,8 +225,8 @@ type VmState struct {
 	// If the VM will automatically turn on. Defaults to `false`.
 	AutoPoweron pulumi.BoolPtrInput
 	// List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-	// hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list
-	// can be found here
+	// hard_shutdown, pause, shutdown, suspend, destroy. See:
+	// https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
 	BlockedOperations pulumi.StringArrayInput
 	// The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
 	// from `xe template-list`) and install the OS from the following ISO.
@@ -307,8 +307,8 @@ type vmArgs struct {
 	// If the VM will automatically turn on. Defaults to `false`.
 	AutoPoweron *bool `pulumi:"autoPoweron"`
 	// List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-	// hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list
-	// can be found here
+	// hard_shutdown, pause, shutdown, suspend, destroy. See:
+	// https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
 	BlockedOperations []string `pulumi:"blockedOperations"`
 	// The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
 	// from `xe template-list`) and install the OS from the following ISO.
@@ -382,8 +382,8 @@ type VmArgs struct {
 	// If the VM will automatically turn on. Defaults to `false`.
 	AutoPoweron pulumi.BoolPtrInput
 	// List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-	// hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list
-	// can be found here
+	// hard_shutdown, pause, shutdown, suspend, destroy. See:
+	// https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
 	BlockedOperations pulumi.StringArrayInput
 	// The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
 	// from `xe template-list`) and install the OS from the following ISO.
@@ -548,8 +548,8 @@ func (o VmOutput) AutoPoweron() pulumi.BoolPtrOutput {
 }
 
 // List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-// hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list
-// can be found here
+// hard_shutdown, pause, shutdown, suspend, destroy. See:
+// https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
 func (o VmOutput) BlockedOperations() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Vm) pulumi.StringArrayOutput { return v.BlockedOperations }).(pulumi.StringArrayOutput)
 }

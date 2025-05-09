@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/vatesfr/pulumi-xenorchestra/sdk/go/xenorchestra/internal"
+	"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra/internal"
 )
 
 // Use this data source to filter Xenorchestra VMs by certain criteria (pool_id, powerState or host) for use in other resources.

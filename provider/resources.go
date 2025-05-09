@@ -1,4 +1,4 @@
-// Copyright 2016-2023, Pulumi Corporation.
+// Copyright 2016-2024, Pulumi Corporation.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,19 +15,17 @@
 package xenorchestra
 
 import (
-	"fmt"
 	"path"
 
 	// Allow embedding bridge-metadata.json in the provider.
 	_ "embed"
 
-	xenorchestra "github.com/vatesfr/terraform-provider-xenorchestra/xoa"
+	xenorchestra "github.com/vatesfr/terraform-provider-xenorchestra/xoa" // Import the upstream provider
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
-	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/pulumi/pulumi/pkg/v3/codegen/schema"
 
 	"github.com/vatesfr/pulumi-xenorchestra/provider/pkg/version"
 )
@@ -41,41 +39,97 @@ const (
 	mainMod = "index" // the xenorchestra module
 )
 
-// preConfigureCallback is called before the providerConfigure function of the underlying provider.
-// It should validate that the provider can be configured, and provide actionable errors in the case
-// it cannot be. Configuration variables can be read from `vars` using the `stringValue` function -
-// for example `stringValue(vars, "accessKey")`.
-func preConfigureCallback(resource.PropertyMap, shim.ResourceConfig) error {
-	return nil
-}
+// @gCyrille should we keep this function?
+// func preConfigureCallback(resource.PropertyMap, shim.ResourceConfig) error {
+// 	return nil
+// }
 
 //go:embed cmd/pulumi-resource-xenorchestra/bridge-metadata.json
 var metadata []byte
 
-// Provider returns additional overlaid schema and metadata associated with the provider..
+// Provider returns additional overlaid schema and metadata associated with the provider.
 func Provider() tfbridge.ProviderInfo {
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		// Instantiate the Terraform provider
-		P:    shimv2.NewProvider(xenorchestra.Provider()),
-		Name: "xenorchestra",
-		// DisplayName is a way to be able to change the casing of the provider
-		// name when being displayed on the Pulumi registry
+		//
+		// The [pulumi-terraform-bridge](https://github.com/pulumi/pulumi-terraform-bridge) supports 3
+		// types of Terraform providers:
+		//
+		// 1. Providers written with the terraform-plugin-sdk/v1:
+		//
+		//    If the provider you are bridging is written with the terraform-plugin-sdk/v1, then you
+		//    will need to adapt the boilerplate:
+		//
+		//    - Change the import "shimv2" to "shimv1" and change the associated import to
+		//      "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1".
+		//
+		//    You can then proceed as normal.
+		//
+		// 2. Providers written with terraform-plugin-sdk/v2:
+		//
+		//    This boilerplate is already geared towards providers written with the
+		//    terraform-plugin-sdk/v2, since it is the most common provider framework used. No
+		//    adaptions are needed.
+		//
+		// 3. Providers written with terraform-plugin-framework:
+		//
+		//    If the provider you are bridging is written with the terraform-plugin-framework, then
+		//    you will need to adapt the boilerplate:
+		//
+		//    - Remove the `shimv2` import and add:
+		//
+		//      	pfbridge "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
+		//
+		//    - Replace `shimv2.NewProvider` with `pfbridge.ShimProvider`.
+		//
+		//    - In provider/cmd/pulumi-tfgen-xenorchestra/main.go, replace the
+		//      "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen" import with
+		//      "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfgen". Remove the `version.Version`
+		//      argument to `tfgen.Main`.
+		//
+		//    - In provider/cmd/pulumi-resource-xenorchestra/main.go, replace the
+		//      "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge" import with
+		//      "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge". Replace the arguments to the
+		//      `tfbridge.Main` so it looks like this:
+		//
+		//      	tfbridge.Main(context.Background(), "xenorchestra", xenorchestra.Provider(),
+		//			tfbridge.ProviderMetadata{PulumiSchema: pulumiSchema})
+		//
+		//   Detailed instructions can be found at
+		//   https://pulumi-developer-docs.readthedocs.io/projects/pulumi-terraform-bridge/en/latest/docs/guides/new-pf-provider.html
+		//   After that, you can proceed as normal.
+		//
+		// This is where you give the bridge a handle to the upstream terraform provider. SDKv2
+		// convention is to have a function at "github.com/vatesfr/terraform-provider-xenorchestra/xoa".New
+		// which takes a version and produces a factory function. The provider you are bridging may
+		// not do that. You will need to find the function (generally called in upstream's main.go)
+		// that produces a:
+		//
+		// - *"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema".Provider (for SDKv2)
+		// - *"github.com/hashicorp/terraform-plugin-sdk/v1/helper/schema".Provider (for SDKv1)
+		// - "github.com/hashicorp/terraform-plugin-framework/provider".Provider (for plugin-framework)
+		//
+		//nolint:lll
+		P: shimv2.NewProvider(xenorchestra.Provider()),
+
+		Name:    "xenorchestra",
+		Version: version.Version,
+		// DisplayName is a way to be able to change the casing of the provider name when being
+		// displayed on the Pulumi registry
 		DisplayName: "",
-		// The default publisher for all packages is Pulumi.
-		// Change this to your personal name (or a company name) that you
-		// would like to be shown in the Pulumi Registry if this package is published
-		// there.
+		// Change this to your personal name (or a company name) that you would like to be shown in
+		// the Pulumi Registry if this package is published there.
 		Publisher: "Vates",
 		// LogoURL is optional but useful to help identify your package in the Pulumi Registry
 		// if this package is published there.
 		//
-		// You may host a logo on a domain you control or add an SVG logo for your package
+		// You may host a logo on a domain you control or add an PNG logo (100x100) for your package
 		// in your repository and use the raw content URL for that file as your logo URL.
 		LogoURL: "https://raw.githubusercontent.com/vatesfr/pulumi-xenorchestra/8c71624229d953d4fb7d4843d5483e53e21b9459/logo_xo.png", //nolint:all
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
-		// e.g https://github.com/org/pulumi-provider-name/releases/
+		// e.g. https://github.com/org/pulumi-provider-name/releases/download/v${VERSION}/
 		PluginDownloadURL: "github://api.github.com/vatesfr/pulumi-xenorchestra",
 		Description:       "A Pulumi package for creating and managing Xen Orchestra cloud resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
@@ -85,38 +139,14 @@ func Provider() tfbridge.ProviderInfo {
 		License:    "Apache-2.0",
 		Homepage:   "https://www.pulumi.com",
 		Repository: "https://github.com/vatesfr/pulumi-xenorchestra",
-		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
-		// should match the TF provider module's require directive, not any replace directives.
+		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this should
+		// match the TF provider module's require directive, not any replace directives.
 		GitHubOrg:    "vatesfr",
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
-		Config:       map[string]*tfbridge.SchemaInfo{
-			// "url": {
-			//     Default: &tfbridge.DefaultInfo{
-			//         EnvVars: []string{"XOA_URL"},
-			//     }
-			// },
-			// "username": {
-			//     Default: &tfbridge.DefaultInfo{
-			//         EnvVars: []string{"XOA_USERNAME"},
-			//     }
-			// },
-			// "password": {
-			//     Default: &tfbridge.DefaultInfo{
-			//         EnvVars: []string{"XOA_PASSWORD"},
-			//     }
-			// },
-			// "token": {
-			//     Default: &tfbridge.DefaultInfo{
-			//         EnvVars: []string{"XOA_TOKEN"},
-			//     }
-			// },
-			// "insecure": {
-			//     Default: &tfbridge.DefaultInfo{
-			//         EnvVars: []string{"XOA_INSECURE"},
-			//     }
-			// }
-		},
-		PreConfigureCallback: preConfigureCallback,
+		Config:       map[string]*tfbridge.SchemaInfo{},
+		// If extra types are needed for configuration, they can be added here.
+
+		ExtraTypes: map[string]schema.ComplexTypeSpec{},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"xenorchestra_acl":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Acl")},
 			"xenorchestra_bonded_network": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "XoaBondedNetwork")},
@@ -210,52 +240,48 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			PackageName: "@vates/pulumi-xenorchestra",
-			// List any npm dependencies and their versions
-			Dependencies: map[string]string{
-				"@pulumi/pulumi": "^3.0.0",
-			},
-			DevDependencies: map[string]string{
-				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
-				"@types/mime": "^2.0.0",
-			},
-			// See the documentation for tfbridge.OverlayInfo for how to lay out this
-			// section, or refer to the AWS provider. Delete this section if there are
-			// no overlay files.
-			//Overlay: &tfbridge.OverlayInfo{},
+			// RespectSchemaVersion ensures the SDK is generated linking to the correct version of the provider.
+			RespectSchemaVersion: true,
 		},
 		Python: &tfbridge.PythonInfo{
-			// List any Python dependencies and their version ranges
-			Requires: map[string]string{
-				"pulumi": ">=3.0.0,<4.0.0",
-			},
-			PyProject: struct {
-				Enabled bool
-			}{
-				Enabled: true, // Enable pyproject.toml generation
-			},
+			// RespectSchemaVersion ensures the SDK is generated linking to the correct version of the provider.
+			RespectSchemaVersion: true,
+			// Enable modern PyProject support in the generated Python SDK.
+			PyProject: struct{ Enabled bool }{true},
 		},
 		Golang: &tfbridge.GolangInfo{
+			// Set where the SDK is going to be published to.
 			ImportBasePath: path.Join(
-				fmt.Sprintf("github.com/vatesfr/pulumi-%[1]s/sdk/", mainPkg),
+				"github.com/vatesfr/pulumi-xenorchestra/sdk/",
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				mainPkg,
 			),
+			// Opt in to all available code generation features.
 			GenerateResourceContainerTypes: true,
+			GenerateExtraInputTypes:        true,
+			// RespectSchemaVersion ensures the SDK is generated linking to the correct version of the provider.
+			RespectSchemaVersion: true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
+			// RespectSchemaVersion ensures the SDK is generated linking to the correct version of the provider.
+			RespectSchemaVersion: true,
+			// Use a wildcard import so NuGet will prefer the latest possible version.
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
 		},
 	}
 
-	// These are new API's that you may opt to use to automatically compute resource
-	// tokens, and apply auto aliasing for full backwards compatibility.  For more
-	// information, please reference:
-	// https://pkg.go.dev/github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge#ProviderInfo.ComputeTokens
+	// MustComputeTokens maps all resources and datasources from the upstream provider into Pulumi.
+	//
+	// tokens.SingleModule puts every upstream item into your provider's main module.
+	//
+	// You shouldn't need to override anything, but if you do, use the [tfbridge.ProviderInfo.Resources]
+	// and [tfbridge.ProviderInfo.DataSources].
 	prov.MustComputeTokens(tokens.SingleModule("xenorchestra_", mainMod,
 		tokens.MakeStandard(mainPkg)))
+
 	prov.MustApplyAutoAliases()
 	prov.SetAutonaming(255, "-")
 

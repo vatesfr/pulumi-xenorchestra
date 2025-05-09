@@ -22,7 +22,7 @@ namespace Pulumi.Xenorchestra.Outputs
         /// </summary>
         public readonly bool? AutoPoweron;
         /// <summary>
-        /// List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. This can be used to prevent a VM from being destroyed. The entire list can be found here
+        /// List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
         /// </summary>
         public readonly ImmutableArray<string> BlockedOperations;
         /// <summary>
