@@ -75,10 +75,8 @@ export const getXoaVms: typeof import("./getXoaVms").getXoaVms = null as any;
 export const getXoaVmsOutput: typeof import("./getXoaVms").getXoaVmsOutput = null as any;
 utilities.lazyLoad(exports, ["getXoaVms","getXoaVmsOutput"], () => require("./getXoaVms"));
 
-export { ProviderArgs } from "./provider";
-export type Provider = import("./provider").Provider;
-export const Provider: typeof import("./provider").Provider = null as any;
-utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+export * from "./provider";
+import { Provider } from "./provider";
 
 export { ResourceSetArgs, ResourceSetState } from "./resourceSet";
 export type ResourceSet = import("./resourceSet").ResourceSet;

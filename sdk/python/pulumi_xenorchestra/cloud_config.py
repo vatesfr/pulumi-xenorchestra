@@ -96,10 +96,8 @@ class _CloudConfigState:
         pulumi.set(self, "template", value)
 
 
+@pulumi.type_token("xenorchestra:index/cloudConfig:CloudConfig")
 class CloudConfig(pulumi.CustomResource):
-
-    pulumi_type = "xenorchestra:index/cloudConfig:CloudConfig"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

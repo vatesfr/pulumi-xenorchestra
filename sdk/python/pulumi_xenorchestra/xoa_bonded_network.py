@@ -271,10 +271,8 @@ class _XoaBondedNetworkState:
         pulumi.set(self, "pool_id", value)
 
 
+@pulumi.type_token("xenorchestra:index/xoaBondedNetwork:XoaBondedNetwork")
 class XoaBondedNetwork(pulumi.CustomResource):
-
-    pulumi_type = "xenorchestra:index/xoaBondedNetwork:XoaBondedNetwork"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -580,7 +580,10 @@
         },
         "requiredInputs": [
             "url"
-        ]
+        ],
+        "methods": {
+            "terraformConfig": "pulumi:providers:xenorchestra/terraformConfig"
+        }
     },
     "resources": {
         "xenorchestra:index/acl:Acl": {
@@ -1590,6 +1593,35 @@
         }
     },
     "functions": {
+        "pulumi:providers:xenorchestra/terraformConfig": {
+            "description": "This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.",
+            "inputs": {
+                "properties": {
+                    "__self__": {
+                        "type": "ref",
+                        "$ref": "#/resources/pulumi:providers:xenorchestra"
+                    }
+                },
+                "type": "pulumi:providers:xenorchestra/terraformConfig",
+                "required": [
+                    "__self__"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "result": {
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "result"
+                ],
+                "type": "object"
+            }
+        },
         "xenorchestra:index/getXoaCloudConfig:getXoaCloudConfig": {
             "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as xenorchestra from \"@pulumi/xenorchestra\";\n\nconst cloudConfig = xenorchestra.getXoaCloudConfig({\n    name: \"Name of cloud config\",\n});\n```\n```python\nimport pulumi\nimport pulumi_xenorchestra as xenorchestra\n\ncloud_config = xenorchestra.get_xoa_cloud_config(name=\"Name of cloud config\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Xenorchestra = Pulumi.Xenorchestra;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var cloudConfig = Xenorchestra.GetXoaCloudConfig.Invoke(new()\n    {\n        Name = \"Name of cloud config\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := xenorchestra.GetXoaCloudConfig(ctx, \u0026xenorchestra.GetXoaCloudConfigArgs{\n\t\t\tName: \"Name of cloud config\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.xenorchestra.XenorchestraFunctions;\nimport com.pulumi.xenorchestra.inputs.GetXoaCloudConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var cloudConfig = XenorchestraFunctions.getXoaCloudConfig(GetXoaCloudConfigArgs.builder()\n            .name(\"Name of cloud config\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  cloudConfig:\n    fn::invoke:\n      function: xenorchestra:getXoaCloudConfig\n      arguments:\n        name: Name of cloud config\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {

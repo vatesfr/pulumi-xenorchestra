@@ -303,10 +303,8 @@ class _XoaNetworkState:
         pulumi.set(self, "vlan", value)
 
 
+@pulumi.type_token("xenorchestra:index/xoaNetwork:XoaNetwork")
 class XoaNetwork(pulumi.CustomResource):
-
-    pulumi_type = "xenorchestra:index/xoaNetwork:XoaNetwork"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
