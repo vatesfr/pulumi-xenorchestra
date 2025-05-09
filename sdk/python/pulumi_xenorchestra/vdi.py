@@ -157,10 +157,8 @@ class _VdiState:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("xenorchestra:index/vdi:Vdi")
 class Vdi(pulumi.CustomResource):
-
-    pulumi_type = "xenorchestra:index/vdi:Vdi"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

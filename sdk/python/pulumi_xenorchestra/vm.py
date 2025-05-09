@@ -1043,10 +1043,8 @@ class _VmState:
         pulumi.set(self, "xenstore", value)
 
 
+@pulumi.type_token("xenorchestra:index/vm:Vm")
 class Vm(pulumi.CustomResource):
-
-    pulumi_type = "xenorchestra:index/vm:Vm"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

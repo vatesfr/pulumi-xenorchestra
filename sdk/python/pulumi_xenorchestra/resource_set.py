@@ -162,10 +162,8 @@ class _ResourceSetState:
         pulumi.set(self, "subjects", value)
 
 
+@pulumi.type_token("xenorchestra:index/resourceSet:ResourceSet")
 class ResourceSet(pulumi.CustomResource):
-
-    pulumi_type = "xenorchestra:index/resourceSet:ResourceSet"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
