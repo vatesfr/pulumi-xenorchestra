@@ -1,15 +1,13 @@
 module github.com/vatesfr/pulumi-xenorchestra/provider
 
-go 1.23.2
-
-toolchain go1.23.4
+go 1.24
 
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20250221232320-8d4cfd37a3cd
 
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.108.0
 	github.com/pulumi/pulumi/pkg/v3 v3.166.0
-	github.com/vatesfr/terraform-provider-xenorchestra v0.31.1
+	github.com/vatesfr/terraform-provider-xenorchestra v0.31.2
 )
 
 require (
@@ -161,7 +159,7 @@ require (
 	github.com/uber/jaeger-client-go v2.30.0+incompatible // indirect
 	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect
 	github.com/ulikunitz/xz v0.5.10 // indirect
-	github.com/vatesfr/xenorchestra-go-sdk v1.0.0 // indirect
+	github.com/vatesfr/xenorchestra-go-sdk v1.1.0 // indirect
 	github.com/vmihailenco/msgpack v4.0.4+incompatible // indirect
 	github.com/vmihailenco/msgpack/v5 v5.4.1 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
