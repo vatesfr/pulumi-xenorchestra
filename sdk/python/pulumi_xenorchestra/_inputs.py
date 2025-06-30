@@ -276,6 +276,9 @@ if not MYPY:
         """
         device: NotRequired[pulumi.Input[builtins.str]]
         expected_ip_cidr: NotRequired[pulumi.Input[builtins.str]]
+        """
+        Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `wait_for_ip` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
+        """
         ipv4_addresses: NotRequired[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]
         ipv6_addresses: NotRequired[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]
         mac_address: NotRequired[pulumi.Input[builtins.str]]
@@ -295,6 +298,7 @@ class VmNetworkArgs:
         """
         :param pulumi.Input[builtins.str] network_id: The ID of the network the VM will be on.
         :param pulumi.Input[builtins.bool] attached: Whether the device should be attached to the VM.
+        :param pulumi.Input[builtins.str] expected_ip_cidr: Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `wait_for_ip` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
         """
         pulumi.set(__self__, "network_id", network_id)
         if attached is not None:
@@ -346,6 +350,9 @@ class VmNetworkArgs:
     @property
     @pulumi.getter(name="expectedIpCidr")
     def expected_ip_cidr(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `wait_for_ip` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
+        """
         return pulumi.get(self, "expected_ip_cidr")
 
     @expected_ip_cidr.setter

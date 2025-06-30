@@ -127,8 +127,9 @@ namespace Pulumi.Xenorchestra
         public Output<ImmutableArray<string>> Ipv4Addresses { get; private set; } = null!;
 
         /// <summary>
-        /// This is only accessible if guest-tools is installed in the VM and if `expected_ip_cidr` is set on any network
-        /// interfaces. This will contain a list of the ipv6 addresses across all network interfaces in order.
+        /// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
+        /// presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6
+        /// addresses across all network interfaces in order.
         /// </summary>
         [Output("ipv6Addresses")]
         public Output<ImmutableArray<string>> Ipv6Addresses { get; private set; } = null!;
@@ -604,8 +605,9 @@ namespace Pulumi.Xenorchestra
         private InputList<string>? _ipv6Addresses;
 
         /// <summary>
-        /// This is only accessible if guest-tools is installed in the VM and if `expected_ip_cidr` is set on any network
-        /// interfaces. This will contain a list of the ipv6 addresses across all network interfaces in order.
+        /// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
+        /// presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6
+        /// addresses across all network interfaces in order.
         /// </summary>
         public InputList<string> Ipv6Addresses
         {

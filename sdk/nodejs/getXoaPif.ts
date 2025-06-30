@@ -57,6 +57,14 @@ export interface GetXoaPifResult {
      */
     readonly attached: boolean;
     /**
+     * In case of a bond slave, the uuid of the bond master.
+     */
+    readonly bondMaster: string;
+    /**
+     * In case of a bond master, the PIFs (uuid) that are used for this bond.
+     */
+    readonly bondSlaves: string[];
+    /**
      * The name of the network device. Examples include eth0, eth1, etc. See `ifconfig` for possible devices.
      */
     readonly device: string;
@@ -72,6 +80,14 @@ export interface GetXoaPifResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * True if this PIF is a bond master.
+     */
+    readonly isBondMaster: boolean;
+    /**
+     * True if this PIF is a bond slave.
+     */
+    readonly isBondSlave: boolean;
     /**
      * The network the PIF is associated with.
      */

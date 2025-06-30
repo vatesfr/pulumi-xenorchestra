@@ -27,10 +27,16 @@ class GetXoaPifResult:
     """
     A collection of values returned by getXoaPif.
     """
-    def __init__(__self__, attached=None, device=None, host=None, host_id=None, id=None, network=None, pool_id=None, uuid=None, vlan=None):
+    def __init__(__self__, attached=None, bond_master=None, bond_slaves=None, device=None, host=None, host_id=None, id=None, is_bond_master=None, is_bond_slave=None, network=None, pool_id=None, uuid=None, vlan=None):
         if attached and not isinstance(attached, bool):
             raise TypeError("Expected argument 'attached' to be a bool")
         pulumi.set(__self__, "attached", attached)
+        if bond_master and not isinstance(bond_master, str):
+            raise TypeError("Expected argument 'bond_master' to be a str")
+        pulumi.set(__self__, "bond_master", bond_master)
+        if bond_slaves and not isinstance(bond_slaves, list):
+            raise TypeError("Expected argument 'bond_slaves' to be a list")
+        pulumi.set(__self__, "bond_slaves", bond_slaves)
         if device and not isinstance(device, str):
             raise TypeError("Expected argument 'device' to be a str")
         pulumi.set(__self__, "device", device)
@@ -43,6 +49,12 @@ class GetXoaPifResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if is_bond_master and not isinstance(is_bond_master, bool):
+            raise TypeError("Expected argument 'is_bond_master' to be a bool")
+        pulumi.set(__self__, "is_bond_master", is_bond_master)
+        if is_bond_slave and not isinstance(is_bond_slave, bool):
+            raise TypeError("Expected argument 'is_bond_slave' to be a bool")
+        pulumi.set(__self__, "is_bond_slave", is_bond_slave)
         if network and not isinstance(network, str):
             raise TypeError("Expected argument 'network' to be a str")
         pulumi.set(__self__, "network", network)
@@ -63,6 +75,22 @@ class GetXoaPifResult:
         If the PIF is attached to the network.
         """
         return pulumi.get(self, "attached")
+
+    @property
+    @pulumi.getter(name="bondMaster")
+    def bond_master(self) -> builtins.str:
+        """
+        In case of a bond slave, the uuid of the bond master.
+        """
+        return pulumi.get(self, "bond_master")
+
+    @property
+    @pulumi.getter(name="bondSlaves")
+    def bond_slaves(self) -> Sequence[builtins.str]:
+        """
+        In case of a bond master, the PIFs (uuid) that are used for this bond.
+        """
+        return pulumi.get(self, "bond_slaves")
 
     @property
     @pulumi.getter
@@ -95,6 +123,22 @@ class GetXoaPifResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isBondMaster")
+    def is_bond_master(self) -> builtins.bool:
+        """
+        True if this PIF is a bond master.
+        """
+        return pulumi.get(self, "is_bond_master")
+
+    @property
+    @pulumi.getter(name="isBondSlave")
+    def is_bond_slave(self) -> builtins.bool:
+        """
+        True if this PIF is a bond slave.
+        """
+        return pulumi.get(self, "is_bond_slave")
 
     @property
     @pulumi.getter
@@ -136,10 +180,14 @@ class AwaitableGetXoaPifResult(GetXoaPifResult):
             yield self
         return GetXoaPifResult(
             attached=self.attached,
+            bond_master=self.bond_master,
+            bond_slaves=self.bond_slaves,
             device=self.device,
             host=self.host,
             host_id=self.host_id,
             id=self.id,
+            is_bond_master=self.is_bond_master,
+            is_bond_slave=self.is_bond_slave,
             network=self.network,
             pool_id=self.pool_id,
             uuid=self.uuid,
@@ -178,10 +226,14 @@ def get_xoa_pif(device: Optional[builtins.str] = None,
 
     return AwaitableGetXoaPifResult(
         attached=pulumi.get(__ret__, 'attached'),
+        bond_master=pulumi.get(__ret__, 'bond_master'),
+        bond_slaves=pulumi.get(__ret__, 'bond_slaves'),
         device=pulumi.get(__ret__, 'device'),
         host=pulumi.get(__ret__, 'host'),
         host_id=pulumi.get(__ret__, 'host_id'),
         id=pulumi.get(__ret__, 'id'),
+        is_bond_master=pulumi.get(__ret__, 'is_bond_master'),
+        is_bond_slave=pulumi.get(__ret__, 'is_bond_slave'),
         network=pulumi.get(__ret__, 'network'),
         pool_id=pulumi.get(__ret__, 'pool_id'),
         uuid=pulumi.get(__ret__, 'uuid'),
@@ -217,10 +269,14 @@ def get_xoa_pif_output(device: Optional[pulumi.Input[builtins.str]] = None,
     __ret__ = pulumi.runtime.invoke_output('xenorchestra:index/getXoaPif:getXoaPif', __args__, opts=opts, typ=GetXoaPifResult)
     return __ret__.apply(lambda __response__: GetXoaPifResult(
         attached=pulumi.get(__response__, 'attached'),
+        bond_master=pulumi.get(__response__, 'bond_master'),
+        bond_slaves=pulumi.get(__response__, 'bond_slaves'),
         device=pulumi.get(__response__, 'device'),
         host=pulumi.get(__response__, 'host'),
         host_id=pulumi.get(__response__, 'host_id'),
         id=pulumi.get(__response__, 'id'),
+        is_bond_master=pulumi.get(__response__, 'is_bond_master'),
+        is_bond_slave=pulumi.get(__response__, 'is_bond_slave'),
         network=pulumi.get(__response__, 'network'),
         pool_id=pulumi.get(__response__, 'pool_id'),
         uuid=pulumi.get(__response__, 'uuid'),

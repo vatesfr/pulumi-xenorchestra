@@ -576,8 +576,9 @@ class _VmState:
                Defaults to empty string
         :param pulumi.Input[builtins.str] hvm_boot_firmware: The firmware to use for the VM. Possible values are `bios` and `uefi`.
         :param pulumi.Input[builtins.str] installation_method: This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
-        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] ipv6_addresses: This is only accessible if guest-tools is installed in the VM and if `expected_ip_cidr` is set on any network
-               interfaces. This will contain a list of the ipv6 addresses across all network interfaces in order.
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] ipv6_addresses: This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
+               presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6
+               addresses across all network interfaces in order.
         :param pulumi.Input[builtins.float] memory_max: The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
                value is greater than the dynamic memory max. This can be determined with the following command: ``` $ xo-cli
                xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic' [ 2147483648, #
@@ -888,8 +889,9 @@ class _VmState:
     @pulumi.getter(name="ipv6Addresses")
     def ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]:
         """
-        This is only accessible if guest-tools is installed in the VM and if `expected_ip_cidr` is set on any network
-        interfaces. This will contain a list of the ipv6 addresses across all network interfaces in order.
+        This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
+        presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6
+        addresses across all network interfaces in order.
         """
         return pulumi.get(self, "ipv6_addresses")
 
@@ -1309,8 +1311,9 @@ class Vm(pulumi.CustomResource):
                Defaults to empty string
         :param pulumi.Input[builtins.str] hvm_boot_firmware: The firmware to use for the VM. Possible values are `bios` and `uefi`.
         :param pulumi.Input[builtins.str] installation_method: This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
-        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] ipv6_addresses: This is only accessible if guest-tools is installed in the VM and if `expected_ip_cidr` is set on any network
-               interfaces. This will contain a list of the ipv6 addresses across all network interfaces in order.
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] ipv6_addresses: This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
+               presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6
+               addresses across all network interfaces in order.
         :param pulumi.Input[builtins.float] memory_max: The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
                value is greater than the dynamic memory max. This can be determined with the following command: ``` $ xo-cli
                xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic' [ 2147483648, #
@@ -1518,8 +1521,9 @@ class Vm(pulumi.CustomResource):
     @pulumi.getter(name="ipv6Addresses")
     def ipv6_addresses(self) -> pulumi.Output[Sequence[builtins.str]]:
         """
-        This is only accessible if guest-tools is installed in the VM and if `expected_ip_cidr` is set on any network
-        interfaces. This will contain a list of the ipv6 addresses across all network interfaces in order.
+        This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
+        presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6
+        addresses across all network interfaces in order.
         """
         return pulumi.get(self, "ipv6_addresses")
 

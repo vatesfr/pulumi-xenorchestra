@@ -18,6 +18,9 @@ namespace Pulumi.Xenorchestra.Outputs
         /// </summary>
         public readonly bool? Attached;
         public readonly string Device;
+        /// <summary>
+        /// Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `wait_for_ip` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
+        /// </summary>
         public readonly string? ExpectedIpCidr;
         public readonly ImmutableArray<string> Ipv4Addresses;
         public readonly ImmutableArray<string> Ipv6Addresses;

@@ -35,7 +35,7 @@ class XoaBondedNetworkArgs:
         :param pulumi.Input[builtins.str] bond_mode: The bond mode that should be used for this network.
         :param pulumi.Input[builtins.bool] default_is_locked: This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
         :param pulumi.Input[builtins.int] mtu: The MTU of the network. Defaults to `1500` if unspecified.
-        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] pif_ids: The pifs (uuid) that should be used for this network.
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] pif_ids: The PIFs (uuid) that should be used for this network.
         """
         pulumi.set(__self__, "name_label", name_label)
         pulumi.set(__self__, "pool_id", pool_id)
@@ -134,7 +134,7 @@ class XoaBondedNetworkArgs:
     @pulumi.getter(name="pifIds")
     def pif_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]:
         """
-        The pifs (uuid) that should be used for this network.
+        The PIFs (uuid) that should be used for this network.
         """
         return pulumi.get(self, "pif_ids")
 
@@ -160,7 +160,7 @@ class _XoaBondedNetworkState:
         :param pulumi.Input[builtins.bool] default_is_locked: This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
         :param pulumi.Input[builtins.int] mtu: The MTU of the network. Defaults to `1500` if unspecified.
         :param pulumi.Input[builtins.str] name_label: The name label of the network.
-        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] pif_ids: The pifs (uuid) that should be used for this network.
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] pif_ids: The PIFs (uuid) that should be used for this network.
         :param pulumi.Input[builtins.str] pool_id: The pool id that this network should belong to.
         """
         if automatic is not None:
@@ -250,7 +250,7 @@ class _XoaBondedNetworkState:
     @pulumi.getter(name="pifIds")
     def pif_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]:
         """
-        The pifs (uuid) that should be used for this network.
+        The PIFs (uuid) that should be used for this network.
         """
         return pulumi.get(self, "pif_ids")
 
@@ -335,7 +335,7 @@ class XoaBondedNetwork(pulumi.CustomResource):
         :param pulumi.Input[builtins.bool] default_is_locked: This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
         :param pulumi.Input[builtins.int] mtu: The MTU of the network. Defaults to `1500` if unspecified.
         :param pulumi.Input[builtins.str] name_label: The name label of the network.
-        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] pif_ids: The pifs (uuid) that should be used for this network.
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] pif_ids: The PIFs (uuid) that should be used for this network.
         :param pulumi.Input[builtins.str] pool_id: The pool id that this network should belong to.
         """
         ...
@@ -462,7 +462,7 @@ class XoaBondedNetwork(pulumi.CustomResource):
         :param pulumi.Input[builtins.bool] default_is_locked: This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
         :param pulumi.Input[builtins.int] mtu: The MTU of the network. Defaults to `1500` if unspecified.
         :param pulumi.Input[builtins.str] name_label: The name label of the network.
-        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] pif_ids: The pifs (uuid) that should be used for this network.
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] pif_ids: The PIFs (uuid) that should be used for this network.
         :param pulumi.Input[builtins.str] pool_id: The pool id that this network should belong to.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -486,7 +486,7 @@ class XoaBondedNetwork(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="bondMode")
-    def bond_mode(self) -> pulumi.Output[Optional[builtins.str]]:
+    def bond_mode(self) -> pulumi.Output[builtins.str]:
         """
         The bond mode that should be used for this network.
         """
@@ -523,9 +523,9 @@ class XoaBondedNetwork(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="pifIds")
-    def pif_ids(self) -> pulumi.Output[Optional[Sequence[builtins.str]]]:
+    def pif_ids(self) -> pulumi.Output[Sequence[builtins.str]]:
         """
-        The pifs (uuid) that should be used for this network.
+        The PIFs (uuid) that should be used for this network.
         """
         return pulumi.get(self, "pif_ids")
 

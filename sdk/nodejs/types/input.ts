@@ -58,6 +58,9 @@ export interface VmNetwork {
      */
     attached?: pulumi.Input<boolean>;
     device?: pulumi.Input<string>;
+    /**
+     * Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `waitForIp` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
+     */
     expectedIpCidr?: pulumi.Input<string>;
     ipv4Addresses?: pulumi.Input<pulumi.Input<string>[]>;
     ipv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;

@@ -412,8 +412,9 @@ func (o VmDiskArrayOutput) Index(i pulumi.IntInput) VmDiskOutput {
 
 type VmNetwork struct {
 	// Whether the device should be attached to the VM.
-	Attached       *bool    `pulumi:"attached"`
-	Device         *string  `pulumi:"device"`
+	Attached *bool   `pulumi:"attached"`
+	Device   *string `pulumi:"device"`
+	// Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `waitForIp` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
 	ExpectedIpCidr *string  `pulumi:"expectedIpCidr"`
 	Ipv4Addresses  []string `pulumi:"ipv4Addresses"`
 	Ipv6Addresses  []string `pulumi:"ipv6Addresses"`
@@ -435,8 +436,9 @@ type VmNetworkInput interface {
 
 type VmNetworkArgs struct {
 	// Whether the device should be attached to the VM.
-	Attached       pulumi.BoolPtrInput     `pulumi:"attached"`
-	Device         pulumi.StringPtrInput   `pulumi:"device"`
+	Attached pulumi.BoolPtrInput   `pulumi:"attached"`
+	Device   pulumi.StringPtrInput `pulumi:"device"`
+	// Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `waitForIp` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
 	ExpectedIpCidr pulumi.StringPtrInput   `pulumi:"expectedIpCidr"`
 	Ipv4Addresses  pulumi.StringArrayInput `pulumi:"ipv4Addresses"`
 	Ipv6Addresses  pulumi.StringArrayInput `pulumi:"ipv6Addresses"`
@@ -505,6 +507,7 @@ func (o VmNetworkOutput) Device() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VmNetwork) *string { return v.Device }).(pulumi.StringPtrOutput)
 }
 
+// Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `waitForIp` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
 func (o VmNetworkOutput) ExpectedIpCidr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VmNetwork) *string { return v.ExpectedIpCidr }).(pulumi.StringPtrOutput)
 }
@@ -723,7 +726,7 @@ type GetXoaVmsVm struct {
 	HvmBootFirmware *string  `pulumi:"hvmBootFirmware"`
 	Id              string   `pulumi:"id"`
 	Ipv4Addresses   []string `pulumi:"ipv4Addresses"`
-	// This is only accessible if guest-tools is installed in the VM and if `expectedIpCidr` is set on any network interfaces. This will contain a list of the ipv6 addresses across all network interfaces in order.
+	// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
 	Ipv6Addresses []string `pulumi:"ipv6Addresses"`
 	// The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new value is greater than the dynamic memory max. This can be determined with the following command:
 	MemoryMax int `pulumi:"memoryMax"`
@@ -790,7 +793,7 @@ type GetXoaVmsVmArgs struct {
 	HvmBootFirmware pulumi.StringPtrInput   `pulumi:"hvmBootFirmware"`
 	Id              pulumi.StringInput      `pulumi:"id"`
 	Ipv4Addresses   pulumi.StringArrayInput `pulumi:"ipv4Addresses"`
-	// This is only accessible if guest-tools is installed in the VM and if `expectedIpCidr` is set on any network interfaces. This will contain a list of the ipv6 addresses across all network interfaces in order.
+	// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
 	Ipv6Addresses pulumi.StringArrayInput `pulumi:"ipv6Addresses"`
 	// The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new value is greater than the dynamic memory max. This can be determined with the following command:
 	MemoryMax pulumi.IntInput `pulumi:"memoryMax"`
@@ -947,7 +950,7 @@ func (o GetXoaVmsVmOutput) Ipv4Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetXoaVmsVm) []string { return v.Ipv4Addresses }).(pulumi.StringArrayOutput)
 }
 
-// This is only accessible if guest-tools is installed in the VM and if `expectedIpCidr` is set on any network interfaces. This will contain a list of the ipv6 addresses across all network interfaces in order.
+// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
 func (o GetXoaVmsVmOutput) Ipv6Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetXoaVmsVm) []string { return v.Ipv6Addresses }).(pulumi.StringArrayOutput)
 }
@@ -1187,8 +1190,9 @@ func (o GetXoaVmsVmDiskArrayOutput) Index(i pulumi.IntInput) GetXoaVmsVmDiskOutp
 
 type GetXoaVmsVmNetwork struct {
 	// Whether the device should be attached to the VM.
-	Attached       *bool    `pulumi:"attached"`
-	Device         string   `pulumi:"device"`
+	Attached *bool  `pulumi:"attached"`
+	Device   string `pulumi:"device"`
+	// Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `waitForIp` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
 	ExpectedIpCidr *string  `pulumi:"expectedIpCidr"`
 	Ipv4Addresses  []string `pulumi:"ipv4Addresses"`
 	Ipv6Addresses  []string `pulumi:"ipv6Addresses"`
@@ -1210,8 +1214,9 @@ type GetXoaVmsVmNetworkInput interface {
 
 type GetXoaVmsVmNetworkArgs struct {
 	// Whether the device should be attached to the VM.
-	Attached       pulumi.BoolPtrInput     `pulumi:"attached"`
-	Device         pulumi.StringInput      `pulumi:"device"`
+	Attached pulumi.BoolPtrInput `pulumi:"attached"`
+	Device   pulumi.StringInput  `pulumi:"device"`
+	// Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `waitForIp` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
 	ExpectedIpCidr pulumi.StringPtrInput   `pulumi:"expectedIpCidr"`
 	Ipv4Addresses  pulumi.StringArrayInput `pulumi:"ipv4Addresses"`
 	Ipv6Addresses  pulumi.StringArrayInput `pulumi:"ipv6Addresses"`
@@ -1280,6 +1285,7 @@ func (o GetXoaVmsVmNetworkOutput) Device() pulumi.StringOutput {
 	return o.ApplyT(func(v GetXoaVmsVmNetwork) string { return v.Device }).(pulumi.StringOutput)
 }
 
+// Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `waitForIp` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
 func (o GetXoaVmsVmNetworkOutput) ExpectedIpCidr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetXoaVmsVmNetwork) *string { return v.ExpectedIpCidr }).(pulumi.StringPtrOutput)
 }

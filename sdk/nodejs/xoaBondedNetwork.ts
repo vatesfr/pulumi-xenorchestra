@@ -92,7 +92,7 @@ export class XoaBondedNetwork extends pulumi.CustomResource {
     /**
      * The bond mode that should be used for this network.
      */
-    public readonly bondMode!: pulumi.Output<string | undefined>;
+    public readonly bondMode!: pulumi.Output<string>;
     /**
      * This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
      */
@@ -107,9 +107,9 @@ export class XoaBondedNetwork extends pulumi.CustomResource {
      */
     public readonly nameLabel!: pulumi.Output<string>;
     /**
-     * The pifs (uuid) that should be used for this network.
+     * The PIFs (uuid) that should be used for this network.
      */
-    public readonly pifIds!: pulumi.Output<string[] | undefined>;
+    public readonly pifIds!: pulumi.Output<string[]>;
     /**
      * The pool id that this network should belong to.
      */
@@ -183,7 +183,7 @@ export interface XoaBondedNetworkState {
      */
     nameLabel?: pulumi.Input<string>;
     /**
-     * The pifs (uuid) that should be used for this network.
+     * The PIFs (uuid) that should be used for this network.
      */
     pifIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -215,7 +215,7 @@ export interface XoaBondedNetworkArgs {
      */
     nameLabel: pulumi.Input<string>;
     /**
-     * The pifs (uuid) that should be used for this network.
+     * The PIFs (uuid) that should be used for this network.
      */
     pifIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**

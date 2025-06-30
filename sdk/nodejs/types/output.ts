@@ -96,7 +96,7 @@ export interface GetXoaVmsVm {
     id: string;
     ipv4Addresses: string[];
     /**
-     * This is only accessible if guest-tools is installed in the VM and if `expectedIpCidr` is set on any network interfaces. This will contain a list of the ipv6 addresses across all network interfaces in order.
+     * This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
      */
     ipv6Addresses: string[];
     /**
@@ -192,6 +192,9 @@ export interface GetXoaVmsVmNetwork {
      */
     attached?: boolean;
     device: string;
+    /**
+     * Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `waitForIp` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
+     */
     expectedIpCidr?: string;
     ipv4Addresses: string[];
     ipv6Addresses: string[];
@@ -255,6 +258,9 @@ export interface VmNetwork {
      */
     attached?: boolean;
     device: string;
+    /**
+     * Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `waitForIp` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
+     */
     expectedIpCidr?: string;
     ipv4Addresses: string[];
     ipv6Addresses: string[];
