@@ -229,6 +229,7 @@ class VmNetwork(dict):
         """
         :param builtins.str network_id: The ID of the network the VM will be on.
         :param builtins.bool attached: Whether the device should be attached to the VM.
+        :param builtins.str expected_ip_cidr: Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `wait_for_ip` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
         """
         pulumi.set(__self__, "network_id", network_id)
         if attached is not None:
@@ -268,6 +269,9 @@ class VmNetwork(dict):
     @property
     @pulumi.getter(name="expectedIpCidr")
     def expected_ip_cidr(self) -> Optional[builtins.str]:
+        """
+        Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `wait_for_ip` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
+        """
         return pulumi.get(self, "expected_ip_cidr")
 
     @property
@@ -414,7 +418,7 @@ class GetXoaVmsVmResult(dict):
                # Updating the VM to use 5 CPUs would stop/start the VM
                ```
         :param Sequence['GetXoaVmsVmDiskArgs'] disks: The disk the VM will have access to.
-        :param Sequence[builtins.str] ipv6_addresses: This is only accessible if guest-tools is installed in the VM and if `expected_ip_cidr` is set on any network interfaces. This will contain a list of the ipv6 addresses across all network interfaces in order.
+        :param Sequence[builtins.str] ipv6_addresses: This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
         :param builtins.int memory_max: The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new value is greater than the dynamic memory max. This can be determined with the following command:
                ```
                
@@ -540,7 +544,7 @@ class GetXoaVmsVmResult(dict):
     @pulumi.getter(name="ipv6Addresses")
     def ipv6_addresses(self) -> Sequence[builtins.str]:
         """
-        This is only accessible if guest-tools is installed in the VM and if `expected_ip_cidr` is set on any network interfaces. This will contain a list of the ipv6 addresses across all network interfaces in order.
+        This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
         """
         return pulumi.get(self, "ipv6_addresses")
 
@@ -843,6 +847,7 @@ class GetXoaVmsVmNetworkResult(dict):
         """
         :param builtins.str network_id: The ID of the network the VM will be on.
         :param builtins.bool attached: Whether the device should be attached to the VM.
+        :param builtins.str expected_ip_cidr: Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `wait_for_ip` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
         """
         pulumi.set(__self__, "device", device)
         pulumi.set(__self__, "ipv4_addresses", ipv4_addresses)
@@ -893,6 +898,9 @@ class GetXoaVmsVmNetworkResult(dict):
     @property
     @pulumi.getter(name="expectedIpCidr")
     def expected_ip_cidr(self) -> Optional[builtins.str]:
+        """
+        Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `wait_for_ip` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
+        """
         return pulumi.get(self, "expected_ip_cidr")
 
 

@@ -111,8 +111,9 @@ export class Vm extends pulumi.CustomResource {
     public readonly installationMethod!: pulumi.Output<string | undefined>;
     public /*out*/ readonly ipv4Addresses!: pulumi.Output<string[]>;
     /**
-     * This is only accessible if guest-tools is installed in the VM and if `expectedIpCidr` is set on any network interfaces.
-     * This will contain a list of the ipv6 addresses across all network interfaces in order.
+     * This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
+     * presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6
+     * addresses across all network interfaces in order.
      */
     public /*out*/ readonly ipv6Addresses!: pulumi.Output<string[]>;
     /**
@@ -346,8 +347,9 @@ export interface VmState {
     installationMethod?: pulumi.Input<string>;
     ipv4Addresses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * This is only accessible if guest-tools is installed in the VM and if `expectedIpCidr` is set on any network interfaces.
-     * This will contain a list of the ipv6 addresses across all network interfaces in order.
+     * This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
+     * presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6
+     * addresses across all network interfaces in order.
      */
     ipv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
     /**

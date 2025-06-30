@@ -103,7 +103,7 @@ type XoaBondedNetwork struct {
 
 	Automatic pulumi.BoolPtrOutput `pulumi:"automatic"`
 	// The bond mode that should be used for this network.
-	BondMode pulumi.StringPtrOutput `pulumi:"bondMode"`
+	BondMode pulumi.StringOutput `pulumi:"bondMode"`
 	// This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
 	DefaultIsLocked pulumi.BoolPtrOutput `pulumi:"defaultIsLocked"`
 	// The MTU of the network. Defaults to `1500` if unspecified.
@@ -111,7 +111,7 @@ type XoaBondedNetwork struct {
 	NameDescription pulumi.StringPtrOutput `pulumi:"nameDescription"`
 	// The name label of the network.
 	NameLabel pulumi.StringOutput `pulumi:"nameLabel"`
-	// The pifs (uuid) that should be used for this network.
+	// The PIFs (uuid) that should be used for this network.
 	PifIds pulumi.StringArrayOutput `pulumi:"pifIds"`
 	// The pool id that this network should belong to.
 	PoolId pulumi.StringOutput `pulumi:"poolId"`
@@ -169,7 +169,7 @@ type xoaBondedNetworkState struct {
 	NameDescription *string `pulumi:"nameDescription"`
 	// The name label of the network.
 	NameLabel *string `pulumi:"nameLabel"`
-	// The pifs (uuid) that should be used for this network.
+	// The PIFs (uuid) that should be used for this network.
 	PifIds []string `pulumi:"pifIds"`
 	// The pool id that this network should belong to.
 	PoolId *string `pulumi:"poolId"`
@@ -186,7 +186,7 @@ type XoaBondedNetworkState struct {
 	NameDescription pulumi.StringPtrInput
 	// The name label of the network.
 	NameLabel pulumi.StringPtrInput
-	// The pifs (uuid) that should be used for this network.
+	// The PIFs (uuid) that should be used for this network.
 	PifIds pulumi.StringArrayInput
 	// The pool id that this network should belong to.
 	PoolId pulumi.StringPtrInput
@@ -207,7 +207,7 @@ type xoaBondedNetworkArgs struct {
 	NameDescription *string `pulumi:"nameDescription"`
 	// The name label of the network.
 	NameLabel string `pulumi:"nameLabel"`
-	// The pifs (uuid) that should be used for this network.
+	// The PIFs (uuid) that should be used for this network.
 	PifIds []string `pulumi:"pifIds"`
 	// The pool id that this network should belong to.
 	PoolId string `pulumi:"poolId"`
@@ -225,7 +225,7 @@ type XoaBondedNetworkArgs struct {
 	NameDescription pulumi.StringPtrInput
 	// The name label of the network.
 	NameLabel pulumi.StringInput
-	// The pifs (uuid) that should be used for this network.
+	// The PIFs (uuid) that should be used for this network.
 	PifIds pulumi.StringArrayInput
 	// The pool id that this network should belong to.
 	PoolId pulumi.StringInput
@@ -323,8 +323,8 @@ func (o XoaBondedNetworkOutput) Automatic() pulumi.BoolPtrOutput {
 }
 
 // The bond mode that should be used for this network.
-func (o XoaBondedNetworkOutput) BondMode() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *XoaBondedNetwork) pulumi.StringPtrOutput { return v.BondMode }).(pulumi.StringPtrOutput)
+func (o XoaBondedNetworkOutput) BondMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *XoaBondedNetwork) pulumi.StringOutput { return v.BondMode }).(pulumi.StringOutput)
 }
 
 // This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
@@ -346,7 +346,7 @@ func (o XoaBondedNetworkOutput) NameLabel() pulumi.StringOutput {
 	return o.ApplyT(func(v *XoaBondedNetwork) pulumi.StringOutput { return v.NameLabel }).(pulumi.StringOutput)
 }
 
-// The pifs (uuid) that should be used for this network.
+// The PIFs (uuid) that should be used for this network.
 func (o XoaBondedNetworkOutput) PifIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *XoaBondedNetwork) pulumi.StringArrayOutput { return v.PifIds }).(pulumi.StringArrayOutput)
 }

@@ -176,6 +176,14 @@ namespace Pulumi.Xenorchestra
         /// </summary>
         public readonly bool Attached;
         /// <summary>
+        /// In case of a bond slave, the uuid of the bond master.
+        /// </summary>
+        public readonly string BondMaster;
+        /// <summary>
+        /// In case of a bond master, the PIFs (uuid) that are used for this bond.
+        /// </summary>
+        public readonly ImmutableArray<string> BondSlaves;
+        /// <summary>
         /// The name of the network device. Examples include eth0, eth1, etc. See `ifconfig` for possible devices.
         /// </summary>
         public readonly string Device;
@@ -191,6 +199,14 @@ namespace Pulumi.Xenorchestra
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// True if this PIF is a bond master.
+        /// </summary>
+        public readonly bool IsBondMaster;
+        /// <summary>
+        /// True if this PIF is a bond slave.
+        /// </summary>
+        public readonly bool IsBondSlave;
         /// <summary>
         /// The network the PIF is associated with.
         /// </summary>
@@ -212,6 +228,10 @@ namespace Pulumi.Xenorchestra
         private GetXoaPifResult(
             bool attached,
 
+            string bondMaster,
+
+            ImmutableArray<string> bondSlaves,
+
             string device,
 
             string host,
@@ -219,6 +239,10 @@ namespace Pulumi.Xenorchestra
             string hostId,
 
             string id,
+
+            bool isBondMaster,
+
+            bool isBondSlave,
 
             string network,
 
@@ -229,10 +253,14 @@ namespace Pulumi.Xenorchestra
             int vlan)
         {
             Attached = attached;
+            BondMaster = bondMaster;
+            BondSlaves = bondSlaves;
             Device = device;
             Host = host;
             HostId = hostId;
             Id = id;
+            IsBondMaster = isBondMaster;
+            IsBondSlave = isBondSlave;
             Network = network;
             PoolId = poolId;
             Uuid = uuid;

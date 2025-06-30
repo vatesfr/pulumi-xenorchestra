@@ -95,7 +95,7 @@ namespace Pulumi.Xenorchestra
         /// The bond mode that should be used for this network.
         /// </summary>
         [Output("bondMode")]
-        public Output<string?> BondMode { get; private set; } = null!;
+        public Output<string> BondMode { get; private set; } = null!;
 
         /// <summary>
         /// This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
@@ -119,7 +119,7 @@ namespace Pulumi.Xenorchestra
         public Output<string> NameLabel { get; private set; } = null!;
 
         /// <summary>
-        /// The pifs (uuid) that should be used for this network.
+        /// The PIFs (uuid) that should be used for this network.
         /// </summary>
         [Output("pifIds")]
         public Output<ImmutableArray<string>> PifIds { get; private set; } = null!;
@@ -215,7 +215,7 @@ namespace Pulumi.Xenorchestra
         private InputList<string>? _pifIds;
 
         /// <summary>
-        /// The pifs (uuid) that should be used for this network.
+        /// The PIFs (uuid) that should be used for this network.
         /// </summary>
         public InputList<string> PifIds
         {
@@ -271,7 +271,7 @@ namespace Pulumi.Xenorchestra
         private InputList<string>? _pifIds;
 
         /// <summary>
-        /// The pifs (uuid) that should be used for this network.
+        /// The PIFs (uuid) that should be used for this network.
         /// </summary>
         public InputList<string> PifIds
         {

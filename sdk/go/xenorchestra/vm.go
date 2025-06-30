@@ -61,8 +61,9 @@ type Vm struct {
 	// This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
 	InstallationMethod pulumi.StringPtrOutput   `pulumi:"installationMethod"`
 	Ipv4Addresses      pulumi.StringArrayOutput `pulumi:"ipv4Addresses"`
-	// This is only accessible if guest-tools is installed in the VM and if `expectedIpCidr` is set on any network interfaces.
-	// This will contain a list of the ipv6 addresses across all network interfaces in order.
+	// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
+	// presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6
+	// addresses across all network interfaces in order.
 	Ipv6Addresses pulumi.StringArrayOutput `pulumi:"ipv6Addresses"`
 	// The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
 	// value is greater than the dynamic memory max. This can be determined with the following command: ```$ xo-cli
@@ -186,8 +187,9 @@ type vmState struct {
 	// This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
 	InstallationMethod *string  `pulumi:"installationMethod"`
 	Ipv4Addresses      []string `pulumi:"ipv4Addresses"`
-	// This is only accessible if guest-tools is installed in the VM and if `expectedIpCidr` is set on any network interfaces.
-	// This will contain a list of the ipv6 addresses across all network interfaces in order.
+	// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
+	// presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6
+	// addresses across all network interfaces in order.
 	Ipv6Addresses []string `pulumi:"ipv6Addresses"`
 	// The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
 	// value is greater than the dynamic memory max. This can be determined with the following command: ```$ xo-cli
@@ -264,8 +266,9 @@ type VmState struct {
 	// This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
 	InstallationMethod pulumi.StringPtrInput
 	Ipv4Addresses      pulumi.StringArrayInput
-	// This is only accessible if guest-tools is installed in the VM and if `expectedIpCidr` is set on any network interfaces.
-	// This will contain a list of the ipv6 addresses across all network interfaces in order.
+	// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
+	// presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6
+	// addresses across all network interfaces in order.
 	Ipv6Addresses pulumi.StringArrayInput
 	// The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
 	// value is greater than the dynamic memory max. This can be determined with the following command: ```$ xo-cli
@@ -638,8 +641,9 @@ func (o VmOutput) Ipv4Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Vm) pulumi.StringArrayOutput { return v.Ipv4Addresses }).(pulumi.StringArrayOutput)
 }
 
-// This is only accessible if guest-tools is installed in the VM and if `expectedIpCidr` is set on any network interfaces.
-// This will contain a list of the ipv6 addresses across all network interfaces in order.
+// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
+// presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6
+// addresses across all network interfaces in order.
 func (o VmOutput) Ipv6Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Vm) pulumi.StringArrayOutput { return v.Ipv6Addresses }).(pulumi.StringArrayOutput)
 }

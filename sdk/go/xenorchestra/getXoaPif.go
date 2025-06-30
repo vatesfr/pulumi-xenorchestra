@@ -71,6 +71,10 @@ type GetXoaPifArgs struct {
 type GetXoaPifResult struct {
 	// If the PIF is attached to the network.
 	Attached bool `pulumi:"attached"`
+	// In case of a bond slave, the uuid of the bond master.
+	BondMaster string `pulumi:"bondMaster"`
+	// In case of a bond master, the PIFs (uuid) that are used for this bond.
+	BondSlaves []string `pulumi:"bondSlaves"`
 	// The name of the network device. Examples include eth0, eth1, etc. See `ifconfig` for possible devices.
 	Device string `pulumi:"device"`
 	// The host the PIF is associated with.
@@ -79,6 +83,10 @@ type GetXoaPifResult struct {
 	HostId string `pulumi:"hostId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
+	// True if this PIF is a bond master.
+	IsBondMaster bool `pulumi:"isBondMaster"`
+	// True if this PIF is a bond slave.
+	IsBondSlave bool `pulumi:"isBondSlave"`
 	// The network the PIF is associated with.
 	Network string `pulumi:"network"`
 	// The pool the PIF is associated with.
@@ -132,6 +140,16 @@ func (o GetXoaPifResultOutput) Attached() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetXoaPifResult) bool { return v.Attached }).(pulumi.BoolOutput)
 }
 
+// In case of a bond slave, the uuid of the bond master.
+func (o GetXoaPifResultOutput) BondMaster() pulumi.StringOutput {
+	return o.ApplyT(func(v GetXoaPifResult) string { return v.BondMaster }).(pulumi.StringOutput)
+}
+
+// In case of a bond master, the PIFs (uuid) that are used for this bond.
+func (o GetXoaPifResultOutput) BondSlaves() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetXoaPifResult) []string { return v.BondSlaves }).(pulumi.StringArrayOutput)
+}
+
 // The name of the network device. Examples include eth0, eth1, etc. See `ifconfig` for possible devices.
 func (o GetXoaPifResultOutput) Device() pulumi.StringOutput {
 	return o.ApplyT(func(v GetXoaPifResult) string { return v.Device }).(pulumi.StringOutput)
@@ -150,6 +168,16 @@ func (o GetXoaPifResultOutput) HostId() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o GetXoaPifResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetXoaPifResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// True if this PIF is a bond master.
+func (o GetXoaPifResultOutput) IsBondMaster() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetXoaPifResult) bool { return v.IsBondMaster }).(pulumi.BoolOutput)
+}
+
+// True if this PIF is a bond slave.
+func (o GetXoaPifResultOutput) IsBondSlave() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetXoaPifResult) bool { return v.IsBondSlave }).(pulumi.BoolOutput)
 }
 
 // The network the PIF is associated with.
