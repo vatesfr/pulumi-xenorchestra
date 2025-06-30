@@ -1633,8 +1633,8 @@ github.com/goccy/go-json v0.9.11/go.mod h1:6MelG93GURQebXPDq3khkgXZkazVtN9CRI+MG
 github.com/goccy/go-json v0.10.2/go.mod h1:6MelG93GURQebXPDq3khkgXZkazVtN9CRI+MGFi0w8I=
 github.com/goccy/go-yaml v1.9.8/go.mod h1:JubOolP3gh0HpiBc4BLRD4YmjEjHAmIIB2aaXKkTfoE=
 github.com/goccy/go-yaml v1.11.0/go.mod h1:H+mJrWtjPTJAHvRbV09MCK9xYwODM+wRTVFFTWckfng=
-github.com/gofrs/uuid v4.2.0+incompatible h1:yyYWMnhkhrKwwr8gAOcOCYxOOscHgDS9yZgBrnJfGa0=
-github.com/gofrs/uuid v4.2.0+incompatible/go.mod h1:b2aQJv3Z4Fp6yNu3cdSllBxTCLRxnplIgP/c0N/04lM=
+github.com/gofrs/uuid v4.4.0+incompatible h1:3qXRTX8/NbyulANqlc0lchS1gqAVxRgsuW1YrTJupqA=
+github.com/gofrs/uuid v4.4.0+incompatible/go.mod h1:b2aQJv3Z4Fp6yNu3cdSllBxTCLRxnplIgP/c0N/04lM=
 github.com/gogo/protobuf v1.3.1/go.mod h1:SlYgWuQ5SjCEi6WLHjHCa1yvBfUnHcTbrrZtXPKa29o=
 github.com/gogo/protobuf v1.3.2 h1:Ov1cvc58UF3b5XjBnZv7+opcTcQFZebYjWzi34vdm4Q=
 github.com/gogo/protobuf v1.3.2/go.mod h1:P1XiOD3dCwIKUDQYPy72D8LYyHL2YPYrpS2s69NZV8Q=
@@ -2259,10 +2259,10 @@ github.com/uber/jaeger-lib v2.4.1+incompatible/go.mod h1:ComeNDZlWwrWnDv8aPp0Ba6
 github.com/ulikunitz/xz v0.5.5/go.mod h1:2bypXElzHzzJZwzH67Y6wb67pO62Rzfn7BSiF4ABRW8=
 github.com/ulikunitz/xz v0.5.10 h1:t92gobL9l3HE202wg3rlk19F6X+JOxl9BBrCCMYEYd8=
 github.com/ulikunitz/xz v0.5.10/go.mod h1:nbz6k7qbPmH4IRqmfOplQw/tblSgqTqBwxkY0oWt/14=
-github.com/vatesfr/terraform-provider-xenorchestra v0.31.1 h1:bXh0eMVYXrtgS0mKL2EucOEHeFA9e7ZiVY/b5TZ8mks=
-github.com/vatesfr/terraform-provider-xenorchestra v0.31.1/go.mod h1:/S5JRMCdZjArSYo6i6l2nfGDX5u2RvoDAQHHLHFu7K0=
-github.com/vatesfr/xenorchestra-go-sdk v1.0.0 h1:zvzHsYzyLC3W2NPK/IVujFrg3XQ6bcDjPBkQAKmFJYE=
-github.com/vatesfr/xenorchestra-go-sdk v1.0.0/go.mod h1:UiMo2zLd34/jYFU7omq3+9daoRLJQOrzqOre7bV0UG0=
+github.com/vatesfr/terraform-provider-xenorchestra v0.32.0 h1:WNAO3A8u83SvtsodQzoe8q6IPHG0NoNyCMBy+z2pXpo=
+github.com/vatesfr/terraform-provider-xenorchestra v0.32.0/go.mod h1:zGmcAdXMIBlh8Y8F3m10Z4aLpnXMxzJasgX/wwFzTaA=
+github.com/vatesfr/xenorchestra-go-sdk v1.3.0 h1:s6Kd0wHiLPDo6i2pHKZ5EcUd/gueZkZWcHRJgCRMAIw=
+github.com/vatesfr/xenorchestra-go-sdk v1.3.0/go.mod h1:3679gtr7PLytF3C9/QeF/llA0L5ZRvXfaP1oWtk7Hf4=
 github.com/vmihailenco/msgpack v3.3.3+incompatible/go.mod h1:fy3FlTQTDXWkZ7Bh6AcGMlsjHatGryHQYUTf1ShIgkk=
 github.com/vmihailenco/msgpack v4.0.1+incompatible/go.mod h1:fy3FlTQTDXWkZ7Bh6AcGMlsjHatGryHQYUTf1ShIgkk=
 github.com/vmihailenco/msgpack v4.0.4+incompatible h1:dSLoQfGFAo3F6OoNhwUmLwVgaUXK79GlxNBwueZn0xI=

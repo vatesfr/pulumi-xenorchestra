@@ -174,7 +174,8 @@
                     "type": "string"
                 },
                 "expectedIpCidr": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `wait_for_ip` functionality. This only works if guest-tools are installed in the VM. Defaults to \"\", which skips IP address matching.\n"
                 },
                 "ipv4Addresses": {
                     "type": "array",
@@ -341,7 +342,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "This is only accessible if guest-tools is installed in the VM and if `expected_ip_cidr` is set on any network interfaces. This will contain a list of the ipv6 addresses across all network interfaces in order.\n"
+                    "description": "This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.\n"
                 },
                 "memoryMax": {
                     "type": "integer",
@@ -476,7 +477,8 @@
                     "type": "string"
                 },
                 "expectedIpCidr": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `wait_for_ip` functionality. This only works if guest-tools are installed in the VM. Defaults to \"\", which skips IP address matching.\n"
                 },
                 "ipv4Addresses": {
                     "type": "array",
@@ -959,7 +961,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "This is only accessible if guest-tools is installed in the VM and if `expected_ip_cidr` is set on any network\ninterfaces. This will contain a list of the ipv6 addresses across all network interfaces in order.\n"
+                    "description": "This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the\npresence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6\naddresses across all network interfaces in order.\n"
                 },
                 "memoryMax": {
                     "type": "number",
@@ -1259,7 +1261,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "This is only accessible if guest-tools is installed in the VM and if `expected_ip_cidr` is set on any network\ninterfaces. This will contain a list of the ipv6 addresses across all network interfaces in order.\n"
+                        "description": "This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the\npresence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6\naddresses across all network interfaces in order.\n"
                     },
                     "memoryMax": {
                         "type": "number",
@@ -1352,7 +1354,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "The pifs (uuid) that should be used for this network.\n"
+                    "description": "The PIFs (uuid) that should be used for this network.\n"
                 },
                 "poolId": {
                     "type": "string",
@@ -1360,7 +1362,9 @@
                 }
             },
             "required": [
+                "bondMode",
                 "nameLabel",
+                "pifIds",
                 "poolId"
             ],
             "inputProperties": {
@@ -1393,7 +1397,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "The pifs (uuid) that should be used for this network.\n",
+                    "description": "The PIFs (uuid) that should be used for this network.\n",
                     "willReplaceOnChanges": true
                 },
                 "poolId": {
@@ -1438,7 +1442,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "The pifs (uuid) that should be used for this network.\n",
+                        "description": "The PIFs (uuid) that should be used for this network.\n",
                         "willReplaceOnChanges": true
                     },
                     "poolId": {
@@ -1891,6 +1895,17 @@
                         "description": "If the PIF is attached to the network.\n",
                         "type": "boolean"
                     },
+                    "bondMaster": {
+                        "description": "In case of a bond slave, the uuid of the bond master.\n",
+                        "type": "string"
+                    },
+                    "bondSlaves": {
+                        "description": "In case of a bond master, the PIFs (uuid) that are used for this bond.\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
                     "device": {
                         "description": "The name of the network device. Examples include eth0, eth1, etc. See `ifconfig` for possible devices.\n",
                         "type": "string"
@@ -1906,6 +1921,14 @@
                     "id": {
                         "description": "The provider-assigned unique ID for this managed resource.\n",
                         "type": "string"
+                    },
+                    "isBondMaster": {
+                        "description": "True if this PIF is a bond master.\n",
+                        "type": "boolean"
+                    },
+                    "isBondSlave": {
+                        "description": "True if this PIF is a bond slave.\n",
+                        "type": "boolean"
                     },
                     "network": {
                         "description": "The network the PIF is associated with.\n",
@@ -1926,9 +1949,13 @@
                 },
                 "required": [
                     "attached",
+                    "bondMaster",
+                    "bondSlaves",
                     "device",
                     "host",
                     "hostId",
+                    "isBondMaster",
+                    "isBondSlave",
                     "network",
                     "poolId",
                     "uuid",
