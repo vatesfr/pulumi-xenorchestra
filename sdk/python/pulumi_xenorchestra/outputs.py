@@ -380,6 +380,7 @@ class GetXoaVmsVmResult(dict):
                  ipv4_addresses: Sequence[builtins.str],
                  ipv6_addresses: Sequence[builtins.str],
                  memory_max: builtins.int,
+                 memory_min: builtins.int,
                  name_label: builtins.str,
                  networks: Sequence['outputs.GetXoaVmsVmNetworkResult'],
                  template: builtins.str,
@@ -419,18 +420,8 @@ class GetXoaVmsVmResult(dict):
                ```
         :param Sequence['GetXoaVmsVmDiskArgs'] disks: The disk the VM will have access to.
         :param Sequence[builtins.str] ipv6_addresses: This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
-        :param builtins.int memory_max: The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new value is greater than the dynamic memory max. This can be determined with the following command:
-               ```
-               
-               
-               $ xo-cli xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic'
-               [
-                 2147483648, # memory dynamic min
-                 4294967296  # memory dynamic max (4GB)
-               ]
-               # Updating the VM to use 3GB of memory would happen without stopping/starting the VM
-               # Updating the VM to use 5GB of memory would stop/start the VM
-               ```
+        :param builtins.int memory_max: The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
+        :param builtins.int memory_min: The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.
         :param builtins.str name_label: The name of the VM.
         :param Sequence['GetXoaVmsVmNetworkArgs'] networks: The network for the VM.
         :param builtins.str template: The ID of the VM template to create the new VM from.
@@ -457,6 +448,7 @@ class GetXoaVmsVmResult(dict):
         pulumi.set(__self__, "ipv4_addresses", ipv4_addresses)
         pulumi.set(__self__, "ipv6_addresses", ipv6_addresses)
         pulumi.set(__self__, "memory_max", memory_max)
+        pulumi.set(__self__, "memory_min", memory_min)
         pulumi.set(__self__, "name_label", name_label)
         pulumi.set(__self__, "networks", networks)
         pulumi.set(__self__, "template", template)
@@ -552,20 +544,17 @@ class GetXoaVmsVmResult(dict):
     @pulumi.getter(name="memoryMax")
     def memory_max(self) -> builtins.int:
         """
-        The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new value is greater than the dynamic memory max. This can be determined with the following command:
-        ```
-
-
-        $ xo-cli xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic'
-        [
-          2147483648, # memory dynamic min
-          4294967296  # memory dynamic max (4GB)
-        ]
-        # Updating the VM to use 3GB of memory would happen without stopping/starting the VM
-        # Updating the VM to use 5GB of memory would stop/start the VM
-        ```
+        The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
         """
         return pulumi.get(self, "memory_max")
+
+    @property
+    @pulumi.getter(name="memoryMin")
+    def memory_min(self) -> builtins.int:
+        """
+        The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.
+        """
+        return pulumi.get(self, "memory_min")
 
     @property
     @pulumi.getter(name="nameLabel")
