@@ -135,14 +135,17 @@ namespace Pulumi.Xenorchestra
         public Output<ImmutableArray<string>> Ipv6Addresses { get; private set; } = null!;
 
         /// <summary>
-        /// The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
-        /// value is greater than the dynamic memory max. This can be determined with the following command: ``` $ xo-cli
-        /// xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic' [ 2147483648, #
-        /// memory dynamic min 4294967296 # memory dynamic max (4GB) ] # Updating the VM to use 3GB of memory would happen without
-        /// stopping/starting the VM # Updating the VM to use 5GB of memory would stop/start the VM ```
+        /// The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and
+        /// start, as it sets both dynamic and static maximums.
         /// </summary>
         [Output("memoryMax")]
         public Output<double> MemoryMax { get; private set; } = null!;
+
+        /// <summary>
+        /// The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.
+        /// </summary>
+        [Output("memoryMin")]
+        public Output<int> MemoryMin { get; private set; } = null!;
 
         /// <summary>
         /// The description of the VM.
@@ -375,14 +378,17 @@ namespace Pulumi.Xenorchestra
         public Input<string>? InstallationMethod { get; set; }
 
         /// <summary>
-        /// The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
-        /// value is greater than the dynamic memory max. This can be determined with the following command: ``` $ xo-cli
-        /// xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic' [ 2147483648, #
-        /// memory dynamic min 4294967296 # memory dynamic max (4GB) ] # Updating the VM to use 3GB of memory would happen without
-        /// stopping/starting the VM # Updating the VM to use 5GB of memory would stop/start the VM ```
+        /// The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and
+        /// start, as it sets both dynamic and static maximums.
         /// </summary>
         [Input("memoryMax", required: true)]
         public Input<double> MemoryMax { get; set; } = null!;
+
+        /// <summary>
+        /// The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.
+        /// </summary>
+        [Input("memoryMin")]
+        public Input<int>? MemoryMin { get; set; }
 
         /// <summary>
         /// The description of the VM.
@@ -616,14 +622,17 @@ namespace Pulumi.Xenorchestra
         }
 
         /// <summary>
-        /// The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
-        /// value is greater than the dynamic memory max. This can be determined with the following command: ``` $ xo-cli
-        /// xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic' [ 2147483648, #
-        /// memory dynamic min 4294967296 # memory dynamic max (4GB) ] # Updating the VM to use 3GB of memory would happen without
-        /// stopping/starting the VM # Updating the VM to use 5GB of memory would stop/start the VM ```
+        /// The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and
+        /// start, as it sets both dynamic and static maximums.
         /// </summary>
         [Input("memoryMax")]
         public Input<double>? MemoryMax { get; set; }
+
+        /// <summary>
+        /// The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.
+        /// </summary>
+        [Input("memoryMin")]
+        public Input<int>? MemoryMin { get; set; }
 
         /// <summary>
         /// The description of the VM.

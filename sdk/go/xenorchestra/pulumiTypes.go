@@ -728,8 +728,10 @@ type GetXoaVmsVm struct {
 	Ipv4Addresses   []string `pulumi:"ipv4Addresses"`
 	// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
 	Ipv6Addresses []string `pulumi:"ipv6Addresses"`
-	// The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new value is greater than the dynamic memory max. This can be determined with the following command:
+	// The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
 	MemoryMax int `pulumi:"memoryMax"`
+	// The amount of memory in bytes the VM will have. Set this value equal to memoryMax to have a static memory.
+	MemoryMin int `pulumi:"memoryMin"`
 	// The description of the VM.
 	NameDescription *string `pulumi:"nameDescription"`
 	// The name of the VM.
@@ -795,8 +797,10 @@ type GetXoaVmsVmArgs struct {
 	Ipv4Addresses   pulumi.StringArrayInput `pulumi:"ipv4Addresses"`
 	// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
 	Ipv6Addresses pulumi.StringArrayInput `pulumi:"ipv6Addresses"`
-	// The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new value is greater than the dynamic memory max. This can be determined with the following command:
+	// The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
 	MemoryMax pulumi.IntInput `pulumi:"memoryMax"`
+	// The amount of memory in bytes the VM will have. Set this value equal to memoryMax to have a static memory.
+	MemoryMin pulumi.IntInput `pulumi:"memoryMin"`
 	// The description of the VM.
 	NameDescription pulumi.StringPtrInput `pulumi:"nameDescription"`
 	// The name of the VM.
@@ -955,9 +959,14 @@ func (o GetXoaVmsVmOutput) Ipv6Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetXoaVmsVm) []string { return v.Ipv6Addresses }).(pulumi.StringArrayOutput)
 }
 
-// The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new value is greater than the dynamic memory max. This can be determined with the following command:
+// The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
 func (o GetXoaVmsVmOutput) MemoryMax() pulumi.IntOutput {
 	return o.ApplyT(func(v GetXoaVmsVm) int { return v.MemoryMax }).(pulumi.IntOutput)
+}
+
+// The amount of memory in bytes the VM will have. Set this value equal to memoryMax to have a static memory.
+func (o GetXoaVmsVmOutput) MemoryMin() pulumi.IntOutput {
+	return o.ApplyT(func(v GetXoaVmsVm) int { return v.MemoryMin }).(pulumi.IntOutput)
 }
 
 // The description of the VM.

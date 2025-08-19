@@ -117,13 +117,14 @@ export class Vm extends pulumi.CustomResource {
      */
     public /*out*/ readonly ipv6Addresses!: pulumi.Output<string[]>;
     /**
-     * The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
-     * value is greater than the dynamic memory max. This can be determined with the following command: ``` $ xo-cli
-     * xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic' [ 2147483648, #
-     * memory dynamic min 4294967296 # memory dynamic max (4GB) ] # Updating the VM to use 3GB of memory would happen without
-     * stopping/starting the VM # Updating the VM to use 5GB of memory would stop/start the VM ```
+     * The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and
+     * start, as it sets both dynamic and static maximums.
      */
     public readonly memoryMax!: pulumi.Output<number>;
+    /**
+     * The amount of memory in bytes the VM will have. Set this value equal to memoryMax to have a static memory.
+     */
+    public readonly memoryMin!: pulumi.Output<number>;
     /**
      * The description of the VM.
      */
@@ -200,6 +201,7 @@ export class Vm extends pulumi.CustomResource {
             resourceInputs["ipv4Addresses"] = state ? state.ipv4Addresses : undefined;
             resourceInputs["ipv6Addresses"] = state ? state.ipv6Addresses : undefined;
             resourceInputs["memoryMax"] = state ? state.memoryMax : undefined;
+            resourceInputs["memoryMin"] = state ? state.memoryMin : undefined;
             resourceInputs["nameDescription"] = state ? state.nameDescription : undefined;
             resourceInputs["nameLabel"] = state ? state.nameLabel : undefined;
             resourceInputs["networks"] = state ? state.networks : undefined;
@@ -250,6 +252,7 @@ export class Vm extends pulumi.CustomResource {
             resourceInputs["hvmBootFirmware"] = args ? args.hvmBootFirmware : undefined;
             resourceInputs["installationMethod"] = args ? args.installationMethod : undefined;
             resourceInputs["memoryMax"] = args ? args.memoryMax : undefined;
+            resourceInputs["memoryMin"] = args ? args.memoryMin : undefined;
             resourceInputs["nameDescription"] = args ? args.nameDescription : undefined;
             resourceInputs["nameLabel"] = args ? args.nameLabel : undefined;
             resourceInputs["networks"] = args ? args.networks : undefined;
@@ -353,13 +356,14 @@ export interface VmState {
      */
     ipv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
-     * value is greater than the dynamic memory max. This can be determined with the following command: ``` $ xo-cli
-     * xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic' [ 2147483648, #
-     * memory dynamic min 4294967296 # memory dynamic max (4GB) ] # Updating the VM to use 3GB of memory would happen without
-     * stopping/starting the VM # Updating the VM to use 5GB of memory would stop/start the VM ```
+     * The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and
+     * start, as it sets both dynamic and static maximums.
      */
     memoryMax?: pulumi.Input<number>;
+    /**
+     * The amount of memory in bytes the VM will have. Set this value equal to memoryMax to have a static memory.
+     */
+    memoryMin?: pulumi.Input<number>;
     /**
      * The description of the VM.
      */
@@ -480,13 +484,14 @@ export interface VmArgs {
      */
     installationMethod?: pulumi.Input<string>;
     /**
-     * The amount of memory in bytes the VM will have. Updates to this field will case a stop and start of the VM if the new
-     * value is greater than the dynamic memory max. This can be determined with the following command: ``` $ xo-cli
-     * xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].memory.dynamic' [ 2147483648, #
-     * memory dynamic min 4294967296 # memory dynamic max (4GB) ] # Updating the VM to use 3GB of memory would happen without
-     * stopping/starting the VM # Updating the VM to use 5GB of memory would stop/start the VM ```
+     * The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and
+     * start, as it sets both dynamic and static maximums.
      */
     memoryMax: pulumi.Input<number>;
+    /**
+     * The amount of memory in bytes the VM will have. Set this value equal to memoryMax to have a static memory.
+     */
+    memoryMin?: pulumi.Input<number>;
     /**
      * The description of the VM.
      */
