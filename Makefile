@@ -3,7 +3,7 @@
 PACK := xenorchestra
 ORG := vatesfr
 PROJECT := github.com/$(ORG)/pulumi-$(PACK)
-PROVIDER_PATH := provider/v2
+PROVIDER_PATH := provider
 VERSION_PATH := $(PROVIDER_PATH)/pkg/version.Version
 CODEGEN := pulumi-tfgen-$(PACK)
 PROVIDER := pulumi-resource-$(PACK)
