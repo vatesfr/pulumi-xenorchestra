@@ -89,6 +89,8 @@ import (
 //
 // ## Import
 //
+// The `pulumi import` command can be used, for example:
+//
 // ID can be found from the following command:
 //
 // $ xo-cli resourceSet.getAll
