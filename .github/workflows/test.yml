@@ -30,7 +30,10 @@ jobs:
       uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       with:
         ref: ${{ env.PR_COMMIT_SHA }}
-        persist-credentials: false
+        persist-credentials: false    
+    - id: esc-secrets
+      name: Map environment to ESC outputs
+      uses: ./.github/actions/esc-action
     - name: Checkout p/examples
       if: matrix.testTarget == 'pulumiExamples'
       uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
@@ -65,9 +68,13 @@ jobs:
     - name: Run tests
       if: matrix.testTarget == 'local'
       run: cd examples && go test -v -count=1 -cover -timeout 2h -tags=${{ matrix.language }} -skip TestPulumiExamples -parallel 4 .
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Run pulumi/examples tests
       if: matrix.testTarget == 'pulumiExamples'
       run: cd examples && go test -v -count=1 -cover -timeout 2h -tags=${{ matrix.language }} -run TestPulumiExamples -parallel 4 .
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     strategy:
       fail-fast: false
       matrix:
