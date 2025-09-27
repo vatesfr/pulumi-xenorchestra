@@ -2278,10 +2278,10 @@ github.com/uber/jaeger-lib v2.4.1+incompatible/go.mod h1:ComeNDZlWwrWnDv8aPp0Ba6
 github.com/ulikunitz/xz v0.5.5/go.mod h1:2bypXElzHzzJZwzH67Y6wb67pO62Rzfn7BSiF4ABRW8=
 github.com/ulikunitz/xz v0.5.10 h1:t92gobL9l3HE202wg3rlk19F6X+JOxl9BBrCCMYEYd8=
 github.com/ulikunitz/xz v0.5.10/go.mod h1:nbz6k7qbPmH4IRqmfOplQw/tblSgqTqBwxkY0oWt/14=
-github.com/vatesfr/terraform-provider-xenorchestra v0.35.0 h1:jzjROKRVeJovgv2NoaD9M2qCah2dvZLBBd52HiI5YY0=
-github.com/vatesfr/terraform-provider-xenorchestra v0.35.0/go.mod h1:HD7oKkTkrgCmAxLsqByLJ/m++GbARE0ksIZA52XjlQw=
-github.com/vatesfr/xenorchestra-go-sdk v1.5.0 h1:tJNrxDUip1kKw1J8lLQXMdnnIH/ijqx1JEOpeyZIMio=
-github.com/vatesfr/xenorchestra-go-sdk v1.5.0/go.mod h1:AVCFAYphKhw2qRyvRn2cYLbC6SRssnbVOQI+YK+EunU=
+github.com/vatesfr/terraform-provider-xenorchestra v0.35.1 h1:KgaBYijK6PDI64LicPKZg8zMf5OB7I4RuDIh9uZ8ra0=
+github.com/vatesfr/terraform-provider-xenorchestra v0.35.1/go.mod h1:a5IFQM70vRF7TY/fCysxb5LtiWFOTpkSyYGq4xI4hlk=
+github.com/vatesfr/xenorchestra-go-sdk v1.5.1 h1:oxBTaQmKVHXPIe2Cs2eYpfLXtAIpi66Q4OV/H7AQzDo=
+github.com/vatesfr/xenorchestra-go-sdk v1.5.1/go.mod h1:AVCFAYphKhw2qRyvRn2cYLbC6SRssnbVOQI+YK+EunU=
 github.com/vmihailenco/msgpack v3.3.3+incompatible/go.mod h1:fy3FlTQTDXWkZ7Bh6AcGMlsjHatGryHQYUTf1ShIgkk=
 github.com/vmihailenco/msgpack v4.0.1+incompatible/go.mod h1:fy3FlTQTDXWkZ7Bh6AcGMlsjHatGryHQYUTf1ShIgkk=
 github.com/vmihailenco/msgpack v4.0.4+incompatible h1:dSLoQfGFAo3F6OoNhwUmLwVgaUXK79GlxNBwueZn0xI=
