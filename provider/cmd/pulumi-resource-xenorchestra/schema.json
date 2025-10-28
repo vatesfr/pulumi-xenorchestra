@@ -2171,6 +2171,10 @@
             "outputs": {
                 "description": "A collection of values returned by getXoaTemplate.\n",
                 "properties": {
+                    "bootFirmware": {
+                        "description": "The boot firmware settings of the template.\n",
+                        "type": "string"
+                    },
                     "id": {
                         "description": "The provider-assigned unique ID for this managed resource.\n",
                         "type": "string"
@@ -2189,6 +2193,7 @@
                     }
                 },
                 "required": [
+                    "bootFirmware",
                     "nameLabel",
                     "uuid",
                     "id"

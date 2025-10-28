@@ -44,6 +44,10 @@ export interface GetXoaTemplateArgs {
  */
 export interface GetXoaTemplateResult {
     /**
+     * The boot firmware settings of the template.
+     */
+    readonly bootFirmware: string;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
