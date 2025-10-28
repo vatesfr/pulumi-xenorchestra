@@ -139,6 +139,10 @@ namespace Pulumi.Xenorchestra
     public sealed class GetXoaTemplateResult
     {
         /// <summary>
+        /// The boot firmware settings of the template.
+        /// </summary>
+        public readonly string BootFirmware;
+        /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
@@ -157,6 +161,8 @@ namespace Pulumi.Xenorchestra
 
         [OutputConstructor]
         private GetXoaTemplateResult(
+            string bootFirmware,
+
             string id,
 
             string nameLabel,
@@ -165,6 +171,7 @@ namespace Pulumi.Xenorchestra
 
             string uuid)
         {
+            BootFirmware = bootFirmware;
             Id = id;
             NameLabel = nameLabel;
             PoolId = poolId;

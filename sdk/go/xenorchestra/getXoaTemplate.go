@@ -62,6 +62,8 @@ type GetXoaTemplateArgs struct {
 
 // A collection of values returned by getXoaTemplate.
 type GetXoaTemplateResult struct {
+	// The boot firmware settings of the template.
+	BootFirmware string `pulumi:"bootFirmware"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The name of the template to look up.
@@ -106,6 +108,11 @@ func (o GetXoaTemplateResultOutput) ToGetXoaTemplateResultOutput() GetXoaTemplat
 
 func (o GetXoaTemplateResultOutput) ToGetXoaTemplateResultOutputWithContext(ctx context.Context) GetXoaTemplateResultOutput {
 	return o
+}
+
+// The boot firmware settings of the template.
+func (o GetXoaTemplateResultOutput) BootFirmware() pulumi.StringOutput {
+	return o.ApplyT(func(v GetXoaTemplateResult) string { return v.BootFirmware }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

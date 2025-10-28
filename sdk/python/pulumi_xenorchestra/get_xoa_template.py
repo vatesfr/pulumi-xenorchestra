@@ -26,7 +26,10 @@ class GetXoaTemplateResult:
     """
     A collection of values returned by getXoaTemplate.
     """
-    def __init__(__self__, id=None, name_label=None, pool_id=None, uuid=None):
+    def __init__(__self__, boot_firmware=None, id=None, name_label=None, pool_id=None, uuid=None):
+        if boot_firmware and not isinstance(boot_firmware, str):
+            raise TypeError("Expected argument 'boot_firmware' to be a str")
+        pulumi.set(__self__, "boot_firmware", boot_firmware)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -39,6 +42,14 @@ class GetXoaTemplateResult:
         if uuid and not isinstance(uuid, str):
             raise TypeError("Expected argument 'uuid' to be a str")
         pulumi.set(__self__, "uuid", uuid)
+
+    @_builtins.property
+    @pulumi.getter(name="bootFirmware")
+    def boot_firmware(self) -> _builtins.str:
+        """
+        The boot firmware settings of the template.
+        """
+        return pulumi.get(self, "boot_firmware")
 
     @_builtins.property
     @pulumi.getter
@@ -79,6 +90,7 @@ class AwaitableGetXoaTemplateResult(GetXoaTemplateResult):
         if False:
             yield self
         return GetXoaTemplateResult(
+            boot_firmware=self.boot_firmware,
             id=self.id,
             name_label=self.name_label,
             pool_id=self.pool_id,
@@ -110,6 +122,7 @@ def get_xoa_template(name_label: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('xenorchestra:index/getXoaTemplate:getXoaTemplate', __args__, opts=opts, typ=GetXoaTemplateResult).value
 
     return AwaitableGetXoaTemplateResult(
+        boot_firmware=pulumi.get(__ret__, 'boot_firmware'),
         id=pulumi.get(__ret__, 'id'),
         name_label=pulumi.get(__ret__, 'name_label'),
         pool_id=pulumi.get(__ret__, 'pool_id'),
@@ -138,6 +151,7 @@ def get_xoa_template_output(name_label: Optional[pulumi.Input[_builtins.str]] = 
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('xenorchestra:index/getXoaTemplate:getXoaTemplate', __args__, opts=opts, typ=GetXoaTemplateResult)
     return __ret__.apply(lambda __response__: GetXoaTemplateResult(
+        boot_firmware=pulumi.get(__response__, 'boot_firmware'),
         id=pulumi.get(__response__, 'id'),
         name_label=pulumi.get(__response__, 'name_label'),
         pool_id=pulumi.get(__response__, 'pool_id'),
