@@ -102,7 +102,7 @@ class GetXoaHostsResult:
     @pulumi.getter
     def tags(self) -> Optional[Sequence[_builtins.str]]:
         """
-        The tags (labels) applied to the given entity.
+        The tags (labels) applied to the given entity. Not used for filtering if empty.
         """
         return pulumi.get(self, "tags")
 
@@ -134,7 +134,7 @@ def get_xoa_hosts(pool_id: Optional[_builtins.str] = None,
     :param _builtins.str pool_id: The pool id used to filter the resulting hosts by.
     :param _builtins.str sort_by: The host field to sort the results by (id and name_label are supported).
     :param _builtins.str sort_order: Valid options are `asc` or `desc` and sort order is applied to `sort_by` argument.
-    :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity.
+    :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
     """
     __args__ = dict()
     __args__['poolId'] = pool_id
@@ -164,7 +164,7 @@ def get_xoa_hosts_output(pool_id: Optional[pulumi.Input[_builtins.str]] = None,
     :param _builtins.str pool_id: The pool id used to filter the resulting hosts by.
     :param _builtins.str sort_by: The host field to sort the results by (id and name_label are supported).
     :param _builtins.str sort_order: Valid options are `asc` or `desc` and sort order is applied to `sort_by` argument.
-    :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity.
+    :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
     """
     __args__ = dict()
     __args__['poolId'] = pool_id

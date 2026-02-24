@@ -30,7 +30,7 @@ type GetXoaVdiArgs struct {
 	NameLabel *string `pulumi:"nameLabel"`
 	// The ID of the pool the VDI belongs to. This is useful if you have a VDI with the same name on different pools.
 	PoolId *string `pulumi:"poolId"`
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags []string `pulumi:"tags"`
 }
 
@@ -44,7 +44,7 @@ type GetXoaVdiResult struct {
 	Parent string `pulumi:"parent"`
 	// The ID of the pool the VDI belongs to. This is useful if you have a VDI with the same name on different pools.
 	PoolId *string `pulumi:"poolId"`
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags []string `pulumi:"tags"`
 }
 
@@ -65,7 +65,7 @@ type GetXoaVdiOutputArgs struct {
 	NameLabel pulumi.StringPtrInput `pulumi:"nameLabel"`
 	// The ID of the pool the VDI belongs to. This is useful if you have a VDI with the same name on different pools.
 	PoolId pulumi.StringPtrInput `pulumi:"poolId"`
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
 }
 
@@ -108,7 +108,7 @@ func (o GetXoaVdiResultOutput) PoolId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetXoaVdiResult) *string { return v.PoolId }).(pulumi.StringPtrOutput)
 }
 
-// The tags (labels) applied to the given entity.
+// The tags (labels) applied to the given entity. Not used for filtering if empty.
 func (o GetXoaVdiResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetXoaVdiResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }

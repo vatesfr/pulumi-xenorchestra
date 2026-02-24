@@ -246,7 +246,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "The tags (labels) applied to the given entity.\n"
+                    "description": "The tags (labels) applied to the given entity. Not used for filtering if empty.\n"
                 }
             },
             "type": "object",
@@ -374,6 +374,10 @@
                 "resourceSet": {
                     "type": "string"
                 },
+                "secureBoot": {
+                    "type": "boolean",
+                    "description": "Enable UEFI secure boot for the VM.\n"
+                },
                 "startDelay": {
                     "type": "integer",
                     "description": "Number of seconds the VM should be delayed from starting.\n"
@@ -383,7 +387,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "The tags (labels) applied to the given entity.\n"
+                    "description": "The tags (labels) applied to the given entity. Not used for filtering if empty.\n"
                 },
                 "template": {
                     "type": "string",
@@ -992,6 +996,10 @@
                 "resourceSet": {
                     "type": "string"
                 },
+                "secureBoot": {
+                    "type": "boolean",
+                    "description": "Enable UEFI secure boot for the VM.\n"
+                },
                 "startDelay": {
                     "type": "integer",
                     "description": "Number of seconds the VM should be delayed from starting.\n"
@@ -1001,7 +1009,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "The tags (labels) applied to the given entity.\n"
+                    "description": "The tags (labels) applied to the given entity. Not used for filtering if empty.\n"
                 },
                 "template": {
                     "type": "string",
@@ -1140,6 +1148,10 @@
                 "resourceSet": {
                     "type": "string"
                 },
+                "secureBoot": {
+                    "type": "boolean",
+                    "description": "Enable UEFI secure boot for the VM.\n"
+                },
                 "startDelay": {
                     "type": "integer",
                     "description": "Number of seconds the VM should be delayed from starting.\n"
@@ -1149,7 +1161,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "The tags (labels) applied to the given entity.\n"
+                    "description": "The tags (labels) applied to the given entity. Not used for filtering if empty.\n"
                 },
                 "template": {
                     "type": "string",
@@ -1301,6 +1313,10 @@
                     "resourceSet": {
                         "type": "string"
                     },
+                    "secureBoot": {
+                        "type": "boolean",
+                        "description": "Enable UEFI secure boot for the VM.\n"
+                    },
                     "startDelay": {
                         "type": "integer",
                         "description": "Number of seconds the VM should be delayed from starting.\n"
@@ -1310,7 +1326,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "The tags (labels) applied to the given entity.\n"
+                        "description": "The tags (labels) applied to the given entity. Not used for filtering if empty.\n"
                     },
                     "template": {
                         "type": "string",
@@ -1691,7 +1707,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "The tags (labels) applied to the given entity.\n"
+                        "description": "The tags (labels) applied to the given entity. Not used for filtering if empty.\n"
                     }
                 },
                 "type": "object",
@@ -1730,7 +1746,7 @@
                         "type": "string"
                     },
                     "tags": {
-                        "description": "The tags (labels) applied to the given entity.\n",
+                        "description": "The tags (labels) applied to the given entity. Not used for filtering if empty.\n",
                         "items": {
                             "type": "string"
                         },
@@ -1770,7 +1786,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "The tags (labels) applied to the given entity.\n"
+                        "description": "The tags (labels) applied to the given entity. Not used for filtering if empty.\n"
                     }
                 },
                 "type": "object",
@@ -1809,7 +1825,7 @@
                         "type": "string"
                     },
                     "tags": {
-                        "description": "The tags (labels) applied to the given entity.\n",
+                        "description": "The tags (labels) applied to the given entity. Not used for filtering if empty.\n",
                         "items": {
                             "type": "string"
                         },
@@ -2081,7 +2097,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "The tags (labels) applied to the given entity.\n"
+                        "description": "The tags (labels) applied to the given entity. Not used for filtering if empty.\n"
                     }
                 },
                 "type": "object",
@@ -2121,7 +2137,7 @@
                         "type": "string"
                     },
                     "tags": {
-                        "description": "The tags (labels) applied to the given entity.\n",
+                        "description": "The tags (labels) applied to the given entity. Not used for filtering if empty.\n",
                         "items": {
                             "type": "string"
                         },
@@ -2265,7 +2281,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "The tags (labels) applied to the given entity.\n"
+                        "description": "The tags (labels) applied to the given entity. Not used for filtering if empty.\n"
                     }
                 },
                 "type": "object"
@@ -2290,7 +2306,7 @@
                         "type": "string"
                     },
                     "tags": {
-                        "description": "The tags (labels) applied to the given entity.\n",
+                        "description": "The tags (labels) applied to the given entity. Not used for filtering if empty.\n",
                         "items": {
                             "type": "string"
                         },

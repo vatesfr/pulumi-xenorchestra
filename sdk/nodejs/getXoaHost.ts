@@ -34,7 +34,7 @@ export interface GetXoaHostArgs {
      */
     nameLabel: string;
     /**
-     * The tags (labels) applied to the given entity.
+     * The tags (labels) applied to the given entity. Not used for filtering if empty.
      */
     tags?: string[];
 }
@@ -68,7 +68,7 @@ export interface GetXoaHostResult {
      */
     readonly poolId: string;
     /**
-     * The tags (labels) applied to the given entity.
+     * The tags (labels) applied to the given entity. Not used for filtering if empty.
      */
     readonly tags?: string[];
 }
@@ -102,7 +102,7 @@ export interface GetXoaHostOutputArgs {
      */
     nameLabel: pulumi.Input<string>;
     /**
-     * The tags (labels) applied to the given entity.
+     * The tags (labels) applied to the given entity. Not used for filtering if empty.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
 }

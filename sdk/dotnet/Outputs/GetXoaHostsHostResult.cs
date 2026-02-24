@@ -35,7 +35,7 @@ namespace Pulumi.Xenorchestra.Outputs
         /// </summary>
         public readonly string PoolId;
         /// <summary>
-        /// The tags (labels) applied to the given entity.
+        /// The tags (labels) applied to the given entity. Not used for filtering if empty.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
 

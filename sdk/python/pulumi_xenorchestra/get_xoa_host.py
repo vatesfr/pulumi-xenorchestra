@@ -101,7 +101,7 @@ class GetXoaHostResult:
     @pulumi.getter
     def tags(self) -> Optional[Sequence[_builtins.str]]:
         """
-        The tags (labels) applied to the given entity.
+        The tags (labels) applied to the given entity. Not used for filtering if empty.
         """
         return pulumi.get(self, "tags")
 
@@ -137,7 +137,7 @@ def get_xoa_host(name_label: Optional[_builtins.str] = None,
 
 
     :param _builtins.str name_label: The name label of the host.
-    :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity.
+    :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
     """
     __args__ = dict()
     __args__['nameLabel'] = name_label
@@ -169,7 +169,7 @@ def get_xoa_host_output(name_label: Optional[pulumi.Input[_builtins.str]] = None
 
 
     :param _builtins.str name_label: The name label of the host.
-    :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity.
+    :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
     """
     __args__ = dict()
     __args__['nameLabel'] = name_label

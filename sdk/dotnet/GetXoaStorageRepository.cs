@@ -136,7 +136,7 @@ namespace Pulumi.Xenorchestra
         private List<string>? _tags;
 
         /// <summary>
-        /// The tags (labels) applied to the given entity.
+        /// The tags (labels) applied to the given entity. Not used for filtering if empty.
         /// </summary>
         public List<string> Tags
         {
@@ -168,7 +168,7 @@ namespace Pulumi.Xenorchestra
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags (labels) applied to the given entity.
+        /// The tags (labels) applied to the given entity. Not used for filtering if empty.
         /// </summary>
         public InputList<string> Tags
         {
@@ -215,7 +215,7 @@ namespace Pulumi.Xenorchestra
         /// </summary>
         public readonly string SrType;
         /// <summary>
-        /// The tags (labels) applied to the given entity.
+        /// The tags (labels) applied to the given entity. Not used for filtering if empty.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
         /// <summary>

@@ -43,7 +43,7 @@ export interface GetXoaStorageRepositoryArgs {
      */
     poolId?: string;
     /**
-     * The tags (labels) applied to the given entity.
+     * The tags (labels) applied to the given entity. Not used for filtering if empty.
      */
     tags?: string[];
 }
@@ -81,7 +81,7 @@ export interface GetXoaStorageRepositoryResult {
      */
     readonly srType: string;
     /**
-     * The tags (labels) applied to the given entity.
+     * The tags (labels) applied to the given entity. Not used for filtering if empty.
      */
     readonly tags?: string[];
     /**
@@ -132,7 +132,7 @@ export interface GetXoaStorageRepositoryOutputArgs {
      */
     poolId?: pulumi.Input<string>;
     /**
-     * The tags (labels) applied to the given entity.
+     * The tags (labels) applied to the given entity. Not used for filtering if empty.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
 }

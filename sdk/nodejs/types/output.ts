@@ -28,7 +28,7 @@ export interface GetXoaHostsHost {
      */
     poolId: string;
     /**
-     * The tags (labels) applied to the given entity.
+     * The tags (labels) applied to the given entity. Not used for filtering if empty.
      */
     tags?: string[];
 }
@@ -125,11 +125,15 @@ export interface GetXoaVmsVm {
     powerState?: string;
     resourceSet?: string;
     /**
+     * Enable UEFI secure boot for the VM.
+     */
+    secureBoot?: boolean;
+    /**
      * Number of seconds the VM should be delayed from starting.
      */
     startDelay?: number;
     /**
-     * The tags (labels) applied to the given entity.
+     * The tags (labels) applied to the given entity. Not used for filtering if empty.
      */
     tags?: string[];
     /**

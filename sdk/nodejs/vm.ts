@@ -143,11 +143,15 @@ export class Vm extends pulumi.CustomResource {
     public readonly powerState!: pulumi.Output<string | undefined>;
     public readonly resourceSet!: pulumi.Output<string | undefined>;
     /**
+     * Enable UEFI secure boot for the VM.
+     */
+    public readonly secureBoot!: pulumi.Output<boolean | undefined>;
+    /**
      * Number of seconds the VM should be delayed from starting.
      */
     public readonly startDelay!: pulumi.Output<number | undefined>;
     /**
-     * The tags (labels) applied to the given entity.
+     * The tags (labels) applied to the given entity. Not used for filtering if empty.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
@@ -207,6 +211,7 @@ export class Vm extends pulumi.CustomResource {
             resourceInputs["networks"] = state ? state.networks : undefined;
             resourceInputs["powerState"] = state ? state.powerState : undefined;
             resourceInputs["resourceSet"] = state ? state.resourceSet : undefined;
+            resourceInputs["secureBoot"] = state ? state.secureBoot : undefined;
             resourceInputs["startDelay"] = state ? state.startDelay : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["template"] = state ? state.template : undefined;
@@ -258,6 +263,7 @@ export class Vm extends pulumi.CustomResource {
             resourceInputs["networks"] = args ? args.networks : undefined;
             resourceInputs["powerState"] = args ? args.powerState : undefined;
             resourceInputs["resourceSet"] = args ? args.resourceSet : undefined;
+            resourceInputs["secureBoot"] = args ? args.secureBoot : undefined;
             resourceInputs["startDelay"] = args ? args.startDelay : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["template"] = args ? args.template : undefined;
@@ -382,11 +388,15 @@ export interface VmState {
     powerState?: pulumi.Input<string>;
     resourceSet?: pulumi.Input<string>;
     /**
+     * Enable UEFI secure boot for the VM.
+     */
+    secureBoot?: pulumi.Input<boolean>;
+    /**
      * Number of seconds the VM should be delayed from starting.
      */
     startDelay?: pulumi.Input<number>;
     /**
-     * The tags (labels) applied to the given entity.
+     * The tags (labels) applied to the given entity. Not used for filtering if empty.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -510,11 +520,15 @@ export interface VmArgs {
     powerState?: pulumi.Input<string>;
     resourceSet?: pulumi.Input<string>;
     /**
+     * Enable UEFI secure boot for the VM.
+     */
+    secureBoot?: pulumi.Input<boolean>;
+    /**
      * Number of seconds the VM should be delayed from starting.
      */
     startDelay?: pulumi.Input<number>;
     /**
-     * The tags (labels) applied to the given entity.
+     * The tags (labels) applied to the given entity. Not used for filtering if empty.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**

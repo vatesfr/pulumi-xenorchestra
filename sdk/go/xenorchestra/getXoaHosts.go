@@ -30,7 +30,7 @@ type GetXoaHostsArgs struct {
 	SortBy *string `pulumi:"sortBy"`
 	// Valid options are `asc` or `desc` and sort order is applied to `sortBy` argument.
 	SortOrder *string `pulumi:"sortOrder"`
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags []string `pulumi:"tags"`
 }
 
@@ -48,7 +48,7 @@ type GetXoaHostsResult struct {
 	SortBy *string `pulumi:"sortBy"`
 	// Valid options are `asc` or `desc` and sort order is applied to `sortBy` argument.
 	SortOrder *string `pulumi:"sortOrder"`
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags []string `pulumi:"tags"`
 }
 
@@ -69,7 +69,7 @@ type GetXoaHostsOutputArgs struct {
 	SortBy pulumi.StringPtrInput `pulumi:"sortBy"`
 	// Valid options are `asc` or `desc` and sort order is applied to `sortBy` argument.
 	SortOrder pulumi.StringPtrInput `pulumi:"sortOrder"`
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
 }
 
@@ -122,7 +122,7 @@ func (o GetXoaHostsResultOutput) SortOrder() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetXoaHostsResult) *string { return v.SortOrder }).(pulumi.StringPtrOutput)
 }
 
-// The tags (labels) applied to the given entity.
+// The tags (labels) applied to the given entity. Not used for filtering if empty.
 func (o GetXoaHostsResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetXoaHostsResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }

@@ -64,7 +64,7 @@ type GetXoaStorageRepositoryArgs struct {
 	NameLabel string `pulumi:"nameLabel"`
 	// The Id of the pool the storage repository exists on.
 	PoolId *string `pulumi:"poolId"`
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags []string `pulumi:"tags"`
 }
 
@@ -84,7 +84,7 @@ type GetXoaStorageRepositoryResult struct {
 	Size float64 `pulumi:"size"`
 	// The type of storage repository (lvm, udev, iso, user, etc).
 	SrType string `pulumi:"srType"`
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags []string `pulumi:"tags"`
 	// The current usage for this storage repository.
 	Usage float64 `pulumi:"usage"`
@@ -107,7 +107,7 @@ type GetXoaStorageRepositoryOutputArgs struct {
 	NameLabel pulumi.StringInput `pulumi:"nameLabel"`
 	// The Id of the pool the storage repository exists on.
 	PoolId pulumi.StringPtrInput `pulumi:"poolId"`
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
 }
 
@@ -165,7 +165,7 @@ func (o GetXoaStorageRepositoryResultOutput) SrType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetXoaStorageRepositoryResult) string { return v.SrType }).(pulumi.StringOutput)
 }
 
-// The tags (labels) applied to the given entity.
+// The tags (labels) applied to the given entity. Not used for filtering if empty.
 func (o GetXoaStorageRepositoryResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetXoaStorageRepositoryResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }

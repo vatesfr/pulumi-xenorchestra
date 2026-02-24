@@ -79,7 +79,7 @@ class GetXoaVdiResult:
     @pulumi.getter
     def tags(self) -> Optional[Sequence[_builtins.str]]:
         """
-        The tags (labels) applied to the given entity.
+        The tags (labels) applied to the given entity. Not used for filtering if empty.
         """
         return pulumi.get(self, "tags")
 
@@ -109,7 +109,7 @@ def get_xoa_vdi(id: Optional[_builtins.str] = None,
     :param _builtins.str id: The ID of the VDI.
     :param _builtins.str name_label: The name of the VDI to look up.
     :param _builtins.str pool_id: The ID of the pool the VDI belongs to. This is useful if you have a VDI with the same name on different pools.
-    :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity.
+    :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -137,7 +137,7 @@ def get_xoa_vdi_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = Non
     :param _builtins.str id: The ID of the VDI.
     :param _builtins.str name_label: The name of the VDI to look up.
     :param _builtins.str pool_id: The ID of the pool the VDI belongs to. This is useful if you have a VDI with the same name on different pools.
-    :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity.
+    :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
     """
     __args__ = dict()
     __args__['id'] = id
