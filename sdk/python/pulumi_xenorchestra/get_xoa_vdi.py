@@ -105,6 +105,14 @@ def get_xoa_vdi(id: Optional[_builtins.str] = None,
     """
     ## Example Usage
 
+    ```python
+    import pulumi
+    import pulumi_xenorchestra as xenorchestra
+
+    vdi = xenorchestra.get_xoa_vdi(name_label="ubuntu-20.04.4-live-server-amd64.iso")
+    demo_vm = xenorchestra.Vm("demo-vm", cdrom=vdi.id[0])
+    ```
+
 
     :param _builtins.str id: The ID of the VDI.
     :param _builtins.str name_label: The name of the VDI to look up.
@@ -132,6 +140,14 @@ def get_xoa_vdi_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = Non
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetXoaVdiResult]:
     """
     ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_xenorchestra as xenorchestra
+
+    vdi = xenorchestra.get_xoa_vdi(name_label="ubuntu-20.04.4-live-server-amd64.iso")
+    demo_vm = xenorchestra.Vm("demo-vm", cdrom=vdi.id[0])
+    ```
 
 
     :param _builtins.str id: The ID of the VDI.

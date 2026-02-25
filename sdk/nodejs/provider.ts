@@ -28,29 +28,27 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * Password for xoa api. Can be set via the XOA_PASSWORD environment variable.
      */
-    public readonly password!: pulumi.Output<string | undefined>;
+    declare public readonly password: pulumi.Output<string | undefined>;
     /**
-     * If `retryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via
-     * the `XOA_RETRY_MAX_TIME` environment variable
+     * If `retryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable
      */
-    public readonly retryMaxTime!: pulumi.Output<string | undefined>;
+    declare public readonly retryMaxTime: pulumi.Output<string | undefined>;
     /**
-     * Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE
-     * environment variable.
+     * Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable.
      */
-    public readonly retryMode!: pulumi.Output<string | undefined>;
+    declare public readonly retryMode: pulumi.Output<string | undefined>;
     /**
      * Password for xoa api. Can be set via the XOA_TOKEN environment variable.
      */
-    public readonly token!: pulumi.Output<string | undefined>;
+    declare public readonly token: pulumi.Output<string | undefined>;
     /**
      * Hostname of the xoa router. Can be set via the XOA_URL environment variable.
      */
-    public readonly url!: pulumi.Output<string | undefined>;
+    declare public readonly url: pulumi.Output<string | undefined>;
     /**
      * User account for xoa api. Can be set via the XOA_USER environment variable.
      */
-    public readonly username!: pulumi.Output<string | undefined>;
+    declare public readonly username: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -63,13 +61,13 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["insecure"] = pulumi.output(args ? args.insecure : undefined).apply(JSON.stringify);
-            resourceInputs["password"] = args ? args.password : undefined;
-            resourceInputs["retryMaxTime"] = args ? args.retryMaxTime : undefined;
-            resourceInputs["retryMode"] = args ? args.retryMode : undefined;
-            resourceInputs["token"] = args ? args.token : undefined;
-            resourceInputs["url"] = args ? args.url : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["insecure"] = pulumi.output(args?.insecure).apply(JSON.stringify);
+            resourceInputs["password"] = args?.password;
+            resourceInputs["retryMaxTime"] = args?.retryMaxTime;
+            resourceInputs["retryMode"] = args?.retryMode;
+            resourceInputs["token"] = args?.token;
+            resourceInputs["url"] = args?.url;
+            resourceInputs["username"] = args?.username;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
@@ -98,13 +96,11 @@ export interface ProviderArgs {
      */
     password?: pulumi.Input<string>;
     /**
-     * If `retryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via
-     * the `XOA_RETRY_MAX_TIME` environment variable
+     * If `retryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable
      */
     retryMaxTime?: pulumi.Input<string>;
     /**
-     * Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE
-     * environment variable.
+     * Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable.
      */
     retryMode?: pulumi.Input<string>;
     /**

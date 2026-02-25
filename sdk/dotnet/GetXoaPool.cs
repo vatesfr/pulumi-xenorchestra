@@ -106,7 +106,7 @@ namespace Pulumi.Xenorchestra
     public sealed class GetXoaPoolArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name_label of the pool to look up.
+        /// The NameLabel of the pool to look up.
         /// </summary>
         [Input("nameLabel", required: true)]
         public string NameLabel { get; set; } = null!;
@@ -120,7 +120,7 @@ namespace Pulumi.Xenorchestra
     public sealed class GetXoaPoolInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name_label of the pool to look up.
+        /// The NameLabel of the pool to look up.
         /// </summary>
         [Input("nameLabel", required: true)]
         public Input<string> NameLabel { get; set; } = null!;
@@ -152,7 +152,7 @@ namespace Pulumi.Xenorchestra
         /// </summary>
         public readonly string Master;
         /// <summary>
-        /// The name_label of the pool to look up.
+        /// The NameLabel of the pool to look up.
         /// </summary>
         public readonly string NameLabel;
 

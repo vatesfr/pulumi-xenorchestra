@@ -96,19 +96,19 @@ export class ResourceSet extends pulumi.CustomResource {
     /**
      * The limit applied to the resource set.
      */
-    public readonly limits!: pulumi.Output<outputs.ResourceSetLimit[]>;
+    declare public readonly limits: pulumi.Output<outputs.ResourceSetLimit[]>;
     /**
      * The name of the resource set.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The uuids of the objects that are within scope of the resource set. A minimum of a storage repository, network and VM template are required for users to launch VMs.
      */
-    public readonly objects!: pulumi.Output<string[] | undefined>;
+    declare public readonly objects: pulumi.Output<string[] | undefined>;
     /**
      * The uuids of the user accounts that should have access to the resource set.
      */
-    public readonly subjects!: pulumi.Output<string[] | undefined>;
+    declare public readonly subjects: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a ResourceSet resource with the given unique name, arguments, and options.
@@ -123,19 +123,19 @@ export class ResourceSet extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ResourceSetState | undefined;
-            resourceInputs["limits"] = state ? state.limits : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["objects"] = state ? state.objects : undefined;
-            resourceInputs["subjects"] = state ? state.subjects : undefined;
+            resourceInputs["limits"] = state?.limits;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["objects"] = state?.objects;
+            resourceInputs["subjects"] = state?.subjects;
         } else {
             const args = argsOrState as ResourceSetArgs | undefined;
-            if ((!args || args.limits === undefined) && !opts.urn) {
+            if (args?.limits === undefined && !opts.urn) {
                 throw new Error("Missing required property 'limits'");
             }
-            resourceInputs["limits"] = args ? args.limits : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["objects"] = args ? args.objects : undefined;
-            resourceInputs["subjects"] = args ? args.subjects : undefined;
+            resourceInputs["limits"] = args?.limits;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["objects"] = args?.objects;
+            resourceInputs["subjects"] = args?.subjects;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ResourceSet.__pulumiType, name, resourceInputs, opts);

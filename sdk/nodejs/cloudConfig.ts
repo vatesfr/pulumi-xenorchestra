@@ -58,11 +58,11 @@ export class CloudConfig extends pulumi.CustomResource {
     /**
      * The name of the cloud config.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The cloud init config. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
      */
-    public readonly template!: pulumi.Output<string>;
+    declare public readonly template: pulumi.Output<string>;
 
     /**
      * Create a CloudConfig resource with the given unique name, arguments, and options.
@@ -77,15 +77,15 @@ export class CloudConfig extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudConfigState | undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["template"] = state ? state.template : undefined;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["template"] = state?.template;
         } else {
             const args = argsOrState as CloudConfigArgs | undefined;
-            if ((!args || args.template === undefined) && !opts.urn) {
+            if (args?.template === undefined && !opts.urn) {
                 throw new Error("Missing required property 'template'");
             }
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["template"] = args ? args.template : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["template"] = args?.template;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CloudConfig.__pulumiType, name, resourceInputs, opts);

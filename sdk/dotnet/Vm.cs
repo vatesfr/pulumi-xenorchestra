@@ -16,50 +16,43 @@ namespace Pulumi.Xenorchestra
     public partial class Vm : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to
-        /// be rescheduled.
+        /// The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
         /// </summary>
         [Output("affinityHost")]
         public Output<string?> AffinityHost { get; private set; } = null!;
 
         /// <summary>
-        /// If the VM will automatically turn on. Defaults to `false`.
+        /// If the VM will automatically turn on. Defaults to `False`.
         /// </summary>
         [Output("autoPoweron")]
         public Output<bool?> AutoPoweron { get; private set; } = null!;
 
         /// <summary>
-        /// List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-        /// hard_shutdown, pause, shutdown, suspend, destroy. See:
-        /// https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
+        /// List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
         /// </summary>
         [Output("blockedOperations")]
         public Output<ImmutableArray<string>> BlockedOperations { get; private set; } = null!;
 
         /// <summary>
-        /// The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
-        /// from `xe template-list`) and install the OS from the following ISO.
+        /// The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO.
         /// </summary>
         [Output("cdrom")]
         public Output<Outputs.VmCdrom?> Cdrom { get; private set; } = null!;
 
         /// <summary>
-        /// The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to
-        /// perform a `full` clone, the VM template must not be a disk template.
+        /// The type of clone to perform for the VM. Possible values include `Fast` or `Full` and defaults to `Fast`. In order to perform a `Full` clone, the VM template must not be a disk template.
         /// </summary>
         [Output("cloneType")]
         public Output<string?> CloneType { get; private set; } = null!;
 
         /// <summary>
-        /// The content of the cloud-init config to use. See the cloud init docs for more
-        /// [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
+        /// The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
         /// </summary>
         [Output("cloudConfig")]
         public Output<string?> CloudConfig { get; private set; } = null!;
 
         /// <summary>
-        /// The content of the cloud-init network configuration for the VM (uses [version
-        /// 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
+        /// The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
         /// </summary>
         [Output("cloudNetworkConfig")]
         public Output<string?> CloudNetworkConfig { get; private set; } = null!;
@@ -74,17 +67,24 @@ namespace Pulumi.Xenorchestra
         public Output<int?> CpuWeight { get; private set; } = null!;
 
         /// <summary>
-        /// The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is
-        /// greater than the max CPU value. This can be determined with the following command: ``` $ xo-cli xo.getAllObjects
-        /// filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs' { "max": 4, "number": 2 } # Updating the VM
-        /// to use 3 CPUs would happen without stopping/starting the VM # Updating the VM to use 5 CPUs would stop/start the VM ```
+        /// The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
+        /// ```
+        /// 
+        /// $ xo-cli xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs'
+        /// {
+        ///   "max": 4,
+        ///   "number": 2
+        /// }
+        /// 
+        /// # Updating the VM to use 3 CPUs would happen without stopping/starting the VM
+        /// # Updating the VM to use 5 CPUs would stop/start the VM
+        /// ```
         /// </summary>
         [Output("cpus")]
         public Output<int> Cpus { get; private set; } = null!;
 
         /// <summary>
-        /// Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`,
-        /// power_state must be set to `Running`.
+        /// Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `False`. If set to `True`, PowerState must be set to `Running`.
         /// </summary>
         [Output("destroyCloudConfigVdiAfterBoot")]
         public Output<bool?> DestroyCloudConfigVdiAfterBoot { get; private set; } = null!;
@@ -102,8 +102,7 @@ namespace Pulumi.Xenorchestra
         public Output<bool?> ExpNestedHvm { get; private set; } = null!;
 
         /// <summary>
-        /// The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure.
-        /// Defaults to empty string
+        /// The restart priority for the VM. Possible values are `best-effort`, `Restart` and empty string (no restarts on failure. Defaults to empty string
         /// </summary>
         [Output("highAvailability")]
         public Output<string?> HighAvailability { get; private set; } = null!;
@@ -112,13 +111,13 @@ namespace Pulumi.Xenorchestra
         public Output<string?> Host { get; private set; } = null!;
 
         /// <summary>
-        /// The firmware to use for the VM. Possible values are `bios` and `uefi`.
+        /// The firmware to use for the VM. Possible values are `Bios` and `Uefi`.
         /// </summary>
         [Output("hvmBootFirmware")]
         public Output<string?> HvmBootFirmware { get; private set; } = null!;
 
         /// <summary>
-        /// This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
+        /// This cannot be used with `Cdrom`. Possible values are `Network` which allows a VM to boot via PXE.
         /// </summary>
         [Output("installationMethod")]
         public Output<string?> InstallationMethod { get; private set; } = null!;
@@ -127,22 +126,19 @@ namespace Pulumi.Xenorchestra
         public Output<ImmutableArray<string>> Ipv4Addresses { get; private set; } = null!;
 
         /// <summary>
-        /// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
-        /// presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6
-        /// addresses across all network interfaces in order.
+        /// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `ExpectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
         /// </summary>
         [Output("ipv6Addresses")]
         public Output<ImmutableArray<string>> Ipv6Addresses { get; private set; } = null!;
 
         /// <summary>
-        /// The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and
-        /// start, as it sets both dynamic and static maximums.
+        /// The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
         /// </summary>
         [Output("memoryMax")]
         public Output<double> MemoryMax { get; private set; } = null!;
 
         /// <summary>
-        /// The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.
+        /// The amount of memory in bytes the VM will have. Set this value equal to MemoryMax to have a static memory.
         /// </summary>
         [Output("memoryMin")]
         public Output<int> MemoryMin { get; private set; } = null!;
@@ -264,14 +260,13 @@ namespace Pulumi.Xenorchestra
     public sealed class VmArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to
-        /// be rescheduled.
+        /// The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
         /// </summary>
         [Input("affinityHost")]
         public Input<string>? AffinityHost { get; set; }
 
         /// <summary>
-        /// If the VM will automatically turn on. Defaults to `false`.
+        /// If the VM will automatically turn on. Defaults to `False`.
         /// </summary>
         [Input("autoPoweron")]
         public Input<bool>? AutoPoweron { get; set; }
@@ -280,9 +275,7 @@ namespace Pulumi.Xenorchestra
         private InputList<string>? _blockedOperations;
 
         /// <summary>
-        /// List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-        /// hard_shutdown, pause, shutdown, suspend, destroy. See:
-        /// https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
+        /// List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
         /// </summary>
         public InputList<string> BlockedOperations
         {
@@ -291,29 +284,25 @@ namespace Pulumi.Xenorchestra
         }
 
         /// <summary>
-        /// The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
-        /// from `xe template-list`) and install the OS from the following ISO.
+        /// The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO.
         /// </summary>
         [Input("cdrom")]
         public Input<Inputs.VmCdromArgs>? Cdrom { get; set; }
 
         /// <summary>
-        /// The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to
-        /// perform a `full` clone, the VM template must not be a disk template.
+        /// The type of clone to perform for the VM. Possible values include `Fast` or `Full` and defaults to `Fast`. In order to perform a `Full` clone, the VM template must not be a disk template.
         /// </summary>
         [Input("cloneType")]
         public Input<string>? CloneType { get; set; }
 
         /// <summary>
-        /// The content of the cloud-init config to use. See the cloud init docs for more
-        /// [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
+        /// The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
         /// </summary>
         [Input("cloudConfig")]
         public Input<string>? CloudConfig { get; set; }
 
         /// <summary>
-        /// The content of the cloud-init network configuration for the VM (uses [version
-        /// 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
+        /// The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
         /// </summary>
         [Input("cloudNetworkConfig")]
         public Input<string>? CloudNetworkConfig { get; set; }
@@ -328,17 +317,24 @@ namespace Pulumi.Xenorchestra
         public Input<int>? CpuWeight { get; set; }
 
         /// <summary>
-        /// The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is
-        /// greater than the max CPU value. This can be determined with the following command: ``` $ xo-cli xo.getAllObjects
-        /// filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs' { "max": 4, "number": 2 } # Updating the VM
-        /// to use 3 CPUs would happen without stopping/starting the VM # Updating the VM to use 5 CPUs would stop/start the VM ```
+        /// The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
+        /// ```
+        /// 
+        /// $ xo-cli xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs'
+        /// {
+        ///   "max": 4,
+        ///   "number": 2
+        /// }
+        /// 
+        /// # Updating the VM to use 3 CPUs would happen without stopping/starting the VM
+        /// # Updating the VM to use 5 CPUs would stop/start the VM
+        /// ```
         /// </summary>
         [Input("cpus", required: true)]
         public Input<int> Cpus { get; set; } = null!;
 
         /// <summary>
-        /// Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`,
-        /// power_state must be set to `Running`.
+        /// Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `False`. If set to `True`, PowerState must be set to `Running`.
         /// </summary>
         [Input("destroyCloudConfigVdiAfterBoot")]
         public Input<bool>? DestroyCloudConfigVdiAfterBoot { get; set; }
@@ -362,8 +358,7 @@ namespace Pulumi.Xenorchestra
         public Input<bool>? ExpNestedHvm { get; set; }
 
         /// <summary>
-        /// The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure.
-        /// Defaults to empty string
+        /// The restart priority for the VM. Possible values are `best-effort`, `Restart` and empty string (no restarts on failure. Defaults to empty string
         /// </summary>
         [Input("highAvailability")]
         public Input<string>? HighAvailability { get; set; }
@@ -372,26 +367,25 @@ namespace Pulumi.Xenorchestra
         public Input<string>? Host { get; set; }
 
         /// <summary>
-        /// The firmware to use for the VM. Possible values are `bios` and `uefi`.
+        /// The firmware to use for the VM. Possible values are `Bios` and `Uefi`.
         /// </summary>
         [Input("hvmBootFirmware")]
         public Input<string>? HvmBootFirmware { get; set; }
 
         /// <summary>
-        /// This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
+        /// This cannot be used with `Cdrom`. Possible values are `Network` which allows a VM to boot via PXE.
         /// </summary>
         [Input("installationMethod")]
         public Input<string>? InstallationMethod { get; set; }
 
         /// <summary>
-        /// The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and
-        /// start, as it sets both dynamic and static maximums.
+        /// The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
         /// </summary>
         [Input("memoryMax", required: true)]
         public Input<double> MemoryMax { get; set; } = null!;
 
         /// <summary>
-        /// The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.
+        /// The amount of memory in bytes the VM will have. Set this value equal to MemoryMax to have a static memory.
         /// </summary>
         [Input("memoryMin")]
         public Input<int>? MemoryMin { get; set; }
@@ -492,14 +486,13 @@ namespace Pulumi.Xenorchestra
     public sealed class VmState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to
-        /// be rescheduled.
+        /// The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
         /// </summary>
         [Input("affinityHost")]
         public Input<string>? AffinityHost { get; set; }
 
         /// <summary>
-        /// If the VM will automatically turn on. Defaults to `false`.
+        /// If the VM will automatically turn on. Defaults to `False`.
         /// </summary>
         [Input("autoPoweron")]
         public Input<bool>? AutoPoweron { get; set; }
@@ -508,9 +501,7 @@ namespace Pulumi.Xenorchestra
         private InputList<string>? _blockedOperations;
 
         /// <summary>
-        /// List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-        /// hard_shutdown, pause, shutdown, suspend, destroy. See:
-        /// https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
+        /// List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
         /// </summary>
         public InputList<string> BlockedOperations
         {
@@ -519,29 +510,25 @@ namespace Pulumi.Xenorchestra
         }
 
         /// <summary>
-        /// The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
-        /// from `xe template-list`) and install the OS from the following ISO.
+        /// The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO.
         /// </summary>
         [Input("cdrom")]
         public Input<Inputs.VmCdromGetArgs>? Cdrom { get; set; }
 
         /// <summary>
-        /// The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to
-        /// perform a `full` clone, the VM template must not be a disk template.
+        /// The type of clone to perform for the VM. Possible values include `Fast` or `Full` and defaults to `Fast`. In order to perform a `Full` clone, the VM template must not be a disk template.
         /// </summary>
         [Input("cloneType")]
         public Input<string>? CloneType { get; set; }
 
         /// <summary>
-        /// The content of the cloud-init config to use. See the cloud init docs for more
-        /// [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
+        /// The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
         /// </summary>
         [Input("cloudConfig")]
         public Input<string>? CloudConfig { get; set; }
 
         /// <summary>
-        /// The content of the cloud-init network configuration for the VM (uses [version
-        /// 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
+        /// The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
         /// </summary>
         [Input("cloudNetworkConfig")]
         public Input<string>? CloudNetworkConfig { get; set; }
@@ -556,17 +543,24 @@ namespace Pulumi.Xenorchestra
         public Input<int>? CpuWeight { get; set; }
 
         /// <summary>
-        /// The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is
-        /// greater than the max CPU value. This can be determined with the following command: ``` $ xo-cli xo.getAllObjects
-        /// filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs' { "max": 4, "number": 2 } # Updating the VM
-        /// to use 3 CPUs would happen without stopping/starting the VM # Updating the VM to use 5 CPUs would stop/start the VM ```
+        /// The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
+        /// ```
+        /// 
+        /// $ xo-cli xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs'
+        /// {
+        ///   "max": 4,
+        ///   "number": 2
+        /// }
+        /// 
+        /// # Updating the VM to use 3 CPUs would happen without stopping/starting the VM
+        /// # Updating the VM to use 5 CPUs would stop/start the VM
+        /// ```
         /// </summary>
         [Input("cpus")]
         public Input<int>? Cpus { get; set; }
 
         /// <summary>
-        /// Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`,
-        /// power_state must be set to `Running`.
+        /// Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `False`. If set to `True`, PowerState must be set to `Running`.
         /// </summary>
         [Input("destroyCloudConfigVdiAfterBoot")]
         public Input<bool>? DestroyCloudConfigVdiAfterBoot { get; set; }
@@ -590,8 +584,7 @@ namespace Pulumi.Xenorchestra
         public Input<bool>? ExpNestedHvm { get; set; }
 
         /// <summary>
-        /// The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure.
-        /// Defaults to empty string
+        /// The restart priority for the VM. Possible values are `best-effort`, `Restart` and empty string (no restarts on failure. Defaults to empty string
         /// </summary>
         [Input("highAvailability")]
         public Input<string>? HighAvailability { get; set; }
@@ -600,13 +593,13 @@ namespace Pulumi.Xenorchestra
         public Input<string>? Host { get; set; }
 
         /// <summary>
-        /// The firmware to use for the VM. Possible values are `bios` and `uefi`.
+        /// The firmware to use for the VM. Possible values are `Bios` and `Uefi`.
         /// </summary>
         [Input("hvmBootFirmware")]
         public Input<string>? HvmBootFirmware { get; set; }
 
         /// <summary>
-        /// This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
+        /// This cannot be used with `Cdrom`. Possible values are `Network` which allows a VM to boot via PXE.
         /// </summary>
         [Input("installationMethod")]
         public Input<string>? InstallationMethod { get; set; }
@@ -623,9 +616,7 @@ namespace Pulumi.Xenorchestra
         private InputList<string>? _ipv6Addresses;
 
         /// <summary>
-        /// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
-        /// presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6
-        /// addresses across all network interfaces in order.
+        /// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `ExpectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
         /// </summary>
         public InputList<string> Ipv6Addresses
         {
@@ -634,14 +625,13 @@ namespace Pulumi.Xenorchestra
         }
 
         /// <summary>
-        /// The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and
-        /// start, as it sets both dynamic and static maximums.
+        /// The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
         /// </summary>
         [Input("memoryMax")]
         public Input<double>? MemoryMax { get; set; }
 
         /// <summary>
-        /// The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.
+        /// The amount of memory in bytes the VM will have. Set this value equal to MemoryMax to have a static memory.
         /// </summary>
         [Input("memoryMin")]
         public Input<int>? MemoryMin { get; set; }

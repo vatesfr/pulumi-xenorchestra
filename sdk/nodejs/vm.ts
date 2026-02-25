@@ -38,138 +38,134 @@ export class Vm extends pulumi.CustomResource {
     }
 
     /**
-     * The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to
-     * be rescheduled.
+     * The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
      */
-    public readonly affinityHost!: pulumi.Output<string | undefined>;
+    declare public readonly affinityHost: pulumi.Output<string | undefined>;
     /**
      * If the VM will automatically turn on. Defaults to `false`.
      */
-    public readonly autoPoweron!: pulumi.Output<boolean | undefined>;
+    declare public readonly autoPoweron: pulumi.Output<boolean | undefined>;
     /**
-     * List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-     * hard_shutdown, pause, shutdown, suspend, destroy. See:
-     * https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
+     * List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
      */
-    public readonly blockedOperations!: pulumi.Output<string[] | undefined>;
+    declare public readonly blockedOperations: pulumi.Output<string[] | undefined>;
     /**
-     * The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
-     * from `xe template-list`) and install the OS from the following ISO.
+     * The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO.
      */
-    public readonly cdrom!: pulumi.Output<outputs.VmCdrom | undefined>;
+    declare public readonly cdrom: pulumi.Output<outputs.VmCdrom | undefined>;
     /**
-     * The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to
-     * perform a `full` clone, the VM template must not be a disk template.
+     * The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
      */
-    public readonly cloneType!: pulumi.Output<string | undefined>;
+    declare public readonly cloneType: pulumi.Output<string | undefined>;
     /**
-     * The content of the cloud-init config to use. See the cloud init docs for more
-     * [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
+     * The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
      */
-    public readonly cloudConfig!: pulumi.Output<string | undefined>;
+    declare public readonly cloudConfig: pulumi.Output<string | undefined>;
     /**
-     * The content of the cloud-init network configuration for the VM (uses [version
-     * 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
+     * The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
      */
-    public readonly cloudNetworkConfig!: pulumi.Output<string | undefined>;
-    public readonly coreOs!: pulumi.Output<boolean | undefined>;
-    public readonly cpuCap!: pulumi.Output<number | undefined>;
-    public readonly cpuWeight!: pulumi.Output<number | undefined>;
+    declare public readonly cloudNetworkConfig: pulumi.Output<string | undefined>;
+    declare public readonly coreOs: pulumi.Output<boolean | undefined>;
+    declare public readonly cpuCap: pulumi.Output<number | undefined>;
+    declare public readonly cpuWeight: pulumi.Output<number | undefined>;
     /**
-     * The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is
-     * greater than the max CPU value. This can be determined with the following command: ``` $ xo-cli xo.getAllObjects
-     * filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs' { "max": 4, "number": 2 } # Updating the VM
-     * to use 3 CPUs would happen without stopping/starting the VM # Updating the VM to use 5 CPUs would stop/start the VM ```
+     * The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
+     * ```
+     *
+     * $ xo-cli xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs'
+     * {
+     *   "max": 4,
+     *   "number": 2
+     * }
+     *
+     * # Updating the VM to use 3 CPUs would happen without stopping/starting the VM
+     * # Updating the VM to use 5 CPUs would stop/start the VM
+     * ```
      */
-    public readonly cpus!: pulumi.Output<number>;
+    declare public readonly cpus: pulumi.Output<number>;
     /**
-     * Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`,
-     * powerState must be set to `Running`.
+     * Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, powerState must be set to `Running`.
      */
-    public readonly destroyCloudConfigVdiAfterBoot!: pulumi.Output<boolean | undefined>;
+    declare public readonly destroyCloudConfigVdiAfterBoot: pulumi.Output<boolean | undefined>;
     /**
      * The disk the VM will have access to.
      */
-    public readonly disks!: pulumi.Output<outputs.VmDisk[]>;
+    declare public readonly disks: pulumi.Output<outputs.VmDisk[]>;
     /**
      * Boolean parameter that allows a VM to use nested virtualization.
      */
-    public readonly expNestedHvm!: pulumi.Output<boolean | undefined>;
+    declare public readonly expNestedHvm: pulumi.Output<boolean | undefined>;
     /**
-     * The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure.
-     * Defaults to empty string
+     * The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string
      */
-    public readonly highAvailability!: pulumi.Output<string | undefined>;
-    public readonly host!: pulumi.Output<string | undefined>;
+    declare public readonly highAvailability: pulumi.Output<string | undefined>;
+    declare public readonly host: pulumi.Output<string | undefined>;
     /**
      * The firmware to use for the VM. Possible values are `bios` and `uefi`.
      */
-    public readonly hvmBootFirmware!: pulumi.Output<string | undefined>;
+    declare public readonly hvmBootFirmware: pulumi.Output<string | undefined>;
     /**
      * This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
      */
-    public readonly installationMethod!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly ipv4Addresses!: pulumi.Output<string[]>;
+    declare public readonly installationMethod: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly ipv4Addresses: pulumi.Output<string[]>;
     /**
-     * This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
-     * presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6
-     * addresses across all network interfaces in order.
+     * This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
      */
-    public /*out*/ readonly ipv6Addresses!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly ipv6Addresses: pulumi.Output<string[]>;
     /**
-     * The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and
-     * start, as it sets both dynamic and static maximums.
+     * The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
      */
-    public readonly memoryMax!: pulumi.Output<number>;
+    declare public readonly memoryMax: pulumi.Output<number>;
     /**
      * The amount of memory in bytes the VM will have. Set this value equal to memoryMax to have a static memory.
      */
-    public readonly memoryMin!: pulumi.Output<number>;
+    declare public readonly memoryMin: pulumi.Output<number>;
     /**
      * The description of the VM.
      */
-    public readonly nameDescription!: pulumi.Output<string | undefined>;
+    declare public readonly nameDescription: pulumi.Output<string | undefined>;
     /**
      * The name of the VM.
      */
-    public readonly nameLabel!: pulumi.Output<string>;
+    declare public readonly nameLabel: pulumi.Output<string>;
     /**
      * The network for the VM.
      */
-    public readonly networks!: pulumi.Output<outputs.VmNetwork[]>;
+    declare public readonly networks: pulumi.Output<outputs.VmNetwork[]>;
     /**
      * The power state of the VM. This can be Running, Halted, Paused or Suspended.
      */
-    public readonly powerState!: pulumi.Output<string | undefined>;
-    public readonly resourceSet!: pulumi.Output<string | undefined>;
+    declare public readonly powerState: pulumi.Output<string | undefined>;
+    declare public readonly resourceSet: pulumi.Output<string | undefined>;
     /**
      * Enable UEFI secure boot for the VM.
      */
-    public readonly secureBoot!: pulumi.Output<boolean | undefined>;
+    declare public readonly secureBoot: pulumi.Output<boolean | undefined>;
     /**
      * Number of seconds the VM should be delayed from starting.
      */
-    public readonly startDelay!: pulumi.Output<number | undefined>;
+    declare public readonly startDelay: pulumi.Output<number | undefined>;
     /**
      * The tags (labels) applied to the given entity. Not used for filtering if empty.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The ID of the VM template to create the new VM from.
      */
-    public readonly template!: pulumi.Output<string>;
+    declare public readonly template: pulumi.Output<string>;
     /**
      * The video adapter the VM should use. Possible values include std and cirrus.
      */
-    public readonly vga!: pulumi.Output<string | undefined>;
+    declare public readonly vga: pulumi.Output<string | undefined>;
     /**
      * The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
      */
-    public readonly videoram!: pulumi.Output<number | undefined>;
+    declare public readonly videoram: pulumi.Output<number | undefined>;
     /**
      * The key value pairs to be populated in xenstore.
      */
-    public readonly xenstore!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly xenstore: pulumi.Output<{[key: string]: string} | undefined>;
 
     /**
      * Create a Vm resource with the given unique name, arguments, and options.
@@ -184,92 +180,92 @@ export class Vm extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VmState | undefined;
-            resourceInputs["affinityHost"] = state ? state.affinityHost : undefined;
-            resourceInputs["autoPoweron"] = state ? state.autoPoweron : undefined;
-            resourceInputs["blockedOperations"] = state ? state.blockedOperations : undefined;
-            resourceInputs["cdrom"] = state ? state.cdrom : undefined;
-            resourceInputs["cloneType"] = state ? state.cloneType : undefined;
-            resourceInputs["cloudConfig"] = state ? state.cloudConfig : undefined;
-            resourceInputs["cloudNetworkConfig"] = state ? state.cloudNetworkConfig : undefined;
-            resourceInputs["coreOs"] = state ? state.coreOs : undefined;
-            resourceInputs["cpuCap"] = state ? state.cpuCap : undefined;
-            resourceInputs["cpuWeight"] = state ? state.cpuWeight : undefined;
-            resourceInputs["cpus"] = state ? state.cpus : undefined;
-            resourceInputs["destroyCloudConfigVdiAfterBoot"] = state ? state.destroyCloudConfigVdiAfterBoot : undefined;
-            resourceInputs["disks"] = state ? state.disks : undefined;
-            resourceInputs["expNestedHvm"] = state ? state.expNestedHvm : undefined;
-            resourceInputs["highAvailability"] = state ? state.highAvailability : undefined;
-            resourceInputs["host"] = state ? state.host : undefined;
-            resourceInputs["hvmBootFirmware"] = state ? state.hvmBootFirmware : undefined;
-            resourceInputs["installationMethod"] = state ? state.installationMethod : undefined;
-            resourceInputs["ipv4Addresses"] = state ? state.ipv4Addresses : undefined;
-            resourceInputs["ipv6Addresses"] = state ? state.ipv6Addresses : undefined;
-            resourceInputs["memoryMax"] = state ? state.memoryMax : undefined;
-            resourceInputs["memoryMin"] = state ? state.memoryMin : undefined;
-            resourceInputs["nameDescription"] = state ? state.nameDescription : undefined;
-            resourceInputs["nameLabel"] = state ? state.nameLabel : undefined;
-            resourceInputs["networks"] = state ? state.networks : undefined;
-            resourceInputs["powerState"] = state ? state.powerState : undefined;
-            resourceInputs["resourceSet"] = state ? state.resourceSet : undefined;
-            resourceInputs["secureBoot"] = state ? state.secureBoot : undefined;
-            resourceInputs["startDelay"] = state ? state.startDelay : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["template"] = state ? state.template : undefined;
-            resourceInputs["vga"] = state ? state.vga : undefined;
-            resourceInputs["videoram"] = state ? state.videoram : undefined;
-            resourceInputs["xenstore"] = state ? state.xenstore : undefined;
+            resourceInputs["affinityHost"] = state?.affinityHost;
+            resourceInputs["autoPoweron"] = state?.autoPoweron;
+            resourceInputs["blockedOperations"] = state?.blockedOperations;
+            resourceInputs["cdrom"] = state?.cdrom;
+            resourceInputs["cloneType"] = state?.cloneType;
+            resourceInputs["cloudConfig"] = state?.cloudConfig;
+            resourceInputs["cloudNetworkConfig"] = state?.cloudNetworkConfig;
+            resourceInputs["coreOs"] = state?.coreOs;
+            resourceInputs["cpuCap"] = state?.cpuCap;
+            resourceInputs["cpuWeight"] = state?.cpuWeight;
+            resourceInputs["cpus"] = state?.cpus;
+            resourceInputs["destroyCloudConfigVdiAfterBoot"] = state?.destroyCloudConfigVdiAfterBoot;
+            resourceInputs["disks"] = state?.disks;
+            resourceInputs["expNestedHvm"] = state?.expNestedHvm;
+            resourceInputs["highAvailability"] = state?.highAvailability;
+            resourceInputs["host"] = state?.host;
+            resourceInputs["hvmBootFirmware"] = state?.hvmBootFirmware;
+            resourceInputs["installationMethod"] = state?.installationMethod;
+            resourceInputs["ipv4Addresses"] = state?.ipv4Addresses;
+            resourceInputs["ipv6Addresses"] = state?.ipv6Addresses;
+            resourceInputs["memoryMax"] = state?.memoryMax;
+            resourceInputs["memoryMin"] = state?.memoryMin;
+            resourceInputs["nameDescription"] = state?.nameDescription;
+            resourceInputs["nameLabel"] = state?.nameLabel;
+            resourceInputs["networks"] = state?.networks;
+            resourceInputs["powerState"] = state?.powerState;
+            resourceInputs["resourceSet"] = state?.resourceSet;
+            resourceInputs["secureBoot"] = state?.secureBoot;
+            resourceInputs["startDelay"] = state?.startDelay;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["template"] = state?.template;
+            resourceInputs["vga"] = state?.vga;
+            resourceInputs["videoram"] = state?.videoram;
+            resourceInputs["xenstore"] = state?.xenstore;
         } else {
             const args = argsOrState as VmArgs | undefined;
-            if ((!args || args.cpus === undefined) && !opts.urn) {
+            if (args?.cpus === undefined && !opts.urn) {
                 throw new Error("Missing required property 'cpus'");
             }
-            if ((!args || args.disks === undefined) && !opts.urn) {
+            if (args?.disks === undefined && !opts.urn) {
                 throw new Error("Missing required property 'disks'");
             }
-            if ((!args || args.memoryMax === undefined) && !opts.urn) {
+            if (args?.memoryMax === undefined && !opts.urn) {
                 throw new Error("Missing required property 'memoryMax'");
             }
-            if ((!args || args.nameLabel === undefined) && !opts.urn) {
+            if (args?.nameLabel === undefined && !opts.urn) {
                 throw new Error("Missing required property 'nameLabel'");
             }
-            if ((!args || args.networks === undefined) && !opts.urn) {
+            if (args?.networks === undefined && !opts.urn) {
                 throw new Error("Missing required property 'networks'");
             }
-            if ((!args || args.template === undefined) && !opts.urn) {
+            if (args?.template === undefined && !opts.urn) {
                 throw new Error("Missing required property 'template'");
             }
-            resourceInputs["affinityHost"] = args ? args.affinityHost : undefined;
-            resourceInputs["autoPoweron"] = args ? args.autoPoweron : undefined;
-            resourceInputs["blockedOperations"] = args ? args.blockedOperations : undefined;
-            resourceInputs["cdrom"] = args ? args.cdrom : undefined;
-            resourceInputs["cloneType"] = args ? args.cloneType : undefined;
-            resourceInputs["cloudConfig"] = args ? args.cloudConfig : undefined;
-            resourceInputs["cloudNetworkConfig"] = args ? args.cloudNetworkConfig : undefined;
-            resourceInputs["coreOs"] = args ? args.coreOs : undefined;
-            resourceInputs["cpuCap"] = args ? args.cpuCap : undefined;
-            resourceInputs["cpuWeight"] = args ? args.cpuWeight : undefined;
-            resourceInputs["cpus"] = args ? args.cpus : undefined;
-            resourceInputs["destroyCloudConfigVdiAfterBoot"] = args ? args.destroyCloudConfigVdiAfterBoot : undefined;
-            resourceInputs["disks"] = args ? args.disks : undefined;
-            resourceInputs["expNestedHvm"] = args ? args.expNestedHvm : undefined;
-            resourceInputs["highAvailability"] = args ? args.highAvailability : undefined;
-            resourceInputs["host"] = args ? args.host : undefined;
-            resourceInputs["hvmBootFirmware"] = args ? args.hvmBootFirmware : undefined;
-            resourceInputs["installationMethod"] = args ? args.installationMethod : undefined;
-            resourceInputs["memoryMax"] = args ? args.memoryMax : undefined;
-            resourceInputs["memoryMin"] = args ? args.memoryMin : undefined;
-            resourceInputs["nameDescription"] = args ? args.nameDescription : undefined;
-            resourceInputs["nameLabel"] = args ? args.nameLabel : undefined;
-            resourceInputs["networks"] = args ? args.networks : undefined;
-            resourceInputs["powerState"] = args ? args.powerState : undefined;
-            resourceInputs["resourceSet"] = args ? args.resourceSet : undefined;
-            resourceInputs["secureBoot"] = args ? args.secureBoot : undefined;
-            resourceInputs["startDelay"] = args ? args.startDelay : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["template"] = args ? args.template : undefined;
-            resourceInputs["vga"] = args ? args.vga : undefined;
-            resourceInputs["videoram"] = args ? args.videoram : undefined;
-            resourceInputs["xenstore"] = args ? args.xenstore : undefined;
+            resourceInputs["affinityHost"] = args?.affinityHost;
+            resourceInputs["autoPoweron"] = args?.autoPoweron;
+            resourceInputs["blockedOperations"] = args?.blockedOperations;
+            resourceInputs["cdrom"] = args?.cdrom;
+            resourceInputs["cloneType"] = args?.cloneType;
+            resourceInputs["cloudConfig"] = args?.cloudConfig;
+            resourceInputs["cloudNetworkConfig"] = args?.cloudNetworkConfig;
+            resourceInputs["coreOs"] = args?.coreOs;
+            resourceInputs["cpuCap"] = args?.cpuCap;
+            resourceInputs["cpuWeight"] = args?.cpuWeight;
+            resourceInputs["cpus"] = args?.cpus;
+            resourceInputs["destroyCloudConfigVdiAfterBoot"] = args?.destroyCloudConfigVdiAfterBoot;
+            resourceInputs["disks"] = args?.disks;
+            resourceInputs["expNestedHvm"] = args?.expNestedHvm;
+            resourceInputs["highAvailability"] = args?.highAvailability;
+            resourceInputs["host"] = args?.host;
+            resourceInputs["hvmBootFirmware"] = args?.hvmBootFirmware;
+            resourceInputs["installationMethod"] = args?.installationMethod;
+            resourceInputs["memoryMax"] = args?.memoryMax;
+            resourceInputs["memoryMin"] = args?.memoryMin;
+            resourceInputs["nameDescription"] = args?.nameDescription;
+            resourceInputs["nameLabel"] = args?.nameLabel;
+            resourceInputs["networks"] = args?.networks;
+            resourceInputs["powerState"] = args?.powerState;
+            resourceInputs["resourceSet"] = args?.resourceSet;
+            resourceInputs["secureBoot"] = args?.secureBoot;
+            resourceInputs["startDelay"] = args?.startDelay;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["template"] = args?.template;
+            resourceInputs["vga"] = args?.vga;
+            resourceInputs["videoram"] = args?.videoram;
+            resourceInputs["xenstore"] = args?.xenstore;
             resourceInputs["ipv4Addresses"] = undefined /*out*/;
             resourceInputs["ipv6Addresses"] = undefined /*out*/;
         }
@@ -283,8 +279,7 @@ export class Vm extends pulumi.CustomResource {
  */
 export interface VmState {
     /**
-     * The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to
-     * be rescheduled.
+     * The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
      */
     affinityHost?: pulumi.Input<string>;
     /**
@@ -292,44 +287,45 @@ export interface VmState {
      */
     autoPoweron?: pulumi.Input<boolean>;
     /**
-     * List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-     * hard_shutdown, pause, shutdown, suspend, destroy. See:
-     * https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
+     * List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
      */
     blockedOperations?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
-     * from `xe template-list`) and install the OS from the following ISO.
+     * The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO.
      */
     cdrom?: pulumi.Input<inputs.VmCdrom>;
     /**
-     * The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to
-     * perform a `full` clone, the VM template must not be a disk template.
+     * The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
      */
     cloneType?: pulumi.Input<string>;
     /**
-     * The content of the cloud-init config to use. See the cloud init docs for more
-     * [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
+     * The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
      */
     cloudConfig?: pulumi.Input<string>;
     /**
-     * The content of the cloud-init network configuration for the VM (uses [version
-     * 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
+     * The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
      */
     cloudNetworkConfig?: pulumi.Input<string>;
     coreOs?: pulumi.Input<boolean>;
     cpuCap?: pulumi.Input<number>;
     cpuWeight?: pulumi.Input<number>;
     /**
-     * The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is
-     * greater than the max CPU value. This can be determined with the following command: ``` $ xo-cli xo.getAllObjects
-     * filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs' { "max": 4, "number": 2 } # Updating the VM
-     * to use 3 CPUs would happen without stopping/starting the VM # Updating the VM to use 5 CPUs would stop/start the VM ```
+     * The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
+     * ```
+     *
+     * $ xo-cli xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs'
+     * {
+     *   "max": 4,
+     *   "number": 2
+     * }
+     *
+     * # Updating the VM to use 3 CPUs would happen without stopping/starting the VM
+     * # Updating the VM to use 5 CPUs would stop/start the VM
+     * ```
      */
     cpus?: pulumi.Input<number>;
     /**
-     * Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`,
-     * powerState must be set to `Running`.
+     * Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, powerState must be set to `Running`.
      */
     destroyCloudConfigVdiAfterBoot?: pulumi.Input<boolean>;
     /**
@@ -341,8 +337,7 @@ export interface VmState {
      */
     expNestedHvm?: pulumi.Input<boolean>;
     /**
-     * The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure.
-     * Defaults to empty string
+     * The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string
      */
     highAvailability?: pulumi.Input<string>;
     host?: pulumi.Input<string>;
@@ -356,14 +351,11 @@ export interface VmState {
     installationMethod?: pulumi.Input<string>;
     ipv4Addresses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
-     * presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6
-     * addresses across all network interfaces in order.
+     * This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
      */
     ipv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and
-     * start, as it sets both dynamic and static maximums.
+     * The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
      */
     memoryMax?: pulumi.Input<number>;
     /**
@@ -422,8 +414,7 @@ export interface VmState {
  */
 export interface VmArgs {
     /**
-     * The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to
-     * be rescheduled.
+     * The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
      */
     affinityHost?: pulumi.Input<string>;
     /**
@@ -431,44 +422,45 @@ export interface VmArgs {
      */
     autoPoweron?: pulumi.Input<boolean>;
     /**
-     * List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-     * hard_shutdown, pause, shutdown, suspend, destroy. See:
-     * https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
+     * List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
      */
     blockedOperations?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
-     * from `xe template-list`) and install the OS from the following ISO.
+     * The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO.
      */
     cdrom?: pulumi.Input<inputs.VmCdrom>;
     /**
-     * The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to
-     * perform a `full` clone, the VM template must not be a disk template.
+     * The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
      */
     cloneType?: pulumi.Input<string>;
     /**
-     * The content of the cloud-init config to use. See the cloud init docs for more
-     * [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
+     * The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
      */
     cloudConfig?: pulumi.Input<string>;
     /**
-     * The content of the cloud-init network configuration for the VM (uses [version
-     * 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
+     * The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
      */
     cloudNetworkConfig?: pulumi.Input<string>;
     coreOs?: pulumi.Input<boolean>;
     cpuCap?: pulumi.Input<number>;
     cpuWeight?: pulumi.Input<number>;
     /**
-     * The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is
-     * greater than the max CPU value. This can be determined with the following command: ``` $ xo-cli xo.getAllObjects
-     * filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs' { "max": 4, "number": 2 } # Updating the VM
-     * to use 3 CPUs would happen without stopping/starting the VM # Updating the VM to use 5 CPUs would stop/start the VM ```
+     * The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
+     * ```
+     *
+     * $ xo-cli xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs'
+     * {
+     *   "max": 4,
+     *   "number": 2
+     * }
+     *
+     * # Updating the VM to use 3 CPUs would happen without stopping/starting the VM
+     * # Updating the VM to use 5 CPUs would stop/start the VM
+     * ```
      */
     cpus: pulumi.Input<number>;
     /**
-     * Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`,
-     * powerState must be set to `Running`.
+     * Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, powerState must be set to `Running`.
      */
     destroyCloudConfigVdiAfterBoot?: pulumi.Input<boolean>;
     /**
@@ -480,8 +472,7 @@ export interface VmArgs {
      */
     expNestedHvm?: pulumi.Input<boolean>;
     /**
-     * The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure.
-     * Defaults to empty string
+     * The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string
      */
     highAvailability?: pulumi.Input<string>;
     host?: pulumi.Input<string>;
@@ -494,8 +485,7 @@ export interface VmArgs {
      */
     installationMethod?: pulumi.Input<string>;
     /**
-     * The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and
-     * start, as it sets both dynamic and static maximums.
+     * The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
      */
     memoryMax: pulumi.Input<number>;
     /**

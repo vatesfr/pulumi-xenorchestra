@@ -25,15 +25,13 @@ namespace Pulumi.Xenorchestra
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
-        /// If `retry_mode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via
-        /// the `XOA_RETRY_MAX_TIME` environment variable
+        /// If `RetryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable
         /// </summary>
         [Output("retryMaxTime")]
         public Output<string?> RetryMaxTime { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE
-        /// environment variable.
+        /// Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable.
         /// </summary>
         [Output("retryMode")]
         public Output<string?> RetryMode { get; private set; } = null!;
@@ -104,15 +102,13 @@ namespace Pulumi.Xenorchestra
         public Input<string>? Password { get; set; }
 
         /// <summary>
-        /// If `retry_mode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via
-        /// the `XOA_RETRY_MAX_TIME` environment variable
+        /// If `RetryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable
         /// </summary>
         [Input("retryMaxTime")]
         public Input<string>? RetryMaxTime { get; set; }
 
         /// <summary>
-        /// Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE
-        /// environment variable.
+        /// Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable.
         /// </summary>
         [Input("retryMode")]
         public Input<string>? RetryMode { get; set; }

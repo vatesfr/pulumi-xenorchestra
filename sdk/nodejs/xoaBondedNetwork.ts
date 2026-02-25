@@ -87,32 +87,32 @@ export class XoaBondedNetwork extends pulumi.CustomResource {
         return obj['__pulumiType'] === XoaBondedNetwork.__pulumiType;
     }
 
-    public readonly automatic!: pulumi.Output<boolean | undefined>;
+    declare public readonly automatic: pulumi.Output<boolean | undefined>;
     /**
      * The bond mode that should be used for this network.
      */
-    public readonly bondMode!: pulumi.Output<string>;
+    declare public readonly bondMode: pulumi.Output<string>;
     /**
      * This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
      */
-    public readonly defaultIsLocked!: pulumi.Output<boolean | undefined>;
+    declare public readonly defaultIsLocked: pulumi.Output<boolean | undefined>;
     /**
      * The MTU of the network. Defaults to `1500` if unspecified.
      */
-    public readonly mtu!: pulumi.Output<number | undefined>;
-    public readonly nameDescription!: pulumi.Output<string | undefined>;
+    declare public readonly mtu: pulumi.Output<number | undefined>;
+    declare public readonly nameDescription: pulumi.Output<string | undefined>;
     /**
      * The name label of the network.
      */
-    public readonly nameLabel!: pulumi.Output<string>;
+    declare public readonly nameLabel: pulumi.Output<string>;
     /**
      * The PIFs (uuid) that should be used for this network.
      */
-    public readonly pifIds!: pulumi.Output<string[]>;
+    declare public readonly pifIds: pulumi.Output<string[]>;
     /**
      * The pool id that this network should belong to.
      */
-    public readonly poolId!: pulumi.Output<string>;
+    declare public readonly poolId: pulumi.Output<string>;
 
     /**
      * Create a XoaBondedNetwork resource with the given unique name, arguments, and options.
@@ -127,30 +127,30 @@ export class XoaBondedNetwork extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as XoaBondedNetworkState | undefined;
-            resourceInputs["automatic"] = state ? state.automatic : undefined;
-            resourceInputs["bondMode"] = state ? state.bondMode : undefined;
-            resourceInputs["defaultIsLocked"] = state ? state.defaultIsLocked : undefined;
-            resourceInputs["mtu"] = state ? state.mtu : undefined;
-            resourceInputs["nameDescription"] = state ? state.nameDescription : undefined;
-            resourceInputs["nameLabel"] = state ? state.nameLabel : undefined;
-            resourceInputs["pifIds"] = state ? state.pifIds : undefined;
-            resourceInputs["poolId"] = state ? state.poolId : undefined;
+            resourceInputs["automatic"] = state?.automatic;
+            resourceInputs["bondMode"] = state?.bondMode;
+            resourceInputs["defaultIsLocked"] = state?.defaultIsLocked;
+            resourceInputs["mtu"] = state?.mtu;
+            resourceInputs["nameDescription"] = state?.nameDescription;
+            resourceInputs["nameLabel"] = state?.nameLabel;
+            resourceInputs["pifIds"] = state?.pifIds;
+            resourceInputs["poolId"] = state?.poolId;
         } else {
             const args = argsOrState as XoaBondedNetworkArgs | undefined;
-            if ((!args || args.nameLabel === undefined) && !opts.urn) {
+            if (args?.nameLabel === undefined && !opts.urn) {
                 throw new Error("Missing required property 'nameLabel'");
             }
-            if ((!args || args.poolId === undefined) && !opts.urn) {
+            if (args?.poolId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'poolId'");
             }
-            resourceInputs["automatic"] = args ? args.automatic : undefined;
-            resourceInputs["bondMode"] = args ? args.bondMode : undefined;
-            resourceInputs["defaultIsLocked"] = args ? args.defaultIsLocked : undefined;
-            resourceInputs["mtu"] = args ? args.mtu : undefined;
-            resourceInputs["nameDescription"] = args ? args.nameDescription : undefined;
-            resourceInputs["nameLabel"] = args ? args.nameLabel : undefined;
-            resourceInputs["pifIds"] = args ? args.pifIds : undefined;
-            resourceInputs["poolId"] = args ? args.poolId : undefined;
+            resourceInputs["automatic"] = args?.automatic;
+            resourceInputs["bondMode"] = args?.bondMode;
+            resourceInputs["defaultIsLocked"] = args?.defaultIsLocked;
+            resourceInputs["mtu"] = args?.mtu;
+            resourceInputs["nameDescription"] = args?.nameDescription;
+            resourceInputs["nameLabel"] = args?.nameLabel;
+            resourceInputs["pifIds"] = args?.pifIds;
+            resourceInputs["poolId"] = args?.poolId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "xenorchestra:index/bondedNetwork:BondedNetwork" }] };

@@ -56,36 +56,36 @@ export class XoaNetwork extends pulumi.CustomResource {
         return obj['__pulumiType'] === XoaNetwork.__pulumiType;
     }
 
-    public readonly automatic!: pulumi.Output<boolean | undefined>;
+    declare public readonly automatic: pulumi.Output<boolean | undefined>;
     /**
      * This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
      */
-    public readonly defaultIsLocked!: pulumi.Output<boolean | undefined>;
+    declare public readonly defaultIsLocked: pulumi.Output<boolean | undefined>;
     /**
      * The MTU of the network. Defaults to `1500` if unspecified.
      */
-    public readonly mtu!: pulumi.Output<number | undefined>;
-    public readonly nameDescription!: pulumi.Output<string | undefined>;
+    declare public readonly mtu: pulumi.Output<number | undefined>;
+    declare public readonly nameDescription: pulumi.Output<string | undefined>;
     /**
      * The name label of the network.
      */
-    public readonly nameLabel!: pulumi.Output<string>;
+    declare public readonly nameLabel: pulumi.Output<string>;
     /**
      * Whether the network should use a network block device. Defaults to `false` if unspecified.
      */
-    public readonly nbd!: pulumi.Output<boolean | undefined>;
+    declare public readonly nbd: pulumi.Output<boolean | undefined>;
     /**
      * The pool id that this network should belong to.
      */
-    public readonly poolId!: pulumi.Output<string>;
+    declare public readonly poolId: pulumi.Output<string>;
     /**
      * The PIF device (eth0, eth1, etc) that will be used as an input during network creation. This parameter is required if a vlan is specified.
      */
-    public readonly sourcePifDevice!: pulumi.Output<string | undefined>;
+    declare public readonly sourcePifDevice: pulumi.Output<string | undefined>;
     /**
      * The vlan to use for the network. Defaults to `0` meaning no VLAN.
      */
-    public readonly vlan!: pulumi.Output<number | undefined>;
+    declare public readonly vlan: pulumi.Output<number | undefined>;
 
     /**
      * Create a XoaNetwork resource with the given unique name, arguments, and options.
@@ -100,32 +100,32 @@ export class XoaNetwork extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as XoaNetworkState | undefined;
-            resourceInputs["automatic"] = state ? state.automatic : undefined;
-            resourceInputs["defaultIsLocked"] = state ? state.defaultIsLocked : undefined;
-            resourceInputs["mtu"] = state ? state.mtu : undefined;
-            resourceInputs["nameDescription"] = state ? state.nameDescription : undefined;
-            resourceInputs["nameLabel"] = state ? state.nameLabel : undefined;
-            resourceInputs["nbd"] = state ? state.nbd : undefined;
-            resourceInputs["poolId"] = state ? state.poolId : undefined;
-            resourceInputs["sourcePifDevice"] = state ? state.sourcePifDevice : undefined;
-            resourceInputs["vlan"] = state ? state.vlan : undefined;
+            resourceInputs["automatic"] = state?.automatic;
+            resourceInputs["defaultIsLocked"] = state?.defaultIsLocked;
+            resourceInputs["mtu"] = state?.mtu;
+            resourceInputs["nameDescription"] = state?.nameDescription;
+            resourceInputs["nameLabel"] = state?.nameLabel;
+            resourceInputs["nbd"] = state?.nbd;
+            resourceInputs["poolId"] = state?.poolId;
+            resourceInputs["sourcePifDevice"] = state?.sourcePifDevice;
+            resourceInputs["vlan"] = state?.vlan;
         } else {
             const args = argsOrState as XoaNetworkArgs | undefined;
-            if ((!args || args.nameLabel === undefined) && !opts.urn) {
+            if (args?.nameLabel === undefined && !opts.urn) {
                 throw new Error("Missing required property 'nameLabel'");
             }
-            if ((!args || args.poolId === undefined) && !opts.urn) {
+            if (args?.poolId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'poolId'");
             }
-            resourceInputs["automatic"] = args ? args.automatic : undefined;
-            resourceInputs["defaultIsLocked"] = args ? args.defaultIsLocked : undefined;
-            resourceInputs["mtu"] = args ? args.mtu : undefined;
-            resourceInputs["nameDescription"] = args ? args.nameDescription : undefined;
-            resourceInputs["nameLabel"] = args ? args.nameLabel : undefined;
-            resourceInputs["nbd"] = args ? args.nbd : undefined;
-            resourceInputs["poolId"] = args ? args.poolId : undefined;
-            resourceInputs["sourcePifDevice"] = args ? args.sourcePifDevice : undefined;
-            resourceInputs["vlan"] = args ? args.vlan : undefined;
+            resourceInputs["automatic"] = args?.automatic;
+            resourceInputs["defaultIsLocked"] = args?.defaultIsLocked;
+            resourceInputs["mtu"] = args?.mtu;
+            resourceInputs["nameDescription"] = args?.nameDescription;
+            resourceInputs["nameLabel"] = args?.nameLabel;
+            resourceInputs["nbd"] = args?.nbd;
+            resourceInputs["poolId"] = args?.poolId;
+            resourceInputs["sourcePifDevice"] = args?.sourcePifDevice;
+            resourceInputs["vlan"] = args?.vlan;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "xenorchestra:index/network:Network" }] };

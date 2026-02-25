@@ -6,6 +6,16 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as xenorchestra from "@vates/pulumi-xenorchestra";
+ *
+ * const vdi = xenorchestra.getXoaVdi({
+ *     nameLabel: "ubuntu-20.04.4-live-server-amd64.iso",
+ * });
+ * const demo_vm = new xenorchestra.Vm("demo-vm", {cdrom: vdi.then(vdi => vdi.id?.[0])});
+ * ```
  */
 export function getXoaVdi(args?: GetXoaVdiArgs, opts?: pulumi.InvokeOptions): Promise<GetXoaVdiResult> {
     args = args || {};
@@ -67,6 +77,16 @@ export interface GetXoaVdiResult {
 }
 /**
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as xenorchestra from "@vates/pulumi-xenorchestra";
+ *
+ * const vdi = xenorchestra.getXoaVdi({
+ *     nameLabel: "ubuntu-20.04.4-live-server-amd64.iso",
+ * });
+ * const demo_vm = new xenorchestra.Vm("demo-vm", {cdrom: vdi.then(vdi => vdi.id?.[0])});
+ * ```
  */
 export function getXoaVdiOutput(args?: GetXoaVdiOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetXoaVdiResult> {
     args = args || {};

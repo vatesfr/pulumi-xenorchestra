@@ -13,18 +13,81 @@ namespace Pulumi.Xenorchestra
     {
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Xenorchestra = Pulumi.Xenorchestra;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var vdi = Xenorchestra.GetXoaVdi.Invoke(new()
+        ///     {
+        ///         NameLabel = "ubuntu-20.04.4-live-server-amd64.iso",
+        ///     });
+        /// 
+        ///     var demo_vm = new Xenorchestra.Vm("demo-vm", new()
+        ///     {
+        ///         Cdrom = vdi.Apply(getXoaVdiResult =&gt; getXoaVdiResult.Id[0]),
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetXoaVdiResult> InvokeAsync(GetXoaVdiArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetXoaVdiResult>("xenorchestra:index/getXoaVdi:getXoaVdi", args ?? new GetXoaVdiArgs(), options.WithDefaults());
 
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Xenorchestra = Pulumi.Xenorchestra;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var vdi = Xenorchestra.GetXoaVdi.Invoke(new()
+        ///     {
+        ///         NameLabel = "ubuntu-20.04.4-live-server-amd64.iso",
+        ///     });
+        /// 
+        ///     var demo_vm = new Xenorchestra.Vm("demo-vm", new()
+        ///     {
+        ///         Cdrom = vdi.Apply(getXoaVdiResult =&gt; getXoaVdiResult.Id[0]),
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetXoaVdiResult> Invoke(GetXoaVdiInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetXoaVdiResult>("xenorchestra:index/getXoaVdi:getXoaVdi", args ?? new GetXoaVdiInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Xenorchestra = Pulumi.Xenorchestra;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var vdi = Xenorchestra.GetXoaVdi.Invoke(new()
+        ///     {
+        ///         NameLabel = "ubuntu-20.04.4-live-server-amd64.iso",
+        ///     });
+        /// 
+        ///     var demo_vm = new Xenorchestra.Vm("demo-vm", new()
+        ///     {
+        ///         Cdrom = vdi.Apply(getXoaVdiResult =&gt; getXoaVdiResult.Id[0]),
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetXoaVdiResult> Invoke(GetXoaVdiInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetXoaVdiResult>("xenorchestra:index/getXoaVdi:getXoaVdi", args ?? new GetXoaVdiInvokeArgs(), options.WithDefaults());

@@ -51,31 +51,31 @@
         "variables": {
             "insecure": {
                 "type": "boolean",
-                "description": "Whether SSL should be verified or not. Can be set via the XOA_INSECURE environment variable.\n"
+                "description": "Whether SSL should be verified or not. Can be set via the XOA_INSECURE environment variable."
             },
             "password": {
                 "type": "string",
-                "description": "Password for xoa api. Can be set via the XOA_PASSWORD environment variable.\n"
+                "description": "Password for xoa api. Can be set via the XOA_PASSWORD environment variable."
             },
             "retryMaxTime": {
                 "type": "string",
-                "description": "If `retry_mode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via\nthe `XOA_RETRY_MAX_TIME` environment variable\n"
+                "description": "If \u003cspan pulumi-lang-nodejs=\"`retryMode`\" pulumi-lang-dotnet=\"`RetryMode`\" pulumi-lang-go=\"`retryMode`\" pulumi-lang-python=\"`retry_mode`\" pulumi-lang-yaml=\"`retryMode`\" pulumi-lang-java=\"`retryMode`\"\u003e`retry_mode`\u003c/span\u003e is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable"
             },
             "retryMode": {
                 "type": "string",
-                "description": "Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE\nenvironment variable.\n"
+                "description": "Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable."
             },
             "token": {
                 "type": "string",
-                "description": "Password for xoa api. Can be set via the XOA_TOKEN environment variable.\n"
+                "description": "Password for xoa api. Can be set via the XOA_TOKEN environment variable."
             },
             "url": {
                 "type": "string",
-                "description": "Hostname of the xoa router. Can be set via the XOA_URL environment variable.\n"
+                "description": "Hostname of the xoa router. Can be set via the XOA_URL environment variable."
             },
             "username": {
                 "type": "string",
-                "description": "User account for xoa api. Can be set via the XOA_USER environment variable.\n"
+                "description": "User account for xoa api. Can be set via the XOA_USER environment variable."
             }
         },
         "defaults": [
@@ -104,7 +104,7 @@
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "The ID of the ISO (VDI) to attach to the VM. This can be easily provided by using the `vdi` data source.\n"
+                    "description": "The ID of the ISO (VDI) to attach to the VM. This can be easily provided by using the \u003cspan pulumi-lang-nodejs=\"`vdi`\" pulumi-lang-dotnet=\"`Vdi`\" pulumi-lang-go=\"`vdi`\" pulumi-lang-python=\"`vdi`\" pulumi-lang-yaml=\"`vdi`\" pulumi-lang-java=\"`vdi`\"\u003e`vdi`\u003c/span\u003e data source.\n"
                 }
             },
             "type": "object",
@@ -175,7 +175,7 @@
                 },
                 "expectedIpCidr": {
                     "type": "string",
-                    "description": "Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `wait_for_ip` functionality. This only works if guest-tools are installed in the VM. Defaults to \"\", which skips IP address matching.\n"
+                    "description": "Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former \u003cspan pulumi-lang-nodejs=\"`waitForIp`\" pulumi-lang-dotnet=\"`WaitForIp`\" pulumi-lang-go=\"`waitForIp`\" pulumi-lang-python=\"`wait_for_ip`\" pulumi-lang-yaml=\"`waitForIp`\" pulumi-lang-java=\"`waitForIp`\"\u003e`wait_for_ip`\u003c/span\u003e functionality. This only works if guest-tools are installed in the VM. Defaults to \"\", which skips IP address matching.\n"
                 },
                 "ipv4Addresses": {
                     "type": "array",
@@ -272,7 +272,7 @@
                 },
                 "autoPoweron": {
                     "type": "boolean",
-                    "description": "If the VM will automatically turn on. Defaults to `false`.\n"
+                    "description": "If the VM will automatically turn on. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
                 },
                 "blockedOperations": {
                     "type": "array",
@@ -283,7 +283,7 @@
                 },
                 "cloneType": {
                     "type": "string",
-                    "description": "The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.\n"
+                    "description": "The type of clone to perform for the VM. Possible values include \u003cspan pulumi-lang-nodejs=\"`fast`\" pulumi-lang-dotnet=\"`Fast`\" pulumi-lang-go=\"`fast`\" pulumi-lang-python=\"`fast`\" pulumi-lang-yaml=\"`fast`\" pulumi-lang-java=\"`fast`\"\u003e`fast`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`full`\" pulumi-lang-dotnet=\"`Full`\" pulumi-lang-go=\"`full`\" pulumi-lang-python=\"`full`\" pulumi-lang-yaml=\"`full`\" pulumi-lang-java=\"`full`\"\u003e`full`\u003c/span\u003e and defaults to \u003cspan pulumi-lang-nodejs=\"`fast`\" pulumi-lang-dotnet=\"`Fast`\" pulumi-lang-go=\"`fast`\" pulumi-lang-python=\"`fast`\" pulumi-lang-yaml=\"`fast`\" pulumi-lang-java=\"`fast`\"\u003e`fast`\u003c/span\u003e. In order to perform a \u003cspan pulumi-lang-nodejs=\"`full`\" pulumi-lang-dotnet=\"`Full`\" pulumi-lang-go=\"`full`\" pulumi-lang-python=\"`full`\" pulumi-lang-yaml=\"`full`\" pulumi-lang-java=\"`full`\"\u003e`full`\u003c/span\u003e clone, the VM template must not be a disk template.\n"
                 },
                 "cloudConfig": {
                     "type": "string",
@@ -319,14 +319,14 @@
                 },
                 "highAvailability": {
                     "type": "string",
-                    "description": "The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string\n"
+                    "description": "The restart priority for the VM. Possible values are `best-effort`, \u003cspan pulumi-lang-nodejs=\"`restart`\" pulumi-lang-dotnet=\"`Restart`\" pulumi-lang-go=\"`restart`\" pulumi-lang-python=\"`restart`\" pulumi-lang-yaml=\"`restart`\" pulumi-lang-java=\"`restart`\"\u003e`restart`\u003c/span\u003e and empty string (no restarts on failure. Defaults to empty string\n"
                 },
                 "host": {
                     "type": "string"
                 },
                 "hvmBootFirmware": {
                     "type": "string",
-                    "description": "The firmware to use for the VM. Possible values are `bios` and `uefi`.\n"
+                    "description": "The firmware to use for the VM. Possible values are \u003cspan pulumi-lang-nodejs=\"`bios`\" pulumi-lang-dotnet=\"`Bios`\" pulumi-lang-go=\"`bios`\" pulumi-lang-python=\"`bios`\" pulumi-lang-yaml=\"`bios`\" pulumi-lang-java=\"`bios`\"\u003e`bios`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`uefi`\" pulumi-lang-dotnet=\"`Uefi`\" pulumi-lang-go=\"`uefi`\" pulumi-lang-python=\"`uefi`\" pulumi-lang-yaml=\"`uefi`\" pulumi-lang-java=\"`uefi`\"\u003e`uefi`\u003c/span\u003e.\n"
                 },
                 "id": {
                     "type": "string"
@@ -342,7 +342,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.\n"
+                    "description": "This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if \u003cspan pulumi-lang-nodejs=\"`expectedIpCidr`\" pulumi-lang-dotnet=\"`ExpectedIpCidr`\" pulumi-lang-go=\"`expectedIpCidr`\" pulumi-lang-python=\"`expected_ip_cidr`\" pulumi-lang-yaml=\"`expectedIpCidr`\" pulumi-lang-java=\"`expectedIpCidr`\"\u003e`expected_ip_cidr`\u003c/span\u003e is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.\n"
                 },
                 "memoryMax": {
                     "type": "integer",
@@ -350,7 +350,7 @@
                 },
                 "memoryMin": {
                     "type": "integer",
-                    "description": "The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.\n"
+                    "description": "The amount of memory in bytes the VM will have. Set this value equal to\u003cspan pulumi-lang-nodejs=\" memoryMax \" pulumi-lang-dotnet=\" MemoryMax \" pulumi-lang-go=\" memoryMax \" pulumi-lang-python=\" memory_max \" pulumi-lang-yaml=\" memoryMax \" pulumi-lang-java=\" memoryMax \"\u003e memory_max \u003c/span\u003eto have a static memory.\n"
                 },
                 "nameDescription": {
                     "type": "string",
@@ -487,7 +487,7 @@
                 },
                 "expectedIpCidr": {
                     "type": "string",
-                    "description": "Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `wait_for_ip` functionality. This only works if guest-tools are installed in the VM. Defaults to \"\", which skips IP address matching.\n"
+                    "description": "Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former \u003cspan pulumi-lang-nodejs=\"`waitForIp`\" pulumi-lang-dotnet=\"`WaitForIp`\" pulumi-lang-go=\"`waitForIp`\" pulumi-lang-python=\"`wait_for_ip`\" pulumi-lang-yaml=\"`waitForIp`\" pulumi-lang-java=\"`waitForIp`\"\u003e`wait_for_ip`\u003c/span\u003e functionality. This only works if guest-tools are installed in the VM. Defaults to \"\", which skips IP address matching.\n"
                 },
                 "ipv4Addresses": {
                     "type": "array",
@@ -529,61 +529,61 @@
         "properties": {
             "insecure": {
                 "type": "boolean",
-                "description": "Whether SSL should be verified or not. Can be set via the XOA_INSECURE environment variable.\n"
+                "description": "Whether SSL should be verified or not. Can be set via the XOA_INSECURE environment variable."
             },
             "password": {
                 "type": "string",
-                "description": "Password for xoa api. Can be set via the XOA_PASSWORD environment variable.\n"
+                "description": "Password for xoa api. Can be set via the XOA_PASSWORD environment variable."
             },
             "retryMaxTime": {
                 "type": "string",
-                "description": "If `retry_mode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via\nthe `XOA_RETRY_MAX_TIME` environment variable\n"
+                "description": "If \u003cspan pulumi-lang-nodejs=\"`retryMode`\" pulumi-lang-dotnet=\"`RetryMode`\" pulumi-lang-go=\"`retryMode`\" pulumi-lang-python=\"`retry_mode`\" pulumi-lang-yaml=\"`retryMode`\" pulumi-lang-java=\"`retryMode`\"\u003e`retry_mode`\u003c/span\u003e is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable"
             },
             "retryMode": {
                 "type": "string",
-                "description": "Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE\nenvironment variable.\n"
+                "description": "Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable."
             },
             "token": {
                 "type": "string",
-                "description": "Password for xoa api. Can be set via the XOA_TOKEN environment variable.\n"
+                "description": "Password for xoa api. Can be set via the XOA_TOKEN environment variable."
             },
             "url": {
                 "type": "string",
-                "description": "Hostname of the xoa router. Can be set via the XOA_URL environment variable.\n"
+                "description": "Hostname of the xoa router. Can be set via the XOA_URL environment variable."
             },
             "username": {
                 "type": "string",
-                "description": "User account for xoa api. Can be set via the XOA_USER environment variable.\n"
+                "description": "User account for xoa api. Can be set via the XOA_USER environment variable."
             }
         },
         "inputProperties": {
             "insecure": {
                 "type": "boolean",
-                "description": "Whether SSL should be verified or not. Can be set via the XOA_INSECURE environment variable.\n"
+                "description": "Whether SSL should be verified or not. Can be set via the XOA_INSECURE environment variable."
             },
             "password": {
                 "type": "string",
-                "description": "Password for xoa api. Can be set via the XOA_PASSWORD environment variable.\n"
+                "description": "Password for xoa api. Can be set via the XOA_PASSWORD environment variable."
             },
             "retryMaxTime": {
                 "type": "string",
-                "description": "If `retry_mode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via\nthe `XOA_RETRY_MAX_TIME` environment variable\n"
+                "description": "If \u003cspan pulumi-lang-nodejs=\"`retryMode`\" pulumi-lang-dotnet=\"`RetryMode`\" pulumi-lang-go=\"`retryMode`\" pulumi-lang-python=\"`retry_mode`\" pulumi-lang-yaml=\"`retryMode`\" pulumi-lang-java=\"`retryMode`\"\u003e`retry_mode`\u003c/span\u003e is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable"
             },
             "retryMode": {
                 "type": "string",
-                "description": "Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE\nenvironment variable.\n"
+                "description": "Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable."
             },
             "token": {
                 "type": "string",
-                "description": "Password for xoa api. Can be set via the XOA_TOKEN environment variable.\n"
+                "description": "Password for xoa api. Can be set via the XOA_TOKEN environment variable."
             },
             "url": {
                 "type": "string",
-                "description": "Hostname of the xoa router. Can be set via the XOA_URL environment variable.\n"
+                "description": "Hostname of the xoa router. Can be set via the XOA_URL environment variable."
             },
             "username": {
                 "type": "string",
-                "description": "User account for xoa api. Can be set via the XOA_USER environment variable.\n"
+                "description": "User account for xoa api. Can be set via the XOA_USER environment variable."
             }
         },
         "methods": {
@@ -816,7 +816,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Only `raw` uploads are supported today, but vhd support may be added in the future.\n"
+                    "description": "Only \u003cspan pulumi-lang-nodejs=\"`raw`\" pulumi-lang-dotnet=\"`Raw`\" pulumi-lang-go=\"`raw`\" pulumi-lang-python=\"`raw`\" pulumi-lang-yaml=\"`raw`\" pulumi-lang-java=\"`raw`\"\u003e`raw`\u003c/span\u003e uploads are supported today, but vhd support may be added in the future.\n"
                 }
             },
             "required": [
@@ -842,7 +842,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Only `raw` uploads are supported today, but vhd support may be added in the future.\n"
+                    "description": "Only \u003cspan pulumi-lang-nodejs=\"`raw`\" pulumi-lang-dotnet=\"`Raw`\" pulumi-lang-go=\"`raw`\" pulumi-lang-python=\"`raw`\" pulumi-lang-yaml=\"`raw`\" pulumi-lang-java=\"`raw`\"\u003e`raw`\u003c/span\u003e uploads are supported today, but vhd support may be added in the future.\n"
                 }
             },
             "requiredInputs": [
@@ -870,7 +870,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "Only `raw` uploads are supported today, but vhd support may be added in the future.\n"
+                        "description": "Only \u003cspan pulumi-lang-nodejs=\"`raw`\" pulumi-lang-dotnet=\"`Raw`\" pulumi-lang-go=\"`raw`\" pulumi-lang-python=\"`raw`\" pulumi-lang-yaml=\"`raw`\" pulumi-lang-java=\"`raw`\"\u003e`raw`\u003c/span\u003e uploads are supported today, but vhd support may be added in the future.\n"
                     }
                 },
                 "type": "object"
@@ -881,34 +881,34 @@
             "properties": {
                 "affinityHost": {
                     "type": "string",
-                    "description": "The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to\nbe rescheduled.\n"
+                    "description": "The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled."
                 },
                 "autoPoweron": {
                     "type": "boolean",
-                    "description": "If the VM will automatically turn on. Defaults to `false`.\n"
+                    "description": "If the VM will automatically turn on. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e."
                 },
                 "blockedOperations": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,\nhard_shutdown, pause, shutdown, suspend, destroy. See:\nhttps://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations\n"
+                    "description": "List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations"
                 },
                 "cdrom": {
                     "$ref": "#/types/xenorchestra:index/VmCdrom:VmCdrom",
-                    "description": "The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available\nfrom `xe template-list`) and install the OS from the following ISO.\n"
+                    "description": "The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO."
                 },
                 "cloneType": {
                     "type": "string",
-                    "description": "The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to\nperform a `full` clone, the VM template must not be a disk template.\n"
+                    "description": "The type of clone to perform for the VM. Possible values include \u003cspan pulumi-lang-nodejs=\"`fast`\" pulumi-lang-dotnet=\"`Fast`\" pulumi-lang-go=\"`fast`\" pulumi-lang-python=\"`fast`\" pulumi-lang-yaml=\"`fast`\" pulumi-lang-java=\"`fast`\"\u003e`fast`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`full`\" pulumi-lang-dotnet=\"`Full`\" pulumi-lang-go=\"`full`\" pulumi-lang-python=\"`full`\" pulumi-lang-yaml=\"`full`\" pulumi-lang-java=\"`full`\"\u003e`full`\u003c/span\u003e and defaults to \u003cspan pulumi-lang-nodejs=\"`fast`\" pulumi-lang-dotnet=\"`Fast`\" pulumi-lang-go=\"`fast`\" pulumi-lang-python=\"`fast`\" pulumi-lang-yaml=\"`fast`\" pulumi-lang-java=\"`fast`\"\u003e`fast`\u003c/span\u003e. In order to perform a \u003cspan pulumi-lang-nodejs=\"`full`\" pulumi-lang-dotnet=\"`Full`\" pulumi-lang-go=\"`full`\" pulumi-lang-python=\"`full`\" pulumi-lang-yaml=\"`full`\" pulumi-lang-java=\"`full`\"\u003e`full`\u003c/span\u003e clone, the VM template must not be a disk template."
                 },
                 "cloudConfig": {
                     "type": "string",
-                    "description": "The content of the cloud-init config to use. See the cloud init docs for more\n[information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).\n"
+                    "description": "The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html)."
                 },
                 "cloudNetworkConfig": {
                     "type": "string",
-                    "description": "The content of the cloud-init network configuration for the VM (uses [version\n1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))\n"
+                    "description": "The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))"
                 },
                 "coreOs": {
                     "type": "boolean"
@@ -921,37 +921,37 @@
                 },
                 "cpus": {
                     "type": "integer",
-                    "description": "The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is\ngreater than the max CPU value. This can be determined with the following command: ``` $ xo-cli xo.getAllObjects\nfilter='json:{\"id\": \"cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8\"}' | jq '.[].CPUs' { \"max\": 4, \"number\": 2 } # Updating the VM\nto use 3 CPUs would happen without stopping/starting the VM # Updating the VM to use 5 CPUs would stop/start the VM ```\n"
+                    "description": "The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:\n```\n\n$ xo-cli xo.getAllObjects filter='json:{\"id\": \"cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8\"}' | jq '.[].CPUs'\n{\n  \"max\": 4,\n  \"number\": 2\n}\n\n# Updating the VM to use 3 CPUs would happen without stopping/starting the VM\n# Updating the VM to use 5 CPUs would stop/start the VM\n```"
                 },
                 "destroyCloudConfigVdiAfterBoot": {
                     "type": "boolean",
-                    "description": "Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`,\npower_state must be set to `Running`.\n"
+                    "description": "Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e. If set to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e,\u003cspan pulumi-lang-nodejs=\" powerState \" pulumi-lang-dotnet=\" PowerState \" pulumi-lang-go=\" powerState \" pulumi-lang-python=\" power_state \" pulumi-lang-yaml=\" powerState \" pulumi-lang-java=\" powerState \"\u003e power_state \u003c/span\u003emust be set to `Running`."
                 },
                 "disks": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/xenorchestra:index/VmDisk:VmDisk"
                     },
-                    "description": "The disk the VM will have access to.\n"
+                    "description": "The disk the VM will have access to."
                 },
                 "expNestedHvm": {
                     "type": "boolean",
-                    "description": "Boolean parameter that allows a VM to use nested virtualization.\n"
+                    "description": "Boolean parameter that allows a VM to use nested virtualization."
                 },
                 "highAvailability": {
                     "type": "string",
-                    "description": "The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure.\nDefaults to empty string\n"
+                    "description": "The restart priority for the VM. Possible values are `best-effort`, \u003cspan pulumi-lang-nodejs=\"`restart`\" pulumi-lang-dotnet=\"`Restart`\" pulumi-lang-go=\"`restart`\" pulumi-lang-python=\"`restart`\" pulumi-lang-yaml=\"`restart`\" pulumi-lang-java=\"`restart`\"\u003e`restart`\u003c/span\u003e and empty string (no restarts on failure. Defaults to empty string"
                 },
                 "host": {
                     "type": "string"
                 },
                 "hvmBootFirmware": {
                     "type": "string",
-                    "description": "The firmware to use for the VM. Possible values are `bios` and `uefi`.\n"
+                    "description": "The firmware to use for the VM. Possible values are \u003cspan pulumi-lang-nodejs=\"`bios`\" pulumi-lang-dotnet=\"`Bios`\" pulumi-lang-go=\"`bios`\" pulumi-lang-python=\"`bios`\" pulumi-lang-yaml=\"`bios`\" pulumi-lang-java=\"`bios`\"\u003e`bios`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`uefi`\" pulumi-lang-dotnet=\"`Uefi`\" pulumi-lang-go=\"`uefi`\" pulumi-lang-python=\"`uefi`\" pulumi-lang-yaml=\"`uefi`\" pulumi-lang-java=\"`uefi`\"\u003e`uefi`\u003c/span\u003e."
                 },
                 "installationMethod": {
                     "type": "string",
-                    "description": "This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.\n"
+                    "description": "This cannot be used with \u003cspan pulumi-lang-nodejs=\"`cdrom`\" pulumi-lang-dotnet=\"`Cdrom`\" pulumi-lang-go=\"`cdrom`\" pulumi-lang-python=\"`cdrom`\" pulumi-lang-yaml=\"`cdrom`\" pulumi-lang-java=\"`cdrom`\"\u003e`cdrom`\u003c/span\u003e. Possible values are \u003cspan pulumi-lang-nodejs=\"`network`\" pulumi-lang-dotnet=\"`Network`\" pulumi-lang-go=\"`network`\" pulumi-lang-python=\"`network`\" pulumi-lang-yaml=\"`network`\" pulumi-lang-java=\"`network`\"\u003e`network`\u003c/span\u003e which allows a VM to boot via PXE."
                 },
                 "ipv4Addresses": {
                     "type": "array",
@@ -964,71 +964,71 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the\npresence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6\naddresses across all network interfaces in order.\n"
+                    "description": "This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if \u003cspan pulumi-lang-nodejs=\"`expectedIpCidr`\" pulumi-lang-dotnet=\"`ExpectedIpCidr`\" pulumi-lang-go=\"`expectedIpCidr`\" pulumi-lang-python=\"`expected_ip_cidr`\" pulumi-lang-yaml=\"`expectedIpCidr`\" pulumi-lang-java=\"`expectedIpCidr`\"\u003e`expected_ip_cidr`\u003c/span\u003e is set for that interface. The list contains the ipv6 addresses across all network interfaces in order."
                 },
                 "memoryMax": {
                     "type": "number",
-                    "description": "The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and\nstart, as it sets both dynamic and static maximums.\n"
+                    "description": "The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums."
                 },
                 "memoryMin": {
                     "type": "integer",
-                    "description": "The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.\n"
+                    "description": "The amount of memory in bytes the VM will have. Set this value equal to\u003cspan pulumi-lang-nodejs=\" memoryMax \" pulumi-lang-dotnet=\" MemoryMax \" pulumi-lang-go=\" memoryMax \" pulumi-lang-python=\" memory_max \" pulumi-lang-yaml=\" memoryMax \" pulumi-lang-java=\" memoryMax \"\u003e memory_max \u003c/span\u003eto have a static memory."
                 },
                 "nameDescription": {
                     "type": "string",
-                    "description": "The description of the VM.\n"
+                    "description": "The description of the VM."
                 },
                 "nameLabel": {
                     "type": "string",
-                    "description": "The name of the VM.\n"
+                    "description": "The name of the VM."
                 },
                 "networks": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/xenorchestra:index/VmNetwork:VmNetwork"
                     },
-                    "description": "The network for the VM.\n"
+                    "description": "The network for the VM."
                 },
                 "powerState": {
                     "type": "string",
-                    "description": "The power state of the VM. This can be Running, Halted, Paused or Suspended.\n"
+                    "description": "The power state of the VM. This can be Running, Halted, Paused or Suspended."
                 },
                 "resourceSet": {
                     "type": "string"
                 },
                 "secureBoot": {
                     "type": "boolean",
-                    "description": "Enable UEFI secure boot for the VM.\n"
+                    "description": "Enable UEFI secure boot for the VM."
                 },
                 "startDelay": {
                     "type": "integer",
-                    "description": "Number of seconds the VM should be delayed from starting.\n"
+                    "description": "Number of seconds the VM should be delayed from starting."
                 },
                 "tags": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "The tags (labels) applied to the given entity. Not used for filtering if empty.\n"
+                    "description": "The tags (labels) applied to the given entity. Not used for filtering if empty."
                 },
                 "template": {
                     "type": "string",
-                    "description": "The ID of the VM template to create the new VM from.\n"
+                    "description": "The ID of the VM template to create the new VM from."
                 },
                 "vga": {
                     "type": "string",
-                    "description": "The video adapter the VM should use. Possible values include std and cirrus.\n"
+                    "description": "The video adapter the VM should use. Possible values include std and cirrus."
                 },
                 "videoram": {
                     "type": "integer",
-                    "description": "The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16\n"
+                    "description": "The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16"
                 },
                 "xenstore": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "The key value pairs to be populated in xenstore.\n"
+                    "description": "The key value pairs to be populated in xenstore."
                 }
             },
             "required": [
@@ -1045,34 +1045,34 @@
             "inputProperties": {
                 "affinityHost": {
                     "type": "string",
-                    "description": "The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to\nbe rescheduled.\n"
+                    "description": "The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled."
                 },
                 "autoPoweron": {
                     "type": "boolean",
-                    "description": "If the VM will automatically turn on. Defaults to `false`.\n"
+                    "description": "If the VM will automatically turn on. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e."
                 },
                 "blockedOperations": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,\nhard_shutdown, pause, shutdown, suspend, destroy. See:\nhttps://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations\n"
+                    "description": "List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations"
                 },
                 "cdrom": {
                     "$ref": "#/types/xenorchestra:index/VmCdrom:VmCdrom",
-                    "description": "The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available\nfrom `xe template-list`) and install the OS from the following ISO.\n"
+                    "description": "The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO."
                 },
                 "cloneType": {
                     "type": "string",
-                    "description": "The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to\nperform a `full` clone, the VM template must not be a disk template.\n"
+                    "description": "The type of clone to perform for the VM. Possible values include \u003cspan pulumi-lang-nodejs=\"`fast`\" pulumi-lang-dotnet=\"`Fast`\" pulumi-lang-go=\"`fast`\" pulumi-lang-python=\"`fast`\" pulumi-lang-yaml=\"`fast`\" pulumi-lang-java=\"`fast`\"\u003e`fast`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`full`\" pulumi-lang-dotnet=\"`Full`\" pulumi-lang-go=\"`full`\" pulumi-lang-python=\"`full`\" pulumi-lang-yaml=\"`full`\" pulumi-lang-java=\"`full`\"\u003e`full`\u003c/span\u003e and defaults to \u003cspan pulumi-lang-nodejs=\"`fast`\" pulumi-lang-dotnet=\"`Fast`\" pulumi-lang-go=\"`fast`\" pulumi-lang-python=\"`fast`\" pulumi-lang-yaml=\"`fast`\" pulumi-lang-java=\"`fast`\"\u003e`fast`\u003c/span\u003e. In order to perform a \u003cspan pulumi-lang-nodejs=\"`full`\" pulumi-lang-dotnet=\"`Full`\" pulumi-lang-go=\"`full`\" pulumi-lang-python=\"`full`\" pulumi-lang-yaml=\"`full`\" pulumi-lang-java=\"`full`\"\u003e`full`\u003c/span\u003e clone, the VM template must not be a disk template."
                 },
                 "cloudConfig": {
                     "type": "string",
-                    "description": "The content of the cloud-init config to use. See the cloud init docs for more\n[information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).\n"
+                    "description": "The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html)."
                 },
                 "cloudNetworkConfig": {
                     "type": "string",
-                    "description": "The content of the cloud-init network configuration for the VM (uses [version\n1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))\n"
+                    "description": "The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))"
                 },
                 "coreOs": {
                     "type": "boolean"
@@ -1085,11 +1085,11 @@
                 },
                 "cpus": {
                     "type": "integer",
-                    "description": "The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is\ngreater than the max CPU value. This can be determined with the following command: ``` $ xo-cli xo.getAllObjects\nfilter='json:{\"id\": \"cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8\"}' | jq '.[].CPUs' { \"max\": 4, \"number\": 2 } # Updating the VM\nto use 3 CPUs would happen without stopping/starting the VM # Updating the VM to use 5 CPUs would stop/start the VM ```\n"
+                    "description": "The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:\n```\n\n$ xo-cli xo.getAllObjects filter='json:{\"id\": \"cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8\"}' | jq '.[].CPUs'\n{\n  \"max\": 4,\n  \"number\": 2\n}\n\n# Updating the VM to use 3 CPUs would happen without stopping/starting the VM\n# Updating the VM to use 5 CPUs would stop/start the VM\n```"
                 },
                 "destroyCloudConfigVdiAfterBoot": {
                     "type": "boolean",
-                    "description": "Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`,\npower_state must be set to `Running`.\n",
+                    "description": "Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e. If set to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e,\u003cspan pulumi-lang-nodejs=\" powerState \" pulumi-lang-dotnet=\" PowerState \" pulumi-lang-go=\" powerState \" pulumi-lang-python=\" power_state \" pulumi-lang-yaml=\" powerState \" pulumi-lang-java=\" powerState \"\u003e power_state \u003c/span\u003emust be set to `Running`.",
                     "willReplaceOnChanges": true
                 },
                 "disks": {
@@ -1097,91 +1097,91 @@
                     "items": {
                         "$ref": "#/types/xenorchestra:index/VmDisk:VmDisk"
                     },
-                    "description": "The disk the VM will have access to.\n"
+                    "description": "The disk the VM will have access to."
                 },
                 "expNestedHvm": {
                     "type": "boolean",
-                    "description": "Boolean parameter that allows a VM to use nested virtualization.\n"
+                    "description": "Boolean parameter that allows a VM to use nested virtualization."
                 },
                 "highAvailability": {
                     "type": "string",
-                    "description": "The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure.\nDefaults to empty string\n"
+                    "description": "The restart priority for the VM. Possible values are `best-effort`, \u003cspan pulumi-lang-nodejs=\"`restart`\" pulumi-lang-dotnet=\"`Restart`\" pulumi-lang-go=\"`restart`\" pulumi-lang-python=\"`restart`\" pulumi-lang-yaml=\"`restart`\" pulumi-lang-java=\"`restart`\"\u003e`restart`\u003c/span\u003e and empty string (no restarts on failure. Defaults to empty string"
                 },
                 "host": {
                     "type": "string"
                 },
                 "hvmBootFirmware": {
                     "type": "string",
-                    "description": "The firmware to use for the VM. Possible values are `bios` and `uefi`.\n"
+                    "description": "The firmware to use for the VM. Possible values are \u003cspan pulumi-lang-nodejs=\"`bios`\" pulumi-lang-dotnet=\"`Bios`\" pulumi-lang-go=\"`bios`\" pulumi-lang-python=\"`bios`\" pulumi-lang-yaml=\"`bios`\" pulumi-lang-java=\"`bios`\"\u003e`bios`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`uefi`\" pulumi-lang-dotnet=\"`Uefi`\" pulumi-lang-go=\"`uefi`\" pulumi-lang-python=\"`uefi`\" pulumi-lang-yaml=\"`uefi`\" pulumi-lang-java=\"`uefi`\"\u003e`uefi`\u003c/span\u003e."
                 },
                 "installationMethod": {
                     "type": "string",
-                    "description": "This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.\n"
+                    "description": "This cannot be used with \u003cspan pulumi-lang-nodejs=\"`cdrom`\" pulumi-lang-dotnet=\"`Cdrom`\" pulumi-lang-go=\"`cdrom`\" pulumi-lang-python=\"`cdrom`\" pulumi-lang-yaml=\"`cdrom`\" pulumi-lang-java=\"`cdrom`\"\u003e`cdrom`\u003c/span\u003e. Possible values are \u003cspan pulumi-lang-nodejs=\"`network`\" pulumi-lang-dotnet=\"`Network`\" pulumi-lang-go=\"`network`\" pulumi-lang-python=\"`network`\" pulumi-lang-yaml=\"`network`\" pulumi-lang-java=\"`network`\"\u003e`network`\u003c/span\u003e which allows a VM to boot via PXE."
                 },
                 "memoryMax": {
                     "type": "number",
-                    "description": "The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and\nstart, as it sets both dynamic and static maximums.\n"
+                    "description": "The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums."
                 },
                 "memoryMin": {
                     "type": "integer",
-                    "description": "The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.\n"
+                    "description": "The amount of memory in bytes the VM will have. Set this value equal to\u003cspan pulumi-lang-nodejs=\" memoryMax \" pulumi-lang-dotnet=\" MemoryMax \" pulumi-lang-go=\" memoryMax \" pulumi-lang-python=\" memory_max \" pulumi-lang-yaml=\" memoryMax \" pulumi-lang-java=\" memoryMax \"\u003e memory_max \u003c/span\u003eto have a static memory."
                 },
                 "nameDescription": {
                     "type": "string",
-                    "description": "The description of the VM.\n"
+                    "description": "The description of the VM."
                 },
                 "nameLabel": {
                     "type": "string",
-                    "description": "The name of the VM.\n"
+                    "description": "The name of the VM."
                 },
                 "networks": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/xenorchestra:index/VmNetwork:VmNetwork"
                     },
-                    "description": "The network for the VM.\n"
+                    "description": "The network for the VM."
                 },
                 "powerState": {
                     "type": "string",
-                    "description": "The power state of the VM. This can be Running, Halted, Paused or Suspended.\n"
+                    "description": "The power state of the VM. This can be Running, Halted, Paused or Suspended."
                 },
                 "resourceSet": {
                     "type": "string"
                 },
                 "secureBoot": {
                     "type": "boolean",
-                    "description": "Enable UEFI secure boot for the VM.\n"
+                    "description": "Enable UEFI secure boot for the VM."
                 },
                 "startDelay": {
                     "type": "integer",
-                    "description": "Number of seconds the VM should be delayed from starting.\n"
+                    "description": "Number of seconds the VM should be delayed from starting."
                 },
                 "tags": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "The tags (labels) applied to the given entity. Not used for filtering if empty.\n"
+                    "description": "The tags (labels) applied to the given entity. Not used for filtering if empty."
                 },
                 "template": {
                     "type": "string",
-                    "description": "The ID of the VM template to create the new VM from.\n",
+                    "description": "The ID of the VM template to create the new VM from.",
                     "willReplaceOnChanges": true
                 },
                 "vga": {
                     "type": "string",
-                    "description": "The video adapter the VM should use. Possible values include std and cirrus.\n"
+                    "description": "The video adapter the VM should use. Possible values include std and cirrus."
                 },
                 "videoram": {
                     "type": "integer",
-                    "description": "The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16\n"
+                    "description": "The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16"
                 },
                 "xenstore": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "The key value pairs to be populated in xenstore.\n"
+                    "description": "The key value pairs to be populated in xenstore."
                 }
             },
             "requiredInputs": [
@@ -1197,34 +1197,34 @@
                 "properties": {
                     "affinityHost": {
                         "type": "string",
-                        "description": "The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to\nbe rescheduled.\n"
+                        "description": "The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled."
                     },
                     "autoPoweron": {
                         "type": "boolean",
-                        "description": "If the VM will automatically turn on. Defaults to `false`.\n"
+                        "description": "If the VM will automatically turn on. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e."
                     },
                     "blockedOperations": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,\nhard_shutdown, pause, shutdown, suspend, destroy. See:\nhttps://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations\n"
+                        "description": "List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations"
                     },
                     "cdrom": {
                         "$ref": "#/types/xenorchestra:index/VmCdrom:VmCdrom",
-                        "description": "The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available\nfrom `xe template-list`) and install the OS from the following ISO.\n"
+                        "description": "The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO."
                     },
                     "cloneType": {
                         "type": "string",
-                        "description": "The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to\nperform a `full` clone, the VM template must not be a disk template.\n"
+                        "description": "The type of clone to perform for the VM. Possible values include \u003cspan pulumi-lang-nodejs=\"`fast`\" pulumi-lang-dotnet=\"`Fast`\" pulumi-lang-go=\"`fast`\" pulumi-lang-python=\"`fast`\" pulumi-lang-yaml=\"`fast`\" pulumi-lang-java=\"`fast`\"\u003e`fast`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`full`\" pulumi-lang-dotnet=\"`Full`\" pulumi-lang-go=\"`full`\" pulumi-lang-python=\"`full`\" pulumi-lang-yaml=\"`full`\" pulumi-lang-java=\"`full`\"\u003e`full`\u003c/span\u003e and defaults to \u003cspan pulumi-lang-nodejs=\"`fast`\" pulumi-lang-dotnet=\"`Fast`\" pulumi-lang-go=\"`fast`\" pulumi-lang-python=\"`fast`\" pulumi-lang-yaml=\"`fast`\" pulumi-lang-java=\"`fast`\"\u003e`fast`\u003c/span\u003e. In order to perform a \u003cspan pulumi-lang-nodejs=\"`full`\" pulumi-lang-dotnet=\"`Full`\" pulumi-lang-go=\"`full`\" pulumi-lang-python=\"`full`\" pulumi-lang-yaml=\"`full`\" pulumi-lang-java=\"`full`\"\u003e`full`\u003c/span\u003e clone, the VM template must not be a disk template."
                     },
                     "cloudConfig": {
                         "type": "string",
-                        "description": "The content of the cloud-init config to use. See the cloud init docs for more\n[information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).\n"
+                        "description": "The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html)."
                     },
                     "cloudNetworkConfig": {
                         "type": "string",
-                        "description": "The content of the cloud-init network configuration for the VM (uses [version\n1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))\n"
+                        "description": "The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))"
                     },
                     "coreOs": {
                         "type": "boolean"
@@ -1237,11 +1237,11 @@
                     },
                     "cpus": {
                         "type": "integer",
-                        "description": "The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is\ngreater than the max CPU value. This can be determined with the following command: ``` $ xo-cli xo.getAllObjects\nfilter='json:{\"id\": \"cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8\"}' | jq '.[].CPUs' { \"max\": 4, \"number\": 2 } # Updating the VM\nto use 3 CPUs would happen without stopping/starting the VM # Updating the VM to use 5 CPUs would stop/start the VM ```\n"
+                        "description": "The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:\n```\n\n$ xo-cli xo.getAllObjects filter='json:{\"id\": \"cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8\"}' | jq '.[].CPUs'\n{\n  \"max\": 4,\n  \"number\": 2\n}\n\n# Updating the VM to use 3 CPUs would happen without stopping/starting the VM\n# Updating the VM to use 5 CPUs would stop/start the VM\n```"
                     },
                     "destroyCloudConfigVdiAfterBoot": {
                         "type": "boolean",
-                        "description": "Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`,\npower_state must be set to `Running`.\n",
+                        "description": "Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e. If set to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e,\u003cspan pulumi-lang-nodejs=\" powerState \" pulumi-lang-dotnet=\" PowerState \" pulumi-lang-go=\" powerState \" pulumi-lang-python=\" power_state \" pulumi-lang-yaml=\" powerState \" pulumi-lang-java=\" powerState \"\u003e power_state \u003c/span\u003emust be set to `Running`.",
                         "willReplaceOnChanges": true
                     },
                     "disks": {
@@ -1249,26 +1249,26 @@
                         "items": {
                             "$ref": "#/types/xenorchestra:index/VmDisk:VmDisk"
                         },
-                        "description": "The disk the VM will have access to.\n"
+                        "description": "The disk the VM will have access to."
                     },
                     "expNestedHvm": {
                         "type": "boolean",
-                        "description": "Boolean parameter that allows a VM to use nested virtualization.\n"
+                        "description": "Boolean parameter that allows a VM to use nested virtualization."
                     },
                     "highAvailability": {
                         "type": "string",
-                        "description": "The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure.\nDefaults to empty string\n"
+                        "description": "The restart priority for the VM. Possible values are `best-effort`, \u003cspan pulumi-lang-nodejs=\"`restart`\" pulumi-lang-dotnet=\"`Restart`\" pulumi-lang-go=\"`restart`\" pulumi-lang-python=\"`restart`\" pulumi-lang-yaml=\"`restart`\" pulumi-lang-java=\"`restart`\"\u003e`restart`\u003c/span\u003e and empty string (no restarts on failure. Defaults to empty string"
                     },
                     "host": {
                         "type": "string"
                     },
                     "hvmBootFirmware": {
                         "type": "string",
-                        "description": "The firmware to use for the VM. Possible values are `bios` and `uefi`.\n"
+                        "description": "The firmware to use for the VM. Possible values are \u003cspan pulumi-lang-nodejs=\"`bios`\" pulumi-lang-dotnet=\"`Bios`\" pulumi-lang-go=\"`bios`\" pulumi-lang-python=\"`bios`\" pulumi-lang-yaml=\"`bios`\" pulumi-lang-java=\"`bios`\"\u003e`bios`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`uefi`\" pulumi-lang-dotnet=\"`Uefi`\" pulumi-lang-go=\"`uefi`\" pulumi-lang-python=\"`uefi`\" pulumi-lang-yaml=\"`uefi`\" pulumi-lang-java=\"`uefi`\"\u003e`uefi`\u003c/span\u003e."
                     },
                     "installationMethod": {
                         "type": "string",
-                        "description": "This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.\n"
+                        "description": "This cannot be used with \u003cspan pulumi-lang-nodejs=\"`cdrom`\" pulumi-lang-dotnet=\"`Cdrom`\" pulumi-lang-go=\"`cdrom`\" pulumi-lang-python=\"`cdrom`\" pulumi-lang-yaml=\"`cdrom`\" pulumi-lang-java=\"`cdrom`\"\u003e`cdrom`\u003c/span\u003e. Possible values are \u003cspan pulumi-lang-nodejs=\"`network`\" pulumi-lang-dotnet=\"`Network`\" pulumi-lang-go=\"`network`\" pulumi-lang-python=\"`network`\" pulumi-lang-yaml=\"`network`\" pulumi-lang-java=\"`network`\"\u003e`network`\u003c/span\u003e which allows a VM to boot via PXE."
                     },
                     "ipv4Addresses": {
                         "type": "array",
@@ -1281,72 +1281,72 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the\npresence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6\naddresses across all network interfaces in order.\n"
+                        "description": "This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if \u003cspan pulumi-lang-nodejs=\"`expectedIpCidr`\" pulumi-lang-dotnet=\"`ExpectedIpCidr`\" pulumi-lang-go=\"`expectedIpCidr`\" pulumi-lang-python=\"`expected_ip_cidr`\" pulumi-lang-yaml=\"`expectedIpCidr`\" pulumi-lang-java=\"`expectedIpCidr`\"\u003e`expected_ip_cidr`\u003c/span\u003e is set for that interface. The list contains the ipv6 addresses across all network interfaces in order."
                     },
                     "memoryMax": {
                         "type": "number",
-                        "description": "The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and\nstart, as it sets both dynamic and static maximums.\n"
+                        "description": "The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums."
                     },
                     "memoryMin": {
                         "type": "integer",
-                        "description": "The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.\n"
+                        "description": "The amount of memory in bytes the VM will have. Set this value equal to\u003cspan pulumi-lang-nodejs=\" memoryMax \" pulumi-lang-dotnet=\" MemoryMax \" pulumi-lang-go=\" memoryMax \" pulumi-lang-python=\" memory_max \" pulumi-lang-yaml=\" memoryMax \" pulumi-lang-java=\" memoryMax \"\u003e memory_max \u003c/span\u003eto have a static memory."
                     },
                     "nameDescription": {
                         "type": "string",
-                        "description": "The description of the VM.\n"
+                        "description": "The description of the VM."
                     },
                     "nameLabel": {
                         "type": "string",
-                        "description": "The name of the VM.\n"
+                        "description": "The name of the VM."
                     },
                     "networks": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/xenorchestra:index/VmNetwork:VmNetwork"
                         },
-                        "description": "The network for the VM.\n"
+                        "description": "The network for the VM."
                     },
                     "powerState": {
                         "type": "string",
-                        "description": "The power state of the VM. This can be Running, Halted, Paused or Suspended.\n"
+                        "description": "The power state of the VM. This can be Running, Halted, Paused or Suspended."
                     },
                     "resourceSet": {
                         "type": "string"
                     },
                     "secureBoot": {
                         "type": "boolean",
-                        "description": "Enable UEFI secure boot for the VM.\n"
+                        "description": "Enable UEFI secure boot for the VM."
                     },
                     "startDelay": {
                         "type": "integer",
-                        "description": "Number of seconds the VM should be delayed from starting.\n"
+                        "description": "Number of seconds the VM should be delayed from starting."
                     },
                     "tags": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "The tags (labels) applied to the given entity. Not used for filtering if empty.\n"
+                        "description": "The tags (labels) applied to the given entity. Not used for filtering if empty."
                     },
                     "template": {
                         "type": "string",
-                        "description": "The ID of the VM template to create the new VM from.\n",
+                        "description": "The ID of the VM template to create the new VM from.",
                         "willReplaceOnChanges": true
                     },
                     "vga": {
                         "type": "string",
-                        "description": "The video adapter the VM should use. Possible values include std and cirrus.\n"
+                        "description": "The video adapter the VM should use. Possible values include std and cirrus."
                     },
                     "videoram": {
                         "type": "integer",
-                        "description": "The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16\n"
+                        "description": "The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16"
                     },
                     "xenstore": {
                         "type": "object",
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "The key value pairs to be populated in xenstore.\n"
+                        "description": "The key value pairs to be populated in xenstore."
                     }
                 },
                 "type": "object"
@@ -1364,11 +1364,11 @@
                 },
                 "defaultIsLocked": {
                     "type": "boolean",
-                    "description": "This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.\n"
+                    "description": "This argument controls whether the network should enforce VIF locking. This defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e which means that no filtering rules are applied.\n"
                 },
                 "mtu": {
                     "type": "integer",
-                    "description": "The MTU of the network. Defaults to `1500` if unspecified.\n"
+                    "description": "The MTU of the network. Defaults to \u003cspan pulumi-lang-nodejs=\"`1500`\" pulumi-lang-dotnet=\"`1500`\" pulumi-lang-go=\"`1500`\" pulumi-lang-python=\"`1500`\" pulumi-lang-yaml=\"`1500`\" pulumi-lang-java=\"`1500`\"\u003e`1500`\u003c/span\u003e if unspecified.\n"
                 },
                 "nameDescription": {
                     "type": "string"
@@ -1406,11 +1406,11 @@
                 },
                 "defaultIsLocked": {
                     "type": "boolean",
-                    "description": "This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.\n"
+                    "description": "This argument controls whether the network should enforce VIF locking. This defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e which means that no filtering rules are applied.\n"
                 },
                 "mtu": {
                     "type": "integer",
-                    "description": "The MTU of the network. Defaults to `1500` if unspecified.\n",
+                    "description": "The MTU of the network. Defaults to \u003cspan pulumi-lang-nodejs=\"`1500`\" pulumi-lang-dotnet=\"`1500`\" pulumi-lang-go=\"`1500`\" pulumi-lang-python=\"`1500`\" pulumi-lang-yaml=\"`1500`\" pulumi-lang-java=\"`1500`\"\u003e`1500`\u003c/span\u003e if unspecified.\n",
                     "willReplaceOnChanges": true
                 },
                 "nameDescription": {
@@ -1451,11 +1451,11 @@
                     },
                     "defaultIsLocked": {
                         "type": "boolean",
-                        "description": "This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.\n"
+                        "description": "This argument controls whether the network should enforce VIF locking. This defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e which means that no filtering rules are applied.\n"
                     },
                     "mtu": {
                         "type": "integer",
-                        "description": "The MTU of the network. Defaults to `1500` if unspecified.\n",
+                        "description": "The MTU of the network. Defaults to \u003cspan pulumi-lang-nodejs=\"`1500`\" pulumi-lang-dotnet=\"`1500`\" pulumi-lang-go=\"`1500`\" pulumi-lang-python=\"`1500`\" pulumi-lang-yaml=\"`1500`\" pulumi-lang-java=\"`1500`\"\u003e`1500`\u003c/span\u003e if unspecified.\n",
                         "willReplaceOnChanges": true
                     },
                     "nameDescription": {
@@ -1495,11 +1495,11 @@
                 },
                 "defaultIsLocked": {
                     "type": "boolean",
-                    "description": "This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.\n"
+                    "description": "This argument controls whether the network should enforce VIF locking. This defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e which means that no filtering rules are applied.\n"
                 },
                 "mtu": {
                     "type": "integer",
-                    "description": "The MTU of the network. Defaults to `1500` if unspecified.\n"
+                    "description": "The MTU of the network. Defaults to \u003cspan pulumi-lang-nodejs=\"`1500`\" pulumi-lang-dotnet=\"`1500`\" pulumi-lang-go=\"`1500`\" pulumi-lang-python=\"`1500`\" pulumi-lang-yaml=\"`1500`\" pulumi-lang-java=\"`1500`\"\u003e`1500`\u003c/span\u003e if unspecified.\n"
                 },
                 "nameDescription": {
                     "type": "string"
@@ -1510,7 +1510,7 @@
                 },
                 "nbd": {
                     "type": "boolean",
-                    "description": "Whether the network should use a network block device. Defaults to `false` if unspecified.\n"
+                    "description": "Whether the network should use a network block device. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e if unspecified.\n"
                 },
                 "poolId": {
                     "type": "string",
@@ -1522,7 +1522,7 @@
                 },
                 "vlan": {
                     "type": "integer",
-                    "description": "The vlan to use for the network. Defaults to `0` meaning no VLAN.\n"
+                    "description": "The vlan to use for the network. Defaults to \u003cspan pulumi-lang-nodejs=\"`0`\" pulumi-lang-dotnet=\"`0`\" pulumi-lang-go=\"`0`\" pulumi-lang-python=\"`0`\" pulumi-lang-yaml=\"`0`\" pulumi-lang-java=\"`0`\"\u003e`0`\u003c/span\u003e meaning no VLAN.\n"
                 }
             },
             "required": [
@@ -1535,11 +1535,11 @@
                 },
                 "defaultIsLocked": {
                     "type": "boolean",
-                    "description": "This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.\n"
+                    "description": "This argument controls whether the network should enforce VIF locking. This defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e which means that no filtering rules are applied.\n"
                 },
                 "mtu": {
                     "type": "integer",
-                    "description": "The MTU of the network. Defaults to `1500` if unspecified.\n",
+                    "description": "The MTU of the network. Defaults to \u003cspan pulumi-lang-nodejs=\"`1500`\" pulumi-lang-dotnet=\"`1500`\" pulumi-lang-go=\"`1500`\" pulumi-lang-python=\"`1500`\" pulumi-lang-yaml=\"`1500`\" pulumi-lang-java=\"`1500`\"\u003e`1500`\u003c/span\u003e if unspecified.\n",
                     "willReplaceOnChanges": true
                 },
                 "nameDescription": {
@@ -1551,7 +1551,7 @@
                 },
                 "nbd": {
                     "type": "boolean",
-                    "description": "Whether the network should use a network block device. Defaults to `false` if unspecified.\n"
+                    "description": "Whether the network should use a network block device. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e if unspecified.\n"
                 },
                 "poolId": {
                     "type": "string",
@@ -1565,7 +1565,7 @@
                 },
                 "vlan": {
                     "type": "integer",
-                    "description": "The vlan to use for the network. Defaults to `0` meaning no VLAN.\n",
+                    "description": "The vlan to use for the network. Defaults to \u003cspan pulumi-lang-nodejs=\"`0`\" pulumi-lang-dotnet=\"`0`\" pulumi-lang-go=\"`0`\" pulumi-lang-python=\"`0`\" pulumi-lang-yaml=\"`0`\" pulumi-lang-java=\"`0`\"\u003e`0`\u003c/span\u003e meaning no VLAN.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -1581,11 +1581,11 @@
                     },
                     "defaultIsLocked": {
                         "type": "boolean",
-                        "description": "This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.\n"
+                        "description": "This argument controls whether the network should enforce VIF locking. This defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e which means that no filtering rules are applied.\n"
                     },
                     "mtu": {
                         "type": "integer",
-                        "description": "The MTU of the network. Defaults to `1500` if unspecified.\n",
+                        "description": "The MTU of the network. Defaults to \u003cspan pulumi-lang-nodejs=\"`1500`\" pulumi-lang-dotnet=\"`1500`\" pulumi-lang-go=\"`1500`\" pulumi-lang-python=\"`1500`\" pulumi-lang-yaml=\"`1500`\" pulumi-lang-java=\"`1500`\"\u003e`1500`\u003c/span\u003e if unspecified.\n",
                         "willReplaceOnChanges": true
                     },
                     "nameDescription": {
@@ -1597,7 +1597,7 @@
                     },
                     "nbd": {
                         "type": "boolean",
-                        "description": "Whether the network should use a network block device. Defaults to `false` if unspecified.\n"
+                        "description": "Whether the network should use a network block device. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e if unspecified.\n"
                     },
                     "poolId": {
                         "type": "string",
@@ -1611,7 +1611,7 @@
                     },
                     "vlan": {
                         "type": "integer",
-                        "description": "The vlan to use for the network. Defaults to `0` meaning no VLAN.\n",
+                        "description": "The vlan to use for the network. Defaults to \u003cspan pulumi-lang-nodejs=\"`0`\" pulumi-lang-dotnet=\"`0`\" pulumi-lang-go=\"`0`\" pulumi-lang-python=\"`0`\" pulumi-lang-yaml=\"`0`\" pulumi-lang-java=\"`0`\"\u003e`0`\u003c/span\u003e meaning no VLAN.\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -1673,7 +1673,7 @@
                 "description": "A collection of values returned by getXoaCloudConfig.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "name": {
@@ -1726,7 +1726,7 @@
                         "type": "object"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "memory": {
@@ -1775,11 +1775,11 @@
                     },
                     "sortBy": {
                         "type": "string",
-                        "description": "The host field to sort the results by (id and name_label are supported).\n"
+                        "description": "The host field to sort the results by (id and\u003cspan pulumi-lang-nodejs=\" nameLabel \" pulumi-lang-dotnet=\" NameLabel \" pulumi-lang-go=\" nameLabel \" pulumi-lang-python=\" name_label \" pulumi-lang-yaml=\" nameLabel \" pulumi-lang-java=\" nameLabel \"\u003e name_label \u003c/span\u003eare supported).\n"
                     },
                     "sortOrder": {
                         "type": "string",
-                        "description": "Valid options are `asc` or `desc` and sort order is applied to `sort_by` argument.\n"
+                        "description": "Valid options are \u003cspan pulumi-lang-nodejs=\"`asc`\" pulumi-lang-dotnet=\"`Asc`\" pulumi-lang-go=\"`asc`\" pulumi-lang-python=\"`asc`\" pulumi-lang-yaml=\"`asc`\" pulumi-lang-java=\"`asc`\"\u003e`asc`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`desc`\" pulumi-lang-dotnet=\"`Desc`\" pulumi-lang-go=\"`desc`\" pulumi-lang-python=\"`desc`\" pulumi-lang-yaml=\"`desc`\" pulumi-lang-java=\"`desc`\"\u003e`desc`\u003c/span\u003e and sort order is applied to \u003cspan pulumi-lang-nodejs=\"`sortBy`\" pulumi-lang-dotnet=\"`SortBy`\" pulumi-lang-go=\"`sortBy`\" pulumi-lang-python=\"`sort_by`\" pulumi-lang-yaml=\"`sortBy`\" pulumi-lang-java=\"`sortBy`\"\u003e`sort_by`\u003c/span\u003e argument.\n"
                     },
                     "tags": {
                         "type": "array",
@@ -1805,7 +1805,7 @@
                         "type": "array"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "master": {
@@ -1817,11 +1817,11 @@
                         "type": "string"
                     },
                     "sortBy": {
-                        "description": "The host field to sort the results by (id and name_label are supported).\n",
+                        "description": "The host field to sort the results by (id and\u003cspan pulumi-lang-nodejs=\" nameLabel \" pulumi-lang-dotnet=\" NameLabel \" pulumi-lang-go=\" nameLabel \" pulumi-lang-python=\" name_label \" pulumi-lang-yaml=\" nameLabel \" pulumi-lang-java=\" nameLabel \"\u003e name_label \u003c/span\u003eare supported).\n",
                         "type": "string"
                     },
                     "sortOrder": {
-                        "description": "Valid options are `asc` or `desc` and sort order is applied to `sort_by` argument.\n",
+                        "description": "Valid options are \u003cspan pulumi-lang-nodejs=\"`asc`\" pulumi-lang-dotnet=\"`Asc`\" pulumi-lang-go=\"`asc`\" pulumi-lang-python=\"`asc`\" pulumi-lang-yaml=\"`asc`\" pulumi-lang-java=\"`asc`\"\u003e`asc`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`desc`\" pulumi-lang-dotnet=\"`Desc`\" pulumi-lang-go=\"`desc`\" pulumi-lang-python=\"`desc`\" pulumi-lang-yaml=\"`desc`\" pulumi-lang-java=\"`desc`\"\u003e`desc`\u003c/span\u003e and sort order is applied to \u003cspan pulumi-lang-nodejs=\"`sortBy`\" pulumi-lang-dotnet=\"`SortBy`\" pulumi-lang-go=\"`sortBy`\" pulumi-lang-python=\"`sort_by`\" pulumi-lang-yaml=\"`sortBy`\" pulumi-lang-java=\"`sortBy`\"\u003e`sort_by`\u003c/span\u003e argument.\n",
                         "type": "string"
                     },
                     "tags": {
@@ -1872,7 +1872,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "nameLabel": {
@@ -1899,7 +1899,7 @@
                 "properties": {
                     "device": {
                         "type": "string",
-                        "description": "The name of the network device. Examples include eth0, eth1, etc. See `ifconfig` for possible devices.\n"
+                        "description": "The name of the network device. Examples include eth0, eth1, etc. See \u003cspan pulumi-lang-nodejs=\"`ifconfig`\" pulumi-lang-dotnet=\"`Ifconfig`\" pulumi-lang-go=\"`ifconfig`\" pulumi-lang-python=\"`ifconfig`\" pulumi-lang-yaml=\"`ifconfig`\" pulumi-lang-java=\"`ifconfig`\"\u003e`ifconfig`\u003c/span\u003e for possible devices.\n"
                     },
                     "hostId": {
                         "type": "string",
@@ -1935,7 +1935,7 @@
                         "type": "array"
                     },
                     "device": {
-                        "description": "The name of the network device. Examples include eth0, eth1, etc. See `ifconfig` for possible devices.\n",
+                        "description": "The name of the network device. Examples include eth0, eth1, etc. See \u003cspan pulumi-lang-nodejs=\"`ifconfig`\" pulumi-lang-dotnet=\"`Ifconfig`\" pulumi-lang-go=\"`ifconfig`\" pulumi-lang-python=\"`ifconfig`\" pulumi-lang-yaml=\"`ifconfig`\" pulumi-lang-java=\"`ifconfig`\"\u003e`ifconfig`\u003c/span\u003e for possible devices.\n",
                         "type": "string"
                     },
                     "host": {
@@ -1947,7 +1947,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "isBondMaster": {
@@ -2000,7 +2000,7 @@
                 "properties": {
                     "nameLabel": {
                         "type": "string",
-                        "description": "The name_label of the pool to look up.\n"
+                        "description": "The\u003cspan pulumi-lang-nodejs=\" nameLabel \" pulumi-lang-dotnet=\" NameLabel \" pulumi-lang-go=\" nameLabel \" pulumi-lang-python=\" name_label \" pulumi-lang-yaml=\" nameLabel \" pulumi-lang-java=\" nameLabel \"\u003e name_label \u003c/span\u003eof the pool to look up.\n"
                     }
                 },
                 "type": "object",
@@ -2023,7 +2023,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "master": {
@@ -2031,7 +2031,7 @@
                         "type": "string"
                     },
                     "nameLabel": {
-                        "description": "The name_label of the pool to look up.\n",
+                        "description": "The\u003cspan pulumi-lang-nodejs=\" nameLabel \" pulumi-lang-dotnet=\" NameLabel \" pulumi-lang-go=\" nameLabel \" pulumi-lang-python=\" name_label \" pulumi-lang-yaml=\" nameLabel \" pulumi-lang-java=\" nameLabel \"\u003e name_label \u003c/span\u003eof the pool to look up.\n",
                         "type": "string"
                     }
                 },
@@ -2064,7 +2064,7 @@
                 "description": "A collection of values returned by getXoaResourceSet.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "name": {
@@ -2113,7 +2113,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "nameLabel": {
@@ -2192,7 +2192,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "nameLabel": {
@@ -2218,7 +2218,7 @@
             }
         },
         "xenorchestra:index/getXoaUser:getXoaUser": {
-            "description": "Provides information about a Xen Orchestra user. If the Xen Orchestra user account you are using is not an admin, see the `search_in_session` parameter.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as xenorchestra from \"@vates/pulumi-xenorchestra\";\n\nconst user = xenorchestra.getXoaUser({\n    username: \"my-username\",\n});\n```\n```python\nimport pulumi\nimport pulumi_xenorchestra as xenorchestra\n\nuser = xenorchestra.get_xoa_user(username=\"my-username\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Xenorchestra = Pulumi.Xenorchestra;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var user = Xenorchestra.GetXoaUser.Invoke(new()\n    {\n        Username = \"my-username\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := xenorchestra.GetXoaUser(ctx, \u0026xenorchestra.GetXoaUserArgs{\n\t\t\tUsername: \"my-username\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.xenorchestra.XenorchestraFunctions;\nimport com.pulumi.xenorchestra.inputs.GetXoaUserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var user = XenorchestraFunctions.getXoaUser(GetXoaUserArgs.builder()\n            .username(\"my-username\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  user:\n    fn::invoke:\n      function: xenorchestra:getXoaUser\n      arguments:\n        username: my-username\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Provides information about a Xen Orchestra user. If the Xen Orchestra user account you are using is not an admin, see the \u003cspan pulumi-lang-nodejs=\"`searchInSession`\" pulumi-lang-dotnet=\"`SearchInSession`\" pulumi-lang-go=\"`searchInSession`\" pulumi-lang-python=\"`search_in_session`\" pulumi-lang-yaml=\"`searchInSession`\" pulumi-lang-java=\"`searchInSession`\"\u003e`search_in_session`\u003c/span\u003e parameter.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as xenorchestra from \"@vates/pulumi-xenorchestra\";\n\nconst user = xenorchestra.getXoaUser({\n    username: \"my-username\",\n});\n```\n```python\nimport pulumi\nimport pulumi_xenorchestra as xenorchestra\n\nuser = xenorchestra.get_xoa_user(username=\"my-username\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Xenorchestra = Pulumi.Xenorchestra;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var user = Xenorchestra.GetXoaUser.Invoke(new()\n    {\n        Username = \"my-username\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := xenorchestra.GetXoaUser(ctx, \u0026xenorchestra.GetXoaUserArgs{\n\t\t\tUsername: \"my-username\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.xenorchestra.XenorchestraFunctions;\nimport com.pulumi.xenorchestra.inputs.GetXoaUserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var user = XenorchestraFunctions.getXoaUser(GetXoaUserArgs.builder()\n            .username(\"my-username\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  user:\n    fn::invoke:\n      function: xenorchestra:getXoaUser\n      arguments:\n        username: my-username\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getXoaUser.\n",
                 "properties": {
@@ -2240,7 +2240,7 @@
                 "description": "A collection of values returned by getXoaUser.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "searchInSession": {
@@ -2260,7 +2260,7 @@
             }
         },
         "xenorchestra:index/getXoaVdi:getXoaVdi": {
-            "description": "## Example Usage\n\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as xenorchestra from \"@vates/pulumi-xenorchestra\";\n\nconst vdi = xenorchestra.getXoaVdi({\n    nameLabel: \"ubuntu-20.04.4-live-server-amd64.iso\",\n});\nconst demo_vm = new xenorchestra.Vm(\"demo-vm\", {cdrom: vdi.then(vdi =\u003e vdi.id?.[0])});\n```\n```python\nimport pulumi\nimport pulumi_xenorchestra as xenorchestra\n\nvdi = xenorchestra.get_xoa_vdi(name_label=\"ubuntu-20.04.4-live-server-amd64.iso\")\ndemo_vm = xenorchestra.Vm(\"demo-vm\", cdrom=vdi.id[0])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Xenorchestra = Pulumi.Xenorchestra;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var vdi = Xenorchestra.GetXoaVdi.Invoke(new()\n    {\n        NameLabel = \"ubuntu-20.04.4-live-server-amd64.iso\",\n    });\n\n    var demo_vm = new Xenorchestra.Vm(\"demo-vm\", new()\n    {\n        Cdrom = vdi.Apply(getXoaVdiResult =\u003e getXoaVdiResult.Id[0]),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tvdi, err := xenorchestra.GetXoaVdi(ctx, \u0026xenorchestra.GetXoaVdiArgs{\n\t\t\tNameLabel: pulumi.StringRef(\"ubuntu-20.04.4-live-server-amd64.iso\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = xenorchestra.NewVm(ctx, \"demo-vm\", \u0026xenorchestra.VmArgs{\n\t\t\tCdrom: pulumi.Any(vdi.Id[0]),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.xenorchestra.XenorchestraFunctions;\nimport com.pulumi.xenorchestra.inputs.GetXoaVdiArgs;\nimport com.pulumi.xenorchestra.Vm;\nimport com.pulumi.xenorchestra.VmArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var vdi = XenorchestraFunctions.getXoaVdi(GetXoaVdiArgs.builder()\n            .nameLabel(\"ubuntu-20.04.4-live-server-amd64.iso\")\n            .build());\n\n        var demo_vm = new Vm(\"demo-vm\", VmArgs.builder()\n            .cdrom(vdi.id()[0])\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  demo-vm:\n    type: xenorchestra:Vm\n    properties:\n      cdrom: ${vdi.id[0]}\nvariables:\n  vdi:\n    fn::invoke:\n      function: xenorchestra:getXoaVdi\n      arguments:\n        nameLabel: ubuntu-20.04.4-live-server-amd64.iso\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getXoaVdi.\n",
                 "properties": {
@@ -2321,7 +2321,7 @@
             }
         },
         "xenorchestra:index/getXoaVms:getXoaVms": {
-            "description": "Use this data source to filter Xenorchestra VMs by certain criteria (pool_id, power_state or host) for use in other resources.\n\n",
+            "description": "Use this data source to filter Xenorchestra VMs by certain criteria (pool_id,\u003cspan pulumi-lang-nodejs=\" powerState \" pulumi-lang-dotnet=\" PowerState \" pulumi-lang-go=\" powerState \" pulumi-lang-python=\" power_state \" pulumi-lang-yaml=\" powerState \" pulumi-lang-java=\" powerState \"\u003e power_state \u003c/span\u003eor host) for use in other resources.\n\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getXoaVms.\n",
                 "properties": {
@@ -2349,7 +2349,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "poolId": {
