@@ -38,3 +38,7 @@ publish:
 
 # Disables a pulumi-internal-only step for running create_docs_build during the release
 publishRegistry: false
+
+# Disables auth via a GitHub app.
+github-app:
+    enabled: false
