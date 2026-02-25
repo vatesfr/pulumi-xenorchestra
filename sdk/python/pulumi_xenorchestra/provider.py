@@ -30,10 +30,8 @@ class ProviderArgs:
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[_builtins.bool] insecure: Whether SSL should be verified or not. Can be set via the XOA_INSECURE environment variable.
         :param pulumi.Input[_builtins.str] password: Password for xoa api. Can be set via the XOA_PASSWORD environment variable.
-        :param pulumi.Input[_builtins.str] retry_max_time: If `retry_mode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via
-               the `XOA_RETRY_MAX_TIME` environment variable
-        :param pulumi.Input[_builtins.str] retry_mode: Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE
-               environment variable.
+        :param pulumi.Input[_builtins.str] retry_max_time: If `retry_mode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable
+        :param pulumi.Input[_builtins.str] retry_mode: Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable.
         :param pulumi.Input[_builtins.str] token: Password for xoa api. Can be set via the XOA_TOKEN environment variable.
         :param pulumi.Input[_builtins.str] url: Hostname of the xoa router. Can be set via the XOA_URL environment variable.
         :param pulumi.Input[_builtins.str] username: User account for xoa api. Can be set via the XOA_USER environment variable.
@@ -81,8 +79,7 @@ class ProviderArgs:
     @pulumi.getter(name="retryMaxTime")
     def retry_max_time(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        If `retry_mode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via
-        the `XOA_RETRY_MAX_TIME` environment variable
+        If `retry_mode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable
         """
         return pulumi.get(self, "retry_max_time")
 
@@ -94,8 +91,7 @@ class ProviderArgs:
     @pulumi.getter(name="retryMode")
     def retry_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE
-        environment variable.
+        Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable.
         """
         return pulumi.get(self, "retry_mode")
 
@@ -164,10 +160,8 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] insecure: Whether SSL should be verified or not. Can be set via the XOA_INSECURE environment variable.
         :param pulumi.Input[_builtins.str] password: Password for xoa api. Can be set via the XOA_PASSWORD environment variable.
-        :param pulumi.Input[_builtins.str] retry_max_time: If `retry_mode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via
-               the `XOA_RETRY_MAX_TIME` environment variable
-        :param pulumi.Input[_builtins.str] retry_mode: Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE
-               environment variable.
+        :param pulumi.Input[_builtins.str] retry_max_time: If `retry_mode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable
+        :param pulumi.Input[_builtins.str] retry_mode: Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable.
         :param pulumi.Input[_builtins.str] token: Password for xoa api. Can be set via the XOA_TOKEN environment variable.
         :param pulumi.Input[_builtins.str] url: Hostname of the xoa router. Can be set via the XOA_URL environment variable.
         :param pulumi.Input[_builtins.str] username: User account for xoa api. Can be set via the XOA_USER environment variable.
@@ -240,8 +234,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="retryMaxTime")
     def retry_max_time(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        If `retry_mode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via
-        the `XOA_RETRY_MAX_TIME` environment variable
+        If `retry_mode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable
         """
         return pulumi.get(self, "retry_max_time")
 
@@ -249,8 +242,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="retryMode")
     def retry_mode(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE
-        environment variable.
+        Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable.
         """
         return pulumi.get(self, "retry_mode")
 

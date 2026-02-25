@@ -118,7 +118,7 @@ namespace Pulumi.Xenorchestra
     public sealed class GetXoaPifArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of the network device. Examples include eth0, eth1, etc. See `ifconfig` for possible devices.
+        /// The name of the network device. Examples include eth0, eth1, etc. See `Ifconfig` for possible devices.
         /// </summary>
         [Input("device", required: true)]
         public string Device { get; set; } = null!;
@@ -144,7 +144,7 @@ namespace Pulumi.Xenorchestra
     public sealed class GetXoaPifInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of the network device. Examples include eth0, eth1, etc. See `ifconfig` for possible devices.
+        /// The name of the network device. Examples include eth0, eth1, etc. See `Ifconfig` for possible devices.
         /// </summary>
         [Input("device", required: true)]
         public Input<string> Device { get; set; } = null!;
@@ -184,7 +184,7 @@ namespace Pulumi.Xenorchestra
         /// </summary>
         public readonly ImmutableArray<string> BondSlaves;
         /// <summary>
-        /// The name of the network device. Examples include eth0, eth1, etc. See `ifconfig` for possible devices.
+        /// The name of the network device. Examples include eth0, eth1, etc. See `Ifconfig` for possible devices.
         /// </summary>
         public readonly string Device;
         /// <summary>

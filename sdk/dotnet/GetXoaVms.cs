@@ -12,19 +12,19 @@ namespace Pulumi.Xenorchestra
     public static class GetXoaVms
     {
         /// <summary>
-        /// Use this data source to filter Xenorchestra VMs by certain criteria (pool_id, power_state or host) for use in other resources.
+        /// Use this data source to filter Xenorchestra VMs by certain criteria (pool_id, PowerState or host) for use in other resources.
         /// </summary>
         public static Task<GetXoaVmsResult> InvokeAsync(GetXoaVmsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetXoaVmsResult>("xenorchestra:index/getXoaVms:getXoaVms", args ?? new GetXoaVmsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to filter Xenorchestra VMs by certain criteria (pool_id, power_state or host) for use in other resources.
+        /// Use this data source to filter Xenorchestra VMs by certain criteria (pool_id, PowerState or host) for use in other resources.
         /// </summary>
         public static Output<GetXoaVmsResult> Invoke(GetXoaVmsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetXoaVmsResult>("xenorchestra:index/getXoaVms:getXoaVms", args ?? new GetXoaVmsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to filter Xenorchestra VMs by certain criteria (pool_id, power_state or host) for use in other resources.
+        /// Use this data source to filter Xenorchestra VMs by certain criteria (pool_id, PowerState or host) for use in other resources.
         /// </summary>
         public static Output<GetXoaVmsResult> Invoke(GetXoaVmsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetXoaVmsResult>("xenorchestra:index/getXoaVms:getXoaVms", args ?? new GetXoaVmsInvokeArgs(), options.WithDefaults());

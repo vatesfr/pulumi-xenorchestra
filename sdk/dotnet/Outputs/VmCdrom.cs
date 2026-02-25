@@ -14,7 +14,7 @@ namespace Pulumi.Xenorchestra.Outputs
     public sealed class VmCdrom
     {
         /// <summary>
-        /// The ID of the ISO (VDI) to attach to the VM. This can be easily provided by using the `vdi` data source.
+        /// The ID of the ISO (VDI) to attach to the VM. This can be easily provided by using the `Vdi` data source.
         /// </summary>
         public readonly string Id;
 

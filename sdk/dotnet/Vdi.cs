@@ -34,7 +34,7 @@ namespace Pulumi.Xenorchestra
         public Output<string> SrId { get; private set; } = null!;
 
         /// <summary>
-        /// Only `raw` uploads are supported today, but vhd support may be added in the future.
+        /// Only `Raw` uploads are supported today, but vhd support may be added in the future.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -105,7 +105,7 @@ namespace Pulumi.Xenorchestra
         public Input<string> SrId { get; set; } = null!;
 
         /// <summary>
-        /// Only `raw` uploads are supported today, but vhd support may be added in the future.
+        /// Only `Raw` uploads are supported today, but vhd support may be added in the future.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -137,7 +137,7 @@ namespace Pulumi.Xenorchestra
         public Input<string>? SrId { get; set; }
 
         /// <summary>
-        /// Only `raw` uploads are supported today, but vhd support may be added in the future.
+        /// Only `Raw` uploads are supported today, but vhd support may be added in the future.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

@@ -12,7 +12,7 @@ namespace Pulumi.Xenorchestra
     public static class GetXoaUser
     {
         /// <summary>
-        /// Provides information about a Xen Orchestra user. If the Xen Orchestra user account you are using is not an admin, see the `search_in_session` parameter.
+        /// Provides information about a Xen Orchestra user. If the Xen Orchestra user account you are using is not an admin, see the `SearchInSession` parameter.
         /// 
         /// ## Example Usage
         /// 
@@ -36,7 +36,7 @@ namespace Pulumi.Xenorchestra
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetXoaUserResult>("xenorchestra:index/getXoaUser:getXoaUser", args ?? new GetXoaUserArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Provides information about a Xen Orchestra user. If the Xen Orchestra user account you are using is not an admin, see the `search_in_session` parameter.
+        /// Provides information about a Xen Orchestra user. If the Xen Orchestra user account you are using is not an admin, see the `SearchInSession` parameter.
         /// 
         /// ## Example Usage
         /// 
@@ -60,7 +60,7 @@ namespace Pulumi.Xenorchestra
             => global::Pulumi.Deployment.Instance.Invoke<GetXoaUserResult>("xenorchestra:index/getXoaUser:getXoaUser", args ?? new GetXoaUserInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Provides information about a Xen Orchestra user. If the Xen Orchestra user account you are using is not an admin, see the `search_in_session` parameter.
+        /// Provides information about a Xen Orchestra user. If the Xen Orchestra user account you are using is not an admin, see the `SearchInSession` parameter.
         /// 
         /// ## Example Usage
         /// 

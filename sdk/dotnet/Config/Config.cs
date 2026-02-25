@@ -54,8 +54,7 @@ namespace Pulumi.Xenorchestra
 
         private static readonly __Value<string?> _retryMaxTime = new __Value<string?>(() => __config.Get("retryMaxTime"));
         /// <summary>
-        /// If `retry_mode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via
-        /// the `XOA_RETRY_MAX_TIME` environment variable
+        /// If `RetryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable
         /// </summary>
         public static string? RetryMaxTime
         {
@@ -65,8 +64,7 @@ namespace Pulumi.Xenorchestra
 
         private static readonly __Value<string?> _retryMode = new __Value<string?>(() => __config.Get("retryMode"));
         /// <summary>
-        /// Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE
-        /// environment variable.
+        /// Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable.
         /// </summary>
         public static string? RetryMode
         {

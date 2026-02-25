@@ -21,14 +21,12 @@ func GetPassword(ctx *pulumi.Context) string {
 	return config.Get(ctx, "xenorchestra:password")
 }
 
-// If `retryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via
-// the `XOA_RETRY_MAX_TIME` environment variable
+// If `retryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable
 func GetRetryMaxTime(ctx *pulumi.Context) string {
 	return config.Get(ctx, "xenorchestra:retryMaxTime")
 }
 
-// Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE
-// environment variable.
+// Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable.
 func GetRetryMode(ctx *pulumi.Context) string {
 	return config.Get(ctx, "xenorchestra:retryMode")
 }

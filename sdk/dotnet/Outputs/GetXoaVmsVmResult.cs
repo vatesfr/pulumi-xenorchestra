@@ -18,7 +18,7 @@ namespace Pulumi.Xenorchestra.Outputs
         /// </summary>
         public readonly string? AffinityHost;
         /// <summary>
-        /// If the VM will automatically turn on. Defaults to `false`.
+        /// If the VM will automatically turn on. Defaults to `False`.
         /// </summary>
         public readonly bool? AutoPoweron;
         /// <summary>
@@ -26,7 +26,7 @@ namespace Pulumi.Xenorchestra.Outputs
         /// </summary>
         public readonly ImmutableArray<string> BlockedOperations;
         /// <summary>
-        /// The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
+        /// The type of clone to perform for the VM. Possible values include `Fast` or `Full` and defaults to `Fast`. In order to perform a `Full` clone, the VM template must not be a disk template.
         /// </summary>
         public readonly string? CloneType;
         /// <summary>
@@ -64,18 +64,18 @@ namespace Pulumi.Xenorchestra.Outputs
         /// </summary>
         public readonly bool? ExpNestedHvm;
         /// <summary>
-        /// The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string
+        /// The restart priority for the VM. Possible values are `best-effort`, `Restart` and empty string (no restarts on failure. Defaults to empty string
         /// </summary>
         public readonly string? HighAvailability;
         public readonly string? Host;
         /// <summary>
-        /// The firmware to use for the VM. Possible values are `bios` and `uefi`.
+        /// The firmware to use for the VM. Possible values are `Bios` and `Uefi`.
         /// </summary>
         public readonly string? HvmBootFirmware;
         public readonly string Id;
         public readonly ImmutableArray<string> Ipv4Addresses;
         /// <summary>
-        /// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
+        /// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `ExpectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
         /// </summary>
         public readonly ImmutableArray<string> Ipv6Addresses;
         /// <summary>
@@ -83,7 +83,7 @@ namespace Pulumi.Xenorchestra.Outputs
         /// </summary>
         public readonly int MemoryMax;
         /// <summary>
-        /// The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.
+        /// The amount of memory in bytes the VM will have. Set this value equal to MemoryMax to have a static memory.
         /// </summary>
         public readonly int MemoryMin;
         /// <summary>

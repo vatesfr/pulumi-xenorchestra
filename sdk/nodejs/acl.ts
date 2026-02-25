@@ -55,15 +55,15 @@ export class Acl extends pulumi.CustomResource {
     /**
      * Must be one of admin, operator, viewer. See the [Xen orchestra docs](https://xen-orchestra.com/docs/acls.html) on ACLs for more details.
      */
-    public readonly action!: pulumi.Output<string>;
+    declare public readonly action: pulumi.Output<string>;
     /**
      * The id of the object that will be able to be used by the subject.
      */
-    public readonly object!: pulumi.Output<string>;
+    declare public readonly object: pulumi.Output<string>;
     /**
      * The uuid of the user account that the acl will apply to.
      */
-    public readonly subject!: pulumi.Output<string>;
+    declare public readonly subject: pulumi.Output<string>;
 
     /**
      * Create a Acl resource with the given unique name, arguments, and options.
@@ -78,23 +78,23 @@ export class Acl extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AclState | undefined;
-            resourceInputs["action"] = state ? state.action : undefined;
-            resourceInputs["object"] = state ? state.object : undefined;
-            resourceInputs["subject"] = state ? state.subject : undefined;
+            resourceInputs["action"] = state?.action;
+            resourceInputs["object"] = state?.object;
+            resourceInputs["subject"] = state?.subject;
         } else {
             const args = argsOrState as AclArgs | undefined;
-            if ((!args || args.action === undefined) && !opts.urn) {
+            if (args?.action === undefined && !opts.urn) {
                 throw new Error("Missing required property 'action'");
             }
-            if ((!args || args.object === undefined) && !opts.urn) {
+            if (args?.object === undefined && !opts.urn) {
                 throw new Error("Missing required property 'object'");
             }
-            if ((!args || args.subject === undefined) && !opts.urn) {
+            if (args?.subject === undefined && !opts.urn) {
                 throw new Error("Missing required property 'subject'");
             }
-            resourceInputs["action"] = args ? args.action : undefined;
-            resourceInputs["object"] = args ? args.object : undefined;
-            resourceInputs["subject"] = args ? args.subject : undefined;
+            resourceInputs["action"] = args?.action;
+            resourceInputs["object"] = args?.object;
+            resourceInputs["subject"] = args?.subject;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Acl.__pulumiType, name, resourceInputs, opts);

@@ -30,8 +30,7 @@ Object.defineProperty(exports, "password", {
 });
 
 /**
- * If `retryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via
- * the `XOA_RETRY_MAX_TIME` environment variable
+ * If `retryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable
  */
 export declare const retryMaxTime: string | undefined;
 Object.defineProperty(exports, "retryMaxTime", {
@@ -42,8 +41,7 @@ Object.defineProperty(exports, "retryMaxTime", {
 });
 
 /**
- * Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE
- * environment variable.
+ * Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable.
  */
 export declare const retryMode: string | undefined;
 Object.defineProperty(exports, "retryMode", {

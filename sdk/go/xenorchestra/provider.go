@@ -20,11 +20,9 @@ type Provider struct {
 
 	// Password for xoa api. Can be set via the XOA_PASSWORD environment variable.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// If `retryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via
-	// the `XOA_RETRY_MAX_TIME` environment variable
+	// If `retryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable
 	RetryMaxTime pulumi.StringPtrOutput `pulumi:"retryMaxTime"`
-	// Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE
-	// environment variable.
+	// Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable.
 	RetryMode pulumi.StringPtrOutput `pulumi:"retryMode"`
 	// Password for xoa api. Can be set via the XOA_TOKEN environment variable.
 	Token pulumi.StringPtrOutput `pulumi:"token"`
@@ -55,11 +53,9 @@ type providerArgs struct {
 	Insecure *bool `pulumi:"insecure"`
 	// Password for xoa api. Can be set via the XOA_PASSWORD environment variable.
 	Password *string `pulumi:"password"`
-	// If `retryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via
-	// the `XOA_RETRY_MAX_TIME` environment variable
+	// If `retryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable
 	RetryMaxTime *string `pulumi:"retryMaxTime"`
-	// Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE
-	// environment variable.
+	// Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable.
 	RetryMode *string `pulumi:"retryMode"`
 	// Password for xoa api. Can be set via the XOA_TOKEN environment variable.
 	Token *string `pulumi:"token"`
@@ -75,11 +71,9 @@ type ProviderArgs struct {
 	Insecure pulumi.BoolPtrInput
 	// Password for xoa api. Can be set via the XOA_PASSWORD environment variable.
 	Password pulumi.StringPtrInput
-	// If `retryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via
-	// the `XOA_RETRY_MAX_TIME` environment variable
+	// If `retryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable
 	RetryMaxTime pulumi.StringPtrInput
-	// Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE
-	// environment variable.
+	// Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable.
 	RetryMode pulumi.StringPtrInput
 	// Password for xoa api. Can be set via the XOA_TOKEN environment variable.
 	Token pulumi.StringPtrInput
@@ -154,14 +148,12 @@ func (o ProviderOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// If `retryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via
-// the `XOA_RETRY_MAX_TIME` environment variable
+// If `retryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable
 func (o ProviderOutput) RetryMaxTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.RetryMaxTime }).(pulumi.StringPtrOutput)
 }
 
-// Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE
-// environment variable.
+// Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable.
 func (o ProviderOutput) RetryMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.RetryMode }).(pulumi.StringPtrOutput)
 }

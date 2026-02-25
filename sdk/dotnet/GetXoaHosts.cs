@@ -40,13 +40,13 @@ namespace Pulumi.Xenorchestra
         public string PoolId { get; set; } = null!;
 
         /// <summary>
-        /// The host field to sort the results by (id and name_label are supported).
+        /// The host field to sort the results by (id and NameLabel are supported).
         /// </summary>
         [Input("sortBy")]
         public string? SortBy { get; set; }
 
         /// <summary>
-        /// Valid options are `asc` or `desc` and sort order is applied to `sort_by` argument.
+        /// Valid options are `Asc` or `Desc` and sort order is applied to `SortBy` argument.
         /// </summary>
         [Input("sortOrder")]
         public string? SortOrder { get; set; }
@@ -78,13 +78,13 @@ namespace Pulumi.Xenorchestra
         public Input<string> PoolId { get; set; } = null!;
 
         /// <summary>
-        /// The host field to sort the results by (id and name_label are supported).
+        /// The host field to sort the results by (id and NameLabel are supported).
         /// </summary>
         [Input("sortBy")]
         public Input<string>? SortBy { get; set; }
 
         /// <summary>
-        /// Valid options are `asc` or `desc` and sort order is applied to `sort_by` argument.
+        /// Valid options are `Asc` or `Desc` and sort order is applied to `SortBy` argument.
         /// </summary>
         [Input("sortOrder")]
         public Input<string>? SortOrder { get; set; }
@@ -128,11 +128,11 @@ namespace Pulumi.Xenorchestra
         /// </summary>
         public readonly string PoolId;
         /// <summary>
-        /// The host field to sort the results by (id and name_label are supported).
+        /// The host field to sort the results by (id and NameLabel are supported).
         /// </summary>
         public readonly string? SortBy;
         /// <summary>
-        /// Valid options are `asc` or `desc` and sort order is applied to `sort_by` argument.
+        /// Valid options are `Asc` or `Desc` and sort order is applied to `SortBy` argument.
         /// </summary>
         public readonly string? SortOrder;
         /// <summary>

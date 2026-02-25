@@ -51,7 +51,7 @@ namespace Pulumi.Xenorchestra
         public Output<bool?> Automatic { get; private set; } = null!;
 
         /// <summary>
-        /// This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
+        /// This argument controls whether the network should enforce VIF locking. This defaults to `False` which means that no filtering rules are applied.
         /// </summary>
         [Output("defaultIsLocked")]
         public Output<bool?> DefaultIsLocked { get; private set; } = null!;
@@ -72,7 +72,7 @@ namespace Pulumi.Xenorchestra
         public Output<string> NameLabel { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the network should use a network block device. Defaults to `false` if unspecified.
+        /// Whether the network should use a network block device. Defaults to `False` if unspecified.
         /// </summary>
         [Output("nbd")]
         public Output<bool?> Nbd { get; private set; } = null!;
@@ -150,7 +150,7 @@ namespace Pulumi.Xenorchestra
         public Input<bool>? Automatic { get; set; }
 
         /// <summary>
-        /// This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
+        /// This argument controls whether the network should enforce VIF locking. This defaults to `False` which means that no filtering rules are applied.
         /// </summary>
         [Input("defaultIsLocked")]
         public Input<bool>? DefaultIsLocked { get; set; }
@@ -171,7 +171,7 @@ namespace Pulumi.Xenorchestra
         public Input<string> NameLabel { get; set; } = null!;
 
         /// <summary>
-        /// Whether the network should use a network block device. Defaults to `false` if unspecified.
+        /// Whether the network should use a network block device. Defaults to `False` if unspecified.
         /// </summary>
         [Input("nbd")]
         public Input<bool>? Nbd { get; set; }
@@ -206,7 +206,7 @@ namespace Pulumi.Xenorchestra
         public Input<bool>? Automatic { get; set; }
 
         /// <summary>
-        /// This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
+        /// This argument controls whether the network should enforce VIF locking. This defaults to `False` which means that no filtering rules are applied.
         /// </summary>
         [Input("defaultIsLocked")]
         public Input<bool>? DefaultIsLocked { get; set; }
@@ -227,7 +227,7 @@ namespace Pulumi.Xenorchestra
         public Input<string>? NameLabel { get; set; }
 
         /// <summary>
-        /// Whether the network should use a network block device. Defaults to `false` if unspecified.
+        /// Whether the network should use a network block device. Defaults to `False` if unspecified.
         /// </summary>
         [Input("nbd")]
         public Input<bool>? Nbd { get; set; }

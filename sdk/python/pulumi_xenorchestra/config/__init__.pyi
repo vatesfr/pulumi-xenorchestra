@@ -26,14 +26,12 @@ Password for xoa api. Can be set via the XOA_PASSWORD environment variable.
 
 retryMaxTime: Optional[str]
 """
-If `retry_mode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via
-the `XOA_RETRY_MAX_TIME` environment variable
+If `retry_mode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable
 """
 
 retryMode: Optional[str]
 """
-Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE
-environment variable.
+Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable.
 """
 
 token: Optional[str]

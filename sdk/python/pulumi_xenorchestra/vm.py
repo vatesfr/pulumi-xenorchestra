@@ -55,35 +55,33 @@ class VmArgs:
                  xenstore: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Vm resource.
-        :param pulumi.Input[_builtins.int] cpus: The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is
-               greater than the max CPU value. This can be determined with the following command: ``` $ xo-cli xo.getAllObjects
-               filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs' { "max": 4, "number": 2 } # Updating the VM
-               to use 3 CPUs would happen without stopping/starting the VM # Updating the VM to use 5 CPUs would stop/start the VM ```
+        :param pulumi.Input[_builtins.int] cpus: The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
+               ```
+               
+               $ xo-cli xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs'
+               {
+                 "max": 4,
+                 "number": 2
+               }
+               
+               # Updating the VM to use 3 CPUs would happen without stopping/starting the VM
+               # Updating the VM to use 5 CPUs would stop/start the VM
+               ```
         :param pulumi.Input[Sequence[pulumi.Input['VmDiskArgs']]] disks: The disk the VM will have access to.
-        :param pulumi.Input[_builtins.float] memory_max: The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and
-               start, as it sets both dynamic and static maximums.
+        :param pulumi.Input[_builtins.float] memory_max: The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
         :param pulumi.Input[_builtins.str] name_label: The name of the VM.
         :param pulumi.Input[Sequence[pulumi.Input['VmNetworkArgs']]] networks: The network for the VM.
         :param pulumi.Input[_builtins.str] template: The ID of the VM template to create the new VM from.
-        :param pulumi.Input[_builtins.str] affinity_host: The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to
-               be rescheduled.
+        :param pulumi.Input[_builtins.str] affinity_host: The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
         :param pulumi.Input[_builtins.bool] auto_poweron: If the VM will automatically turn on. Defaults to `false`.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] blocked_operations: List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-               hard_shutdown, pause, shutdown, suspend, destroy. See:
-               https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
-        :param pulumi.Input['VmCdromArgs'] cdrom: The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
-               from `xe template-list`) and install the OS from the following ISO.
-        :param pulumi.Input[_builtins.str] clone_type: The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to
-               perform a `full` clone, the VM template must not be a disk template.
-        :param pulumi.Input[_builtins.str] cloud_config: The content of the cloud-init config to use. See the cloud init docs for more
-               [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
-        :param pulumi.Input[_builtins.str] cloud_network_config: The content of the cloud-init network configuration for the VM (uses [version
-               1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
-        :param pulumi.Input[_builtins.bool] destroy_cloud_config_vdi_after_boot: Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`,
-               power_state must be set to `Running`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] blocked_operations: List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
+        :param pulumi.Input['VmCdromArgs'] cdrom: The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO.
+        :param pulumi.Input[_builtins.str] clone_type: The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
+        :param pulumi.Input[_builtins.str] cloud_config: The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
+        :param pulumi.Input[_builtins.str] cloud_network_config: The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
+        :param pulumi.Input[_builtins.bool] destroy_cloud_config_vdi_after_boot: Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, power_state must be set to `Running`.
         :param pulumi.Input[_builtins.bool] exp_nested_hvm: Boolean parameter that allows a VM to use nested virtualization.
-        :param pulumi.Input[_builtins.str] high_availability: The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure.
-               Defaults to empty string
+        :param pulumi.Input[_builtins.str] high_availability: The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string
         :param pulumi.Input[_builtins.str] hvm_boot_firmware: The firmware to use for the VM. Possible values are `bios` and `uefi`.
         :param pulumi.Input[_builtins.str] installation_method: This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
         :param pulumi.Input[_builtins.int] memory_min: The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.
@@ -159,10 +157,18 @@ class VmArgs:
     @pulumi.getter
     def cpus(self) -> pulumi.Input[_builtins.int]:
         """
-        The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is
-        greater than the max CPU value. This can be determined with the following command: ``` $ xo-cli xo.getAllObjects
-        filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs' { "max": 4, "number": 2 } # Updating the VM
-        to use 3 CPUs would happen without stopping/starting the VM # Updating the VM to use 5 CPUs would stop/start the VM ```
+        The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
+        ```
+
+        $ xo-cli xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs'
+        {
+          "max": 4,
+          "number": 2
+        }
+
+        # Updating the VM to use 3 CPUs would happen without stopping/starting the VM
+        # Updating the VM to use 5 CPUs would stop/start the VM
+        ```
         """
         return pulumi.get(self, "cpus")
 
@@ -186,8 +192,7 @@ class VmArgs:
     @pulumi.getter(name="memoryMax")
     def memory_max(self) -> pulumi.Input[_builtins.float]:
         """
-        The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and
-        start, as it sets both dynamic and static maximums.
+        The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
         """
         return pulumi.get(self, "memory_max")
 
@@ -235,8 +240,7 @@ class VmArgs:
     @pulumi.getter(name="affinityHost")
     def affinity_host(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to
-        be rescheduled.
+        The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
         """
         return pulumi.get(self, "affinity_host")
 
@@ -260,9 +264,7 @@ class VmArgs:
     @pulumi.getter(name="blockedOperations")
     def blocked_operations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-        hard_shutdown, pause, shutdown, suspend, destroy. See:
-        https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
+        List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
         """
         return pulumi.get(self, "blocked_operations")
 
@@ -274,8 +276,7 @@ class VmArgs:
     @pulumi.getter
     def cdrom(self) -> Optional[pulumi.Input['VmCdromArgs']]:
         """
-        The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
-        from `xe template-list`) and install the OS from the following ISO.
+        The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO.
         """
         return pulumi.get(self, "cdrom")
 
@@ -287,8 +288,7 @@ class VmArgs:
     @pulumi.getter(name="cloneType")
     def clone_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to
-        perform a `full` clone, the VM template must not be a disk template.
+        The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
         """
         return pulumi.get(self, "clone_type")
 
@@ -300,8 +300,7 @@ class VmArgs:
     @pulumi.getter(name="cloudConfig")
     def cloud_config(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The content of the cloud-init config to use. See the cloud init docs for more
-        [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
+        The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
         """
         return pulumi.get(self, "cloud_config")
 
@@ -313,8 +312,7 @@ class VmArgs:
     @pulumi.getter(name="cloudNetworkConfig")
     def cloud_network_config(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The content of the cloud-init network configuration for the VM (uses [version
-        1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
+        The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
         """
         return pulumi.get(self, "cloud_network_config")
 
@@ -353,8 +351,7 @@ class VmArgs:
     @pulumi.getter(name="destroyCloudConfigVdiAfterBoot")
     def destroy_cloud_config_vdi_after_boot(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`,
-        power_state must be set to `Running`.
+        Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, power_state must be set to `Running`.
         """
         return pulumi.get(self, "destroy_cloud_config_vdi_after_boot")
 
@@ -378,8 +375,7 @@ class VmArgs:
     @pulumi.getter(name="highAvailability")
     def high_availability(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure.
-        Defaults to empty string
+        The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string
         """
         return pulumi.get(self, "high_availability")
 
@@ -577,37 +573,33 @@ class _VmState:
                  xenstore: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Vm resources.
-        :param pulumi.Input[_builtins.str] affinity_host: The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to
-               be rescheduled.
+        :param pulumi.Input[_builtins.str] affinity_host: The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
         :param pulumi.Input[_builtins.bool] auto_poweron: If the VM will automatically turn on. Defaults to `false`.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] blocked_operations: List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-               hard_shutdown, pause, shutdown, suspend, destroy. See:
-               https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
-        :param pulumi.Input['VmCdromArgs'] cdrom: The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
-               from `xe template-list`) and install the OS from the following ISO.
-        :param pulumi.Input[_builtins.str] clone_type: The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to
-               perform a `full` clone, the VM template must not be a disk template.
-        :param pulumi.Input[_builtins.str] cloud_config: The content of the cloud-init config to use. See the cloud init docs for more
-               [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
-        :param pulumi.Input[_builtins.str] cloud_network_config: The content of the cloud-init network configuration for the VM (uses [version
-               1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
-        :param pulumi.Input[_builtins.int] cpus: The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is
-               greater than the max CPU value. This can be determined with the following command: ``` $ xo-cli xo.getAllObjects
-               filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs' { "max": 4, "number": 2 } # Updating the VM
-               to use 3 CPUs would happen without stopping/starting the VM # Updating the VM to use 5 CPUs would stop/start the VM ```
-        :param pulumi.Input[_builtins.bool] destroy_cloud_config_vdi_after_boot: Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`,
-               power_state must be set to `Running`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] blocked_operations: List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
+        :param pulumi.Input['VmCdromArgs'] cdrom: The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO.
+        :param pulumi.Input[_builtins.str] clone_type: The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
+        :param pulumi.Input[_builtins.str] cloud_config: The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
+        :param pulumi.Input[_builtins.str] cloud_network_config: The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
+        :param pulumi.Input[_builtins.int] cpus: The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
+               ```
+               
+               $ xo-cli xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs'
+               {
+                 "max": 4,
+                 "number": 2
+               }
+               
+               # Updating the VM to use 3 CPUs would happen without stopping/starting the VM
+               # Updating the VM to use 5 CPUs would stop/start the VM
+               ```
+        :param pulumi.Input[_builtins.bool] destroy_cloud_config_vdi_after_boot: Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, power_state must be set to `Running`.
         :param pulumi.Input[Sequence[pulumi.Input['VmDiskArgs']]] disks: The disk the VM will have access to.
         :param pulumi.Input[_builtins.bool] exp_nested_hvm: Boolean parameter that allows a VM to use nested virtualization.
-        :param pulumi.Input[_builtins.str] high_availability: The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure.
-               Defaults to empty string
+        :param pulumi.Input[_builtins.str] high_availability: The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string
         :param pulumi.Input[_builtins.str] hvm_boot_firmware: The firmware to use for the VM. Possible values are `bios` and `uefi`.
         :param pulumi.Input[_builtins.str] installation_method: This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ipv6_addresses: This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
-               presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6
-               addresses across all network interfaces in order.
-        :param pulumi.Input[_builtins.float] memory_max: The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and
-               start, as it sets both dynamic and static maximums.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ipv6_addresses: This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
+        :param pulumi.Input[_builtins.float] memory_max: The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
         :param pulumi.Input[_builtins.int] memory_min: The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.
         :param pulumi.Input[_builtins.str] name_description: The description of the VM.
         :param pulumi.Input[_builtins.str] name_label: The name of the VM.
@@ -694,8 +686,7 @@ class _VmState:
     @pulumi.getter(name="affinityHost")
     def affinity_host(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to
-        be rescheduled.
+        The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
         """
         return pulumi.get(self, "affinity_host")
 
@@ -719,9 +710,7 @@ class _VmState:
     @pulumi.getter(name="blockedOperations")
     def blocked_operations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-        hard_shutdown, pause, shutdown, suspend, destroy. See:
-        https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
+        List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
         """
         return pulumi.get(self, "blocked_operations")
 
@@ -733,8 +722,7 @@ class _VmState:
     @pulumi.getter
     def cdrom(self) -> Optional[pulumi.Input['VmCdromArgs']]:
         """
-        The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
-        from `xe template-list`) and install the OS from the following ISO.
+        The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO.
         """
         return pulumi.get(self, "cdrom")
 
@@ -746,8 +734,7 @@ class _VmState:
     @pulumi.getter(name="cloneType")
     def clone_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to
-        perform a `full` clone, the VM template must not be a disk template.
+        The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
         """
         return pulumi.get(self, "clone_type")
 
@@ -759,8 +746,7 @@ class _VmState:
     @pulumi.getter(name="cloudConfig")
     def cloud_config(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The content of the cloud-init config to use. See the cloud init docs for more
-        [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
+        The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
         """
         return pulumi.get(self, "cloud_config")
 
@@ -772,8 +758,7 @@ class _VmState:
     @pulumi.getter(name="cloudNetworkConfig")
     def cloud_network_config(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The content of the cloud-init network configuration for the VM (uses [version
-        1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
+        The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
         """
         return pulumi.get(self, "cloud_network_config")
 
@@ -812,10 +797,18 @@ class _VmState:
     @pulumi.getter
     def cpus(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is
-        greater than the max CPU value. This can be determined with the following command: ``` $ xo-cli xo.getAllObjects
-        filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs' { "max": 4, "number": 2 } # Updating the VM
-        to use 3 CPUs would happen without stopping/starting the VM # Updating the VM to use 5 CPUs would stop/start the VM ```
+        The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
+        ```
+
+        $ xo-cli xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs'
+        {
+          "max": 4,
+          "number": 2
+        }
+
+        # Updating the VM to use 3 CPUs would happen without stopping/starting the VM
+        # Updating the VM to use 5 CPUs would stop/start the VM
+        ```
         """
         return pulumi.get(self, "cpus")
 
@@ -827,8 +820,7 @@ class _VmState:
     @pulumi.getter(name="destroyCloudConfigVdiAfterBoot")
     def destroy_cloud_config_vdi_after_boot(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`,
-        power_state must be set to `Running`.
+        Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, power_state must be set to `Running`.
         """
         return pulumi.get(self, "destroy_cloud_config_vdi_after_boot")
 
@@ -864,8 +856,7 @@ class _VmState:
     @pulumi.getter(name="highAvailability")
     def high_availability(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure.
-        Defaults to empty string
+        The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string
         """
         return pulumi.get(self, "high_availability")
 
@@ -919,9 +910,7 @@ class _VmState:
     @pulumi.getter(name="ipv6Addresses")
     def ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
-        presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6
-        addresses across all network interfaces in order.
+        This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
         """
         return pulumi.get(self, "ipv6_addresses")
 
@@ -933,8 +922,7 @@ class _VmState:
     @pulumi.getter(name="memoryMax")
     def memory_max(self) -> Optional[pulumi.Input[_builtins.float]]:
         """
-        The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and
-        start, as it sets both dynamic and static maximums.
+        The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
         """
         return pulumi.get(self, "memory_max")
 
@@ -1140,34 +1128,32 @@ class Vm(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] affinity_host: The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to
-               be rescheduled.
+        :param pulumi.Input[_builtins.str] affinity_host: The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
         :param pulumi.Input[_builtins.bool] auto_poweron: If the VM will automatically turn on. Defaults to `false`.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] blocked_operations: List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-               hard_shutdown, pause, shutdown, suspend, destroy. See:
-               https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
-        :param pulumi.Input[Union['VmCdromArgs', 'VmCdromArgsDict']] cdrom: The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
-               from `xe template-list`) and install the OS from the following ISO.
-        :param pulumi.Input[_builtins.str] clone_type: The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to
-               perform a `full` clone, the VM template must not be a disk template.
-        :param pulumi.Input[_builtins.str] cloud_config: The content of the cloud-init config to use. See the cloud init docs for more
-               [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
-        :param pulumi.Input[_builtins.str] cloud_network_config: The content of the cloud-init network configuration for the VM (uses [version
-               1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
-        :param pulumi.Input[_builtins.int] cpus: The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is
-               greater than the max CPU value. This can be determined with the following command: ``` $ xo-cli xo.getAllObjects
-               filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs' { "max": 4, "number": 2 } # Updating the VM
-               to use 3 CPUs would happen without stopping/starting the VM # Updating the VM to use 5 CPUs would stop/start the VM ```
-        :param pulumi.Input[_builtins.bool] destroy_cloud_config_vdi_after_boot: Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`,
-               power_state must be set to `Running`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] blocked_operations: List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
+        :param pulumi.Input[Union['VmCdromArgs', 'VmCdromArgsDict']] cdrom: The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO.
+        :param pulumi.Input[_builtins.str] clone_type: The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
+        :param pulumi.Input[_builtins.str] cloud_config: The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
+        :param pulumi.Input[_builtins.str] cloud_network_config: The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
+        :param pulumi.Input[_builtins.int] cpus: The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
+               ```
+               
+               $ xo-cli xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs'
+               {
+                 "max": 4,
+                 "number": 2
+               }
+               
+               # Updating the VM to use 3 CPUs would happen without stopping/starting the VM
+               # Updating the VM to use 5 CPUs would stop/start the VM
+               ```
+        :param pulumi.Input[_builtins.bool] destroy_cloud_config_vdi_after_boot: Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, power_state must be set to `Running`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['VmDiskArgs', 'VmDiskArgsDict']]]] disks: The disk the VM will have access to.
         :param pulumi.Input[_builtins.bool] exp_nested_hvm: Boolean parameter that allows a VM to use nested virtualization.
-        :param pulumi.Input[_builtins.str] high_availability: The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure.
-               Defaults to empty string
+        :param pulumi.Input[_builtins.str] high_availability: The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string
         :param pulumi.Input[_builtins.str] hvm_boot_firmware: The firmware to use for the VM. Possible values are `bios` and `uefi`.
         :param pulumi.Input[_builtins.str] installation_method: This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
-        :param pulumi.Input[_builtins.float] memory_max: The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and
-               start, as it sets both dynamic and static maximums.
+        :param pulumi.Input[_builtins.float] memory_max: The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
         :param pulumi.Input[_builtins.int] memory_min: The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.
         :param pulumi.Input[_builtins.str] name_description: The description of the VM.
         :param pulumi.Input[_builtins.str] name_label: The name of the VM.
@@ -1343,37 +1329,33 @@ class Vm(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] affinity_host: The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to
-               be rescheduled.
+        :param pulumi.Input[_builtins.str] affinity_host: The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
         :param pulumi.Input[_builtins.bool] auto_poweron: If the VM will automatically turn on. Defaults to `false`.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] blocked_operations: List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-               hard_shutdown, pause, shutdown, suspend, destroy. See:
-               https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
-        :param pulumi.Input[Union['VmCdromArgs', 'VmCdromArgsDict']] cdrom: The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
-               from `xe template-list`) and install the OS from the following ISO.
-        :param pulumi.Input[_builtins.str] clone_type: The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to
-               perform a `full` clone, the VM template must not be a disk template.
-        :param pulumi.Input[_builtins.str] cloud_config: The content of the cloud-init config to use. See the cloud init docs for more
-               [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
-        :param pulumi.Input[_builtins.str] cloud_network_config: The content of the cloud-init network configuration for the VM (uses [version
-               1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
-        :param pulumi.Input[_builtins.int] cpus: The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is
-               greater than the max CPU value. This can be determined with the following command: ``` $ xo-cli xo.getAllObjects
-               filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs' { "max": 4, "number": 2 } # Updating the VM
-               to use 3 CPUs would happen without stopping/starting the VM # Updating the VM to use 5 CPUs would stop/start the VM ```
-        :param pulumi.Input[_builtins.bool] destroy_cloud_config_vdi_after_boot: Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`,
-               power_state must be set to `Running`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] blocked_operations: List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
+        :param pulumi.Input[Union['VmCdromArgs', 'VmCdromArgsDict']] cdrom: The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO.
+        :param pulumi.Input[_builtins.str] clone_type: The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
+        :param pulumi.Input[_builtins.str] cloud_config: The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
+        :param pulumi.Input[_builtins.str] cloud_network_config: The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
+        :param pulumi.Input[_builtins.int] cpus: The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
+               ```
+               
+               $ xo-cli xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs'
+               {
+                 "max": 4,
+                 "number": 2
+               }
+               
+               # Updating the VM to use 3 CPUs would happen without stopping/starting the VM
+               # Updating the VM to use 5 CPUs would stop/start the VM
+               ```
+        :param pulumi.Input[_builtins.bool] destroy_cloud_config_vdi_after_boot: Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, power_state must be set to `Running`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['VmDiskArgs', 'VmDiskArgsDict']]]] disks: The disk the VM will have access to.
         :param pulumi.Input[_builtins.bool] exp_nested_hvm: Boolean parameter that allows a VM to use nested virtualization.
-        :param pulumi.Input[_builtins.str] high_availability: The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure.
-               Defaults to empty string
+        :param pulumi.Input[_builtins.str] high_availability: The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string
         :param pulumi.Input[_builtins.str] hvm_boot_firmware: The firmware to use for the VM. Possible values are `bios` and `uefi`.
         :param pulumi.Input[_builtins.str] installation_method: This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ipv6_addresses: This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
-               presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6
-               addresses across all network interfaces in order.
-        :param pulumi.Input[_builtins.float] memory_max: The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and
-               start, as it sets both dynamic and static maximums.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ipv6_addresses: This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
+        :param pulumi.Input[_builtins.float] memory_max: The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
         :param pulumi.Input[_builtins.int] memory_min: The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.
         :param pulumi.Input[_builtins.str] name_description: The description of the VM.
         :param pulumi.Input[_builtins.str] name_label: The name of the VM.
@@ -1431,8 +1413,7 @@ class Vm(pulumi.CustomResource):
     @pulumi.getter(name="affinityHost")
     def affinity_host(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to
-        be rescheduled.
+        The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
         """
         return pulumi.get(self, "affinity_host")
 
@@ -1448,9 +1429,7 @@ class Vm(pulumi.CustomResource):
     @pulumi.getter(name="blockedOperations")
     def blocked_operations(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
-        List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot,
-        hard_shutdown, pause, shutdown, suspend, destroy. See:
-        https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
+        List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
         """
         return pulumi.get(self, "blocked_operations")
 
@@ -1458,8 +1437,7 @@ class Vm(pulumi.CustomResource):
     @pulumi.getter
     def cdrom(self) -> pulumi.Output[Optional['outputs.VmCdrom']]:
         """
-        The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available
-        from `xe template-list`) and install the OS from the following ISO.
+        The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO.
         """
         return pulumi.get(self, "cdrom")
 
@@ -1467,8 +1445,7 @@ class Vm(pulumi.CustomResource):
     @pulumi.getter(name="cloneType")
     def clone_type(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to
-        perform a `full` clone, the VM template must not be a disk template.
+        The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
         """
         return pulumi.get(self, "clone_type")
 
@@ -1476,8 +1453,7 @@ class Vm(pulumi.CustomResource):
     @pulumi.getter(name="cloudConfig")
     def cloud_config(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The content of the cloud-init config to use. See the cloud init docs for more
-        [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
+        The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
         """
         return pulumi.get(self, "cloud_config")
 
@@ -1485,8 +1461,7 @@ class Vm(pulumi.CustomResource):
     @pulumi.getter(name="cloudNetworkConfig")
     def cloud_network_config(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The content of the cloud-init network configuration for the VM (uses [version
-        1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
+        The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
         """
         return pulumi.get(self, "cloud_network_config")
 
@@ -1509,10 +1484,18 @@ class Vm(pulumi.CustomResource):
     @pulumi.getter
     def cpus(self) -> pulumi.Output[_builtins.int]:
         """
-        The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is
-        greater than the max CPU value. This can be determined with the following command: ``` $ xo-cli xo.getAllObjects
-        filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs' { "max": 4, "number": 2 } # Updating the VM
-        to use 3 CPUs would happen without stopping/starting the VM # Updating the VM to use 5 CPUs would stop/start the VM ```
+        The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
+        ```
+
+        $ xo-cli xo.getAllObjects filter='json:{"id": "cf7b5d7d-3cd5-6b7c-5025-5c935c8cd0b8"}' | jq '.[].CPUs'
+        {
+          "max": 4,
+          "number": 2
+        }
+
+        # Updating the VM to use 3 CPUs would happen without stopping/starting the VM
+        # Updating the VM to use 5 CPUs would stop/start the VM
+        ```
         """
         return pulumi.get(self, "cpus")
 
@@ -1520,8 +1503,7 @@ class Vm(pulumi.CustomResource):
     @pulumi.getter(name="destroyCloudConfigVdiAfterBoot")
     def destroy_cloud_config_vdi_after_boot(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`,
-        power_state must be set to `Running`.
+        Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, power_state must be set to `Running`.
         """
         return pulumi.get(self, "destroy_cloud_config_vdi_after_boot")
 
@@ -1545,8 +1527,7 @@ class Vm(pulumi.CustomResource):
     @pulumi.getter(name="highAvailability")
     def high_availability(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure.
-        Defaults to empty string
+        The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string
         """
         return pulumi.get(self, "high_availability")
 
@@ -1580,9 +1561,7 @@ class Vm(pulumi.CustomResource):
     @pulumi.getter(name="ipv6Addresses")
     def ipv6_addresses(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the
-        presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6
-        addresses across all network interfaces in order.
+        This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
         """
         return pulumi.get(self, "ipv6_addresses")
 
@@ -1590,8 +1569,7 @@ class Vm(pulumi.CustomResource):
     @pulumi.getter(name="memoryMax")
     def memory_max(self) -> pulumi.Output[_builtins.float]:
         """
-        The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and
-        start, as it sets both dynamic and static maximums.
+        The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
         """
         return pulumi.get(self, "memory_max")
 

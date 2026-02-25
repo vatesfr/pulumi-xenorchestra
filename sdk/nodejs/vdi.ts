@@ -38,19 +38,19 @@ export class Vdi extends pulumi.CustomResource {
     /**
      * The file path to the ISO or vdi image that should be uploaded when the VDI is created.
      */
-    public readonly filepath!: pulumi.Output<string>;
+    declare public readonly filepath: pulumi.Output<string>;
     /**
      * The name label of the VDI
      */
-    public readonly nameLabel!: pulumi.Output<string>;
+    declare public readonly nameLabel: pulumi.Output<string>;
     /**
      * The id of the storage repository the VDI should be created in. Make sure the storage repository supports the file you are uploading! For example, ISOs should only be uploaded to ISO storage repositories.
      */
-    public readonly srId!: pulumi.Output<string>;
+    declare public readonly srId: pulumi.Output<string>;
     /**
      * Only `raw` uploads are supported today, but vhd support may be added in the future.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
 
     /**
      * Create a Vdi resource with the given unique name, arguments, and options.
@@ -65,28 +65,28 @@ export class Vdi extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VdiState | undefined;
-            resourceInputs["filepath"] = state ? state.filepath : undefined;
-            resourceInputs["nameLabel"] = state ? state.nameLabel : undefined;
-            resourceInputs["srId"] = state ? state.srId : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["filepath"] = state?.filepath;
+            resourceInputs["nameLabel"] = state?.nameLabel;
+            resourceInputs["srId"] = state?.srId;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as VdiArgs | undefined;
-            if ((!args || args.filepath === undefined) && !opts.urn) {
+            if (args?.filepath === undefined && !opts.urn) {
                 throw new Error("Missing required property 'filepath'");
             }
-            if ((!args || args.nameLabel === undefined) && !opts.urn) {
+            if (args?.nameLabel === undefined && !opts.urn) {
                 throw new Error("Missing required property 'nameLabel'");
             }
-            if ((!args || args.srId === undefined) && !opts.urn) {
+            if (args?.srId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'srId'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["filepath"] = args ? args.filepath : undefined;
-            resourceInputs["nameLabel"] = args ? args.nameLabel : undefined;
-            resourceInputs["srId"] = args ? args.srId : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["filepath"] = args?.filepath;
+            resourceInputs["nameLabel"] = args?.nameLabel;
+            resourceInputs["srId"] = args?.srId;
+            resourceInputs["type"] = args?.type;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Vdi.__pulumiType, name, resourceInputs, opts);

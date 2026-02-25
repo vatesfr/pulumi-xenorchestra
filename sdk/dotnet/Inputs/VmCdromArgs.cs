@@ -13,7 +13,7 @@ namespace Pulumi.Xenorchestra.Inputs
     public sealed class VmCdromArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the ISO (VDI) to attach to the VM. This can be easily provided by using the `vdi` data source.
+        /// The ID of the ISO (VDI) to attach to the VM. This can be easily provided by using the `Vdi` data source.
         /// </summary>
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;

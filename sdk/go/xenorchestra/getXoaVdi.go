@@ -12,6 +12,36 @@ import (
 )
 
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			vdi, err := xenorchestra.GetXoaVdi(ctx, &xenorchestra.GetXoaVdiArgs{
+//				NameLabel: pulumi.StringRef("ubuntu-20.04.4-live-server-amd64.iso"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = xenorchestra.NewVm(ctx, "demo-vm", &xenorchestra.VmArgs{
+//				Cdrom: pulumi.Any(vdi.Id[0]),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetXoaVdi(ctx *pulumi.Context, args *GetXoaVdiArgs, opts ...pulumi.InvokeOption) (*GetXoaVdiResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetXoaVdiResult

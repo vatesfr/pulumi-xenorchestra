@@ -37,16 +37,14 @@ class _ExportableConfig(types.ModuleType):
     @_builtins.property
     def retry_max_time(self) -> Optional[str]:
         """
-        If `retry_mode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via
-        the `XOA_RETRY_MAX_TIME` environment variable
+        If `retry_mode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable
         """
         return __config__.get('retryMaxTime')
 
     @_builtins.property
     def retry_mode(self) -> Optional[str]:
         """
-        Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE
-        environment variable.
+        Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable.
         """
         return __config__.get('retryMode')
 
