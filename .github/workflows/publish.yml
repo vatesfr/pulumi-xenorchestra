@@ -7,6 +7,9 @@ on:
       version:
         required: true
         type: string
+      setLatestRelease:
+        required: true
+        type: boolean
       isPrerelease:
         required: true
         type: boolean
@@ -21,9 +24,17 @@ on:
 
 env:
   IS_PRERELEASE: ${{ inputs.isPrerelease }}
+  JAVA_SIGNING_KEY: ${{ secrets.JAVA_SIGNING_KEY }}
+  JAVA_SIGNING_KEY_ID: ${{ secrets.JAVA_SIGNING_KEY_ID }}
+  JAVA_SIGNING_PASSWORD: ${{ secrets.JAVA_SIGNING_PASSWORD }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
+  OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+  OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
   PULUMI_API: https://api.pulumi-staging.io
   PULUMI_GO_DEP_ROOT: ${{ github.workspace }}/..
   PULUMI_LOCAL_NUGET: ${{ github.workspace }}/nuget
+  PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
   TF_APPEND_USER_AGENT: pulumi
 
 jobs:
@@ -38,25 +49,38 @@ jobs:
       if: inputs.skipGoSdk && inputs.isPrerelease == false
       run: echo "Can't skip Go SDK for stable releases. This is likely a bug in the calling workflow." && exit 1
     - name: Checkout Repo
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       with:
-        persist-credentials: false
-    - name: Setup tools
-      uses: ./.github/actions/setup-tools
+        persist-credentials: false    
+    - id: esc-secrets
+      name: Map environment to ESC outputs
+      uses: ./.github/actions/esc-action
+    - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
+      id: app-auth
       with:
-        tools: pulumictl, pulumicli, go, schema-tools
-        cache-go: false
+        app-id: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_APP_ID }}
+        private-key: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_PRIVATE_KEY }}
+        owner: ${{ github.repository_owner }}
+    - name: Setup mise
+      uses: blampe/mise-action@blampe/plugins
+      env:
+        MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
+      with:
+        version: 2026.1.1
+        github_token: ${{ steps.app-auth.outputs.token }}
+        plugin_install: https://github.com/pulumi/vfox-pulumi
+        cache_save: false
     - name: Create dist directory
       run: mkdir -p dist
     - name: Download provider assets
-      uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
+      uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
       with:
         pattern: pulumi-resource-xenorchestra-v${{ inputs.version }}-*
         path: dist
         # Don't create a directory for each artifact
         merge-multiple: true
     - name: Download schema
-      uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
+      uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
       with:
         # Use a pattern to avoid failing if the artifact doesn't exist
         pattern: schema-embed.*
@@ -80,13 +104,15 @@ jobs:
           echo 'EOF'
         } >> "$GITHUB_OUTPUT"
     - name: Create GH Release
-      uses: softprops/action-gh-release@72f2c25fcb47643c292f7107632f7a47c1df5cd8 # v2
+      uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b # v2
       if: inputs.isPrerelease == false
       with:
         tag_name: v${{ inputs.version }}
         prerelease: ${{ inputs.isPrerelease }}
         # We keep pre-releases as drafts so they're not visible until we manually publish them.
         draft: ${{ inputs.isPrerelease }}
+        # Explicitly set make_latest to account for backported releases
+        make_latest: ${{ inputs.setLatestRelease }}
         body: ${{ steps.schema-summary.outputs.summary }}
         generate_release_notes: true
         files: dist/*
@@ -101,45 +127,65 @@ jobs:
       python_version: ${{ steps.python_version.outputs.version }}
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       with:
         # Persist credentials so we can push back to the repo
-        persist-credentials: true
-    - name: Setup tools
-      uses: ./.github/actions/setup-tools
+        persist-credentials: true    
+    - id: esc-secrets
+      name: Map environment to ESC outputs
+      uses: ./.github/actions/esc-action
+    - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
+      id: app-auth
       with:
-        tools: pulumictl, pulumicli, go, nodejs, python, dotnet
-        cache-go: false
+        app-id: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_APP_ID }}
+        private-key: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_PRIVATE_KEY }}
+        owner: ${{ github.repository_owner }}
+    - name: Setup mise
+      uses: blampe/mise-action@blampe/plugins
+      env:
+        MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
+      with:
+        version: 2026.1.1
+        github_token: ${{ steps.app-auth.outputs.token }}
+        plugin_install: https://github.com/pulumi/vfox-pulumi
+        # only saving the cache in the prerequisites job
+        cache_save: false
+    - name: Setup Node
+      uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+      with:
+        # we don't set node-version because we install with mise.
+        # this step is needed to setup npm auth
+        registry-url: https://registry.npmjs.org
     - name: Publish SDKs
       if: inputs.skipJavaSdk == false
-      uses: pulumi/pulumi-package-publisher@c1672c7928591d563dccb12729e05e315c21f8c2 # v0.0.22
+      uses: pulumi/pulumi-package-publisher@3ec1409d3e894142b9825c7859be8e57d362762a # v0.0.23
       with:
         sdk: all,!java
         version: ${{ inputs.version }}
       env:
         PYPI_USERNAME: __token__
-        PYPI_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        SIGNING_KEY: ${{ secrets.JAVA_SIGNING_KEY }}
-        SIGNING_KEY_ID: ${{ secrets.JAVA_SIGNING_KEY_ID }}
-        SIGNING_PASSWORD: ${{ secrets.JAVA_SIGNING_PASSWORD }}
-        PUBLISH_REPO_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-        PUBLISH_REPO_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-        NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
+        PYPI_PASSWORD: ${{ steps.esc-secrets.outputs.PYPI_API_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ steps.esc-secrets.outputs.NPM_TOKEN }}
+        SIGNING_KEY: ${{ steps.esc-secrets.outputs.JAVA_SIGNING_KEY }}
+        SIGNING_KEY_ID: ${{ steps.esc-secrets.outputs.JAVA_SIGNING_KEY_ID }}
+        SIGNING_PASSWORD: ${{ steps.esc-secrets.outputs.JAVA_SIGNING_PASSWORD }}
+        PUBLISH_REPO_PASSWORD: ${{ steps.esc-secrets.outputs.OSSRH_PASSWORD }}
+        PUBLISH_REPO_USERNAME: ${{ steps.esc-secrets.outputs.OSSRH_USERNAME }}
+        NUGET_PUBLISH_KEY: ${{ steps.esc-secrets.outputs.NUGET_PUBLISH_KEY }}
     - name: Publish SDKs (except Java)
       if: inputs.skipJavaSdk == true
-      uses: pulumi/pulumi-package-publisher@c1672c7928591d563dccb12729e05e315c21f8c2 # v0.0.22
+      uses: pulumi/pulumi-package-publisher@3ec1409d3e894142b9825c7859be8e57d362762a # v0.0.23
       with:
         sdk: all,!java,!java
         version: ${{ inputs.version }}
       env:
         PYPI_USERNAME: __token__
-        PYPI_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        SIGNING_KEY: ${{ secrets.JAVA_SIGNING_KEY }}
-        SIGNING_KEY_ID: ${{ secrets.JAVA_SIGNING_KEY_ID }}
-        SIGNING_PASSWORD: ${{ secrets.JAVA_SIGNING_PASSWORD }}
-        NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
+        PYPI_PASSWORD: ${{ steps.esc-secrets.outputs.PYPI_API_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ steps.esc-secrets.outputs.NPM_TOKEN }}
+        SIGNING_KEY: ${{ steps.esc-secrets.outputs.JAVA_SIGNING_KEY }}
+        SIGNING_KEY_ID: ${{ steps.esc-secrets.outputs.JAVA_SIGNING_KEY_ID }}
+        SIGNING_PASSWORD: ${{ steps.esc-secrets.outputs.JAVA_SIGNING_PASSWORD }}
+        NUGET_PUBLISH_KEY: ${{ steps.esc-secrets.outputs.NUGET_PUBLISH_KEY }}
     - name: Download Go SDK
       uses: ./.github/actions/download-sdk
       with:
@@ -175,9 +221,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       with:
-        persist-credentials: false
+        persist-credentials: false    
+    - id: esc-secrets
+      name: Map environment to ESC outputs
+      uses: ./.github/actions/esc-action
+    - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
+      id: app-auth
+      with:
+        app-id: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_APP_ID }}
+        private-key: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_PRIVATE_KEY }}
+        owner: ${{ github.repository_owner }}
     - name: Clean up release labels
       uses: pulumi/action-release-by-pr-label@main
       with:
@@ -192,7 +247,6 @@ jobs:
     needs: publish_sdk
     permissions:
       contents: write
-      id-token: write
     uses: ./.github/workflows/verify-release.yml
     secrets: inherit
     with:

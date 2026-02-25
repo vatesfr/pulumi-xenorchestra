@@ -15,6 +15,8 @@ env:
   PULUMI_API: https://api.pulumi-staging.io
   PULUMI_GO_DEP_ROOT: ${{ github.workspace }}/..
   PULUMI_LOCAL_NUGET: ${{ github.workspace }}/nuget
+  PULUMI_PROVIDER_AUTOMATION_TOKEN: ${{ secrets.PULUMI_PROVIDER_AUTOMATION_TOKEN }}
+  PULUMI_PULUMI_ENABLE_JOURNALING: "true"
   TF_APPEND_USER_AGENT: pulumi
 
 # This should cancel any previous runs of the same workflow on the same branch which are still running.
@@ -40,6 +42,8 @@ jobs:
     uses: ./.github/workflows/build_provider.yml
     needs: prerequisites
     secrets: inherit
+    permissions:
+      contents: read
     with:
       version: ${{ needs.prerequisites.outputs.version }}
       matrix: |
@@ -57,6 +61,8 @@ jobs:
     needs: prerequisites
     uses: ./.github/workflows/build_sdk.yml
     secrets: inherit
+    permissions:
+      contents: write # For Renovate SDKs.
     with:
       version: ${{ needs.prerequisites.outputs.version }}
 
@@ -67,11 +73,15 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout Repo
+      uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      with:
+        persist-credentials: false
     - id: run-url
       name: Create URL to the run output
       run: echo "run-url=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> "$GITHUB_OUTPUT"
     - name: Update with Result
-      uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4.0.0
+      uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
       with:
         body: "Please view the PR build: ${{ steps.run-url.outputs.run-url }}"
         issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
@@ -96,9 +106,9 @@ jobs:
     - lint
     runs-on: ubuntu-latest
     steps:
-    - uses: guibranco/github-status-action-v2@0849440ec82c5fa69b2377725b9b7852a3977e76 # v1.1.13
+    - uses: guibranco/github-status-action-v2@631f55ea0251f0fb284525ad86c30e9f7a8dd284 # v1.1.14
       with:
-        authToken: ${{secrets.GITHUB_TOKEN}}
+        authToken: ${{ secrets.GITHUB_TOKEN }}
         # Write an explicit status check called "Sentinel" which will only pass if this code really runs.
         # This should always be a required check for PRs.
         context: 'Sentinel'
@@ -119,7 +129,6 @@ jobs:
       - build_sdk
     permissions:
       contents: read
-      id-token: write
     secrets: inherit
     with:
       version: ${{ needs.prerequisites.outputs.version }}
