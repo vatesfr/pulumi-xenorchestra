@@ -11,7 +11,7 @@ upstream-provider-repo: terraform-provider-xenorchestra
 # This should always be set by all providers as this is key to go module paths.
 major-version: 2
 # Enable using the terraform converter for example generation.
-pulumiConvert: 1
+pulumiConvert: 0
 # Set a GitHub username here for automatic upgrade PRs to be assigned to.
 # pr-assign: pulumi-bot
 
