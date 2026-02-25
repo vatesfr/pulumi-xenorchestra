@@ -175,13 +175,19 @@ namespace Pulumi.Xenorchestra
         public Output<string?> ResourceSet { get; private set; } = null!;
 
         /// <summary>
+        /// Enable UEFI secure boot for the VM.
+        /// </summary>
+        [Output("secureBoot")]
+        public Output<bool?> SecureBoot { get; private set; } = null!;
+
+        /// <summary>
         /// Number of seconds the VM should be delayed from starting.
         /// </summary>
         [Output("startDelay")]
         public Output<int?> StartDelay { get; private set; } = null!;
 
         /// <summary>
-        /// The tags (labels) applied to the given entity.
+        /// The tags (labels) applied to the given entity. Not used for filtering if empty.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
@@ -424,6 +430,12 @@ namespace Pulumi.Xenorchestra
         public Input<string>? ResourceSet { get; set; }
 
         /// <summary>
+        /// Enable UEFI secure boot for the VM.
+        /// </summary>
+        [Input("secureBoot")]
+        public Input<bool>? SecureBoot { get; set; }
+
+        /// <summary>
         /// Number of seconds the VM should be delayed from starting.
         /// </summary>
         [Input("startDelay")]
@@ -433,7 +445,7 @@ namespace Pulumi.Xenorchestra
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags (labels) applied to the given entity.
+        /// The tags (labels) applied to the given entity. Not used for filtering if empty.
         /// </summary>
         public InputList<string> Tags
         {
@@ -668,6 +680,12 @@ namespace Pulumi.Xenorchestra
         public Input<string>? ResourceSet { get; set; }
 
         /// <summary>
+        /// Enable UEFI secure boot for the VM.
+        /// </summary>
+        [Input("secureBoot")]
+        public Input<bool>? SecureBoot { get; set; }
+
+        /// <summary>
         /// Number of seconds the VM should be delayed from starting.
         /// </summary>
         [Input("startDelay")]
@@ -677,7 +695,7 @@ namespace Pulumi.Xenorchestra
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags (labels) applied to the given entity.
+        /// The tags (labels) applied to the given entity. Not used for filtering if empty.
         /// </summary>
         public InputList<string> Tags
         {

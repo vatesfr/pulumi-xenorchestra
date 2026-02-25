@@ -79,9 +79,11 @@ type Vm struct {
 	// The power state of the VM. This can be Running, Halted, Paused or Suspended.
 	PowerState  pulumi.StringPtrOutput `pulumi:"powerState"`
 	ResourceSet pulumi.StringPtrOutput `pulumi:"resourceSet"`
+	// Enable UEFI secure boot for the VM.
+	SecureBoot pulumi.BoolPtrOutput `pulumi:"secureBoot"`
 	// Number of seconds the VM should be delayed from starting.
 	StartDelay pulumi.IntPtrOutput `pulumi:"startDelay"`
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The ID of the VM template to create the new VM from.
 	Template pulumi.StringOutput `pulumi:"template"`
@@ -204,9 +206,11 @@ type vmState struct {
 	// The power state of the VM. This can be Running, Halted, Paused or Suspended.
 	PowerState  *string `pulumi:"powerState"`
 	ResourceSet *string `pulumi:"resourceSet"`
+	// Enable UEFI secure boot for the VM.
+	SecureBoot *bool `pulumi:"secureBoot"`
 	// Number of seconds the VM should be delayed from starting.
 	StartDelay *int `pulumi:"startDelay"`
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags []string `pulumi:"tags"`
 	// The ID of the VM template to create the new VM from.
 	Template *string `pulumi:"template"`
@@ -282,9 +286,11 @@ type VmState struct {
 	// The power state of the VM. This can be Running, Halted, Paused or Suspended.
 	PowerState  pulumi.StringPtrInput
 	ResourceSet pulumi.StringPtrInput
+	// Enable UEFI secure boot for the VM.
+	SecureBoot pulumi.BoolPtrInput
 	// Number of seconds the VM should be delayed from starting.
 	StartDelay pulumi.IntPtrInput
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags pulumi.StringArrayInput
 	// The ID of the VM template to create the new VM from.
 	Template pulumi.StringPtrInput
@@ -359,9 +365,11 @@ type vmArgs struct {
 	// The power state of the VM. This can be Running, Halted, Paused or Suspended.
 	PowerState  *string `pulumi:"powerState"`
 	ResourceSet *string `pulumi:"resourceSet"`
+	// Enable UEFI secure boot for the VM.
+	SecureBoot *bool `pulumi:"secureBoot"`
 	// Number of seconds the VM should be delayed from starting.
 	StartDelay *int `pulumi:"startDelay"`
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags []string `pulumi:"tags"`
 	// The ID of the VM template to create the new VM from.
 	Template string `pulumi:"template"`
@@ -433,9 +441,11 @@ type VmArgs struct {
 	// The power state of the VM. This can be Running, Halted, Paused or Suspended.
 	PowerState  pulumi.StringPtrInput
 	ResourceSet pulumi.StringPtrInput
+	// Enable UEFI secure boot for the VM.
+	SecureBoot pulumi.BoolPtrInput
 	// Number of seconds the VM should be delayed from starting.
 	StartDelay pulumi.IntPtrInput
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags pulumi.StringArrayInput
 	// The ID of the VM template to create the new VM from.
 	Template pulumi.StringInput
@@ -678,12 +688,17 @@ func (o VmOutput) ResourceSet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Vm) pulumi.StringPtrOutput { return v.ResourceSet }).(pulumi.StringPtrOutput)
 }
 
+// Enable UEFI secure boot for the VM.
+func (o VmOutput) SecureBoot() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Vm) pulumi.BoolPtrOutput { return v.SecureBoot }).(pulumi.BoolPtrOutput)
+}
+
 // Number of seconds the VM should be delayed from starting.
 func (o VmOutput) StartDelay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Vm) pulumi.IntPtrOutput { return v.StartDelay }).(pulumi.IntPtrOutput)
 }
 
-// The tags (labels) applied to the given entity.
+// The tags (labels) applied to the given entity. Not used for filtering if empty.
 func (o VmOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Vm) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }

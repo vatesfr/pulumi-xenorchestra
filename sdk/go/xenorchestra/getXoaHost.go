@@ -56,7 +56,7 @@ func GetXoaHost(ctx *pulumi.Context, args *GetXoaHostArgs, opts ...pulumi.Invoke
 type GetXoaHostArgs struct {
 	// The name label of the host.
 	NameLabel string `pulumi:"nameLabel"`
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags []string `pulumi:"tags"`
 }
 
@@ -74,7 +74,7 @@ type GetXoaHostResult struct {
 	NameLabel string `pulumi:"nameLabel"`
 	// Id of the pool that the host belongs to.
 	PoolId string `pulumi:"poolId"`
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags []string `pulumi:"tags"`
 }
 
@@ -91,7 +91,7 @@ func GetXoaHostOutput(ctx *pulumi.Context, args GetXoaHostOutputArgs, opts ...pu
 type GetXoaHostOutputArgs struct {
 	// The name label of the host.
 	NameLabel pulumi.StringInput `pulumi:"nameLabel"`
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
 }
 
@@ -144,7 +144,7 @@ func (o GetXoaHostResultOutput) PoolId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetXoaHostResult) string { return v.PoolId }).(pulumi.StringOutput)
 }
 
-// The tags (labels) applied to the given entity.
+// The tags (labels) applied to the given entity. Not used for filtering if empty.
 func (o GetXoaHostResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetXoaHostResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }

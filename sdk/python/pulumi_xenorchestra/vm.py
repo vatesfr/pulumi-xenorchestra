@@ -47,6 +47,7 @@ class VmArgs:
                  name_description: Optional[pulumi.Input[_builtins.str]] = None,
                  power_state: Optional[pulumi.Input[_builtins.str]] = None,
                  resource_set: Optional[pulumi.Input[_builtins.str]] = None,
+                 secure_boot: Optional[pulumi.Input[_builtins.bool]] = None,
                  start_delay: Optional[pulumi.Input[_builtins.int]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  vga: Optional[pulumi.Input[_builtins.str]] = None,
@@ -88,8 +89,9 @@ class VmArgs:
         :param pulumi.Input[_builtins.int] memory_min: The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.
         :param pulumi.Input[_builtins.str] name_description: The description of the VM.
         :param pulumi.Input[_builtins.str] power_state: The power state of the VM. This can be Running, Halted, Paused or Suspended.
+        :param pulumi.Input[_builtins.bool] secure_boot: Enable UEFI secure boot for the VM.
         :param pulumi.Input[_builtins.int] start_delay: Number of seconds the VM should be delayed from starting.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags (labels) applied to the given entity.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
         :param pulumi.Input[_builtins.str] vga: The video adapter the VM should use. Possible values include std and cirrus.
         :param pulumi.Input[_builtins.int] videoram: The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] xenstore: The key value pairs to be populated in xenstore.
@@ -140,6 +142,8 @@ class VmArgs:
             pulumi.set(__self__, "power_state", power_state)
         if resource_set is not None:
             pulumi.set(__self__, "resource_set", resource_set)
+        if secure_boot is not None:
+            pulumi.set(__self__, "secure_boot", secure_boot)
         if start_delay is not None:
             pulumi.set(__self__, "start_delay", start_delay)
         if tags is not None:
@@ -462,6 +466,18 @@ class VmArgs:
         pulumi.set(self, "resource_set", value)
 
     @_builtins.property
+    @pulumi.getter(name="secureBoot")
+    def secure_boot(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enable UEFI secure boot for the VM.
+        """
+        return pulumi.get(self, "secure_boot")
+
+    @secure_boot.setter
+    def secure_boot(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "secure_boot", value)
+
+    @_builtins.property
     @pulumi.getter(name="startDelay")
     def start_delay(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -477,7 +493,7 @@ class VmArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        The tags (labels) applied to the given entity.
+        The tags (labels) applied to the given entity. Not used for filtering if empty.
         """
         return pulumi.get(self, "tags")
 
@@ -552,6 +568,7 @@ class _VmState:
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input['VmNetworkArgs']]]] = None,
                  power_state: Optional[pulumi.Input[_builtins.str]] = None,
                  resource_set: Optional[pulumi.Input[_builtins.str]] = None,
+                 secure_boot: Optional[pulumi.Input[_builtins.bool]] = None,
                  start_delay: Optional[pulumi.Input[_builtins.int]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  template: Optional[pulumi.Input[_builtins.str]] = None,
@@ -596,8 +613,9 @@ class _VmState:
         :param pulumi.Input[_builtins.str] name_label: The name of the VM.
         :param pulumi.Input[Sequence[pulumi.Input['VmNetworkArgs']]] networks: The network for the VM.
         :param pulumi.Input[_builtins.str] power_state: The power state of the VM. This can be Running, Halted, Paused or Suspended.
+        :param pulumi.Input[_builtins.bool] secure_boot: Enable UEFI secure boot for the VM.
         :param pulumi.Input[_builtins.int] start_delay: Number of seconds the VM should be delayed from starting.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags (labels) applied to the given entity.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
         :param pulumi.Input[_builtins.str] template: The ID of the VM template to create the new VM from.
         :param pulumi.Input[_builtins.str] vga: The video adapter the VM should use. Possible values include std and cirrus.
         :param pulumi.Input[_builtins.int] videoram: The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
@@ -657,6 +675,8 @@ class _VmState:
             pulumi.set(__self__, "power_state", power_state)
         if resource_set is not None:
             pulumi.set(__self__, "resource_set", resource_set)
+        if secure_boot is not None:
+            pulumi.set(__self__, "secure_boot", secure_boot)
         if start_delay is not None:
             pulumi.set(__self__, "start_delay", start_delay)
         if tags is not None:
@@ -992,6 +1012,18 @@ class _VmState:
         pulumi.set(self, "resource_set", value)
 
     @_builtins.property
+    @pulumi.getter(name="secureBoot")
+    def secure_boot(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enable UEFI secure boot for the VM.
+        """
+        return pulumi.get(self, "secure_boot")
+
+    @secure_boot.setter
+    def secure_boot(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "secure_boot", value)
+
+    @_builtins.property
     @pulumi.getter(name="startDelay")
     def start_delay(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -1007,7 +1039,7 @@ class _VmState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        The tags (labels) applied to the given entity.
+        The tags (labels) applied to the given entity. Not used for filtering if empty.
         """
         return pulumi.get(self, "tags")
 
@@ -1095,6 +1127,7 @@ class Vm(pulumi.CustomResource):
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VmNetworkArgs', 'VmNetworkArgsDict']]]]] = None,
                  power_state: Optional[pulumi.Input[_builtins.str]] = None,
                  resource_set: Optional[pulumi.Input[_builtins.str]] = None,
+                 secure_boot: Optional[pulumi.Input[_builtins.bool]] = None,
                  start_delay: Optional[pulumi.Input[_builtins.int]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  template: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1140,8 +1173,9 @@ class Vm(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name_label: The name of the VM.
         :param pulumi.Input[Sequence[pulumi.Input[Union['VmNetworkArgs', 'VmNetworkArgsDict']]]] networks: The network for the VM.
         :param pulumi.Input[_builtins.str] power_state: The power state of the VM. This can be Running, Halted, Paused or Suspended.
+        :param pulumi.Input[_builtins.bool] secure_boot: Enable UEFI secure boot for the VM.
         :param pulumi.Input[_builtins.int] start_delay: Number of seconds the VM should be delayed from starting.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags (labels) applied to the given entity.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
         :param pulumi.Input[_builtins.str] template: The ID of the VM template to create the new VM from.
         :param pulumi.Input[_builtins.str] vga: The video adapter the VM should use. Possible values include std and cirrus.
         :param pulumi.Input[_builtins.int] videoram: The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
@@ -1196,6 +1230,7 @@ class Vm(pulumi.CustomResource):
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VmNetworkArgs', 'VmNetworkArgsDict']]]]] = None,
                  power_state: Optional[pulumi.Input[_builtins.str]] = None,
                  resource_set: Optional[pulumi.Input[_builtins.str]] = None,
+                 secure_boot: Optional[pulumi.Input[_builtins.bool]] = None,
                  start_delay: Optional[pulumi.Input[_builtins.int]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  template: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1246,6 +1281,7 @@ class Vm(pulumi.CustomResource):
             __props__.__dict__["networks"] = networks
             __props__.__dict__["power_state"] = power_state
             __props__.__dict__["resource_set"] = resource_set
+            __props__.__dict__["secure_boot"] = secure_boot
             __props__.__dict__["start_delay"] = start_delay
             __props__.__dict__["tags"] = tags
             if template is None and not opts.urn:
@@ -1293,6 +1329,7 @@ class Vm(pulumi.CustomResource):
             networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VmNetworkArgs', 'VmNetworkArgsDict']]]]] = None,
             power_state: Optional[pulumi.Input[_builtins.str]] = None,
             resource_set: Optional[pulumi.Input[_builtins.str]] = None,
+            secure_boot: Optional[pulumi.Input[_builtins.bool]] = None,
             start_delay: Optional[pulumi.Input[_builtins.int]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             template: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1342,8 +1379,9 @@ class Vm(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name_label: The name of the VM.
         :param pulumi.Input[Sequence[pulumi.Input[Union['VmNetworkArgs', 'VmNetworkArgsDict']]]] networks: The network for the VM.
         :param pulumi.Input[_builtins.str] power_state: The power state of the VM. This can be Running, Halted, Paused or Suspended.
+        :param pulumi.Input[_builtins.bool] secure_boot: Enable UEFI secure boot for the VM.
         :param pulumi.Input[_builtins.int] start_delay: Number of seconds the VM should be delayed from starting.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags (labels) applied to the given entity.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
         :param pulumi.Input[_builtins.str] template: The ID of the VM template to create the new VM from.
         :param pulumi.Input[_builtins.str] vga: The video adapter the VM should use. Possible values include std and cirrus.
         :param pulumi.Input[_builtins.int] videoram: The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
@@ -1380,6 +1418,7 @@ class Vm(pulumi.CustomResource):
         __props__.__dict__["networks"] = networks
         __props__.__dict__["power_state"] = power_state
         __props__.__dict__["resource_set"] = resource_set
+        __props__.__dict__["secure_boot"] = secure_boot
         __props__.__dict__["start_delay"] = start_delay
         __props__.__dict__["tags"] = tags
         __props__.__dict__["template"] = template
@@ -1602,6 +1641,14 @@ class Vm(pulumi.CustomResource):
         return pulumi.get(self, "resource_set")
 
     @_builtins.property
+    @pulumi.getter(name="secureBoot")
+    def secure_boot(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Enable UEFI secure boot for the VM.
+        """
+        return pulumi.get(self, "secure_boot")
+
+    @_builtins.property
     @pulumi.getter(name="startDelay")
     def start_delay(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
@@ -1613,7 +1660,7 @@ class Vm(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
-        The tags (labels) applied to the given entity.
+        The tags (labels) applied to the given entity. Not used for filtering if empty.
         """
         return pulumi.get(self, "tags")
 

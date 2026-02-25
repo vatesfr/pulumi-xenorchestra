@@ -561,7 +561,7 @@ type GetXoaHostsHost struct {
 	NameLabel string `pulumi:"nameLabel"`
 	// Id of the pool that the host belongs to.
 	PoolId string `pulumi:"poolId"`
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags []string `pulumi:"tags"`
 }
 
@@ -588,7 +588,7 @@ type GetXoaHostsHostArgs struct {
 	NameLabel pulumi.StringInput `pulumi:"nameLabel"`
 	// Id of the pool that the host belongs to.
 	PoolId pulumi.StringInput `pulumi:"poolId"`
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
 }
 
@@ -672,7 +672,7 @@ func (o GetXoaHostsHostOutput) PoolId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetXoaHostsHost) string { return v.PoolId }).(pulumi.StringOutput)
 }
 
-// The tags (labels) applied to the given entity.
+// The tags (labels) applied to the given entity. Not used for filtering if empty.
 func (o GetXoaHostsHostOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetXoaHostsHost) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
@@ -741,9 +741,11 @@ type GetXoaVmsVm struct {
 	// The power state of the VM. This can be Running, Halted, Paused or Suspended.
 	PowerState  *string `pulumi:"powerState"`
 	ResourceSet *string `pulumi:"resourceSet"`
+	// Enable UEFI secure boot for the VM.
+	SecureBoot *bool `pulumi:"secureBoot"`
 	// Number of seconds the VM should be delayed from starting.
 	StartDelay *int `pulumi:"startDelay"`
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags []string `pulumi:"tags"`
 	// The ID of the VM template to create the new VM from.
 	Template string `pulumi:"template"`
@@ -810,9 +812,11 @@ type GetXoaVmsVmArgs struct {
 	// The power state of the VM. This can be Running, Halted, Paused or Suspended.
 	PowerState  pulumi.StringPtrInput `pulumi:"powerState"`
 	ResourceSet pulumi.StringPtrInput `pulumi:"resourceSet"`
+	// Enable UEFI secure boot for the VM.
+	SecureBoot pulumi.BoolPtrInput `pulumi:"secureBoot"`
 	// Number of seconds the VM should be delayed from starting.
 	StartDelay pulumi.IntPtrInput `pulumi:"startDelay"`
-	// The tags (labels) applied to the given entity.
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
 	// The ID of the VM template to create the new VM from.
 	Template pulumi.StringInput `pulumi:"template"`
@@ -993,12 +997,17 @@ func (o GetXoaVmsVmOutput) ResourceSet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetXoaVmsVm) *string { return v.ResourceSet }).(pulumi.StringPtrOutput)
 }
 
+// Enable UEFI secure boot for the VM.
+func (o GetXoaVmsVmOutput) SecureBoot() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetXoaVmsVm) *bool { return v.SecureBoot }).(pulumi.BoolPtrOutput)
+}
+
 // Number of seconds the VM should be delayed from starting.
 func (o GetXoaVmsVmOutput) StartDelay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetXoaVmsVm) *int { return v.StartDelay }).(pulumi.IntPtrOutput)
 }
 
-// The tags (labels) applied to the given entity.
+// The tags (labels) applied to the given entity. Not used for filtering if empty.
 func (o GetXoaVmsVmOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetXoaVmsVm) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }

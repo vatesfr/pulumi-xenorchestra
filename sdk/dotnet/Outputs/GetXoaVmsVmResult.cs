@@ -104,11 +104,15 @@ namespace Pulumi.Xenorchestra.Outputs
         public readonly string? PowerState;
         public readonly string? ResourceSet;
         /// <summary>
+        /// Enable UEFI secure boot for the VM.
+        /// </summary>
+        public readonly bool? SecureBoot;
+        /// <summary>
         /// Number of seconds the VM should be delayed from starting.
         /// </summary>
         public readonly int? StartDelay;
         /// <summary>
-        /// The tags (labels) applied to the given entity.
+        /// The tags (labels) applied to the given entity. Not used for filtering if empty.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
         /// <summary>
@@ -180,6 +184,8 @@ namespace Pulumi.Xenorchestra.Outputs
 
             string? resourceSet,
 
+            bool? secureBoot,
+
             int? startDelay,
 
             ImmutableArray<string> tags,
@@ -217,6 +223,7 @@ namespace Pulumi.Xenorchestra.Outputs
             Networks = networks;
             PowerState = powerState;
             ResourceSet = resourceSet;
+            SecureBoot = secureBoot;
             StartDelay = startDelay;
             Tags = tags;
             Template = template;

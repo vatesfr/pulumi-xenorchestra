@@ -305,7 +305,7 @@ class GetXoaHostsHostResult(dict):
         :param _builtins.int memory_usage: The memory usage of the host.
         :param _builtins.str name_label: The name label of the host.
         :param _builtins.str pool_id: Id of the pool that the host belongs to.
-        :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity.
+        :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
         """
         pulumi.set(__self__, "cpus", cpus)
         pulumi.set(__self__, "id", id)
@@ -365,7 +365,7 @@ class GetXoaHostsHostResult(dict):
     @pulumi.getter
     def tags(self) -> Optional[Sequence[_builtins.str]]:
         """
-        The tags (labels) applied to the given entity.
+        The tags (labels) applied to the given entity. Not used for filtering if empty.
         """
         return pulumi.get(self, "tags")
 
@@ -399,6 +399,7 @@ class GetXoaVmsVmResult(dict):
                  name_description: Optional[_builtins.str] = None,
                  power_state: Optional[_builtins.str] = None,
                  resource_set: Optional[_builtins.str] = None,
+                 secure_boot: Optional[_builtins.bool] = None,
                  start_delay: Optional[_builtins.int] = None,
                  tags: Optional[Sequence[_builtins.str]] = None,
                  vga: Optional[_builtins.str] = None,
@@ -435,8 +436,9 @@ class GetXoaVmsVmResult(dict):
         :param _builtins.str hvm_boot_firmware: The firmware to use for the VM. Possible values are `bios` and `uefi`.
         :param _builtins.str name_description: The description of the VM.
         :param _builtins.str power_state: The power state of the VM. This can be Running, Halted, Paused or Suspended.
+        :param _builtins.bool secure_boot: Enable UEFI secure boot for the VM.
         :param _builtins.int start_delay: Number of seconds the VM should be delayed from starting.
-        :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity.
+        :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
         :param _builtins.str vga: The video adapter the VM should use. Possible values include std and cirrus.
         :param _builtins.int videoram: The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
         :param Mapping[str, _builtins.str] xenstore: The key value pairs to be populated in xenstore.
@@ -483,6 +485,8 @@ class GetXoaVmsVmResult(dict):
             pulumi.set(__self__, "power_state", power_state)
         if resource_set is not None:
             pulumi.set(__self__, "resource_set", resource_set)
+        if secure_boot is not None:
+            pulumi.set(__self__, "secure_boot", secure_boot)
         if start_delay is not None:
             pulumi.set(__self__, "start_delay", start_delay)
         if tags is not None:
@@ -693,6 +697,14 @@ class GetXoaVmsVmResult(dict):
         return pulumi.get(self, "resource_set")
 
     @_builtins.property
+    @pulumi.getter(name="secureBoot")
+    def secure_boot(self) -> Optional[_builtins.bool]:
+        """
+        Enable UEFI secure boot for the VM.
+        """
+        return pulumi.get(self, "secure_boot")
+
+    @_builtins.property
     @pulumi.getter(name="startDelay")
     def start_delay(self) -> Optional[_builtins.int]:
         """
@@ -704,7 +716,7 @@ class GetXoaVmsVmResult(dict):
     @pulumi.getter
     def tags(self) -> Optional[Sequence[_builtins.str]]:
         """
-        The tags (labels) applied to the given entity.
+        The tags (labels) applied to the given entity. Not used for filtering if empty.
         """
         return pulumi.get(self, "tags")
 

@@ -118,7 +118,7 @@ class GetXoaStorageRepositoryResult:
     @pulumi.getter
     def tags(self) -> Optional[Sequence[_builtins.str]]:
         """
-        The tags (labels) applied to the given entity.
+        The tags (labels) applied to the given entity. Not used for filtering if empty.
         """
         return pulumi.get(self, "tags")
 
@@ -179,7 +179,7 @@ def get_xoa_storage_repository(name_label: Optional[_builtins.str] = None,
 
     :param _builtins.str name_label: The name of the storage repository to look up
     :param _builtins.str pool_id: The Id of the pool the storage repository exists on.
-    :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity.
+    :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
     """
     __args__ = dict()
     __args__['nameLabel'] = name_label
@@ -221,7 +221,7 @@ def get_xoa_storage_repository_output(name_label: Optional[pulumi.Input[_builtin
 
     :param _builtins.str name_label: The name of the storage repository to look up
     :param _builtins.str pool_id: The Id of the pool the storage repository exists on.
-    :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity.
+    :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
     """
     __args__ = dict()
     __args__['nameLabel'] = name_label
