@@ -32,6 +32,7 @@ namespace Pulumi.Xenorchestra
         ///         Template = template.Apply(getXoaTemplateResult =&gt; getXoaTemplateResult.Id),
         ///     });
         /// 
+        ///     // ...
         /// });
         /// ```
         /// </summary>
@@ -59,6 +60,7 @@ namespace Pulumi.Xenorchestra
         ///         Template = template.Apply(getXoaTemplateResult =&gt; getXoaTemplateResult.Id),
         ///     });
         /// 
+        ///     // ...
         /// });
         /// ```
         /// </summary>
@@ -86,6 +88,7 @@ namespace Pulumi.Xenorchestra
         ///         Template = template.Apply(getXoaTemplateResult =&gt; getXoaTemplateResult.Id),
         ///     });
         /// 
+        ///     // ...
         /// });
         /// ```
         /// </summary>

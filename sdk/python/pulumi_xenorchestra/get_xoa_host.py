@@ -133,6 +133,7 @@ def get_xoa_host(name_label: Optional[_builtins.str] = None,
 
     host1 = xenorchestra.get_xoa_host(name_label="Your host")
     node = xenorchestra.Vm("node", affinity_host=host1.id)
+    #...
     ```
 
 
@@ -165,6 +166,7 @@ def get_xoa_host_output(name_label: Optional[pulumi.Input[_builtins.str]] = None
 
     host1 = xenorchestra.get_xoa_host(name_label="Your host")
     node = xenorchestra.Vm("node", affinity_host=host1.id)
+    #...
     ```
 
 

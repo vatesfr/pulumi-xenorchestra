@@ -6,6 +6,26 @@ import * as utilities from "./utilities";
 
 /**
  * Creates a Xen Orchestra vdi resource.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as xenorchestra from "@vates/pulumi-xenorchestra";
+ *
+ * const barVdi = new xenorchestra.Vdi("barVdi", {
+ *     nameLabel: "alpine-virt-3-17-0",
+ *     srId: data.xenorchestra_sr.sr.id,
+ *     filepath: `${path.module}/isos/alpine-virt-3.17.0-x86_64.iso`,
+ *     type: "raw",
+ * });
+ * // Use the vdi with the VM resource
+ * // Other required options omitted
+ * // [ ... ]
+ * const barVm = new xenorchestra.Vm("barVm", {cdrom: {
+ *     id: resource.xenorchestra_vdi.bar.id,
+ * }});
+ * ```
  */
 export class Vdi extends pulumi.CustomResource {
     /**

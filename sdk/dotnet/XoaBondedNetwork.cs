@@ -54,7 +54,6 @@ namespace Pulumi.Xenorchestra
     ///         },
     ///     });
     /// 
-    ///     // Create a bonded network from PIFs on VLANs
     ///     var eth1Vlan = Xenorchestra.GetXoaPif.Invoke(new()
     ///     {
     ///         Device = "eth1",
@@ -70,7 +69,7 @@ namespace Pulumi.Xenorchestra
     ///     });
     /// 
     ///     // Create a bonded network from normal PIFs
-    ///     var networkVlan = new Xenorchestra.XoaBondedNetwork("network_vlan", new()
+    ///     var networkVlan = new Xenorchestra.XoaBondedNetwork("networkVlan", new()
     ///     {
     ///         NameLabel = "new network name",
     ///         BondMode = "active-backup",

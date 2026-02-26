@@ -40,6 +40,7 @@ namespace Pulumi.Xenorchestra
         ///         },
         ///     });
         /// 
+        ///     // ...
         /// });
         /// ```
         /// </summary>
@@ -75,6 +76,7 @@ namespace Pulumi.Xenorchestra
         ///         },
         ///     });
         /// 
+        ///     // ...
         /// });
         /// ```
         /// </summary>
@@ -110,6 +112,7 @@ namespace Pulumi.Xenorchestra
         ///         },
         ///     });
         /// 
+        ///     // ...
         /// });
         /// ```
         /// </summary>

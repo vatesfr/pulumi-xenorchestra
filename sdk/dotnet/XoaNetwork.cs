@@ -26,14 +26,14 @@ namespace Pulumi.Xenorchestra
     ///     });
     /// 
     ///     // Create a single server network private network
-    ///     var privateNetwork = new Xenorchestra.XoaNetwork("private_network", new()
+    ///     var privateNetwork = new Xenorchestra.XoaNetwork("privateNetwork", new()
     ///     {
     ///         NameLabel = "new network name",
     ///         PoolId = host1.Apply(getXoaHostResult =&gt; getXoaHostResult.PoolId),
     ///     });
     /// 
     ///     // Create a network with a 22 VLAN tag from the eth0 device
-    ///     var vlanNetwork = new Xenorchestra.XoaNetwork("vlan_network", new()
+    ///     var vlanNetwork = new Xenorchestra.XoaNetwork("vlanNetwork", new()
     ///     {
     ///         NameLabel = "new network name",
     ///         PoolId = host1.Apply(getXoaHostResult =&gt; getXoaHostResult.PoolId),

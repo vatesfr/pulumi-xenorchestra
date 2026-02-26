@@ -29,7 +29,7 @@ namespace Pulumi.Xenorchestra
         /// 
         ///     var demo_vm = new Xenorchestra.Vm("demo-vm", new()
         ///     {
-        ///         Cdrom = vdi.Apply(getXoaVdiResult =&gt; getXoaVdiResult.Id[0]),
+        ///         Cdrom = vdi.Apply(getXoaVdiResult =&gt; getXoaVdiResult.Id),
         ///     });
         /// 
         /// });
@@ -56,7 +56,7 @@ namespace Pulumi.Xenorchestra
         /// 
         ///     var demo_vm = new Xenorchestra.Vm("demo-vm", new()
         ///     {
-        ///         Cdrom = vdi.Apply(getXoaVdiResult =&gt; getXoaVdiResult.Id[0]),
+        ///         Cdrom = vdi.Apply(getXoaVdiResult =&gt; getXoaVdiResult.Id),
         ///     });
         /// 
         /// });
@@ -83,7 +83,7 @@ namespace Pulumi.Xenorchestra
         /// 
         ///     var demo_vm = new Xenorchestra.Vm("demo-vm", new()
         ///     {
-        ///         Cdrom = vdi.Apply(getXoaVdiResult =&gt; getXoaVdiResult.Id[0]),
+        ///         Cdrom = vdi.Apply(getXoaVdiResult =&gt; getXoaVdiResult.Id),
         ///     });
         /// 
         /// });

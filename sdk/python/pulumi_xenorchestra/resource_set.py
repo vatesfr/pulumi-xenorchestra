@@ -187,7 +187,6 @@ class ResourceSet(pulumi.CustomResource):
             vlan=-1)
         user = xenorchestra.get_xoa_user(username="test_user")
         rs = xenorchestra.ResourceSet("rs",
-            name="new-resource-set",
             subjects=[user.id],
             objects=[
                 template.id,
@@ -250,7 +249,6 @@ class ResourceSet(pulumi.CustomResource):
             vlan=-1)
         user = xenorchestra.get_xoa_user(username="test_user")
         rs = xenorchestra.ResourceSet("rs",
-            name="new-resource-set",
             subjects=[user.id],
             objects=[
                 template.id,

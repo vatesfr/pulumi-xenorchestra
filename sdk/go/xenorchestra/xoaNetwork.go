@@ -33,7 +33,7 @@ import (
 //				return err
 //			}
 //			// Create a single server network private network
-//			_, err = xenorchestra.NewXoaNetwork(ctx, "private_network", &xenorchestra.XoaNetworkArgs{
+//			_, err = xenorchestra.NewXoaNetwork(ctx, "privateNetwork", &xenorchestra.XoaNetworkArgs{
 //				NameLabel: pulumi.String("new network name"),
 //				PoolId:    pulumi.String(host1.PoolId),
 //			})
@@ -41,7 +41,7 @@ import (
 //				return err
 //			}
 //			// Create a network with a 22 VLAN tag from the eth0 device
-//			_, err = xenorchestra.NewXoaNetwork(ctx, "vlan_network", &xenorchestra.XoaNetworkArgs{
+//			_, err = xenorchestra.NewXoaNetwork(ctx, "vlanNetwork", &xenorchestra.XoaNetworkArgs{
 //				NameLabel:       pulumi.String("new network name"),
 //				PoolId:          pulumi.String(host1.PoolId),
 //				SourcePifDevice: pulumi.String("eth0"),

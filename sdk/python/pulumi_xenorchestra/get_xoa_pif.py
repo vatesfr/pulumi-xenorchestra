@@ -209,6 +209,7 @@ def get_xoa_pif(device: Optional[_builtins.str] = None,
     demo_vm = xenorchestra.Vm("demo-vm", networks=[{
         "network_id": eth0.network,
     }])
+    # ...
     ```
 
 
@@ -253,6 +254,7 @@ def get_xoa_pif_output(device: Optional[pulumi.Input[_builtins.str]] = None,
     demo_vm = xenorchestra.Vm("demo-vm", networks=[{
         "network_id": eth0.network,
     }])
+    # ...
     ```
 
 

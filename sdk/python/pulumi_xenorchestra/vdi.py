@@ -170,6 +170,25 @@ class Vdi(pulumi.CustomResource):
         """
         Creates a Xen Orchestra vdi resource.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_xenorchestra as xenorchestra
+
+        bar_vdi = xenorchestra.Vdi("barVdi",
+            name_label="alpine-virt-3-17-0",
+            sr_id=data["xenorchestra_sr"]["sr"]["id"],
+            filepath=f"{path['module']}/isos/alpine-virt-3.17.0-x86_64.iso",
+            type="raw")
+        # Use the vdi with the VM resource
+        # Other required options omitted
+        # [ ... ]
+        bar_vm = xenorchestra.Vm("barVm", cdrom={
+            "id": resource["xenorchestra_vdi"]["bar"]["id"],
+        })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] filepath: The file path to the ISO or vdi image that should be uploaded when the VDI is created.
@@ -185,6 +204,25 @@ class Vdi(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates a Xen Orchestra vdi resource.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_xenorchestra as xenorchestra
+
+        bar_vdi = xenorchestra.Vdi("barVdi",
+            name_label="alpine-virt-3-17-0",
+            sr_id=data["xenorchestra_sr"]["sr"]["id"],
+            filepath=f"{path['module']}/isos/alpine-virt-3.17.0-x86_64.iso",
+            type="raw")
+        # Use the vdi with the VM resource
+        # Other required options omitted
+        # [ ... ]
+        bar_vm = xenorchestra.Vm("barVm", cdrom={
+            "id": resource["xenorchestra_vdi"]["bar"]["id"],
+        })
+        ```
 
         :param str resource_name: The name of the resource.
         :param VdiArgs args: The arguments to use to populate this resource's properties.

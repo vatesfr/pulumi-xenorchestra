@@ -110,7 +110,7 @@ def get_xoa_vdi(id: Optional[_builtins.str] = None,
     import pulumi_xenorchestra as xenorchestra
 
     vdi = xenorchestra.get_xoa_vdi(name_label="ubuntu-20.04.4-live-server-amd64.iso")
-    demo_vm = xenorchestra.Vm("demo-vm", cdrom=vdi.id[0])
+    demo_vm = xenorchestra.Vm("demo-vm", cdrom=vdi.id)
     ```
 
 
@@ -146,7 +146,7 @@ def get_xoa_vdi_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = Non
     import pulumi_xenorchestra as xenorchestra
 
     vdi = xenorchestra.get_xoa_vdi(name_label="ubuntu-20.04.4-live-server-amd64.iso")
-    demo_vm = xenorchestra.Vm("demo-vm", cdrom=vdi.id[0])
+    demo_vm = xenorchestra.Vm("demo-vm", cdrom=vdi.id)
     ```
 
 

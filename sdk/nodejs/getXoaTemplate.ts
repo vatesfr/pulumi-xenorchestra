@@ -15,6 +15,7 @@ import * as utilities from "./utilities";
  *     nameLabel: "Ubuntu Bionic Beaver 18.04",
  * });
  * const demo_vm = new xenorchestra.Vm("demo-vm", {template: template.then(template => template.id)});
+ * // ...
  * ```
  */
 export function getXoaTemplate(args: GetXoaTemplateArgs, opts?: pulumi.InvokeOptions): Promise<GetXoaTemplateResult> {
@@ -75,6 +76,7 @@ export interface GetXoaTemplateResult {
  *     nameLabel: "Ubuntu Bionic Beaver 18.04",
  * });
  * const demo_vm = new xenorchestra.Vm("demo-vm", {template: template.then(template => template.id)});
+ * // ...
  * ```
  */
 export function getXoaTemplateOutput(args: GetXoaTemplateOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetXoaTemplateResult> {

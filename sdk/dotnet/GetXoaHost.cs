@@ -32,6 +32,7 @@ namespace Pulumi.Xenorchestra
         ///         AffinityHost = host1.Apply(getXoaHostResult =&gt; getXoaHostResult.Id),
         ///     });
         /// 
+        ///     //...
         /// });
         /// ```
         /// </summary>
@@ -59,6 +60,7 @@ namespace Pulumi.Xenorchestra
         ///         AffinityHost = host1.Apply(getXoaHostResult =&gt; getXoaHostResult.Id),
         ///     });
         /// 
+        ///     //...
         /// });
         /// ```
         /// </summary>
@@ -86,6 +88,7 @@ namespace Pulumi.Xenorchestra
         ///         AffinityHost = host1.Apply(getXoaHostResult =&gt; getXoaHostResult.Id),
         ///     });
         /// 
+        ///     //...
         /// });
         /// ```
         /// </summary>

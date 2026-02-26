@@ -63,7 +63,6 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// Create a bonded network from PIFs on VLANs
 //			eth1Vlan, err := xenorchestra.GetXoaPif(ctx, &xenorchestra.GetXoaPifArgs{
 //				Device: "eth1",
 //				Vlan:   15,
@@ -81,7 +80,7 @@ import (
 //				return err
 //			}
 //			// Create a bonded network from normal PIFs
-//			_, err = xenorchestra.NewXoaBondedNetwork(ctx, "network_vlan", &xenorchestra.XoaBondedNetworkArgs{
+//			_, err = xenorchestra.NewXoaBondedNetwork(ctx, "networkVlan", &xenorchestra.XoaBondedNetworkArgs{
 //				NameLabel: pulumi.String("new network name"),
 //				BondMode:  pulumi.String("active-backup"),
 //				PoolId:    pulumi.String(host1.PoolId),

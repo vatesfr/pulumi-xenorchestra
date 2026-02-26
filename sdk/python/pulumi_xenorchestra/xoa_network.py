@@ -327,11 +327,11 @@ class XoaNetwork(pulumi.CustomResource):
 
         host1 = xenorchestra.get_xoa_host(name_label="Your host")
         # Create a single server network private network
-        private_network = xenorchestra.XoaNetwork("private_network",
+        private_network = xenorchestra.XoaNetwork("privateNetwork",
             name_label="new network name",
             pool_id=host1.pool_id)
         # Create a network with a 22 VLAN tag from the eth0 device
-        vlan_network = xenorchestra.XoaNetwork("vlan_network",
+        vlan_network = xenorchestra.XoaNetwork("vlanNetwork",
             name_label="new network name",
             pool_id=host1.pool_id,
             source_pif_device="eth0",
@@ -363,11 +363,11 @@ class XoaNetwork(pulumi.CustomResource):
 
         host1 = xenorchestra.get_xoa_host(name_label="Your host")
         # Create a single server network private network
-        private_network = xenorchestra.XoaNetwork("private_network",
+        private_network = xenorchestra.XoaNetwork("privateNetwork",
             name_label="new network name",
             pool_id=host1.pool_id)
         # Create a network with a 22 VLAN tag from the eth0 device
-        vlan_network = xenorchestra.XoaNetwork("vlan_network",
+        vlan_network = xenorchestra.XoaNetwork("vlanNetwork",
             name_label="new network name",
             pool_id=host1.pool_id,
             source_pif_device="eth0",

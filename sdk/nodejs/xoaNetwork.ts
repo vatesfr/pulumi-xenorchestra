@@ -15,12 +15,12 @@ import * as utilities from "./utilities";
  *     nameLabel: "Your host",
  * });
  * // Create a single server network private network
- * const privateNetwork = new xenorchestra.XoaNetwork("private_network", {
+ * const privateNetwork = new xenorchestra.XoaNetwork("privateNetwork", {
  *     nameLabel: "new network name",
  *     poolId: host1.then(host1 => host1.poolId),
  * });
  * // Create a network with a 22 VLAN tag from the eth0 device
- * const vlanNetwork = new xenorchestra.XoaNetwork("vlan_network", {
+ * const vlanNetwork = new xenorchestra.XoaNetwork("vlanNetwork", {
  *     nameLabel: "new network name",
  *     poolId: host1.then(host1 => host1.poolId),
  *     sourcePifDevice: "eth0",

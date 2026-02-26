@@ -13,6 +13,48 @@ import (
 )
 
 // Creates a Xen Orchestra vdi resource.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := xenorchestra.NewVdi(ctx, "barVdi", &xenorchestra.VdiArgs{
+//				NameLabel: pulumi.String("alpine-virt-3-17-0"),
+//				SrId:      pulumi.Any(data.Xenorchestra_sr.Sr.Id),
+//				Filepath:  pulumi.Sprintf("%v/isos/alpine-virt-3.17.0-x86_64.iso", path.Module),
+//				Type:      pulumi.String("raw"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Use the vdi with the VM resource
+//			// Other required options omitted
+//			// [ ... ]
+//			_, err = xenorchestra.NewVm(ctx, "barVm", &xenorchestra.VmArgs{
+//				Cdrom: &xenorchestra.VmCdromArgs{
+//					Id: pulumi.Any(resource.Xenorchestra_vdi.Bar.Id),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type Vdi struct {
 	pulumi.CustomResourceState
 

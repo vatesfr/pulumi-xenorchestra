@@ -15,6 +15,7 @@ import * as utilities from "./utilities";
  *     nameLabel: "Your host",
  * });
  * const node = new xenorchestra.Vm("node", {affinityHost: host1.then(host1 => host1.id)});
+ * //...
  * ```
  */
 export function getXoaHost(args: GetXoaHostArgs, opts?: pulumi.InvokeOptions): Promise<GetXoaHostResult> {
@@ -83,6 +84,7 @@ export interface GetXoaHostResult {
  *     nameLabel: "Your host",
  * });
  * const node = new xenorchestra.Vm("node", {affinityHost: host1.then(host1 => host1.id)});
+ * //...
  * ```
  */
 export function getXoaHostOutput(args: GetXoaHostOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetXoaHostResult> {
