@@ -29,7 +29,6 @@ import * as utilities from "./utilities";
  *     username: "test_user",
  * });
  * const rs = new xenorchestra.ResourceSet("rs", {
- *     name: "new-resource-set",
  *     subjects: [user.then(user => user.id)],
  *     objects: [
  *         template.then(template => template.id),

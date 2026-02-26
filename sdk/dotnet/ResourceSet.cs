@@ -45,7 +45,6 @@ namespace Pulumi.Xenorchestra
     /// 
     ///     var rs = new Xenorchestra.ResourceSet("rs", new()
     ///     {
-    ///         Name = "new-resource-set",
     ///         Subjects = new[]
     ///         {
     ///             user.Apply(getXoaUserResult =&gt; getXoaUserResult.Id),

@@ -32,7 +32,7 @@ import (
 //				return err
 //			}
 //			_, err = xenorchestra.NewVm(ctx, "demo-vm", &xenorchestra.VmArgs{
-//				Cdrom: pulumi.Any(vdi.Id[0]),
+//				Cdrom: pulumi.String(vdi.Id),
 //			})
 //			if err != nil {
 //				return err

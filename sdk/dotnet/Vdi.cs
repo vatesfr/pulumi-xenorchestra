@@ -11,6 +11,38 @@ namespace Pulumi.Xenorchestra
 {
     /// <summary>
     /// Creates a Xen Orchestra vdi resource.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Xenorchestra = Pulumi.Xenorchestra;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var barVdi = new Xenorchestra.Vdi("barVdi", new()
+    ///     {
+    ///         NameLabel = "alpine-virt-3-17-0",
+    ///         SrId = data.Xenorchestra_sr.Sr.Id,
+    ///         Filepath = $"{path.Module}/isos/alpine-virt-3.17.0-x86_64.iso",
+    ///         Type = "raw",
+    ///     });
+    /// 
+    ///     // Use the vdi with the VM resource
+    ///     // Other required options omitted
+    ///     // [ ... ]
+    ///     var barVm = new Xenorchestra.Vm("barVm", new()
+    ///     {
+    ///         Cdrom = new Xenorchestra.Inputs.VmCdromArgs
+    ///         {
+    ///             Id = resource.Xenorchestra_vdi.Bar.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [XenorchestraResourceType("xenorchestra:index/vdi:Vdi")]
     public partial class Vdi : global::Pulumi.CustomResource

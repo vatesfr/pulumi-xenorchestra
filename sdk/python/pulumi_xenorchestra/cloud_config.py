@@ -113,9 +113,7 @@ class CloudConfig(pulumi.CustomResource):
         import pulumi
         import pulumi_xenorchestra as xenorchestra
 
-        demo = xenorchestra.CloudConfig("demo",
-            name="cloud config name",
-            template=\"\"\"#cloud-config
+        demo = xenorchestra.CloudConfig("demo", template=\"\"\"#cloud-config
 
         runcmd:
          - [ ls, -l, / ]
@@ -124,6 +122,7 @@ class CloudConfig(pulumi.CustomResource):
          - ls -l /root
         \"\"\")
         bar = xenorchestra.Vm("bar", cloud_config=demo.template)
+        # ...
         ```
 
         :param str resource_name: The name of the resource.
@@ -146,9 +145,7 @@ class CloudConfig(pulumi.CustomResource):
         import pulumi
         import pulumi_xenorchestra as xenorchestra
 
-        demo = xenorchestra.CloudConfig("demo",
-            name="cloud config name",
-            template=\"\"\"#cloud-config
+        demo = xenorchestra.CloudConfig("demo", template=\"\"\"#cloud-config
 
         runcmd:
          - [ ls, -l, / ]
@@ -157,6 +154,7 @@ class CloudConfig(pulumi.CustomResource):
          - ls -l /root
         \"\"\")
         bar = xenorchestra.Vm("bar", cloud_config=demo.template)
+        # ...
         ```
 
         :param str resource_name: The name of the resource.

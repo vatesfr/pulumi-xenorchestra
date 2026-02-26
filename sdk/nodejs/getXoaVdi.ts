@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * const vdi = xenorchestra.getXoaVdi({
  *     nameLabel: "ubuntu-20.04.4-live-server-amd64.iso",
  * });
- * const demo_vm = new xenorchestra.Vm("demo-vm", {cdrom: vdi.then(vdi => vdi.id?.[0])});
+ * const demo_vm = new xenorchestra.Vm("demo-vm", {cdrom: vdi.then(vdi => vdi.id)});
  * ```
  */
 export function getXoaVdi(args?: GetXoaVdiArgs, opts?: pulumi.InvokeOptions): Promise<GetXoaVdiResult> {
@@ -85,7 +85,7 @@ export interface GetXoaVdiResult {
  * const vdi = xenorchestra.getXoaVdi({
  *     nameLabel: "ubuntu-20.04.4-live-server-amd64.iso",
  * });
- * const demo_vm = new xenorchestra.Vm("demo-vm", {cdrom: vdi.then(vdi => vdi.id?.[0])});
+ * const demo_vm = new xenorchestra.Vm("demo-vm", {cdrom: vdi.then(vdi => vdi.id)});
  * ```
  */
 export function getXoaVdiOutput(args?: GetXoaVdiOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetXoaVdiResult> {

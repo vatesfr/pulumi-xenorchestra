@@ -109,6 +109,7 @@ def get_xoa_template(name_label: Optional[_builtins.str] = None,
 
     template = xenorchestra.get_xoa_template(name_label="Ubuntu Bionic Beaver 18.04")
     demo_vm = xenorchestra.Vm("demo-vm", template=template.id)
+    # ...
     ```
 
 
@@ -139,6 +140,7 @@ def get_xoa_template_output(name_label: Optional[pulumi.Input[_builtins.str]] = 
 
     template = xenorchestra.get_xoa_template(name_label="Ubuntu Bionic Beaver 18.04")
     demo_vm = xenorchestra.Vm("demo-vm", template=template.id)
+    # ...
     ```
 
 

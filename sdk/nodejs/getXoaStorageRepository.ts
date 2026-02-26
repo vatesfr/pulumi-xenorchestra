@@ -19,6 +19,7 @@ import * as utilities from "./utilities";
  *     nameLabel: "Ubuntu Bionic Beaver 18.04_imavo",
  *     size: 32212254720,
  * }]});
+ * // ...
  * ```
  */
 export function getXoaStorageRepository(args: GetXoaStorageRepositoryArgs, opts?: pulumi.InvokeOptions): Promise<GetXoaStorageRepositoryResult> {
@@ -108,6 +109,7 @@ export interface GetXoaStorageRepositoryResult {
  *     nameLabel: "Ubuntu Bionic Beaver 18.04_imavo",
  *     size: 32212254720,
  * }]});
+ * // ...
  * ```
  */
 export function getXoaStorageRepositoryOutput(args: GetXoaStorageRepositoryOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetXoaStorageRepositoryResult> {

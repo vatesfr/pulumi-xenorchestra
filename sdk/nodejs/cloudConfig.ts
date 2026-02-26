@@ -13,18 +13,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as xenorchestra from "@vates/pulumi-xenorchestra";
  *
- * const demo = new xenorchestra.CloudConfig("demo", {
- *     name: "cloud config name",
- *     template: `#cloud-config
+ * const demo = new xenorchestra.CloudConfig("demo", {template: `#cloud-config
  *
  * runcmd:
  *  - [ ls, -l, / ]
  *  - [ sh, -xc, "echo (date) ': hello world!'" ]
  *  - [ sh, -c, echo "=========hello world'=========" ]
  *  - ls -l /root
- * `,
- * });
+ * `});
  * const bar = new xenorchestra.Vm("bar", {cloudConfig: demo.template});
+ * // ...
  * ```
  */
 export class CloudConfig extends pulumi.CustomResource {

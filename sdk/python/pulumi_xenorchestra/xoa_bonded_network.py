@@ -310,7 +310,6 @@ class XoaBondedNetwork(pulumi.CustomResource):
                 eth1.id,
                 eth2.id,
             ])
-        # Create a bonded network from PIFs on VLANs
         eth1_vlan = xenorchestra.get_xoa_pif(device="eth1",
             vlan=15,
             host_id=host1.id)
@@ -318,7 +317,7 @@ class XoaBondedNetwork(pulumi.CustomResource):
             vlan=15,
             host_id=host1.id)
         # Create a bonded network from normal PIFs
-        network_vlan = xenorchestra.XoaBondedNetwork("network_vlan",
+        network_vlan = xenorchestra.XoaBondedNetwork("networkVlan",
             name_label="new network name",
             bond_mode="active-backup",
             pool_id=host1.pool_id,
@@ -368,7 +367,6 @@ class XoaBondedNetwork(pulumi.CustomResource):
                 eth1.id,
                 eth2.id,
             ])
-        # Create a bonded network from PIFs on VLANs
         eth1_vlan = xenorchestra.get_xoa_pif(device="eth1",
             vlan=15,
             host_id=host1.id)
@@ -376,7 +374,7 @@ class XoaBondedNetwork(pulumi.CustomResource):
             vlan=15,
             host_id=host1.id)
         # Create a bonded network from normal PIFs
-        network_vlan = xenorchestra.XoaBondedNetwork("network_vlan",
+        network_vlan = xenorchestra.XoaBondedNetwork("networkVlan",
             name_label="new network name",
             bond_mode="active-backup",
             pool_id=host1.pool_id,

@@ -18,6 +18,7 @@ import * as utilities from "./utilities";
  * const demo_vm = new xenorchestra.Vm("demo-vm", {networks: [{
  *     networkId: eth0.then(eth0 => eth0.network),
  * }]});
+ * // ...
  * ```
  */
 export function getXoaPif(args: GetXoaPifArgs, opts?: pulumi.InvokeOptions): Promise<GetXoaPifResult> {
@@ -118,6 +119,7 @@ export interface GetXoaPifResult {
  * const demo_vm = new xenorchestra.Vm("demo-vm", {networks: [{
  *     networkId: eth0.then(eth0 => eth0.network),
  * }]});
+ * // ...
  * ```
  */
 export function getXoaPifOutput(args: GetXoaPifOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetXoaPifResult> {

@@ -36,7 +36,6 @@ import * as utilities from "./utilities";
  *         eth2.then(eth2 => eth2.id),
  *     ],
  * });
- * // Create a bonded network from PIFs on VLANs
  * const eth1Vlan = host1.then(host1 => xenorchestra.getXoaPif({
  *     device: "eth1",
  *     vlan: 15,
@@ -48,7 +47,7 @@ import * as utilities from "./utilities";
  *     hostId: host1.id,
  * }));
  * // Create a bonded network from normal PIFs
- * const networkVlan = new xenorchestra.XoaBondedNetwork("network_vlan", {
+ * const networkVlan = new xenorchestra.XoaBondedNetwork("networkVlan", {
  *     nameLabel: "new network name",
  *     bondMode: "active-backup",
  *     poolId: host1.then(host1 => host1.poolId),

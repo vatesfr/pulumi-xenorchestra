@@ -54,7 +54,6 @@ import (
 //				return err
 //			}
 //			_, err = xenorchestra.NewResourceSet(ctx, "rs", &xenorchestra.ResourceSetArgs{
-//				Name: pulumi.String("new-resource-set"),
 //				Subjects: pulumi.StringArray{
 //					pulumi.String(user.Id),
 //				},

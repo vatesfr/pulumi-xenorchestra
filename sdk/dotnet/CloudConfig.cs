@@ -24,7 +24,6 @@ namespace Pulumi.Xenorchestra
     /// {
     ///     var demo = new Xenorchestra.CloudConfig("demo", new()
     ///     {
-    ///         Name = "cloud config name",
     ///         Template = @"#cloud-config
     /// 
     /// runcmd:
@@ -40,6 +39,7 @@ namespace Pulumi.Xenorchestra
     ///         CloudConfig = demo.Template,
     ///     });
     /// 
+    ///     // ...
     /// });
     /// ```
     /// </summary>

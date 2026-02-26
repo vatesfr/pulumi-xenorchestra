@@ -29,7 +29,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			demo, err := xenorchestra.NewCloudConfig(ctx, "demo", &xenorchestra.CloudConfigArgs{
-//				Name: pulumi.String("cloud config name"),
 //				Template: pulumi.String(`#cloud-config
 //
 // runcmd:
