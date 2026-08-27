@@ -77,7 +77,7 @@ class GetXoaVmsResult:
     @pulumi.getter
     def vms(self) -> Sequence['outputs.GetXoaVmsVmResult']:
         """
-        A list of information for all vms found in this pool.
+        A list of information for all vms found in this pool. `memory_min`, `memory_max` and `size` are in bytes. `videoram` is in MiB. `cpu_cap` is in hundredths of vCPU (e.g. 100 = 1 vCPU max, 0 means no cap). `start_delay` is in seconds.
         """
         return pulumi.get(self, "vms")
 
@@ -119,9 +119,9 @@ def get_xoa_vms(host: Optional[_builtins.str] = None,
         pool_id=pulumi.get(__ret__, 'pool_id'),
         power_state=pulumi.get(__ret__, 'power_state'),
         vms=pulumi.get(__ret__, 'vms'))
-def get_xoa_vms_output(host: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       pool_id: Optional[pulumi.Input[_builtins.str]] = None,
-                       power_state: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_xoa_vms_output(host: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       pool_id: pulumi.Input[Optional[_builtins.str]] = None,
+                       power_state: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetXoaVmsResult]:
     """
     Use this data source to filter Xenorchestra VMs by certain criteria (pool_id, power_state or host) for use in other resources.

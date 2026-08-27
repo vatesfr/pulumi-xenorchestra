@@ -12,6 +12,11 @@ namespace Pulumi.Xenorchestra
     public static class GetXoaPif
     {
         /// <summary>
+        /// Provides information about a physical network interface (PIF) of a XenServer host specified by the interface name or whether it is the management interface.
+        /// 
+        /// **Note:** If there are multiple PIFs that match terraform will fail.
+        /// Ensure that your device, vlan, HostId and other arguments identify a unique PIF.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -47,6 +52,11 @@ namespace Pulumi.Xenorchestra
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetXoaPifResult>("xenorchestra:index/getXoaPif:getXoaPif", args ?? new GetXoaPifArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Provides information about a physical network interface (PIF) of a XenServer host specified by the interface name or whether it is the management interface.
+        /// 
+        /// **Note:** If there are multiple PIFs that match terraform will fail.
+        /// Ensure that your device, vlan, HostId and other arguments identify a unique PIF.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -82,6 +92,11 @@ namespace Pulumi.Xenorchestra
             => global::Pulumi.Deployment.Instance.Invoke<GetXoaPifResult>("xenorchestra:index/getXoaPif:getXoaPif", args ?? new GetXoaPifInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Provides information about a physical network interface (PIF) of a XenServer host specified by the interface name or whether it is the management interface.
+        /// 
+        /// **Note:** If there are multiple PIFs that match terraform will fail.
+        /// Ensure that your device, vlan, HostId and other arguments identify a unique PIF.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp

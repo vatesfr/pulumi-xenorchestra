@@ -418,7 +418,8 @@ type VmNetwork struct {
 	ExpectedIpCidr *string  `pulumi:"expectedIpCidr"`
 	Ipv4Addresses  []string `pulumi:"ipv4Addresses"`
 	Ipv6Addresses  []string `pulumi:"ipv6Addresses"`
-	MacAddress     *string  `pulumi:"macAddress"`
+	// The mac address of the network interface. This must be parsable by go's [net.ParseMAC function](https://golang.org/pkg/net/#ParseMAC). All mac addresses are stored in Terraform's state with [HardwareAddr's string representation](https://golang.org/pkg/net/#HardwareAddr.String) i.e. 00:00:5e:00:53:01
+	MacAddress *string `pulumi:"macAddress"`
 	// The ID of the network the VM will be on.
 	NetworkId string `pulumi:"networkId"`
 }
@@ -442,7 +443,8 @@ type VmNetworkArgs struct {
 	ExpectedIpCidr pulumi.StringPtrInput   `pulumi:"expectedIpCidr"`
 	Ipv4Addresses  pulumi.StringArrayInput `pulumi:"ipv4Addresses"`
 	Ipv6Addresses  pulumi.StringArrayInput `pulumi:"ipv6Addresses"`
-	MacAddress     pulumi.StringPtrInput   `pulumi:"macAddress"`
+	// The mac address of the network interface. This must be parsable by go's [net.ParseMAC function](https://golang.org/pkg/net/#ParseMAC). All mac addresses are stored in Terraform's state with [HardwareAddr's string representation](https://golang.org/pkg/net/#HardwareAddr.String) i.e. 00:00:5e:00:53:01
+	MacAddress pulumi.StringPtrInput `pulumi:"macAddress"`
 	// The ID of the network the VM will be on.
 	NetworkId pulumi.StringInput `pulumi:"networkId"`
 }
@@ -520,6 +522,7 @@ func (o VmNetworkOutput) Ipv6Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v VmNetwork) []string { return v.Ipv6Addresses }).(pulumi.StringArrayOutput)
 }
 
+// The mac address of the network interface. This must be parsable by go's [net.ParseMAC function](https://golang.org/pkg/net/#ParseMAC). All mac addresses are stored in Terraform's state with [HardwareAddr's string representation](https://golang.org/pkg/net/#HardwareAddr.String) i.e. 00:00:5e:00:53:01
 func (o VmNetworkOutput) MacAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VmNetwork) *string { return v.MacAddress }).(pulumi.StringPtrOutput)
 }
@@ -553,9 +556,9 @@ type GetXoaHostsHost struct {
 	// CPU information about the host. The 'cores' key will contain the number of cpu cores and the 'sockets' key will contain the number of sockets.
 	Cpus map[string]int `pulumi:"cpus"`
 	Id   string         `pulumi:"id"`
-	// The memory size of the host.
+	// The total memory size of the host in bytes.
 	Memory int `pulumi:"memory"`
-	// The memory usage of the host.
+	// The current memory usage of the host in bytes.
 	MemoryUsage int `pulumi:"memoryUsage"`
 	// The name label of the host.
 	NameLabel string `pulumi:"nameLabel"`
@@ -580,9 +583,9 @@ type GetXoaHostsHostArgs struct {
 	// CPU information about the host. The 'cores' key will contain the number of cpu cores and the 'sockets' key will contain the number of sockets.
 	Cpus pulumi.IntMapInput `pulumi:"cpus"`
 	Id   pulumi.StringInput `pulumi:"id"`
-	// The memory size of the host.
+	// The total memory size of the host in bytes.
 	Memory pulumi.IntInput `pulumi:"memory"`
-	// The memory usage of the host.
+	// The current memory usage of the host in bytes.
 	MemoryUsage pulumi.IntInput `pulumi:"memoryUsage"`
 	// The name label of the host.
 	NameLabel pulumi.StringInput `pulumi:"nameLabel"`
@@ -652,12 +655,12 @@ func (o GetXoaHostsHostOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetXoaHostsHost) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The memory size of the host.
+// The total memory size of the host in bytes.
 func (o GetXoaHostsHostOutput) Memory() pulumi.IntOutput {
 	return o.ApplyT(func(v GetXoaHostsHost) int { return v.Memory }).(pulumi.IntOutput)
 }
 
-// The memory usage of the host.
+// The current memory usage of the host in bytes.
 func (o GetXoaHostsHostOutput) MemoryUsage() pulumi.IntOutput {
 	return o.ApplyT(func(v GetXoaHostsHost) int { return v.MemoryUsage }).(pulumi.IntOutput)
 }
@@ -697,6 +700,326 @@ func (o GetXoaHostsHostArrayOutput) Index(i pulumi.IntInput) GetXoaHostsHostOutp
 	}).(GetXoaHostsHostOutput)
 }
 
+type GetXoaPoolsPool struct {
+	// CPU information about the pool. The 'cores' key will contain the number of cpu cores and the 'sockets' key will contain the number of sockets.
+	Cpus map[string]string `pulumi:"cpus"`
+	// The default storage repository for the pool.
+	DefaultSr string `pulumi:"defaultSr"`
+	// The description of the pool.
+	Description string `pulumi:"description"`
+	// The id of the pool.
+	Id string `pulumi:"id"`
+	// The id of the primary instance in the pool.
+	Master string `pulumi:"master"`
+	// The name label of the pool.
+	NameLabel string `pulumi:"nameLabel"`
+}
+
+// GetXoaPoolsPoolInput is an input type that accepts GetXoaPoolsPoolArgs and GetXoaPoolsPoolOutput values.
+// You can construct a concrete instance of `GetXoaPoolsPoolInput` via:
+//
+//	GetXoaPoolsPoolArgs{...}
+type GetXoaPoolsPoolInput interface {
+	pulumi.Input
+
+	ToGetXoaPoolsPoolOutput() GetXoaPoolsPoolOutput
+	ToGetXoaPoolsPoolOutputWithContext(context.Context) GetXoaPoolsPoolOutput
+}
+
+type GetXoaPoolsPoolArgs struct {
+	// CPU information about the pool. The 'cores' key will contain the number of cpu cores and the 'sockets' key will contain the number of sockets.
+	Cpus pulumi.StringMapInput `pulumi:"cpus"`
+	// The default storage repository for the pool.
+	DefaultSr pulumi.StringInput `pulumi:"defaultSr"`
+	// The description of the pool.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the pool.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The id of the primary instance in the pool.
+	Master pulumi.StringInput `pulumi:"master"`
+	// The name label of the pool.
+	NameLabel pulumi.StringInput `pulumi:"nameLabel"`
+}
+
+func (GetXoaPoolsPoolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetXoaPoolsPool)(nil)).Elem()
+}
+
+func (i GetXoaPoolsPoolArgs) ToGetXoaPoolsPoolOutput() GetXoaPoolsPoolOutput {
+	return i.ToGetXoaPoolsPoolOutputWithContext(context.Background())
+}
+
+func (i GetXoaPoolsPoolArgs) ToGetXoaPoolsPoolOutputWithContext(ctx context.Context) GetXoaPoolsPoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetXoaPoolsPoolOutput)
+}
+
+// GetXoaPoolsPoolArrayInput is an input type that accepts GetXoaPoolsPoolArray and GetXoaPoolsPoolArrayOutput values.
+// You can construct a concrete instance of `GetXoaPoolsPoolArrayInput` via:
+//
+//	GetXoaPoolsPoolArray{ GetXoaPoolsPoolArgs{...} }
+type GetXoaPoolsPoolArrayInput interface {
+	pulumi.Input
+
+	ToGetXoaPoolsPoolArrayOutput() GetXoaPoolsPoolArrayOutput
+	ToGetXoaPoolsPoolArrayOutputWithContext(context.Context) GetXoaPoolsPoolArrayOutput
+}
+
+type GetXoaPoolsPoolArray []GetXoaPoolsPoolInput
+
+func (GetXoaPoolsPoolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetXoaPoolsPool)(nil)).Elem()
+}
+
+func (i GetXoaPoolsPoolArray) ToGetXoaPoolsPoolArrayOutput() GetXoaPoolsPoolArrayOutput {
+	return i.ToGetXoaPoolsPoolArrayOutputWithContext(context.Background())
+}
+
+func (i GetXoaPoolsPoolArray) ToGetXoaPoolsPoolArrayOutputWithContext(ctx context.Context) GetXoaPoolsPoolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetXoaPoolsPoolArrayOutput)
+}
+
+type GetXoaPoolsPoolOutput struct{ *pulumi.OutputState }
+
+func (GetXoaPoolsPoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetXoaPoolsPool)(nil)).Elem()
+}
+
+func (o GetXoaPoolsPoolOutput) ToGetXoaPoolsPoolOutput() GetXoaPoolsPoolOutput {
+	return o
+}
+
+func (o GetXoaPoolsPoolOutput) ToGetXoaPoolsPoolOutputWithContext(ctx context.Context) GetXoaPoolsPoolOutput {
+	return o
+}
+
+// CPU information about the pool. The 'cores' key will contain the number of cpu cores and the 'sockets' key will contain the number of sockets.
+func (o GetXoaPoolsPoolOutput) Cpus() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetXoaPoolsPool) map[string]string { return v.Cpus }).(pulumi.StringMapOutput)
+}
+
+// The default storage repository for the pool.
+func (o GetXoaPoolsPoolOutput) DefaultSr() pulumi.StringOutput {
+	return o.ApplyT(func(v GetXoaPoolsPool) string { return v.DefaultSr }).(pulumi.StringOutput)
+}
+
+// The description of the pool.
+func (o GetXoaPoolsPoolOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetXoaPoolsPool) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the pool.
+func (o GetXoaPoolsPoolOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetXoaPoolsPool) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The id of the primary instance in the pool.
+func (o GetXoaPoolsPoolOutput) Master() pulumi.StringOutput {
+	return o.ApplyT(func(v GetXoaPoolsPool) string { return v.Master }).(pulumi.StringOutput)
+}
+
+// The name label of the pool.
+func (o GetXoaPoolsPoolOutput) NameLabel() pulumi.StringOutput {
+	return o.ApplyT(func(v GetXoaPoolsPool) string { return v.NameLabel }).(pulumi.StringOutput)
+}
+
+type GetXoaPoolsPoolArrayOutput struct{ *pulumi.OutputState }
+
+func (GetXoaPoolsPoolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetXoaPoolsPool)(nil)).Elem()
+}
+
+func (o GetXoaPoolsPoolArrayOutput) ToGetXoaPoolsPoolArrayOutput() GetXoaPoolsPoolArrayOutput {
+	return o
+}
+
+func (o GetXoaPoolsPoolArrayOutput) ToGetXoaPoolsPoolArrayOutputWithContext(ctx context.Context) GetXoaPoolsPoolArrayOutput {
+	return o
+}
+
+func (o GetXoaPoolsPoolArrayOutput) Index(i pulumi.IntInput) GetXoaPoolsPoolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetXoaPoolsPool {
+		return vs[0].([]GetXoaPoolsPool)[vs[1].(int)]
+	}).(GetXoaPoolsPoolOutput)
+}
+
+type GetXoaStorageRepositoriesSr struct {
+	// The storage container. For host-local storage repositories this is the id of the hosting host.
+	Container string `pulumi:"container"`
+	// The ID of this resource.
+	Id string `pulumi:"id"`
+	// The name of the storage repository.
+	NameLabel string `pulumi:"nameLabel"`
+	// The physical storage usage in bytes.
+	PhysicalUsage int `pulumi:"physicalUsage"`
+	// The Id of the pool the storage repository exists on.
+	PoolId string `pulumi:"poolId"`
+	// The total storage size in bytes.
+	Size int `pulumi:"size"`
+	// The type of storage repository (lvm, udev, iso, user, etc).
+	SrType string `pulumi:"srType"`
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
+	Tags []string `pulumi:"tags"`
+	// The current storage usage in bytes.
+	Usage int `pulumi:"usage"`
+	// uuid of the storage repository. This is equivalent to the id.
+	Uuid string `pulumi:"uuid"`
+}
+
+// GetXoaStorageRepositoriesSrInput is an input type that accepts GetXoaStorageRepositoriesSrArgs and GetXoaStorageRepositoriesSrOutput values.
+// You can construct a concrete instance of `GetXoaStorageRepositoriesSrInput` via:
+//
+//	GetXoaStorageRepositoriesSrArgs{...}
+type GetXoaStorageRepositoriesSrInput interface {
+	pulumi.Input
+
+	ToGetXoaStorageRepositoriesSrOutput() GetXoaStorageRepositoriesSrOutput
+	ToGetXoaStorageRepositoriesSrOutputWithContext(context.Context) GetXoaStorageRepositoriesSrOutput
+}
+
+type GetXoaStorageRepositoriesSrArgs struct {
+	// The storage container. For host-local storage repositories this is the id of the hosting host.
+	Container pulumi.StringInput `pulumi:"container"`
+	// The ID of this resource.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the storage repository.
+	NameLabel pulumi.StringInput `pulumi:"nameLabel"`
+	// The physical storage usage in bytes.
+	PhysicalUsage pulumi.IntInput `pulumi:"physicalUsage"`
+	// The Id of the pool the storage repository exists on.
+	PoolId pulumi.StringInput `pulumi:"poolId"`
+	// The total storage size in bytes.
+	Size pulumi.IntInput `pulumi:"size"`
+	// The type of storage repository (lvm, udev, iso, user, etc).
+	SrType pulumi.StringInput `pulumi:"srType"`
+	// The tags (labels) applied to the given entity. Not used for filtering if empty.
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	// The current storage usage in bytes.
+	Usage pulumi.IntInput `pulumi:"usage"`
+	// uuid of the storage repository. This is equivalent to the id.
+	Uuid pulumi.StringInput `pulumi:"uuid"`
+}
+
+func (GetXoaStorageRepositoriesSrArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetXoaStorageRepositoriesSr)(nil)).Elem()
+}
+
+func (i GetXoaStorageRepositoriesSrArgs) ToGetXoaStorageRepositoriesSrOutput() GetXoaStorageRepositoriesSrOutput {
+	return i.ToGetXoaStorageRepositoriesSrOutputWithContext(context.Background())
+}
+
+func (i GetXoaStorageRepositoriesSrArgs) ToGetXoaStorageRepositoriesSrOutputWithContext(ctx context.Context) GetXoaStorageRepositoriesSrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetXoaStorageRepositoriesSrOutput)
+}
+
+// GetXoaStorageRepositoriesSrArrayInput is an input type that accepts GetXoaStorageRepositoriesSrArray and GetXoaStorageRepositoriesSrArrayOutput values.
+// You can construct a concrete instance of `GetXoaStorageRepositoriesSrArrayInput` via:
+//
+//	GetXoaStorageRepositoriesSrArray{ GetXoaStorageRepositoriesSrArgs{...} }
+type GetXoaStorageRepositoriesSrArrayInput interface {
+	pulumi.Input
+
+	ToGetXoaStorageRepositoriesSrArrayOutput() GetXoaStorageRepositoriesSrArrayOutput
+	ToGetXoaStorageRepositoriesSrArrayOutputWithContext(context.Context) GetXoaStorageRepositoriesSrArrayOutput
+}
+
+type GetXoaStorageRepositoriesSrArray []GetXoaStorageRepositoriesSrInput
+
+func (GetXoaStorageRepositoriesSrArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetXoaStorageRepositoriesSr)(nil)).Elem()
+}
+
+func (i GetXoaStorageRepositoriesSrArray) ToGetXoaStorageRepositoriesSrArrayOutput() GetXoaStorageRepositoriesSrArrayOutput {
+	return i.ToGetXoaStorageRepositoriesSrArrayOutputWithContext(context.Background())
+}
+
+func (i GetXoaStorageRepositoriesSrArray) ToGetXoaStorageRepositoriesSrArrayOutputWithContext(ctx context.Context) GetXoaStorageRepositoriesSrArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetXoaStorageRepositoriesSrArrayOutput)
+}
+
+type GetXoaStorageRepositoriesSrOutput struct{ *pulumi.OutputState }
+
+func (GetXoaStorageRepositoriesSrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetXoaStorageRepositoriesSr)(nil)).Elem()
+}
+
+func (o GetXoaStorageRepositoriesSrOutput) ToGetXoaStorageRepositoriesSrOutput() GetXoaStorageRepositoriesSrOutput {
+	return o
+}
+
+func (o GetXoaStorageRepositoriesSrOutput) ToGetXoaStorageRepositoriesSrOutputWithContext(ctx context.Context) GetXoaStorageRepositoriesSrOutput {
+	return o
+}
+
+// The storage container. For host-local storage repositories this is the id of the hosting host.
+func (o GetXoaStorageRepositoriesSrOutput) Container() pulumi.StringOutput {
+	return o.ApplyT(func(v GetXoaStorageRepositoriesSr) string { return v.Container }).(pulumi.StringOutput)
+}
+
+// The ID of this resource.
+func (o GetXoaStorageRepositoriesSrOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetXoaStorageRepositoriesSr) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the storage repository.
+func (o GetXoaStorageRepositoriesSrOutput) NameLabel() pulumi.StringOutput {
+	return o.ApplyT(func(v GetXoaStorageRepositoriesSr) string { return v.NameLabel }).(pulumi.StringOutput)
+}
+
+// The physical storage usage in bytes.
+func (o GetXoaStorageRepositoriesSrOutput) PhysicalUsage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetXoaStorageRepositoriesSr) int { return v.PhysicalUsage }).(pulumi.IntOutput)
+}
+
+// The Id of the pool the storage repository exists on.
+func (o GetXoaStorageRepositoriesSrOutput) PoolId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetXoaStorageRepositoriesSr) string { return v.PoolId }).(pulumi.StringOutput)
+}
+
+// The total storage size in bytes.
+func (o GetXoaStorageRepositoriesSrOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetXoaStorageRepositoriesSr) int { return v.Size }).(pulumi.IntOutput)
+}
+
+// The type of storage repository (lvm, udev, iso, user, etc).
+func (o GetXoaStorageRepositoriesSrOutput) SrType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetXoaStorageRepositoriesSr) string { return v.SrType }).(pulumi.StringOutput)
+}
+
+// The tags (labels) applied to the given entity. Not used for filtering if empty.
+func (o GetXoaStorageRepositoriesSrOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetXoaStorageRepositoriesSr) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// The current storage usage in bytes.
+func (o GetXoaStorageRepositoriesSrOutput) Usage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetXoaStorageRepositoriesSr) int { return v.Usage }).(pulumi.IntOutput)
+}
+
+// uuid of the storage repository. This is equivalent to the id.
+func (o GetXoaStorageRepositoriesSrOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetXoaStorageRepositoriesSr) string { return v.Uuid }).(pulumi.StringOutput)
+}
+
+type GetXoaStorageRepositoriesSrArrayOutput struct{ *pulumi.OutputState }
+
+func (GetXoaStorageRepositoriesSrArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetXoaStorageRepositoriesSr)(nil)).Elem()
+}
+
+func (o GetXoaStorageRepositoriesSrArrayOutput) ToGetXoaStorageRepositoriesSrArrayOutput() GetXoaStorageRepositoriesSrArrayOutput {
+	return o
+}
+
+func (o GetXoaStorageRepositoriesSrArrayOutput) ToGetXoaStorageRepositoriesSrArrayOutputWithContext(ctx context.Context) GetXoaStorageRepositoriesSrArrayOutput {
+	return o
+}
+
+func (o GetXoaStorageRepositoriesSrArrayOutput) Index(i pulumi.IntInput) GetXoaStorageRepositoriesSrOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetXoaStorageRepositoriesSr {
+		return vs[0].([]GetXoaStorageRepositoriesSr)[vs[1].(int)]
+	}).(GetXoaStorageRepositoriesSrOutput)
+}
+
 type GetXoaVmsVm struct {
 	// The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
 	AffinityHost *string `pulumi:"affinityHost"`
@@ -711,8 +1034,12 @@ type GetXoaVmsVm struct {
 	// The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
 	CloudNetworkConfig *string `pulumi:"cloudNetworkConfig"`
 	CoreOs             *bool   `pulumi:"coreOs"`
-	CpuCap             *int    `pulumi:"cpuCap"`
-	CpuWeight          *int    `pulumi:"cpuWeight"`
+	// The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+	CoresPerSocket int `pulumi:"coresPerSocket"`
+	// The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+	CpuCap *int `pulumi:"cpuCap"`
+	// The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
+	CpuWeight *int `pulumi:"cpuWeight"`
 	// The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
 	Cpus int `pulumi:"cpus"`
 	// The disk the VM will have access to.
@@ -723,9 +1050,10 @@ type GetXoaVmsVm struct {
 	HighAvailability *string `pulumi:"highAvailability"`
 	Host             *string `pulumi:"host"`
 	// The firmware to use for the VM. Possible values are `bios` and `uefi`.
-	HvmBootFirmware *string  `pulumi:"hvmBootFirmware"`
-	Id              string   `pulumi:"id"`
-	Ipv4Addresses   []string `pulumi:"ipv4Addresses"`
+	HvmBootFirmware *string `pulumi:"hvmBootFirmware"`
+	Id              string  `pulumi:"id"`
+	// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv4 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv4 addresses across all network interfaces in order. See the example terraform code for more details.
+	Ipv4Addresses []string `pulumi:"ipv4Addresses"`
 	// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
 	Ipv6Addresses []string `pulumi:"ipv6Addresses"`
 	// The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
@@ -743,6 +1071,8 @@ type GetXoaVmsVm struct {
 	ResourceSet *string `pulumi:"resourceSet"`
 	// Enable UEFI secure boot for the VM.
 	SecureBoot *bool `pulumi:"secureBoot"`
+	// The number of CPU sockets. This is computed as cpus / cores_per_socket.
+	Sockets int `pulumi:"sockets"`
 	// Number of seconds the VM should be delayed from starting.
 	StartDelay *int `pulumi:"startDelay"`
 	// The tags (labels) applied to the given entity. Not used for filtering if empty.
@@ -751,7 +1081,7 @@ type GetXoaVmsVm struct {
 	Template string `pulumi:"template"`
 	// The video adapter the VM should use. Possible values include std and cirrus.
 	Vga *string `pulumi:"vga"`
-	// The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+	// The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
 	Videoram *int `pulumi:"videoram"`
 	// The key value pairs to be populated in xenstore.
 	Xenstore map[string]string `pulumi:"xenstore"`
@@ -782,8 +1112,12 @@ type GetXoaVmsVmArgs struct {
 	// The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
 	CloudNetworkConfig pulumi.StringPtrInput `pulumi:"cloudNetworkConfig"`
 	CoreOs             pulumi.BoolPtrInput   `pulumi:"coreOs"`
-	CpuCap             pulumi.IntPtrInput    `pulumi:"cpuCap"`
-	CpuWeight          pulumi.IntPtrInput    `pulumi:"cpuWeight"`
+	// The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+	CoresPerSocket pulumi.IntInput `pulumi:"coresPerSocket"`
+	// The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+	CpuCap pulumi.IntPtrInput `pulumi:"cpuCap"`
+	// The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
+	CpuWeight pulumi.IntPtrInput `pulumi:"cpuWeight"`
 	// The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
 	Cpus pulumi.IntInput `pulumi:"cpus"`
 	// The disk the VM will have access to.
@@ -794,9 +1128,10 @@ type GetXoaVmsVmArgs struct {
 	HighAvailability pulumi.StringPtrInput `pulumi:"highAvailability"`
 	Host             pulumi.StringPtrInput `pulumi:"host"`
 	// The firmware to use for the VM. Possible values are `bios` and `uefi`.
-	HvmBootFirmware pulumi.StringPtrInput   `pulumi:"hvmBootFirmware"`
-	Id              pulumi.StringInput      `pulumi:"id"`
-	Ipv4Addresses   pulumi.StringArrayInput `pulumi:"ipv4Addresses"`
+	HvmBootFirmware pulumi.StringPtrInput `pulumi:"hvmBootFirmware"`
+	Id              pulumi.StringInput    `pulumi:"id"`
+	// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv4 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv4 addresses across all network interfaces in order. See the example terraform code for more details.
+	Ipv4Addresses pulumi.StringArrayInput `pulumi:"ipv4Addresses"`
 	// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
 	Ipv6Addresses pulumi.StringArrayInput `pulumi:"ipv6Addresses"`
 	// The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
@@ -814,6 +1149,8 @@ type GetXoaVmsVmArgs struct {
 	ResourceSet pulumi.StringPtrInput `pulumi:"resourceSet"`
 	// Enable UEFI secure boot for the VM.
 	SecureBoot pulumi.BoolPtrInput `pulumi:"secureBoot"`
+	// The number of CPU sockets. This is computed as cpus / cores_per_socket.
+	Sockets pulumi.IntInput `pulumi:"sockets"`
 	// Number of seconds the VM should be delayed from starting.
 	StartDelay pulumi.IntPtrInput `pulumi:"startDelay"`
 	// The tags (labels) applied to the given entity. Not used for filtering if empty.
@@ -822,7 +1159,7 @@ type GetXoaVmsVmArgs struct {
 	Template pulumi.StringInput `pulumi:"template"`
 	// The video adapter the VM should use. Possible values include std and cirrus.
 	Vga pulumi.StringPtrInput `pulumi:"vga"`
-	// The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+	// The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
 	Videoram pulumi.IntPtrInput `pulumi:"videoram"`
 	// The key value pairs to be populated in xenstore.
 	Xenstore pulumi.StringMapInput `pulumi:"xenstore"`
@@ -913,10 +1250,17 @@ func (o GetXoaVmsVmOutput) CoreOs() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetXoaVmsVm) *bool { return v.CoreOs }).(pulumi.BoolPtrOutput)
 }
 
+// The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+func (o GetXoaVmsVmOutput) CoresPerSocket() pulumi.IntOutput {
+	return o.ApplyT(func(v GetXoaVmsVm) int { return v.CoresPerSocket }).(pulumi.IntOutput)
+}
+
+// The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
 func (o GetXoaVmsVmOutput) CpuCap() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetXoaVmsVm) *int { return v.CpuCap }).(pulumi.IntPtrOutput)
 }
 
+// The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
 func (o GetXoaVmsVmOutput) CpuWeight() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetXoaVmsVm) *int { return v.CpuWeight }).(pulumi.IntPtrOutput)
 }
@@ -954,6 +1298,7 @@ func (o GetXoaVmsVmOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetXoaVmsVm) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv4 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv4 addresses across all network interfaces in order. See the example terraform code for more details.
 func (o GetXoaVmsVmOutput) Ipv4Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetXoaVmsVm) []string { return v.Ipv4Addresses }).(pulumi.StringArrayOutput)
 }
@@ -1002,6 +1347,11 @@ func (o GetXoaVmsVmOutput) SecureBoot() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetXoaVmsVm) *bool { return v.SecureBoot }).(pulumi.BoolPtrOutput)
 }
 
+// The number of CPU sockets. This is computed as cpus / cores_per_socket.
+func (o GetXoaVmsVmOutput) Sockets() pulumi.IntOutput {
+	return o.ApplyT(func(v GetXoaVmsVm) int { return v.Sockets }).(pulumi.IntOutput)
+}
+
 // Number of seconds the VM should be delayed from starting.
 func (o GetXoaVmsVmOutput) StartDelay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetXoaVmsVm) *int { return v.StartDelay }).(pulumi.IntPtrOutput)
@@ -1022,7 +1372,7 @@ func (o GetXoaVmsVmOutput) Vga() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetXoaVmsVm) *string { return v.Vga }).(pulumi.StringPtrOutput)
 }
 
-// The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+// The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
 func (o GetXoaVmsVmOutput) Videoram() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetXoaVmsVm) *int { return v.Videoram }).(pulumi.IntPtrOutput)
 }
@@ -1214,7 +1564,8 @@ type GetXoaVmsVmNetwork struct {
 	ExpectedIpCidr *string  `pulumi:"expectedIpCidr"`
 	Ipv4Addresses  []string `pulumi:"ipv4Addresses"`
 	Ipv6Addresses  []string `pulumi:"ipv6Addresses"`
-	MacAddress     string   `pulumi:"macAddress"`
+	// The mac address of the network interface. This must be parsable by go's [net.ParseMAC function](https://golang.org/pkg/net/#ParseMAC). All mac addresses are stored in Terraform's state with [HardwareAddr's string representation](https://golang.org/pkg/net/#HardwareAddr.String) i.e. 00:00:5e:00:53:01
+	MacAddress string `pulumi:"macAddress"`
 	// The ID of the network the VM will be on.
 	NetworkId string `pulumi:"networkId"`
 }
@@ -1238,7 +1589,8 @@ type GetXoaVmsVmNetworkArgs struct {
 	ExpectedIpCidr pulumi.StringPtrInput   `pulumi:"expectedIpCidr"`
 	Ipv4Addresses  pulumi.StringArrayInput `pulumi:"ipv4Addresses"`
 	Ipv6Addresses  pulumi.StringArrayInput `pulumi:"ipv6Addresses"`
-	MacAddress     pulumi.StringInput      `pulumi:"macAddress"`
+	// The mac address of the network interface. This must be parsable by go's [net.ParseMAC function](https://golang.org/pkg/net/#ParseMAC). All mac addresses are stored in Terraform's state with [HardwareAddr's string representation](https://golang.org/pkg/net/#HardwareAddr.String) i.e. 00:00:5e:00:53:01
+	MacAddress pulumi.StringInput `pulumi:"macAddress"`
 	// The ID of the network the VM will be on.
 	NetworkId pulumi.StringInput `pulumi:"networkId"`
 }
@@ -1316,6 +1668,7 @@ func (o GetXoaVmsVmNetworkOutput) Ipv6Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetXoaVmsVmNetwork) []string { return v.Ipv6Addresses }).(pulumi.StringArrayOutput)
 }
 
+// The mac address of the network interface. This must be parsable by go's [net.ParseMAC function](https://golang.org/pkg/net/#ParseMAC). All mac addresses are stored in Terraform's state with [HardwareAddr's string representation](https://golang.org/pkg/net/#HardwareAddr.String) i.e. 00:00:5e:00:53:01
 func (o GetXoaVmsVmNetworkOutput) MacAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GetXoaVmsVmNetwork) string { return v.MacAddress }).(pulumi.StringOutput)
 }
@@ -1356,6 +1709,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VmNetworkArrayInput)(nil)).Elem(), VmNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetXoaHostsHostInput)(nil)).Elem(), GetXoaHostsHostArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetXoaHostsHostArrayInput)(nil)).Elem(), GetXoaHostsHostArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetXoaPoolsPoolInput)(nil)).Elem(), GetXoaPoolsPoolArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetXoaPoolsPoolArrayInput)(nil)).Elem(), GetXoaPoolsPoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetXoaStorageRepositoriesSrInput)(nil)).Elem(), GetXoaStorageRepositoriesSrArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetXoaStorageRepositoriesSrArrayInput)(nil)).Elem(), GetXoaStorageRepositoriesSrArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetXoaVmsVmInput)(nil)).Elem(), GetXoaVmsVmArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetXoaVmsVmArrayInput)(nil)).Elem(), GetXoaVmsVmArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetXoaVmsVmDiskInput)(nil)).Elem(), GetXoaVmsVmDiskArgs{})
@@ -1372,6 +1729,10 @@ func init() {
 	pulumi.RegisterOutputType(VmNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetXoaHostsHostOutput{})
 	pulumi.RegisterOutputType(GetXoaHostsHostArrayOutput{})
+	pulumi.RegisterOutputType(GetXoaPoolsPoolOutput{})
+	pulumi.RegisterOutputType(GetXoaPoolsPoolArrayOutput{})
+	pulumi.RegisterOutputType(GetXoaStorageRepositoriesSrOutput{})
+	pulumi.RegisterOutputType(GetXoaStorageRepositoriesSrArrayOutput{})
 	pulumi.RegisterOutputType(GetXoaVmsVmOutput{})
 	pulumi.RegisterOutputType(GetXoaVmsVmArrayOutput{})
 	pulumi.RegisterOutputType(GetXoaVmsVmDiskOutput{})

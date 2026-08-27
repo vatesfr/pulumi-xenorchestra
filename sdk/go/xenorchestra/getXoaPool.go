@@ -65,9 +65,11 @@ type GetXoaPoolArgs struct {
 type GetXoaPoolResult struct {
 	// CPU information about the pool. The 'cores' key will contain the number of cpu cores and the 'sockets' key will contain the number of sockets.
 	Cpus map[string]string `pulumi:"cpus"`
+	// The default storage repository for the pool.
+	DefaultSr string `pulumi:"defaultSr"`
 	// The description of the pool.
 	Description string `pulumi:"description"`
-	// The provider-assigned unique ID for this managed resource.
+	// The id of the pool.
 	Id string `pulumi:"id"`
 	// The id of the primary instance in the pool.
 	Master string `pulumi:"master"`
@@ -114,12 +116,17 @@ func (o GetXoaPoolResultOutput) Cpus() pulumi.StringMapOutput {
 	return o.ApplyT(func(v GetXoaPoolResult) map[string]string { return v.Cpus }).(pulumi.StringMapOutput)
 }
 
+// The default storage repository for the pool.
+func (o GetXoaPoolResultOutput) DefaultSr() pulumi.StringOutput {
+	return o.ApplyT(func(v GetXoaPoolResult) string { return v.DefaultSr }).(pulumi.StringOutput)
+}
+
 // The description of the pool.
 func (o GetXoaPoolResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetXoaPoolResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The id of the pool.
 func (o GetXoaPoolResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetXoaPoolResult) string { return v.Id }).(pulumi.StringOutput)
 }

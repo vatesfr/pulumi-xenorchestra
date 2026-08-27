@@ -11,6 +11,12 @@ import (
 	"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra/internal"
 )
 
+// Provides information about a resource set.
+//
+// **NOTE:** If there are multiple resource sets with the same name
+// Terraform will fail. Ensure that your resource set names are unique when
+// using the data source.
+//
 // ## Example Usage
 //
 // ```go

@@ -19,11 +19,11 @@ namespace Pulumi.Xenorchestra.Outputs
         public readonly ImmutableDictionary<string, int> Cpus;
         public readonly string Id;
         /// <summary>
-        /// The memory size of the host.
+        /// The total memory size of the host in bytes.
         /// </summary>
         public readonly int Memory;
         /// <summary>
-        /// The memory usage of the host.
+        /// The current memory usage of the host in bytes.
         /// </summary>
         public readonly int MemoryUsage;
         /// <summary>

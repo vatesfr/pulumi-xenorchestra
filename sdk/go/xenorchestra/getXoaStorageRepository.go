@@ -11,6 +11,11 @@ import (
 	"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra/internal"
 )
 
+// Provides information about a Storage repository to ease the lookup of VM storage information.
+//
+// **Note:** If there are multiple storage repositories that match terraform will fail.
+// Ensure that your name_label, pool_id, hostId and tags identify a unique storage repository.
+//
 // ## Example Usage
 //
 // ```go
@@ -60,6 +65,8 @@ func GetXoaStorageRepository(ctx *pulumi.Context, args *GetXoaStorageRepositoryA
 
 // A collection of arguments for invoking getXoaStorageRepository.
 type GetXoaStorageRepositoryArgs struct {
+	// The Id of the host the storage repository exists on. For host-local storage repositories the SR's `container` is the host itself, so this filters the repositories down to a single host when several hosts in the pool share the same SR name.
+	HostId *string `pulumi:"hostId"`
 	// The name of the storage repository to look up
 	NameLabel string `pulumi:"nameLabel"`
 	// The Id of the pool the storage repository exists on.
@@ -70,23 +77,25 @@ type GetXoaStorageRepositoryArgs struct {
 
 // A collection of values returned by getXoaStorageRepository.
 type GetXoaStorageRepositoryResult struct {
-	// The storage container.
+	// The storage container. For host-local storage repositories this is the id of the hosting host.
 	Container string `pulumi:"container"`
-	// The provider-assigned unique ID for this managed resource.
+	// The Id of the host the storage repository exists on. For host-local storage repositories the SR's `container` is the host itself, so this filters the repositories down to a single host when several hosts in the pool share the same SR name.
+	HostId *string `pulumi:"hostId"`
+	// The ID of this resource.
 	Id string `pulumi:"id"`
 	// The name of the storage repository to look up
 	NameLabel string `pulumi:"nameLabel"`
-	// The physical storage size.
+	// The physical storage usage in bytes.
 	PhysicalUsage float64 `pulumi:"physicalUsage"`
 	// The Id of the pool the storage repository exists on.
 	PoolId *string `pulumi:"poolId"`
-	// The storage size.
+	// The total storage size in bytes.
 	Size float64 `pulumi:"size"`
 	// The type of storage repository (lvm, udev, iso, user, etc).
 	SrType string `pulumi:"srType"`
 	// The tags (labels) applied to the given entity. Not used for filtering if empty.
 	Tags []string `pulumi:"tags"`
-	// The current usage for this storage repository.
+	// The current storage usage in bytes.
 	Usage float64 `pulumi:"usage"`
 	// uuid of the storage repository. This is equivalent to the id.
 	Uuid string `pulumi:"uuid"`
@@ -103,6 +112,8 @@ func GetXoaStorageRepositoryOutput(ctx *pulumi.Context, args GetXoaStorageReposi
 
 // A collection of arguments for invoking getXoaStorageRepository.
 type GetXoaStorageRepositoryOutputArgs struct {
+	// The Id of the host the storage repository exists on. For host-local storage repositories the SR's `container` is the host itself, so this filters the repositories down to a single host when several hosts in the pool share the same SR name.
+	HostId pulumi.StringPtrInput `pulumi:"hostId"`
 	// The name of the storage repository to look up
 	NameLabel pulumi.StringInput `pulumi:"nameLabel"`
 	// The Id of the pool the storage repository exists on.
@@ -130,12 +141,17 @@ func (o GetXoaStorageRepositoryResultOutput) ToGetXoaStorageRepositoryResultOutp
 	return o
 }
 
-// The storage container.
+// The storage container. For host-local storage repositories this is the id of the hosting host.
 func (o GetXoaStorageRepositoryResultOutput) Container() pulumi.StringOutput {
 	return o.ApplyT(func(v GetXoaStorageRepositoryResult) string { return v.Container }).(pulumi.StringOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The Id of the host the storage repository exists on. For host-local storage repositories the SR's `container` is the host itself, so this filters the repositories down to a single host when several hosts in the pool share the same SR name.
+func (o GetXoaStorageRepositoryResultOutput) HostId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetXoaStorageRepositoryResult) *string { return v.HostId }).(pulumi.StringPtrOutput)
+}
+
+// The ID of this resource.
 func (o GetXoaStorageRepositoryResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetXoaStorageRepositoryResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -145,7 +161,7 @@ func (o GetXoaStorageRepositoryResultOutput) NameLabel() pulumi.StringOutput {
 	return o.ApplyT(func(v GetXoaStorageRepositoryResult) string { return v.NameLabel }).(pulumi.StringOutput)
 }
 
-// The physical storage size.
+// The physical storage usage in bytes.
 func (o GetXoaStorageRepositoryResultOutput) PhysicalUsage() pulumi.Float64Output {
 	return o.ApplyT(func(v GetXoaStorageRepositoryResult) float64 { return v.PhysicalUsage }).(pulumi.Float64Output)
 }
@@ -155,7 +171,7 @@ func (o GetXoaStorageRepositoryResultOutput) PoolId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetXoaStorageRepositoryResult) *string { return v.PoolId }).(pulumi.StringPtrOutput)
 }
 
-// The storage size.
+// The total storage size in bytes.
 func (o GetXoaStorageRepositoryResultOutput) Size() pulumi.Float64Output {
 	return o.ApplyT(func(v GetXoaStorageRepositoryResult) float64 { return v.Size }).(pulumi.Float64Output)
 }
@@ -170,7 +186,7 @@ func (o GetXoaStorageRepositoryResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetXoaStorageRepositoryResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The current usage for this storage repository.
+// The current storage usage in bytes.
 func (o GetXoaStorageRepositoryResultOutput) Usage() pulumi.Float64Output {
 	return o.ApplyT(func(v GetXoaStorageRepositoryResult) float64 { return v.Usage }).(pulumi.Float64Output)
 }

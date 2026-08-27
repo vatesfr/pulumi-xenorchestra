@@ -24,6 +24,9 @@ namespace Pulumi.Xenorchestra.Outputs
         public readonly string? ExpectedIpCidr;
         public readonly ImmutableArray<string> Ipv4Addresses;
         public readonly ImmutableArray<string> Ipv6Addresses;
+        /// <summary>
+        /// The mac address of the network interface. This must be parsable by go's [net.ParseMAC function](https://golang.org/pkg/net/#ParseMAC). All mac addresses are stored in Terraform's state with [HardwareAddr's string representation](https://golang.org/pkg/net/#HardwareAddr.String) i.e. 00:00:5e:00:53:01
+        /// </summary>
         public readonly string MacAddress;
         /// <summary>
         /// The ID of the network the VM will be on.

@@ -7,7 +7,17 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## Example Usage
+ * Creates a Xen Orchestra vm resource.
+ *
+ * ## Differences with the Xen Orchestra UI
+ *
+ * ### Cloudinit
+ *
+ * Xen Orchestra allows templating cloudinit config through its own custom mechanism:
+ * * "{name}" is replaced with the VM's name
+ * * "%" is replaced with the VM's index
+ *
+ * This does not work in terraform since that is applied on Xen Orchestra's client side (Javascript). Terraform provides a "templatefile" function that allows for a similar substitution. Please see the example below for more details.
  */
 export class Vm extends pulumi.CustomResource {
     /**
@@ -66,7 +76,17 @@ export class Vm extends pulumi.CustomResource {
      */
     declare public readonly cloudNetworkConfig: pulumi.Output<string | undefined>;
     declare public readonly coreOs: pulumi.Output<boolean | undefined>;
+    /**
+     * The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+     */
+    declare public readonly coresPerSocket: pulumi.Output<number>;
+    /**
+     * The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+     */
     declare public readonly cpuCap: pulumi.Output<number | undefined>;
+    /**
+     * The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
+     */
     declare public readonly cpuWeight: pulumi.Output<number | undefined>;
     /**
      * The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
@@ -108,6 +128,9 @@ export class Vm extends pulumi.CustomResource {
      * This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
      */
     declare public readonly installationMethod: pulumi.Output<string | undefined>;
+    /**
+     * This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv4 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv4 addresses across all network interfaces in order. See the example terraform code for more details.
+     */
     declare public /*out*/ readonly ipv4Addresses: pulumi.Output<string[]>;
     /**
      * This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
@@ -143,6 +166,14 @@ export class Vm extends pulumi.CustomResource {
      */
     declare public readonly secureBoot: pulumi.Output<boolean | undefined>;
     /**
+     * Allow the subjects of the resource set to use the VM. Only applies when resourceSet is set. Can be changed on an existing VM, but setting it to `false` requires the VM to leave its resource set at the same time, since a VM shared in a resource set is always shared in Xen Orchestra (there is no unshare operation).
+     */
+    declare public readonly share: pulumi.Output<boolean | undefined>;
+    /**
+     * The number of CPU sockets. This is computed as cpus / cores_per_socket.
+     */
+    declare public /*out*/ readonly sockets: pulumi.Output<number>;
+    /**
      * Number of seconds the VM should be delayed from starting.
      */
     declare public readonly startDelay: pulumi.Output<number | undefined>;
@@ -159,7 +190,7 @@ export class Vm extends pulumi.CustomResource {
      */
     declare public readonly vga: pulumi.Output<string | undefined>;
     /**
-     * The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+     * The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
      */
     declare public readonly videoram: pulumi.Output<number | undefined>;
     /**
@@ -188,6 +219,7 @@ export class Vm extends pulumi.CustomResource {
             resourceInputs["cloudConfig"] = state?.cloudConfig;
             resourceInputs["cloudNetworkConfig"] = state?.cloudNetworkConfig;
             resourceInputs["coreOs"] = state?.coreOs;
+            resourceInputs["coresPerSocket"] = state?.coresPerSocket;
             resourceInputs["cpuCap"] = state?.cpuCap;
             resourceInputs["cpuWeight"] = state?.cpuWeight;
             resourceInputs["cpus"] = state?.cpus;
@@ -208,6 +240,8 @@ export class Vm extends pulumi.CustomResource {
             resourceInputs["powerState"] = state?.powerState;
             resourceInputs["resourceSet"] = state?.resourceSet;
             resourceInputs["secureBoot"] = state?.secureBoot;
+            resourceInputs["share"] = state?.share;
+            resourceInputs["sockets"] = state?.sockets;
             resourceInputs["startDelay"] = state?.startDelay;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["template"] = state?.template;
@@ -242,6 +276,7 @@ export class Vm extends pulumi.CustomResource {
             resourceInputs["cloudConfig"] = args?.cloudConfig;
             resourceInputs["cloudNetworkConfig"] = args?.cloudNetworkConfig;
             resourceInputs["coreOs"] = args?.coreOs;
+            resourceInputs["coresPerSocket"] = args?.coresPerSocket;
             resourceInputs["cpuCap"] = args?.cpuCap;
             resourceInputs["cpuWeight"] = args?.cpuWeight;
             resourceInputs["cpus"] = args?.cpus;
@@ -260,6 +295,7 @@ export class Vm extends pulumi.CustomResource {
             resourceInputs["powerState"] = args?.powerState;
             resourceInputs["resourceSet"] = args?.resourceSet;
             resourceInputs["secureBoot"] = args?.secureBoot;
+            resourceInputs["share"] = args?.share;
             resourceInputs["startDelay"] = args?.startDelay;
             resourceInputs["tags"] = args?.tags;
             resourceInputs["template"] = args?.template;
@@ -268,6 +304,7 @@ export class Vm extends pulumi.CustomResource {
             resourceInputs["xenstore"] = args?.xenstore;
             resourceInputs["ipv4Addresses"] = undefined /*out*/;
             resourceInputs["ipv6Addresses"] = undefined /*out*/;
+            resourceInputs["sockets"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Vm.__pulumiType, name, resourceInputs, opts);
@@ -281,34 +318,44 @@ export interface VmState {
     /**
      * The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
      */
-    affinityHost?: pulumi.Input<string>;
+    affinityHost?: pulumi.Input<string | undefined>;
     /**
      * If the VM will automatically turn on. Defaults to `false`.
      */
-    autoPoweron?: pulumi.Input<boolean>;
+    autoPoweron?: pulumi.Input<boolean | undefined>;
     /**
      * List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
      */
-    blockedOperations?: pulumi.Input<pulumi.Input<string>[]>;
+    blockedOperations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO.
      */
-    cdrom?: pulumi.Input<inputs.VmCdrom>;
+    cdrom?: pulumi.Input<inputs.VmCdrom | undefined>;
     /**
      * The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
      */
-    cloneType?: pulumi.Input<string>;
+    cloneType?: pulumi.Input<string | undefined>;
     /**
      * The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
      */
-    cloudConfig?: pulumi.Input<string>;
+    cloudConfig?: pulumi.Input<string | undefined>;
     /**
      * The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
      */
-    cloudNetworkConfig?: pulumi.Input<string>;
-    coreOs?: pulumi.Input<boolean>;
-    cpuCap?: pulumi.Input<number>;
-    cpuWeight?: pulumi.Input<number>;
+    cloudNetworkConfig?: pulumi.Input<string | undefined>;
+    coreOs?: pulumi.Input<boolean | undefined>;
+    /**
+     * The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+     */
+    coresPerSocket?: pulumi.Input<number | undefined>;
+    /**
+     * The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+     */
+    cpuCap?: pulumi.Input<number | undefined>;
+    /**
+     * The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
+     */
+    cpuWeight?: pulumi.Input<number | undefined>;
     /**
      * The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
      * ```
@@ -323,90 +370,101 @@ export interface VmState {
      * # Updating the VM to use 5 CPUs would stop/start the VM
      * ```
      */
-    cpus?: pulumi.Input<number>;
+    cpus?: pulumi.Input<number | undefined>;
     /**
      * Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, powerState must be set to `Running`.
      */
-    destroyCloudConfigVdiAfterBoot?: pulumi.Input<boolean>;
+    destroyCloudConfigVdiAfterBoot?: pulumi.Input<boolean | undefined>;
     /**
      * The disk the VM will have access to.
      */
-    disks?: pulumi.Input<pulumi.Input<inputs.VmDisk>[]>;
+    disks?: pulumi.Input<pulumi.Input<inputs.VmDisk>[] | undefined>;
     /**
      * Boolean parameter that allows a VM to use nested virtualization.
      */
-    expNestedHvm?: pulumi.Input<boolean>;
+    expNestedHvm?: pulumi.Input<boolean | undefined>;
     /**
      * The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string
      */
-    highAvailability?: pulumi.Input<string>;
-    host?: pulumi.Input<string>;
+    highAvailability?: pulumi.Input<string | undefined>;
+    host?: pulumi.Input<string | undefined>;
     /**
      * The firmware to use for the VM. Possible values are `bios` and `uefi`.
      */
-    hvmBootFirmware?: pulumi.Input<string>;
+    hvmBootFirmware?: pulumi.Input<string | undefined>;
     /**
      * This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
      */
-    installationMethod?: pulumi.Input<string>;
-    ipv4Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    installationMethod?: pulumi.Input<string | undefined>;
+    /**
+     * This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv4 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv4 addresses across all network interfaces in order. See the example terraform code for more details.
+     */
+    ipv4Addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
      */
-    ipv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    ipv6Addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
      */
-    memoryMax?: pulumi.Input<number>;
+    memoryMax?: pulumi.Input<number | undefined>;
     /**
      * The amount of memory in bytes the VM will have. Set this value equal to memoryMax to have a static memory.
      */
-    memoryMin?: pulumi.Input<number>;
+    memoryMin?: pulumi.Input<number | undefined>;
     /**
      * The description of the VM.
      */
-    nameDescription?: pulumi.Input<string>;
+    nameDescription?: pulumi.Input<string | undefined>;
     /**
      * The name of the VM.
      */
-    nameLabel?: pulumi.Input<string>;
+    nameLabel?: pulumi.Input<string | undefined>;
     /**
      * The network for the VM.
      */
-    networks?: pulumi.Input<pulumi.Input<inputs.VmNetwork>[]>;
+    networks?: pulumi.Input<pulumi.Input<inputs.VmNetwork>[] | undefined>;
     /**
      * The power state of the VM. This can be Running, Halted, Paused or Suspended.
      */
-    powerState?: pulumi.Input<string>;
-    resourceSet?: pulumi.Input<string>;
+    powerState?: pulumi.Input<string | undefined>;
+    resourceSet?: pulumi.Input<string | undefined>;
     /**
      * Enable UEFI secure boot for the VM.
      */
-    secureBoot?: pulumi.Input<boolean>;
+    secureBoot?: pulumi.Input<boolean | undefined>;
+    /**
+     * Allow the subjects of the resource set to use the VM. Only applies when resourceSet is set. Can be changed on an existing VM, but setting it to `false` requires the VM to leave its resource set at the same time, since a VM shared in a resource set is always shared in Xen Orchestra (there is no unshare operation).
+     */
+    share?: pulumi.Input<boolean | undefined>;
+    /**
+     * The number of CPU sockets. This is computed as cpus / cores_per_socket.
+     */
+    sockets?: pulumi.Input<number | undefined>;
     /**
      * Number of seconds the VM should be delayed from starting.
      */
-    startDelay?: pulumi.Input<number>;
+    startDelay?: pulumi.Input<number | undefined>;
     /**
      * The tags (labels) applied to the given entity. Not used for filtering if empty.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the VM template to create the new VM from.
      */
-    template?: pulumi.Input<string>;
+    template?: pulumi.Input<string | undefined>;
     /**
      * The video adapter the VM should use. Possible values include std and cirrus.
      */
-    vga?: pulumi.Input<string>;
+    vga?: pulumi.Input<string | undefined>;
     /**
-     * The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+     * The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
      */
-    videoram?: pulumi.Input<number>;
+    videoram?: pulumi.Input<number | undefined>;
     /**
      * The key value pairs to be populated in xenstore.
      */
-    xenstore?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    xenstore?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }
 
 /**
@@ -416,34 +474,44 @@ export interface VmArgs {
     /**
      * The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
      */
-    affinityHost?: pulumi.Input<string>;
+    affinityHost?: pulumi.Input<string | undefined>;
     /**
      * If the VM will automatically turn on. Defaults to `false`.
      */
-    autoPoweron?: pulumi.Input<boolean>;
+    autoPoweron?: pulumi.Input<boolean | undefined>;
     /**
      * List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
      */
-    blockedOperations?: pulumi.Input<pulumi.Input<string>[]>;
+    blockedOperations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO.
      */
-    cdrom?: pulumi.Input<inputs.VmCdrom>;
+    cdrom?: pulumi.Input<inputs.VmCdrom | undefined>;
     /**
      * The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
      */
-    cloneType?: pulumi.Input<string>;
+    cloneType?: pulumi.Input<string | undefined>;
     /**
      * The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
      */
-    cloudConfig?: pulumi.Input<string>;
+    cloudConfig?: pulumi.Input<string | undefined>;
     /**
      * The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
      */
-    cloudNetworkConfig?: pulumi.Input<string>;
-    coreOs?: pulumi.Input<boolean>;
-    cpuCap?: pulumi.Input<number>;
-    cpuWeight?: pulumi.Input<number>;
+    cloudNetworkConfig?: pulumi.Input<string | undefined>;
+    coreOs?: pulumi.Input<boolean | undefined>;
+    /**
+     * The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+     */
+    coresPerSocket?: pulumi.Input<number | undefined>;
+    /**
+     * The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+     */
+    cpuCap?: pulumi.Input<number | undefined>;
+    /**
+     * The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
+     */
+    cpuWeight?: pulumi.Input<number | undefined>;
     /**
      * The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
      * ```
@@ -462,7 +530,7 @@ export interface VmArgs {
     /**
      * Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, powerState must be set to `Running`.
      */
-    destroyCloudConfigVdiAfterBoot?: pulumi.Input<boolean>;
+    destroyCloudConfigVdiAfterBoot?: pulumi.Input<boolean | undefined>;
     /**
      * The disk the VM will have access to.
      */
@@ -470,20 +538,20 @@ export interface VmArgs {
     /**
      * Boolean parameter that allows a VM to use nested virtualization.
      */
-    expNestedHvm?: pulumi.Input<boolean>;
+    expNestedHvm?: pulumi.Input<boolean | undefined>;
     /**
      * The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string
      */
-    highAvailability?: pulumi.Input<string>;
-    host?: pulumi.Input<string>;
+    highAvailability?: pulumi.Input<string | undefined>;
+    host?: pulumi.Input<string | undefined>;
     /**
      * The firmware to use for the VM. Possible values are `bios` and `uefi`.
      */
-    hvmBootFirmware?: pulumi.Input<string>;
+    hvmBootFirmware?: pulumi.Input<string | undefined>;
     /**
      * This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
      */
-    installationMethod?: pulumi.Input<string>;
+    installationMethod?: pulumi.Input<string | undefined>;
     /**
      * The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
      */
@@ -491,11 +559,11 @@ export interface VmArgs {
     /**
      * The amount of memory in bytes the VM will have. Set this value equal to memoryMax to have a static memory.
      */
-    memoryMin?: pulumi.Input<number>;
+    memoryMin?: pulumi.Input<number | undefined>;
     /**
      * The description of the VM.
      */
-    nameDescription?: pulumi.Input<string>;
+    nameDescription?: pulumi.Input<string | undefined>;
     /**
      * The name of the VM.
      */
@@ -507,20 +575,24 @@ export interface VmArgs {
     /**
      * The power state of the VM. This can be Running, Halted, Paused or Suspended.
      */
-    powerState?: pulumi.Input<string>;
-    resourceSet?: pulumi.Input<string>;
+    powerState?: pulumi.Input<string | undefined>;
+    resourceSet?: pulumi.Input<string | undefined>;
     /**
      * Enable UEFI secure boot for the VM.
      */
-    secureBoot?: pulumi.Input<boolean>;
+    secureBoot?: pulumi.Input<boolean | undefined>;
+    /**
+     * Allow the subjects of the resource set to use the VM. Only applies when resourceSet is set. Can be changed on an existing VM, but setting it to `false` requires the VM to leave its resource set at the same time, since a VM shared in a resource set is always shared in Xen Orchestra (there is no unshare operation).
+     */
+    share?: pulumi.Input<boolean | undefined>;
     /**
      * Number of seconds the VM should be delayed from starting.
      */
-    startDelay?: pulumi.Input<number>;
+    startDelay?: pulumi.Input<number | undefined>;
     /**
      * The tags (labels) applied to the given entity. Not used for filtering if empty.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the VM template to create the new VM from.
      */
@@ -528,13 +600,13 @@ export interface VmArgs {
     /**
      * The video adapter the VM should use. Possible values include std and cirrus.
      */
-    vga?: pulumi.Input<string>;
+    vga?: pulumi.Input<string | undefined>;
     /**
-     * The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+     * The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
      */
-    videoram?: pulumi.Input<number>;
+    videoram?: pulumi.Input<number | undefined>;
     /**
      * The key value pairs to be populated in xenstore.
      */
-    xenstore?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    xenstore?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }

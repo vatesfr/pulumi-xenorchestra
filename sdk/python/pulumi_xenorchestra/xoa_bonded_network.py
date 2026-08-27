@@ -21,14 +21,15 @@ class XoaBondedNetworkArgs:
     def __init__(__self__, *,
                  name_label: pulumi.Input[_builtins.str],
                  pool_id: pulumi.Input[_builtins.str],
-                 automatic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 bond_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_is_locked: Optional[pulumi.Input[_builtins.bool]] = None,
-                 mtu: Optional[pulumi.Input[_builtins.int]] = None,
-                 name_description: Optional[pulumi.Input[_builtins.str]] = None,
-                 pif_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 automatic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 bond_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_is_locked: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mtu: pulumi.Input[Optional[_builtins.int]] = None,
+                 name_description: pulumi.Input[Optional[_builtins.str]] = None,
+                 pif_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a XoaBondedNetwork resource.
+
         :param pulumi.Input[_builtins.str] name_label: The name label of the network.
         :param pulumi.Input[_builtins.str] pool_id: The pool id that this network should belong to.
         :param pulumi.Input[_builtins.str] bond_mode: The bond mode that should be used for this network.
@@ -77,84 +78,85 @@ class XoaBondedNetworkArgs:
 
     @_builtins.property
     @pulumi.getter
-    def automatic(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def automatic(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "automatic")
 
     @automatic.setter
-    def automatic(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def automatic(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "automatic", value)
 
     @_builtins.property
     @pulumi.getter(name="bondMode")
-    def bond_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bond_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The bond mode that should be used for this network.
         """
         return pulumi.get(self, "bond_mode")
 
     @bond_mode.setter
-    def bond_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bond_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bond_mode", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultIsLocked")
-    def default_is_locked(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def default_is_locked(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
         """
         return pulumi.get(self, "default_is_locked")
 
     @default_is_locked.setter
-    def default_is_locked(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def default_is_locked(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "default_is_locked", value)
 
     @_builtins.property
     @pulumi.getter
-    def mtu(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def mtu(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The MTU of the network. Defaults to `1500` if unspecified.
         """
         return pulumi.get(self, "mtu")
 
     @mtu.setter
-    def mtu(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def mtu(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "mtu", value)
 
     @_builtins.property
     @pulumi.getter(name="nameDescription")
-    def name_description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "name_description")
 
     @name_description.setter
-    def name_description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_description", value)
 
     @_builtins.property
     @pulumi.getter(name="pifIds")
-    def pif_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def pif_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The PIFs (uuid) that should be used for this network.
         """
         return pulumi.get(self, "pif_ids")
 
     @pif_ids.setter
-    def pif_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def pif_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "pif_ids", value)
 
 
 @pulumi.input_type
 class _XoaBondedNetworkState:
     def __init__(__self__, *,
-                 automatic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 bond_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_is_locked: Optional[pulumi.Input[_builtins.bool]] = None,
-                 mtu: Optional[pulumi.Input[_builtins.int]] = None,
-                 name_description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_label: Optional[pulumi.Input[_builtins.str]] = None,
-                 pif_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 pool_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 automatic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 bond_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_is_locked: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mtu: pulumi.Input[Optional[_builtins.int]] = None,
+                 name_description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_label: pulumi.Input[Optional[_builtins.str]] = None,
+                 pif_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 pool_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering XoaBondedNetwork resources.
+
         :param pulumi.Input[_builtins.str] bond_mode: The bond mode that should be used for this network.
         :param pulumi.Input[_builtins.bool] default_is_locked: This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
         :param pulumi.Input[_builtins.int] mtu: The MTU of the network. Defaults to `1500` if unspecified.
@@ -181,92 +183,92 @@ class _XoaBondedNetworkState:
 
     @_builtins.property
     @pulumi.getter
-    def automatic(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def automatic(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "automatic")
 
     @automatic.setter
-    def automatic(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def automatic(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "automatic", value)
 
     @_builtins.property
     @pulumi.getter(name="bondMode")
-    def bond_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bond_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The bond mode that should be used for this network.
         """
         return pulumi.get(self, "bond_mode")
 
     @bond_mode.setter
-    def bond_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bond_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bond_mode", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultIsLocked")
-    def default_is_locked(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def default_is_locked(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
         """
         return pulumi.get(self, "default_is_locked")
 
     @default_is_locked.setter
-    def default_is_locked(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def default_is_locked(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "default_is_locked", value)
 
     @_builtins.property
     @pulumi.getter
-    def mtu(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def mtu(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The MTU of the network. Defaults to `1500` if unspecified.
         """
         return pulumi.get(self, "mtu")
 
     @mtu.setter
-    def mtu(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def mtu(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "mtu", value)
 
     @_builtins.property
     @pulumi.getter(name="nameDescription")
-    def name_description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "name_description")
 
     @name_description.setter
-    def name_description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_description", value)
 
     @_builtins.property
     @pulumi.getter(name="nameLabel")
-    def name_label(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_label(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name label of the network.
         """
         return pulumi.get(self, "name_label")
 
     @name_label.setter
-    def name_label(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_label(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_label", value)
 
     @_builtins.property
     @pulumi.getter(name="pifIds")
-    def pif_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def pif_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The PIFs (uuid) that should be used for this network.
         """
         return pulumi.get(self, "pif_ids")
 
     @pif_ids.setter
-    def pif_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def pif_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "pif_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="poolId")
-    def pool_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pool_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The pool id that this network should belong to.
         """
         return pulumi.get(self, "pool_id")
 
     @pool_id.setter
-    def pool_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pool_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pool_id", value)
 
 
@@ -276,14 +278,14 @@ class XoaBondedNetwork(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 automatic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 bond_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_is_locked: Optional[pulumi.Input[_builtins.bool]] = None,
-                 mtu: Optional[pulumi.Input[_builtins.int]] = None,
-                 name_description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_label: Optional[pulumi.Input[_builtins.str]] = None,
-                 pif_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 pool_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 automatic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 bond_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_is_locked: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mtu: pulumi.Input[Optional[_builtins.int]] = None,
+                 name_description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_label: pulumi.Input[Optional[_builtins.str]] = None,
+                 pif_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 pool_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         A resource for managing Bonded Xen Orchestra networks. See the XCP-ng [networking docs](https://xcp-ng.org/docs/networking.html) for more details.
@@ -326,6 +328,7 @@ class XoaBondedNetwork(pulumi.CustomResource):
                 eth2_vlan.id,
             ])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -384,6 +387,7 @@ class XoaBondedNetwork(pulumi.CustomResource):
             ])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param XoaBondedNetworkArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -399,14 +403,14 @@ class XoaBondedNetwork(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 automatic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 bond_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_is_locked: Optional[pulumi.Input[_builtins.bool]] = None,
-                 mtu: Optional[pulumi.Input[_builtins.int]] = None,
-                 name_description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_label: Optional[pulumi.Input[_builtins.str]] = None,
-                 pif_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 pool_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 automatic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 bond_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_is_locked: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mtu: pulumi.Input[Optional[_builtins.int]] = None,
+                 name_description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_label: pulumi.Input[Optional[_builtins.str]] = None,
+                 pif_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 pool_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -440,14 +444,14 @@ class XoaBondedNetwork(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            automatic: Optional[pulumi.Input[_builtins.bool]] = None,
-            bond_mode: Optional[pulumi.Input[_builtins.str]] = None,
-            default_is_locked: Optional[pulumi.Input[_builtins.bool]] = None,
-            mtu: Optional[pulumi.Input[_builtins.int]] = None,
-            name_description: Optional[pulumi.Input[_builtins.str]] = None,
-            name_label: Optional[pulumi.Input[_builtins.str]] = None,
-            pif_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            pool_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'XoaBondedNetwork':
+            automatic: pulumi.Input[Optional[_builtins.bool]] = None,
+            bond_mode: pulumi.Input[Optional[_builtins.str]] = None,
+            default_is_locked: pulumi.Input[Optional[_builtins.bool]] = None,
+            mtu: pulumi.Input[Optional[_builtins.int]] = None,
+            name_description: pulumi.Input[Optional[_builtins.str]] = None,
+            name_label: pulumi.Input[Optional[_builtins.str]] = None,
+            pif_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            pool_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'XoaBondedNetwork':
         """
         Get an existing XoaBondedNetwork resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

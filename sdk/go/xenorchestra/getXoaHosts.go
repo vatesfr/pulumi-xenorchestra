@@ -36,7 +36,7 @@ type GetXoaHostsArgs struct {
 
 // A collection of values returned by getXoaHosts.
 type GetXoaHostsResult struct {
-	// The resulting hosts after applying the argument filtering.
+	// The resulting hosts after applying the argument filtering. `memory` and `memoryUsage` are in bytes.
 	Hosts []GetXoaHostsHost `pulumi:"hosts"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
@@ -92,7 +92,7 @@ func (o GetXoaHostsResultOutput) ToGetXoaHostsResultOutputWithContext(ctx contex
 	return o
 }
 
-// The resulting hosts after applying the argument filtering.
+// The resulting hosts after applying the argument filtering. `memory` and `memoryUsage` are in bytes.
 func (o GetXoaHostsResultOutput) Hosts() GetXoaHostsHostArrayOutput {
 	return o.ApplyT(func(v GetXoaHostsResult) []GetXoaHostsHost { return v.Hosts }).(GetXoaHostsHostArrayOutput)
 }

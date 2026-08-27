@@ -11,6 +11,11 @@ import (
 	"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra/internal"
 )
 
+// Provides information about a VDI (virtual disk image).
+//
+// **Note:** If there are multiple VDIs that match terraform will fail.
+// Ensure that your name_label, poolId and tags identify a unique VDI.
+//
 // ## Example Usage
 //
 // ```go

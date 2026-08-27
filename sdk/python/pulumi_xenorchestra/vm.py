@@ -27,34 +27,37 @@ class VmArgs:
                  name_label: pulumi.Input[_builtins.str],
                  networks: pulumi.Input[Sequence[pulumi.Input['VmNetworkArgs']]],
                  template: pulumi.Input[_builtins.str],
-                 affinity_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 auto_poweron: Optional[pulumi.Input[_builtins.bool]] = None,
-                 blocked_operations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 cdrom: Optional[pulumi.Input['VmCdromArgs']] = None,
-                 clone_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 cloud_config: Optional[pulumi.Input[_builtins.str]] = None,
-                 cloud_network_config: Optional[pulumi.Input[_builtins.str]] = None,
-                 core_os: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cpu_cap: Optional[pulumi.Input[_builtins.int]] = None,
-                 cpu_weight: Optional[pulumi.Input[_builtins.int]] = None,
-                 destroy_cloud_config_vdi_after_boot: Optional[pulumi.Input[_builtins.bool]] = None,
-                 exp_nested_hvm: Optional[pulumi.Input[_builtins.bool]] = None,
-                 high_availability: Optional[pulumi.Input[_builtins.str]] = None,
-                 host: Optional[pulumi.Input[_builtins.str]] = None,
-                 hvm_boot_firmware: Optional[pulumi.Input[_builtins.str]] = None,
-                 installation_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 memory_min: Optional[pulumi.Input[_builtins.int]] = None,
-                 name_description: Optional[pulumi.Input[_builtins.str]] = None,
-                 power_state: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_set: Optional[pulumi.Input[_builtins.str]] = None,
-                 secure_boot: Optional[pulumi.Input[_builtins.bool]] = None,
-                 start_delay: Optional[pulumi.Input[_builtins.int]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 vga: Optional[pulumi.Input[_builtins.str]] = None,
-                 videoram: Optional[pulumi.Input[_builtins.int]] = None,
-                 xenstore: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+                 affinity_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 auto_poweron: pulumi.Input[Optional[_builtins.bool]] = None,
+                 blocked_operations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 cdrom: pulumi.Input[Optional['VmCdromArgs']] = None,
+                 clone_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 cloud_config: pulumi.Input[Optional[_builtins.str]] = None,
+                 cloud_network_config: pulumi.Input[Optional[_builtins.str]] = None,
+                 core_os: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cores_per_socket: pulumi.Input[Optional[_builtins.int]] = None,
+                 cpu_cap: pulumi.Input[Optional[_builtins.int]] = None,
+                 cpu_weight: pulumi.Input[Optional[_builtins.int]] = None,
+                 destroy_cloud_config_vdi_after_boot: pulumi.Input[Optional[_builtins.bool]] = None,
+                 exp_nested_hvm: pulumi.Input[Optional[_builtins.bool]] = None,
+                 high_availability: pulumi.Input[Optional[_builtins.str]] = None,
+                 host: pulumi.Input[Optional[_builtins.str]] = None,
+                 hvm_boot_firmware: pulumi.Input[Optional[_builtins.str]] = None,
+                 installation_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 memory_min: pulumi.Input[Optional[_builtins.int]] = None,
+                 name_description: pulumi.Input[Optional[_builtins.str]] = None,
+                 power_state: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_set: pulumi.Input[Optional[_builtins.str]] = None,
+                 secure_boot: pulumi.Input[Optional[_builtins.bool]] = None,
+                 share: pulumi.Input[Optional[_builtins.bool]] = None,
+                 start_delay: pulumi.Input[Optional[_builtins.int]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 vga: pulumi.Input[Optional[_builtins.str]] = None,
+                 videoram: pulumi.Input[Optional[_builtins.int]] = None,
+                 xenstore: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Vm resource.
+
         :param pulumi.Input[_builtins.int] cpus: The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
                ```
                
@@ -79,6 +82,9 @@ class VmArgs:
         :param pulumi.Input[_builtins.str] clone_type: The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
         :param pulumi.Input[_builtins.str] cloud_config: The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
         :param pulumi.Input[_builtins.str] cloud_network_config: The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
+        :param pulumi.Input[_builtins.int] cores_per_socket: The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+        :param pulumi.Input[_builtins.int] cpu_cap: The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+        :param pulumi.Input[_builtins.int] cpu_weight: The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
         :param pulumi.Input[_builtins.bool] destroy_cloud_config_vdi_after_boot: Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, power_state must be set to `Running`.
         :param pulumi.Input[_builtins.bool] exp_nested_hvm: Boolean parameter that allows a VM to use nested virtualization.
         :param pulumi.Input[_builtins.str] high_availability: The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string
@@ -88,10 +94,11 @@ class VmArgs:
         :param pulumi.Input[_builtins.str] name_description: The description of the VM.
         :param pulumi.Input[_builtins.str] power_state: The power state of the VM. This can be Running, Halted, Paused or Suspended.
         :param pulumi.Input[_builtins.bool] secure_boot: Enable UEFI secure boot for the VM.
+        :param pulumi.Input[_builtins.bool] share: Allow the subjects of the resource set to use the VM. Only applies when resource_set is set. Can be changed on an existing VM, but setting it to `false` requires the VM to leave its resource set at the same time, since a VM shared in a resource set is always shared in Xen Orchestra (there is no unshare operation).
         :param pulumi.Input[_builtins.int] start_delay: Number of seconds the VM should be delayed from starting.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
         :param pulumi.Input[_builtins.str] vga: The video adapter the VM should use. Possible values include std and cirrus.
-        :param pulumi.Input[_builtins.int] videoram: The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+        :param pulumi.Input[_builtins.int] videoram: The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] xenstore: The key value pairs to be populated in xenstore.
         """
         pulumi.set(__self__, "cpus", cpus)
@@ -116,6 +123,8 @@ class VmArgs:
             pulumi.set(__self__, "cloud_network_config", cloud_network_config)
         if core_os is not None:
             pulumi.set(__self__, "core_os", core_os)
+        if cores_per_socket is not None:
+            pulumi.set(__self__, "cores_per_socket", cores_per_socket)
         if cpu_cap is not None:
             pulumi.set(__self__, "cpu_cap", cpu_cap)
         if cpu_weight is not None:
@@ -142,6 +151,8 @@ class VmArgs:
             pulumi.set(__self__, "resource_set", resource_set)
         if secure_boot is not None:
             pulumi.set(__self__, "secure_boot", secure_boot)
+        if share is not None:
+            pulumi.set(__self__, "share", share)
         if start_delay is not None:
             pulumi.set(__self__, "start_delay", start_delay)
         if tags is not None:
@@ -238,341 +249,375 @@ class VmArgs:
 
     @_builtins.property
     @pulumi.getter(name="affinityHost")
-    def affinity_host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def affinity_host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
         """
         return pulumi.get(self, "affinity_host")
 
     @affinity_host.setter
-    def affinity_host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def affinity_host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "affinity_host", value)
 
     @_builtins.property
     @pulumi.getter(name="autoPoweron")
-    def auto_poweron(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_poweron(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If the VM will automatically turn on. Defaults to `false`.
         """
         return pulumi.get(self, "auto_poweron")
 
     @auto_poweron.setter
-    def auto_poweron(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_poweron(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_poweron", value)
 
     @_builtins.property
     @pulumi.getter(name="blockedOperations")
-    def blocked_operations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def blocked_operations(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
         """
         return pulumi.get(self, "blocked_operations")
 
     @blocked_operations.setter
-    def blocked_operations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def blocked_operations(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "blocked_operations", value)
 
     @_builtins.property
     @pulumi.getter
-    def cdrom(self) -> Optional[pulumi.Input['VmCdromArgs']]:
+    def cdrom(self) -> pulumi.Input[Optional['VmCdromArgs']]:
         """
         The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO.
         """
         return pulumi.get(self, "cdrom")
 
     @cdrom.setter
-    def cdrom(self, value: Optional[pulumi.Input['VmCdromArgs']]):
+    def cdrom(self, value: pulumi.Input[Optional['VmCdromArgs']]):
         pulumi.set(self, "cdrom", value)
 
     @_builtins.property
     @pulumi.getter(name="cloneType")
-    def clone_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def clone_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
         """
         return pulumi.get(self, "clone_type")
 
     @clone_type.setter
-    def clone_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def clone_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "clone_type", value)
 
     @_builtins.property
     @pulumi.getter(name="cloudConfig")
-    def cloud_config(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_config(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
         """
         return pulumi.get(self, "cloud_config")
 
     @cloud_config.setter
-    def cloud_config(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_config(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_config", value)
 
     @_builtins.property
     @pulumi.getter(name="cloudNetworkConfig")
-    def cloud_network_config(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_network_config(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
         """
         return pulumi.get(self, "cloud_network_config")
 
     @cloud_network_config.setter
-    def cloud_network_config(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_network_config(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_network_config", value)
 
     @_builtins.property
     @pulumi.getter(name="coreOs")
-    def core_os(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def core_os(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "core_os")
 
     @core_os.setter
-    def core_os(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def core_os(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "core_os", value)
 
     @_builtins.property
+    @pulumi.getter(name="coresPerSocket")
+    def cores_per_socket(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+        """
+        return pulumi.get(self, "cores_per_socket")
+
+    @cores_per_socket.setter
+    def cores_per_socket(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "cores_per_socket", value)
+
+    @_builtins.property
     @pulumi.getter(name="cpuCap")
-    def cpu_cap(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cpu_cap(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+        """
         return pulumi.get(self, "cpu_cap")
 
     @cpu_cap.setter
-    def cpu_cap(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cpu_cap(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cpu_cap", value)
 
     @_builtins.property
     @pulumi.getter(name="cpuWeight")
-    def cpu_weight(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cpu_weight(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
+        """
         return pulumi.get(self, "cpu_weight")
 
     @cpu_weight.setter
-    def cpu_weight(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cpu_weight(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cpu_weight", value)
 
     @_builtins.property
     @pulumi.getter(name="destroyCloudConfigVdiAfterBoot")
-    def destroy_cloud_config_vdi_after_boot(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def destroy_cloud_config_vdi_after_boot(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, power_state must be set to `Running`.
         """
         return pulumi.get(self, "destroy_cloud_config_vdi_after_boot")
 
     @destroy_cloud_config_vdi_after_boot.setter
-    def destroy_cloud_config_vdi_after_boot(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def destroy_cloud_config_vdi_after_boot(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "destroy_cloud_config_vdi_after_boot", value)
 
     @_builtins.property
     @pulumi.getter(name="expNestedHvm")
-    def exp_nested_hvm(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def exp_nested_hvm(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Boolean parameter that allows a VM to use nested virtualization.
         """
         return pulumi.get(self, "exp_nested_hvm")
 
     @exp_nested_hvm.setter
-    def exp_nested_hvm(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def exp_nested_hvm(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exp_nested_hvm", value)
 
     @_builtins.property
     @pulumi.getter(name="highAvailability")
-    def high_availability(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def high_availability(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string
         """
         return pulumi.get(self, "high_availability")
 
     @high_availability.setter
-    def high_availability(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def high_availability(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "high_availability", value)
 
     @_builtins.property
     @pulumi.getter
-    def host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def host(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "host")
 
     @host.setter
-    def host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "host", value)
 
     @_builtins.property
     @pulumi.getter(name="hvmBootFirmware")
-    def hvm_boot_firmware(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hvm_boot_firmware(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The firmware to use for the VM. Possible values are `bios` and `uefi`.
         """
         return pulumi.get(self, "hvm_boot_firmware")
 
     @hvm_boot_firmware.setter
-    def hvm_boot_firmware(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hvm_boot_firmware(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hvm_boot_firmware", value)
 
     @_builtins.property
     @pulumi.getter(name="installationMethod")
-    def installation_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def installation_method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
         """
         return pulumi.get(self, "installation_method")
 
     @installation_method.setter
-    def installation_method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def installation_method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "installation_method", value)
 
     @_builtins.property
     @pulumi.getter(name="memoryMin")
-    def memory_min(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def memory_min(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.
         """
         return pulumi.get(self, "memory_min")
 
     @memory_min.setter
-    def memory_min(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def memory_min(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "memory_min", value)
 
     @_builtins.property
     @pulumi.getter(name="nameDescription")
-    def name_description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the VM.
         """
         return pulumi.get(self, "name_description")
 
     @name_description.setter
-    def name_description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_description", value)
 
     @_builtins.property
     @pulumi.getter(name="powerState")
-    def power_state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def power_state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The power state of the VM. This can be Running, Halted, Paused or Suspended.
         """
         return pulumi.get(self, "power_state")
 
     @power_state.setter
-    def power_state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def power_state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "power_state", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceSet")
-    def resource_set(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource_set(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "resource_set")
 
     @resource_set.setter
-    def resource_set(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource_set(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource_set", value)
 
     @_builtins.property
     @pulumi.getter(name="secureBoot")
-    def secure_boot(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def secure_boot(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable UEFI secure boot for the VM.
         """
         return pulumi.get(self, "secure_boot")
 
     @secure_boot.setter
-    def secure_boot(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def secure_boot(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "secure_boot", value)
 
     @_builtins.property
+    @pulumi.getter
+    def share(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Allow the subjects of the resource set to use the VM. Only applies when resource_set is set. Can be changed on an existing VM, but setting it to `false` requires the VM to leave its resource set at the same time, since a VM shared in a resource set is always shared in Xen Orchestra (there is no unshare operation).
+        """
+        return pulumi.get(self, "share")
+
+    @share.setter
+    def share(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "share", value)
+
+    @_builtins.property
     @pulumi.getter(name="startDelay")
-    def start_delay(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def start_delay(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of seconds the VM should be delayed from starting.
         """
         return pulumi.get(self, "start_delay")
 
     @start_delay.setter
-    def start_delay(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def start_delay(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "start_delay", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags (labels) applied to the given entity. Not used for filtering if empty.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def vga(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vga(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The video adapter the VM should use. Possible values include std and cirrus.
         """
         return pulumi.get(self, "vga")
 
     @vga.setter
-    def vga(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vga(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vga", value)
 
     @_builtins.property
     @pulumi.getter
-    def videoram(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def videoram(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+        The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
         """
         return pulumi.get(self, "videoram")
 
     @videoram.setter
-    def videoram(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def videoram(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "videoram", value)
 
     @_builtins.property
     @pulumi.getter
-    def xenstore(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def xenstore(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The key value pairs to be populated in xenstore.
         """
         return pulumi.get(self, "xenstore")
 
     @xenstore.setter
-    def xenstore(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def xenstore(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "xenstore", value)
 
 
 @pulumi.input_type
 class _VmState:
     def __init__(__self__, *,
-                 affinity_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 auto_poweron: Optional[pulumi.Input[_builtins.bool]] = None,
-                 blocked_operations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 cdrom: Optional[pulumi.Input['VmCdromArgs']] = None,
-                 clone_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 cloud_config: Optional[pulumi.Input[_builtins.str]] = None,
-                 cloud_network_config: Optional[pulumi.Input[_builtins.str]] = None,
-                 core_os: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cpu_cap: Optional[pulumi.Input[_builtins.int]] = None,
-                 cpu_weight: Optional[pulumi.Input[_builtins.int]] = None,
-                 cpus: Optional[pulumi.Input[_builtins.int]] = None,
-                 destroy_cloud_config_vdi_after_boot: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disks: Optional[pulumi.Input[Sequence[pulumi.Input['VmDiskArgs']]]] = None,
-                 exp_nested_hvm: Optional[pulumi.Input[_builtins.bool]] = None,
-                 high_availability: Optional[pulumi.Input[_builtins.str]] = None,
-                 host: Optional[pulumi.Input[_builtins.str]] = None,
-                 hvm_boot_firmware: Optional[pulumi.Input[_builtins.str]] = None,
-                 installation_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 memory_max: Optional[pulumi.Input[_builtins.float]] = None,
-                 memory_min: Optional[pulumi.Input[_builtins.int]] = None,
-                 name_description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_label: Optional[pulumi.Input[_builtins.str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input['VmNetworkArgs']]]] = None,
-                 power_state: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_set: Optional[pulumi.Input[_builtins.str]] = None,
-                 secure_boot: Optional[pulumi.Input[_builtins.bool]] = None,
-                 start_delay: Optional[pulumi.Input[_builtins.int]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 template: Optional[pulumi.Input[_builtins.str]] = None,
-                 vga: Optional[pulumi.Input[_builtins.str]] = None,
-                 videoram: Optional[pulumi.Input[_builtins.int]] = None,
-                 xenstore: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+                 affinity_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 auto_poweron: pulumi.Input[Optional[_builtins.bool]] = None,
+                 blocked_operations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 cdrom: pulumi.Input[Optional['VmCdromArgs']] = None,
+                 clone_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 cloud_config: pulumi.Input[Optional[_builtins.str]] = None,
+                 cloud_network_config: pulumi.Input[Optional[_builtins.str]] = None,
+                 core_os: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cores_per_socket: pulumi.Input[Optional[_builtins.int]] = None,
+                 cpu_cap: pulumi.Input[Optional[_builtins.int]] = None,
+                 cpu_weight: pulumi.Input[Optional[_builtins.int]] = None,
+                 cpus: pulumi.Input[Optional[_builtins.int]] = None,
+                 destroy_cloud_config_vdi_after_boot: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disks: pulumi.Input[Optional[Sequence[pulumi.Input['VmDiskArgs']]]] = None,
+                 exp_nested_hvm: pulumi.Input[Optional[_builtins.bool]] = None,
+                 high_availability: pulumi.Input[Optional[_builtins.str]] = None,
+                 host: pulumi.Input[Optional[_builtins.str]] = None,
+                 hvm_boot_firmware: pulumi.Input[Optional[_builtins.str]] = None,
+                 installation_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipv4_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ipv6_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 memory_max: pulumi.Input[Optional[_builtins.float]] = None,
+                 memory_min: pulumi.Input[Optional[_builtins.int]] = None,
+                 name_description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_label: pulumi.Input[Optional[_builtins.str]] = None,
+                 networks: pulumi.Input[Optional[Sequence[pulumi.Input['VmNetworkArgs']]]] = None,
+                 power_state: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_set: pulumi.Input[Optional[_builtins.str]] = None,
+                 secure_boot: pulumi.Input[Optional[_builtins.bool]] = None,
+                 share: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sockets: pulumi.Input[Optional[_builtins.int]] = None,
+                 start_delay: pulumi.Input[Optional[_builtins.int]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 template: pulumi.Input[Optional[_builtins.str]] = None,
+                 vga: pulumi.Input[Optional[_builtins.str]] = None,
+                 videoram: pulumi.Input[Optional[_builtins.int]] = None,
+                 xenstore: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Vm resources.
+
         :param pulumi.Input[_builtins.str] affinity_host: The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
         :param pulumi.Input[_builtins.bool] auto_poweron: If the VM will automatically turn on. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] blocked_operations: List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
@@ -580,6 +625,9 @@ class _VmState:
         :param pulumi.Input[_builtins.str] clone_type: The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
         :param pulumi.Input[_builtins.str] cloud_config: The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
         :param pulumi.Input[_builtins.str] cloud_network_config: The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
+        :param pulumi.Input[_builtins.int] cores_per_socket: The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+        :param pulumi.Input[_builtins.int] cpu_cap: The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+        :param pulumi.Input[_builtins.int] cpu_weight: The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
         :param pulumi.Input[_builtins.int] cpus: The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
                ```
                
@@ -598,6 +646,7 @@ class _VmState:
         :param pulumi.Input[_builtins.str] high_availability: The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string
         :param pulumi.Input[_builtins.str] hvm_boot_firmware: The firmware to use for the VM. Possible values are `bios` and `uefi`.
         :param pulumi.Input[_builtins.str] installation_method: This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ipv4_addresses: This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv4 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv4 addresses across all network interfaces in order. See the example terraform code for more details.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ipv6_addresses: This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
         :param pulumi.Input[_builtins.float] memory_max: The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
         :param pulumi.Input[_builtins.int] memory_min: The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.
@@ -606,11 +655,13 @@ class _VmState:
         :param pulumi.Input[Sequence[pulumi.Input['VmNetworkArgs']]] networks: The network for the VM.
         :param pulumi.Input[_builtins.str] power_state: The power state of the VM. This can be Running, Halted, Paused or Suspended.
         :param pulumi.Input[_builtins.bool] secure_boot: Enable UEFI secure boot for the VM.
+        :param pulumi.Input[_builtins.bool] share: Allow the subjects of the resource set to use the VM. Only applies when resource_set is set. Can be changed on an existing VM, but setting it to `false` requires the VM to leave its resource set at the same time, since a VM shared in a resource set is always shared in Xen Orchestra (there is no unshare operation).
+        :param pulumi.Input[_builtins.int] sockets: The number of CPU sockets. This is computed as cpus / cores_per_socket.
         :param pulumi.Input[_builtins.int] start_delay: Number of seconds the VM should be delayed from starting.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
         :param pulumi.Input[_builtins.str] template: The ID of the VM template to create the new VM from.
         :param pulumi.Input[_builtins.str] vga: The video adapter the VM should use. Possible values include std and cirrus.
-        :param pulumi.Input[_builtins.int] videoram: The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+        :param pulumi.Input[_builtins.int] videoram: The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] xenstore: The key value pairs to be populated in xenstore.
         """
         if affinity_host is not None:
@@ -629,6 +680,8 @@ class _VmState:
             pulumi.set(__self__, "cloud_network_config", cloud_network_config)
         if core_os is not None:
             pulumi.set(__self__, "core_os", core_os)
+        if cores_per_socket is not None:
+            pulumi.set(__self__, "cores_per_socket", cores_per_socket)
         if cpu_cap is not None:
             pulumi.set(__self__, "cpu_cap", cpu_cap)
         if cpu_weight is not None:
@@ -669,6 +722,10 @@ class _VmState:
             pulumi.set(__self__, "resource_set", resource_set)
         if secure_boot is not None:
             pulumi.set(__self__, "secure_boot", secure_boot)
+        if share is not None:
+            pulumi.set(__self__, "share", share)
+        if sockets is not None:
+            pulumi.set(__self__, "sockets", sockets)
         if start_delay is not None:
             pulumi.set(__self__, "start_delay", start_delay)
         if tags is not None:
@@ -684,118 +741,136 @@ class _VmState:
 
     @_builtins.property
     @pulumi.getter(name="affinityHost")
-    def affinity_host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def affinity_host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
         """
         return pulumi.get(self, "affinity_host")
 
     @affinity_host.setter
-    def affinity_host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def affinity_host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "affinity_host", value)
 
     @_builtins.property
     @pulumi.getter(name="autoPoweron")
-    def auto_poweron(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_poweron(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If the VM will automatically turn on. Defaults to `false`.
         """
         return pulumi.get(self, "auto_poweron")
 
     @auto_poweron.setter
-    def auto_poweron(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_poweron(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_poweron", value)
 
     @_builtins.property
     @pulumi.getter(name="blockedOperations")
-    def blocked_operations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def blocked_operations(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of operations on a VM that are not permitted. Examples include: clean_reboot, clean_shutdown, hard_reboot, hard_shutdown, pause, shutdown, suspend, destroy. See: https://xapi-project.github.io/xen-api/classes/vm.html#enum_vm_operations
         """
         return pulumi.get(self, "blocked_operations")
 
     @blocked_operations.setter
-    def blocked_operations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def blocked_operations(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "blocked_operations", value)
 
     @_builtins.property
     @pulumi.getter
-    def cdrom(self) -> Optional[pulumi.Input['VmCdromArgs']]:
+    def cdrom(self) -> pulumi.Input[Optional['VmCdromArgs']]:
         """
         The ISO that should be attached to VM. This allows you to create a VM from a diskless template (any templates available from `xe template-list`) and install the OS from the following ISO.
         """
         return pulumi.get(self, "cdrom")
 
     @cdrom.setter
-    def cdrom(self, value: Optional[pulumi.Input['VmCdromArgs']]):
+    def cdrom(self, value: pulumi.Input[Optional['VmCdromArgs']]):
         pulumi.set(self, "cdrom", value)
 
     @_builtins.property
     @pulumi.getter(name="cloneType")
-    def clone_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def clone_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
         """
         return pulumi.get(self, "clone_type")
 
     @clone_type.setter
-    def clone_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def clone_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "clone_type", value)
 
     @_builtins.property
     @pulumi.getter(name="cloudConfig")
-    def cloud_config(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_config(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
         """
         return pulumi.get(self, "cloud_config")
 
     @cloud_config.setter
-    def cloud_config(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_config(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_config", value)
 
     @_builtins.property
     @pulumi.getter(name="cloudNetworkConfig")
-    def cloud_network_config(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_network_config(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
         """
         return pulumi.get(self, "cloud_network_config")
 
     @cloud_network_config.setter
-    def cloud_network_config(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_network_config(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_network_config", value)
 
     @_builtins.property
     @pulumi.getter(name="coreOs")
-    def core_os(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def core_os(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "core_os")
 
     @core_os.setter
-    def core_os(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def core_os(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "core_os", value)
 
     @_builtins.property
+    @pulumi.getter(name="coresPerSocket")
+    def cores_per_socket(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+        """
+        return pulumi.get(self, "cores_per_socket")
+
+    @cores_per_socket.setter
+    def cores_per_socket(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "cores_per_socket", value)
+
+    @_builtins.property
     @pulumi.getter(name="cpuCap")
-    def cpu_cap(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cpu_cap(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+        """
         return pulumi.get(self, "cpu_cap")
 
     @cpu_cap.setter
-    def cpu_cap(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cpu_cap(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cpu_cap", value)
 
     @_builtins.property
     @pulumi.getter(name="cpuWeight")
-    def cpu_weight(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cpu_weight(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
+        """
         return pulumi.get(self, "cpu_weight")
 
     @cpu_weight.setter
-    def cpu_weight(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cpu_weight(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cpu_weight", value)
 
     @_builtins.property
     @pulumi.getter
-    def cpus(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cpus(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
         ```
@@ -813,274 +888,301 @@ class _VmState:
         return pulumi.get(self, "cpus")
 
     @cpus.setter
-    def cpus(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cpus(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cpus", value)
 
     @_builtins.property
     @pulumi.getter(name="destroyCloudConfigVdiAfterBoot")
-    def destroy_cloud_config_vdi_after_boot(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def destroy_cloud_config_vdi_after_boot(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, power_state must be set to `Running`.
         """
         return pulumi.get(self, "destroy_cloud_config_vdi_after_boot")
 
     @destroy_cloud_config_vdi_after_boot.setter
-    def destroy_cloud_config_vdi_after_boot(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def destroy_cloud_config_vdi_after_boot(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "destroy_cloud_config_vdi_after_boot", value)
 
     @_builtins.property
     @pulumi.getter
-    def disks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VmDiskArgs']]]]:
+    def disks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['VmDiskArgs']]]]:
         """
         The disk the VM will have access to.
         """
         return pulumi.get(self, "disks")
 
     @disks.setter
-    def disks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VmDiskArgs']]]]):
+    def disks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['VmDiskArgs']]]]):
         pulumi.set(self, "disks", value)
 
     @_builtins.property
     @pulumi.getter(name="expNestedHvm")
-    def exp_nested_hvm(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def exp_nested_hvm(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Boolean parameter that allows a VM to use nested virtualization.
         """
         return pulumi.get(self, "exp_nested_hvm")
 
     @exp_nested_hvm.setter
-    def exp_nested_hvm(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def exp_nested_hvm(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exp_nested_hvm", value)
 
     @_builtins.property
     @pulumi.getter(name="highAvailability")
-    def high_availability(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def high_availability(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string
         """
         return pulumi.get(self, "high_availability")
 
     @high_availability.setter
-    def high_availability(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def high_availability(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "high_availability", value)
 
     @_builtins.property
     @pulumi.getter
-    def host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def host(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "host")
 
     @host.setter
-    def host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "host", value)
 
     @_builtins.property
     @pulumi.getter(name="hvmBootFirmware")
-    def hvm_boot_firmware(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hvm_boot_firmware(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The firmware to use for the VM. Possible values are `bios` and `uefi`.
         """
         return pulumi.get(self, "hvm_boot_firmware")
 
     @hvm_boot_firmware.setter
-    def hvm_boot_firmware(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hvm_boot_firmware(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hvm_boot_firmware", value)
 
     @_builtins.property
     @pulumi.getter(name="installationMethod")
-    def installation_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def installation_method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
         """
         return pulumi.get(self, "installation_method")
 
     @installation_method.setter
-    def installation_method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def installation_method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "installation_method", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv4Addresses")
-    def ipv4_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ipv4_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv4 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv4 addresses across all network interfaces in order. See the example terraform code for more details.
+        """
         return pulumi.get(self, "ipv4_addresses")
 
     @ipv4_addresses.setter
-    def ipv4_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ipv4_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ipv4_addresses", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv6Addresses")
-    def ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ipv6_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
         """
         return pulumi.get(self, "ipv6_addresses")
 
     @ipv6_addresses.setter
-    def ipv6_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ipv6_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ipv6_addresses", value)
 
     @_builtins.property
     @pulumi.getter(name="memoryMax")
-    def memory_max(self) -> Optional[pulumi.Input[_builtins.float]]:
+    def memory_max(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
         The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
         """
         return pulumi.get(self, "memory_max")
 
     @memory_max.setter
-    def memory_max(self, value: Optional[pulumi.Input[_builtins.float]]):
+    def memory_max(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "memory_max", value)
 
     @_builtins.property
     @pulumi.getter(name="memoryMin")
-    def memory_min(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def memory_min(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.
         """
         return pulumi.get(self, "memory_min")
 
     @memory_min.setter
-    def memory_min(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def memory_min(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "memory_min", value)
 
     @_builtins.property
     @pulumi.getter(name="nameDescription")
-    def name_description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the VM.
         """
         return pulumi.get(self, "name_description")
 
     @name_description.setter
-    def name_description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_description", value)
 
     @_builtins.property
     @pulumi.getter(name="nameLabel")
-    def name_label(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_label(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the VM.
         """
         return pulumi.get(self, "name_label")
 
     @name_label.setter
-    def name_label(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_label(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_label", value)
 
     @_builtins.property
     @pulumi.getter
-    def networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VmNetworkArgs']]]]:
+    def networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['VmNetworkArgs']]]]:
         """
         The network for the VM.
         """
         return pulumi.get(self, "networks")
 
     @networks.setter
-    def networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VmNetworkArgs']]]]):
+    def networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['VmNetworkArgs']]]]):
         pulumi.set(self, "networks", value)
 
     @_builtins.property
     @pulumi.getter(name="powerState")
-    def power_state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def power_state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The power state of the VM. This can be Running, Halted, Paused or Suspended.
         """
         return pulumi.get(self, "power_state")
 
     @power_state.setter
-    def power_state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def power_state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "power_state", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceSet")
-    def resource_set(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource_set(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "resource_set")
 
     @resource_set.setter
-    def resource_set(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource_set(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource_set", value)
 
     @_builtins.property
     @pulumi.getter(name="secureBoot")
-    def secure_boot(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def secure_boot(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable UEFI secure boot for the VM.
         """
         return pulumi.get(self, "secure_boot")
 
     @secure_boot.setter
-    def secure_boot(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def secure_boot(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "secure_boot", value)
 
     @_builtins.property
+    @pulumi.getter
+    def share(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Allow the subjects of the resource set to use the VM. Only applies when resource_set is set. Can be changed on an existing VM, but setting it to `false` requires the VM to leave its resource set at the same time, since a VM shared in a resource set is always shared in Xen Orchestra (there is no unshare operation).
+        """
+        return pulumi.get(self, "share")
+
+    @share.setter
+    def share(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "share", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def sockets(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The number of CPU sockets. This is computed as cpus / cores_per_socket.
+        """
+        return pulumi.get(self, "sockets")
+
+    @sockets.setter
+    def sockets(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "sockets", value)
+
+    @_builtins.property
     @pulumi.getter(name="startDelay")
-    def start_delay(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def start_delay(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of seconds the VM should be delayed from starting.
         """
         return pulumi.get(self, "start_delay")
 
     @start_delay.setter
-    def start_delay(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def start_delay(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "start_delay", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags (labels) applied to the given entity. Not used for filtering if empty.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the VM template to create the new VM from.
         """
         return pulumi.get(self, "template")
 
     @template.setter
-    def template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "template", value)
 
     @_builtins.property
     @pulumi.getter
-    def vga(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vga(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The video adapter the VM should use. Possible values include std and cirrus.
         """
         return pulumi.get(self, "vga")
 
     @vga.setter
-    def vga(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vga(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vga", value)
 
     @_builtins.property
     @pulumi.getter
-    def videoram(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def videoram(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+        The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
         """
         return pulumi.get(self, "videoram")
 
     @videoram.setter
-    def videoram(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def videoram(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "videoram", value)
 
     @_builtins.property
     @pulumi.getter
-    def xenstore(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def xenstore(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The key value pairs to be populated in xenstore.
         """
         return pulumi.get(self, "xenstore")
 
     @xenstore.setter
-    def xenstore(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def xenstore(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "xenstore", value)
 
 
@@ -1090,41 +1192,54 @@ class Vm(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 affinity_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 auto_poweron: Optional[pulumi.Input[_builtins.bool]] = None,
-                 blocked_operations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 cdrom: Optional[pulumi.Input[Union['VmCdromArgs', 'VmCdromArgsDict']]] = None,
-                 clone_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 cloud_config: Optional[pulumi.Input[_builtins.str]] = None,
-                 cloud_network_config: Optional[pulumi.Input[_builtins.str]] = None,
-                 core_os: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cpu_cap: Optional[pulumi.Input[_builtins.int]] = None,
-                 cpu_weight: Optional[pulumi.Input[_builtins.int]] = None,
-                 cpus: Optional[pulumi.Input[_builtins.int]] = None,
-                 destroy_cloud_config_vdi_after_boot: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VmDiskArgs', 'VmDiskArgsDict']]]]] = None,
-                 exp_nested_hvm: Optional[pulumi.Input[_builtins.bool]] = None,
-                 high_availability: Optional[pulumi.Input[_builtins.str]] = None,
-                 host: Optional[pulumi.Input[_builtins.str]] = None,
-                 hvm_boot_firmware: Optional[pulumi.Input[_builtins.str]] = None,
-                 installation_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 memory_max: Optional[pulumi.Input[_builtins.float]] = None,
-                 memory_min: Optional[pulumi.Input[_builtins.int]] = None,
-                 name_description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_label: Optional[pulumi.Input[_builtins.str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VmNetworkArgs', 'VmNetworkArgsDict']]]]] = None,
-                 power_state: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_set: Optional[pulumi.Input[_builtins.str]] = None,
-                 secure_boot: Optional[pulumi.Input[_builtins.bool]] = None,
-                 start_delay: Optional[pulumi.Input[_builtins.int]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 template: Optional[pulumi.Input[_builtins.str]] = None,
-                 vga: Optional[pulumi.Input[_builtins.str]] = None,
-                 videoram: Optional[pulumi.Input[_builtins.int]] = None,
-                 xenstore: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 affinity_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 auto_poweron: pulumi.Input[Optional[_builtins.bool]] = None,
+                 blocked_operations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 cdrom: pulumi.Input[Optional[Union['VmCdromArgs', 'VmCdromArgsDict']]] = None,
+                 clone_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 cloud_config: pulumi.Input[Optional[_builtins.str]] = None,
+                 cloud_network_config: pulumi.Input[Optional[_builtins.str]] = None,
+                 core_os: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cores_per_socket: pulumi.Input[Optional[_builtins.int]] = None,
+                 cpu_cap: pulumi.Input[Optional[_builtins.int]] = None,
+                 cpu_weight: pulumi.Input[Optional[_builtins.int]] = None,
+                 cpus: pulumi.Input[Optional[_builtins.int]] = None,
+                 destroy_cloud_config_vdi_after_boot: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VmDiskArgs', 'VmDiskArgsDict']]]]] = None,
+                 exp_nested_hvm: pulumi.Input[Optional[_builtins.bool]] = None,
+                 high_availability: pulumi.Input[Optional[_builtins.str]] = None,
+                 host: pulumi.Input[Optional[_builtins.str]] = None,
+                 hvm_boot_firmware: pulumi.Input[Optional[_builtins.str]] = None,
+                 installation_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 memory_max: pulumi.Input[Optional[_builtins.float]] = None,
+                 memory_min: pulumi.Input[Optional[_builtins.int]] = None,
+                 name_description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_label: pulumi.Input[Optional[_builtins.str]] = None,
+                 networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VmNetworkArgs', 'VmNetworkArgsDict']]]]] = None,
+                 power_state: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_set: pulumi.Input[Optional[_builtins.str]] = None,
+                 secure_boot: pulumi.Input[Optional[_builtins.bool]] = None,
+                 share: pulumi.Input[Optional[_builtins.bool]] = None,
+                 start_delay: pulumi.Input[Optional[_builtins.int]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 template: pulumi.Input[Optional[_builtins.str]] = None,
+                 vga: pulumi.Input[Optional[_builtins.str]] = None,
+                 videoram: pulumi.Input[Optional[_builtins.int]] = None,
+                 xenstore: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        ## Example Usage
+        Creates a Xen Orchestra vm resource.
+
+        ## Differences with the Xen Orchestra UI
+
+        ### Cloudinit
+
+        Xen Orchestra allows templating cloudinit config through its own custom mechanism:
+        * "{name}" is replaced with the VM's name
+        * "%" is replaced with the VM's index
+
+        This does not work in terraform since that is applied on Xen Orchestra's client side (Javascript). Terraform provides a "templatefile" function that allows for a similar substitution. Please see the example below for more details.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1135,6 +1250,9 @@ class Vm(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] clone_type: The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
         :param pulumi.Input[_builtins.str] cloud_config: The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
         :param pulumi.Input[_builtins.str] cloud_network_config: The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
+        :param pulumi.Input[_builtins.int] cores_per_socket: The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+        :param pulumi.Input[_builtins.int] cpu_cap: The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+        :param pulumi.Input[_builtins.int] cpu_weight: The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
         :param pulumi.Input[_builtins.int] cpus: The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
                ```
                
@@ -1160,11 +1278,12 @@ class Vm(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['VmNetworkArgs', 'VmNetworkArgsDict']]]] networks: The network for the VM.
         :param pulumi.Input[_builtins.str] power_state: The power state of the VM. This can be Running, Halted, Paused or Suspended.
         :param pulumi.Input[_builtins.bool] secure_boot: Enable UEFI secure boot for the VM.
+        :param pulumi.Input[_builtins.bool] share: Allow the subjects of the resource set to use the VM. Only applies when resource_set is set. Can be changed on an existing VM, but setting it to `false` requires the VM to leave its resource set at the same time, since a VM shared in a resource set is always shared in Xen Orchestra (there is no unshare operation).
         :param pulumi.Input[_builtins.int] start_delay: Number of seconds the VM should be delayed from starting.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
         :param pulumi.Input[_builtins.str] template: The ID of the VM template to create the new VM from.
         :param pulumi.Input[_builtins.str] vga: The video adapter the VM should use. Possible values include std and cirrus.
-        :param pulumi.Input[_builtins.int] videoram: The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+        :param pulumi.Input[_builtins.int] videoram: The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] xenstore: The key value pairs to be populated in xenstore.
         """
         ...
@@ -1174,7 +1293,18 @@ class Vm(pulumi.CustomResource):
                  args: VmArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
+        Creates a Xen Orchestra vm resource.
+
+        ## Differences with the Xen Orchestra UI
+
+        ### Cloudinit
+
+        Xen Orchestra allows templating cloudinit config through its own custom mechanism:
+        * "{name}" is replaced with the VM's name
+        * "%" is replaced with the VM's index
+
+        This does not work in terraform since that is applied on Xen Orchestra's client side (Javascript). Terraform provides a "templatefile" function that allows for a similar substitution. Please see the example below for more details.
+
 
         :param str resource_name: The name of the resource.
         :param VmArgs args: The arguments to use to populate this resource's properties.
@@ -1191,38 +1321,40 @@ class Vm(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 affinity_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 auto_poweron: Optional[pulumi.Input[_builtins.bool]] = None,
-                 blocked_operations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 cdrom: Optional[pulumi.Input[Union['VmCdromArgs', 'VmCdromArgsDict']]] = None,
-                 clone_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 cloud_config: Optional[pulumi.Input[_builtins.str]] = None,
-                 cloud_network_config: Optional[pulumi.Input[_builtins.str]] = None,
-                 core_os: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cpu_cap: Optional[pulumi.Input[_builtins.int]] = None,
-                 cpu_weight: Optional[pulumi.Input[_builtins.int]] = None,
-                 cpus: Optional[pulumi.Input[_builtins.int]] = None,
-                 destroy_cloud_config_vdi_after_boot: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VmDiskArgs', 'VmDiskArgsDict']]]]] = None,
-                 exp_nested_hvm: Optional[pulumi.Input[_builtins.bool]] = None,
-                 high_availability: Optional[pulumi.Input[_builtins.str]] = None,
-                 host: Optional[pulumi.Input[_builtins.str]] = None,
-                 hvm_boot_firmware: Optional[pulumi.Input[_builtins.str]] = None,
-                 installation_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 memory_max: Optional[pulumi.Input[_builtins.float]] = None,
-                 memory_min: Optional[pulumi.Input[_builtins.int]] = None,
-                 name_description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_label: Optional[pulumi.Input[_builtins.str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VmNetworkArgs', 'VmNetworkArgsDict']]]]] = None,
-                 power_state: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_set: Optional[pulumi.Input[_builtins.str]] = None,
-                 secure_boot: Optional[pulumi.Input[_builtins.bool]] = None,
-                 start_delay: Optional[pulumi.Input[_builtins.int]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 template: Optional[pulumi.Input[_builtins.str]] = None,
-                 vga: Optional[pulumi.Input[_builtins.str]] = None,
-                 videoram: Optional[pulumi.Input[_builtins.int]] = None,
-                 xenstore: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 affinity_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 auto_poweron: pulumi.Input[Optional[_builtins.bool]] = None,
+                 blocked_operations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 cdrom: pulumi.Input[Optional[Union['VmCdromArgs', 'VmCdromArgsDict']]] = None,
+                 clone_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 cloud_config: pulumi.Input[Optional[_builtins.str]] = None,
+                 cloud_network_config: pulumi.Input[Optional[_builtins.str]] = None,
+                 core_os: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cores_per_socket: pulumi.Input[Optional[_builtins.int]] = None,
+                 cpu_cap: pulumi.Input[Optional[_builtins.int]] = None,
+                 cpu_weight: pulumi.Input[Optional[_builtins.int]] = None,
+                 cpus: pulumi.Input[Optional[_builtins.int]] = None,
+                 destroy_cloud_config_vdi_after_boot: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VmDiskArgs', 'VmDiskArgsDict']]]]] = None,
+                 exp_nested_hvm: pulumi.Input[Optional[_builtins.bool]] = None,
+                 high_availability: pulumi.Input[Optional[_builtins.str]] = None,
+                 host: pulumi.Input[Optional[_builtins.str]] = None,
+                 hvm_boot_firmware: pulumi.Input[Optional[_builtins.str]] = None,
+                 installation_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 memory_max: pulumi.Input[Optional[_builtins.float]] = None,
+                 memory_min: pulumi.Input[Optional[_builtins.int]] = None,
+                 name_description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_label: pulumi.Input[Optional[_builtins.str]] = None,
+                 networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VmNetworkArgs', 'VmNetworkArgsDict']]]]] = None,
+                 power_state: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_set: pulumi.Input[Optional[_builtins.str]] = None,
+                 secure_boot: pulumi.Input[Optional[_builtins.bool]] = None,
+                 share: pulumi.Input[Optional[_builtins.bool]] = None,
+                 start_delay: pulumi.Input[Optional[_builtins.int]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 template: pulumi.Input[Optional[_builtins.str]] = None,
+                 vga: pulumi.Input[Optional[_builtins.str]] = None,
+                 videoram: pulumi.Input[Optional[_builtins.int]] = None,
+                 xenstore: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1240,6 +1372,7 @@ class Vm(pulumi.CustomResource):
             __props__.__dict__["cloud_config"] = cloud_config
             __props__.__dict__["cloud_network_config"] = cloud_network_config
             __props__.__dict__["core_os"] = core_os
+            __props__.__dict__["cores_per_socket"] = cores_per_socket
             __props__.__dict__["cpu_cap"] = cpu_cap
             __props__.__dict__["cpu_weight"] = cpu_weight
             if cpus is None and not opts.urn:
@@ -1268,6 +1401,7 @@ class Vm(pulumi.CustomResource):
             __props__.__dict__["power_state"] = power_state
             __props__.__dict__["resource_set"] = resource_set
             __props__.__dict__["secure_boot"] = secure_boot
+            __props__.__dict__["share"] = share
             __props__.__dict__["start_delay"] = start_delay
             __props__.__dict__["tags"] = tags
             if template is None and not opts.urn:
@@ -1278,6 +1412,7 @@ class Vm(pulumi.CustomResource):
             __props__.__dict__["xenstore"] = xenstore
             __props__.__dict__["ipv4_addresses"] = None
             __props__.__dict__["ipv6_addresses"] = None
+            __props__.__dict__["sockets"] = None
         super(Vm, __self__).__init__(
             'xenorchestra:index/vm:Vm',
             resource_name,
@@ -1288,40 +1423,43 @@ class Vm(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            affinity_host: Optional[pulumi.Input[_builtins.str]] = None,
-            auto_poweron: Optional[pulumi.Input[_builtins.bool]] = None,
-            blocked_operations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            cdrom: Optional[pulumi.Input[Union['VmCdromArgs', 'VmCdromArgsDict']]] = None,
-            clone_type: Optional[pulumi.Input[_builtins.str]] = None,
-            cloud_config: Optional[pulumi.Input[_builtins.str]] = None,
-            cloud_network_config: Optional[pulumi.Input[_builtins.str]] = None,
-            core_os: Optional[pulumi.Input[_builtins.bool]] = None,
-            cpu_cap: Optional[pulumi.Input[_builtins.int]] = None,
-            cpu_weight: Optional[pulumi.Input[_builtins.int]] = None,
-            cpus: Optional[pulumi.Input[_builtins.int]] = None,
-            destroy_cloud_config_vdi_after_boot: Optional[pulumi.Input[_builtins.bool]] = None,
-            disks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VmDiskArgs', 'VmDiskArgsDict']]]]] = None,
-            exp_nested_hvm: Optional[pulumi.Input[_builtins.bool]] = None,
-            high_availability: Optional[pulumi.Input[_builtins.str]] = None,
-            host: Optional[pulumi.Input[_builtins.str]] = None,
-            hvm_boot_firmware: Optional[pulumi.Input[_builtins.str]] = None,
-            installation_method: Optional[pulumi.Input[_builtins.str]] = None,
-            ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            memory_max: Optional[pulumi.Input[_builtins.float]] = None,
-            memory_min: Optional[pulumi.Input[_builtins.int]] = None,
-            name_description: Optional[pulumi.Input[_builtins.str]] = None,
-            name_label: Optional[pulumi.Input[_builtins.str]] = None,
-            networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VmNetworkArgs', 'VmNetworkArgsDict']]]]] = None,
-            power_state: Optional[pulumi.Input[_builtins.str]] = None,
-            resource_set: Optional[pulumi.Input[_builtins.str]] = None,
-            secure_boot: Optional[pulumi.Input[_builtins.bool]] = None,
-            start_delay: Optional[pulumi.Input[_builtins.int]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            template: Optional[pulumi.Input[_builtins.str]] = None,
-            vga: Optional[pulumi.Input[_builtins.str]] = None,
-            videoram: Optional[pulumi.Input[_builtins.int]] = None,
-            xenstore: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None) -> 'Vm':
+            affinity_host: pulumi.Input[Optional[_builtins.str]] = None,
+            auto_poweron: pulumi.Input[Optional[_builtins.bool]] = None,
+            blocked_operations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            cdrom: pulumi.Input[Optional[Union['VmCdromArgs', 'VmCdromArgsDict']]] = None,
+            clone_type: pulumi.Input[Optional[_builtins.str]] = None,
+            cloud_config: pulumi.Input[Optional[_builtins.str]] = None,
+            cloud_network_config: pulumi.Input[Optional[_builtins.str]] = None,
+            core_os: pulumi.Input[Optional[_builtins.bool]] = None,
+            cores_per_socket: pulumi.Input[Optional[_builtins.int]] = None,
+            cpu_cap: pulumi.Input[Optional[_builtins.int]] = None,
+            cpu_weight: pulumi.Input[Optional[_builtins.int]] = None,
+            cpus: pulumi.Input[Optional[_builtins.int]] = None,
+            destroy_cloud_config_vdi_after_boot: pulumi.Input[Optional[_builtins.bool]] = None,
+            disks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VmDiskArgs', 'VmDiskArgsDict']]]]] = None,
+            exp_nested_hvm: pulumi.Input[Optional[_builtins.bool]] = None,
+            high_availability: pulumi.Input[Optional[_builtins.str]] = None,
+            host: pulumi.Input[Optional[_builtins.str]] = None,
+            hvm_boot_firmware: pulumi.Input[Optional[_builtins.str]] = None,
+            installation_method: pulumi.Input[Optional[_builtins.str]] = None,
+            ipv4_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ipv6_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            memory_max: pulumi.Input[Optional[_builtins.float]] = None,
+            memory_min: pulumi.Input[Optional[_builtins.int]] = None,
+            name_description: pulumi.Input[Optional[_builtins.str]] = None,
+            name_label: pulumi.Input[Optional[_builtins.str]] = None,
+            networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VmNetworkArgs', 'VmNetworkArgsDict']]]]] = None,
+            power_state: pulumi.Input[Optional[_builtins.str]] = None,
+            resource_set: pulumi.Input[Optional[_builtins.str]] = None,
+            secure_boot: pulumi.Input[Optional[_builtins.bool]] = None,
+            share: pulumi.Input[Optional[_builtins.bool]] = None,
+            sockets: pulumi.Input[Optional[_builtins.int]] = None,
+            start_delay: pulumi.Input[Optional[_builtins.int]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            template: pulumi.Input[Optional[_builtins.str]] = None,
+            vga: pulumi.Input[Optional[_builtins.str]] = None,
+            videoram: pulumi.Input[Optional[_builtins.int]] = None,
+            xenstore: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None) -> 'Vm':
         """
         Get an existing Vm resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1336,6 +1474,9 @@ class Vm(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] clone_type: The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
         :param pulumi.Input[_builtins.str] cloud_config: The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
         :param pulumi.Input[_builtins.str] cloud_network_config: The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
+        :param pulumi.Input[_builtins.int] cores_per_socket: The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+        :param pulumi.Input[_builtins.int] cpu_cap: The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+        :param pulumi.Input[_builtins.int] cpu_weight: The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
         :param pulumi.Input[_builtins.int] cpus: The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
                ```
                
@@ -1354,6 +1495,7 @@ class Vm(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] high_availability: The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string
         :param pulumi.Input[_builtins.str] hvm_boot_firmware: The firmware to use for the VM. Possible values are `bios` and `uefi`.
         :param pulumi.Input[_builtins.str] installation_method: This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ipv4_addresses: This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv4 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv4 addresses across all network interfaces in order. See the example terraform code for more details.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ipv6_addresses: This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
         :param pulumi.Input[_builtins.float] memory_max: The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
         :param pulumi.Input[_builtins.int] memory_min: The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.
@@ -1362,11 +1504,13 @@ class Vm(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['VmNetworkArgs', 'VmNetworkArgsDict']]]] networks: The network for the VM.
         :param pulumi.Input[_builtins.str] power_state: The power state of the VM. This can be Running, Halted, Paused or Suspended.
         :param pulumi.Input[_builtins.bool] secure_boot: Enable UEFI secure boot for the VM.
+        :param pulumi.Input[_builtins.bool] share: Allow the subjects of the resource set to use the VM. Only applies when resource_set is set. Can be changed on an existing VM, but setting it to `false` requires the VM to leave its resource set at the same time, since a VM shared in a resource set is always shared in Xen Orchestra (there is no unshare operation).
+        :param pulumi.Input[_builtins.int] sockets: The number of CPU sockets. This is computed as cpus / cores_per_socket.
         :param pulumi.Input[_builtins.int] start_delay: Number of seconds the VM should be delayed from starting.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
         :param pulumi.Input[_builtins.str] template: The ID of the VM template to create the new VM from.
         :param pulumi.Input[_builtins.str] vga: The video adapter the VM should use. Possible values include std and cirrus.
-        :param pulumi.Input[_builtins.int] videoram: The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+        :param pulumi.Input[_builtins.int] videoram: The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] xenstore: The key value pairs to be populated in xenstore.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1381,6 +1525,7 @@ class Vm(pulumi.CustomResource):
         __props__.__dict__["cloud_config"] = cloud_config
         __props__.__dict__["cloud_network_config"] = cloud_network_config
         __props__.__dict__["core_os"] = core_os
+        __props__.__dict__["cores_per_socket"] = cores_per_socket
         __props__.__dict__["cpu_cap"] = cpu_cap
         __props__.__dict__["cpu_weight"] = cpu_weight
         __props__.__dict__["cpus"] = cpus
@@ -1401,6 +1546,8 @@ class Vm(pulumi.CustomResource):
         __props__.__dict__["power_state"] = power_state
         __props__.__dict__["resource_set"] = resource_set
         __props__.__dict__["secure_boot"] = secure_boot
+        __props__.__dict__["share"] = share
+        __props__.__dict__["sockets"] = sockets
         __props__.__dict__["start_delay"] = start_delay
         __props__.__dict__["tags"] = tags
         __props__.__dict__["template"] = template
@@ -1471,13 +1618,27 @@ class Vm(pulumi.CustomResource):
         return pulumi.get(self, "core_os")
 
     @_builtins.property
+    @pulumi.getter(name="coresPerSocket")
+    def cores_per_socket(self) -> pulumi.Output[_builtins.int]:
+        """
+        The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+        """
+        return pulumi.get(self, "cores_per_socket")
+
+    @_builtins.property
     @pulumi.getter(name="cpuCap")
     def cpu_cap(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+        """
         return pulumi.get(self, "cpu_cap")
 
     @_builtins.property
     @pulumi.getter(name="cpuWeight")
     def cpu_weight(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
+        """
         return pulumi.get(self, "cpu_weight")
 
     @_builtins.property
@@ -1555,6 +1716,9 @@ class Vm(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="ipv4Addresses")
     def ipv4_addresses(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv4 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv4 addresses across all network interfaces in order. See the example terraform code for more details.
+        """
         return pulumi.get(self, "ipv4_addresses")
 
     @_builtins.property
@@ -1627,6 +1791,22 @@ class Vm(pulumi.CustomResource):
         return pulumi.get(self, "secure_boot")
 
     @_builtins.property
+    @pulumi.getter
+    def share(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Allow the subjects of the resource set to use the VM. Only applies when resource_set is set. Can be changed on an existing VM, but setting it to `false` requires the VM to leave its resource set at the same time, since a VM shared in a resource set is always shared in Xen Orchestra (there is no unshare operation).
+        """
+        return pulumi.get(self, "share")
+
+    @_builtins.property
+    @pulumi.getter
+    def sockets(self) -> pulumi.Output[_builtins.int]:
+        """
+        The number of CPU sockets. This is computed as cpus / cores_per_socket.
+        """
+        return pulumi.get(self, "sockets")
+
+    @_builtins.property
     @pulumi.getter(name="startDelay")
     def start_delay(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
@@ -1662,7 +1842,7 @@ class Vm(pulumi.CustomResource):
     @pulumi.getter
     def videoram(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+        The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
         """
         return pulumi.get(self, "videoram")
 

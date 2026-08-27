@@ -27,11 +27,11 @@ export interface VmDisk {
     /**
      * Whether the device should be attached to the VM.
      */
-    attached?: pulumi.Input<boolean>;
+    attached?: pulumi.Input<boolean | undefined>;
     /**
      * The description for the disk
      */
-    nameDescription?: pulumi.Input<string>;
+    nameDescription?: pulumi.Input<string | undefined>;
     /**
      * The name for the disk
      */
@@ -39,7 +39,7 @@ export interface VmDisk {
     /**
      * Indicates the order of the block device.
      */
-    position?: pulumi.Input<string>;
+    position?: pulumi.Input<string | undefined>;
     /**
      * The size in bytes for the disk.
      */
@@ -48,23 +48,26 @@ export interface VmDisk {
      * The storage repository ID to use.
      */
     srId: pulumi.Input<string>;
-    vbdId?: pulumi.Input<string>;
-    vdiId?: pulumi.Input<string>;
+    vbdId?: pulumi.Input<string | undefined>;
+    vdiId?: pulumi.Input<string | undefined>;
 }
 
 export interface VmNetwork {
     /**
      * Whether the device should be attached to the VM.
      */
-    attached?: pulumi.Input<boolean>;
-    device?: pulumi.Input<string>;
+    attached?: pulumi.Input<boolean | undefined>;
+    device?: pulumi.Input<string | undefined>;
     /**
      * Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `waitForIp` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
      */
-    expectedIpCidr?: pulumi.Input<string>;
-    ipv4Addresses?: pulumi.Input<pulumi.Input<string>[]>;
-    ipv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
-    macAddress?: pulumi.Input<string>;
+    expectedIpCidr?: pulumi.Input<string | undefined>;
+    ipv4Addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    ipv6Addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * The mac address of the network interface. This must be parsable by go's [net.ParseMAC function](https://golang.org/pkg/net/#ParseMAC). All mac addresses are stored in Terraform's state with [HardwareAddr's string representation](https://golang.org/pkg/net/#HardwareAddr.String) i.e. 00:00:5e:00:53:01
+     */
+    macAddress?: pulumi.Input<string | undefined>;
     /**
      * The ID of the network the VM will be on.
      */

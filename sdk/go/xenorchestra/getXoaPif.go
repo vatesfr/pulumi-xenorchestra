@@ -11,6 +11,11 @@ import (
 	"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra/internal"
 )
 
+// Provides information about a physical network interface (PIF) of a XenServer host specified by the interface name or whether it is the management interface.
+//
+// **Note:** If there are multiple PIFs that match terraform will fail.
+// Ensure that your device, vlan, hostId and other arguments identify a unique PIF.
+//
 // ## Example Usage
 //
 // ```go

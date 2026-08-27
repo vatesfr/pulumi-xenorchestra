@@ -12,6 +12,11 @@ namespace Pulumi.Xenorchestra
     public static class GetXoaStorageRepository
     {
         /// <summary>
+        /// Provides information about a Storage repository to ease the lookup of VM storage information.
+        /// 
+        /// **Note:** If there are multiple storage repositories that match terraform will fail.
+        /// Ensure that your name_label, pool_id, HostId and tags identify a unique storage repository.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -48,6 +53,11 @@ namespace Pulumi.Xenorchestra
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetXoaStorageRepositoryResult>("xenorchestra:index/getXoaStorageRepository:getXoaStorageRepository", args ?? new GetXoaStorageRepositoryArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Provides information about a Storage repository to ease the lookup of VM storage information.
+        /// 
+        /// **Note:** If there are multiple storage repositories that match terraform will fail.
+        /// Ensure that your name_label, pool_id, HostId and tags identify a unique storage repository.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -84,6 +94,11 @@ namespace Pulumi.Xenorchestra
             => global::Pulumi.Deployment.Instance.Invoke<GetXoaStorageRepositoryResult>("xenorchestra:index/getXoaStorageRepository:getXoaStorageRepository", args ?? new GetXoaStorageRepositoryInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Provides information about a Storage repository to ease the lookup of VM storage information.
+        /// 
+        /// **Note:** If there are multiple storage repositories that match terraform will fail.
+        /// Ensure that your name_label, pool_id, HostId and tags identify a unique storage repository.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -124,6 +139,12 @@ namespace Pulumi.Xenorchestra
     public sealed class GetXoaStorageRepositoryArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// The Id of the host the storage repository exists on. For host-local storage repositories the SR's `Container` is the host itself, so this filters the repositories down to a single host when several hosts in the pool share the same SR name.
+        /// </summary>
+        [Input("hostId")]
+        public string? HostId { get; set; }
+
+        /// <summary>
         /// The name of the storage repository to look up
         /// </summary>
         [Input("nameLabel", required: true)]
@@ -155,6 +176,12 @@ namespace Pulumi.Xenorchestra
 
     public sealed class GetXoaStorageRepositoryInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The Id of the host the storage repository exists on. For host-local storage repositories the SR's `Container` is the host itself, so this filters the repositories down to a single host when several hosts in the pool share the same SR name.
+        /// </summary>
+        [Input("hostId")]
+        public Input<string>? HostId { get; set; }
+
         /// <summary>
         /// The name of the storage repository to look up
         /// </summary>
@@ -190,11 +217,15 @@ namespace Pulumi.Xenorchestra
     public sealed class GetXoaStorageRepositoryResult
     {
         /// <summary>
-        /// The storage container.
+        /// The storage container. For host-local storage repositories this is the id of the hosting host.
         /// </summary>
         public readonly string Container;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The Id of the host the storage repository exists on. For host-local storage repositories the SR's `Container` is the host itself, so this filters the repositories down to a single host when several hosts in the pool share the same SR name.
+        /// </summary>
+        public readonly string? HostId;
+        /// <summary>
+        /// The ID of this resource.
         /// </summary>
         public readonly string Id;
         /// <summary>
@@ -202,7 +233,7 @@ namespace Pulumi.Xenorchestra
         /// </summary>
         public readonly string NameLabel;
         /// <summary>
-        /// The physical storage size.
+        /// The physical storage usage in bytes.
         /// </summary>
         public readonly double PhysicalUsage;
         /// <summary>
@@ -210,7 +241,7 @@ namespace Pulumi.Xenorchestra
         /// </summary>
         public readonly string? PoolId;
         /// <summary>
-        /// The storage size.
+        /// The total storage size in bytes.
         /// </summary>
         public readonly double Size;
         /// <summary>
@@ -222,7 +253,7 @@ namespace Pulumi.Xenorchestra
         /// </summary>
         public readonly ImmutableArray<string> Tags;
         /// <summary>
-        /// The current usage for this storage repository.
+        /// The current storage usage in bytes.
         /// </summary>
         public readonly double Usage;
         /// <summary>
@@ -233,6 +264,8 @@ namespace Pulumi.Xenorchestra
         [OutputConstructor]
         private GetXoaStorageRepositoryResult(
             string container,
+
+            string? hostId,
 
             string id,
 
@@ -253,6 +286,7 @@ namespace Pulumi.Xenorchestra
             string uuid)
         {
             Container = container;
+            HostId = hostId;
             Id = id;
             NameLabel = nameLabel;
             PhysicalUsage = physicalUsage;

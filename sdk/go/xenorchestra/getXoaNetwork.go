@@ -11,6 +11,10 @@ import (
 	"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra/internal"
 )
 
+// Provides information about a network of a Xenserver pool.
+//
+// **Note:** If there are multiple networks with the same name terraform will fail. Ensure that your network, poolId and other arguments identify a unique network.
+//
 // ## Example Usage
 //
 // ```go
@@ -25,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			net, err := xenorchestra.LookupXoaNetwork(ctx, &xenorchestra.LookupXoaNetworkArgs{
+//			net, err := xenorchestra.GetXoaNetwork(ctx, &xenorchestra.LookupXoaNetworkArgs{
 //				NameLabel: "Pool-wide network associated with eth0",
 //			}, nil)
 //			if err != nil {

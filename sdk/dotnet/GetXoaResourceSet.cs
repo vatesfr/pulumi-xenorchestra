@@ -12,6 +12,12 @@ namespace Pulumi.Xenorchestra
     public static class GetXoaResourceSet
     {
         /// <summary>
+        /// Provides information about a resource set.
+        /// 
+        /// **NOTE:** If there are multiple resource sets with the same name
+        /// Terraform will fail. Ensure that your resource set names are unique when
+        /// using the data source.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -34,6 +40,12 @@ namespace Pulumi.Xenorchestra
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetXoaResourceSetResult>("xenorchestra:index/getXoaResourceSet:getXoaResourceSet", args ?? new GetXoaResourceSetArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Provides information about a resource set.
+        /// 
+        /// **NOTE:** If there are multiple resource sets with the same name
+        /// Terraform will fail. Ensure that your resource set names are unique when
+        /// using the data source.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -56,6 +68,12 @@ namespace Pulumi.Xenorchestra
             => global::Pulumi.Deployment.Instance.Invoke<GetXoaResourceSetResult>("xenorchestra:index/getXoaResourceSet:getXoaResourceSet", args ?? new GetXoaResourceSetInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Provides information about a resource set.
+        /// 
+        /// **NOTE:** If there are multiple resource sets with the same name
+        /// Terraform will fail. Ensure that your resource set names are unique when
+        /// using the data source.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp

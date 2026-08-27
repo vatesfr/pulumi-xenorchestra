@@ -198,6 +198,11 @@ def get_xoa_pif(device: Optional[_builtins.str] = None,
                 vlan: Optional[_builtins.int] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetXoaPifResult:
     """
+    Provides information about a physical network interface (PIF) of a XenServer host specified by the interface name or whether it is the management interface.
+
+    **Note:** If there are multiple PIFs that match terraform will fail.
+    Ensure that your device, vlan, host_id and other arguments identify a unique PIF.
+
     ## Example Usage
 
     ```python
@@ -238,11 +243,16 @@ def get_xoa_pif(device: Optional[_builtins.str] = None,
         pool_id=pulumi.get(__ret__, 'pool_id'),
         uuid=pulumi.get(__ret__, 'uuid'),
         vlan=pulumi.get(__ret__, 'vlan'))
-def get_xoa_pif_output(device: Optional[pulumi.Input[_builtins.str]] = None,
-                       host_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       vlan: Optional[pulumi.Input[_builtins.int]] = None,
+def get_xoa_pif_output(device: pulumi.Input[Optional[_builtins.str]] = None,
+                       host_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       vlan: pulumi.Input[Optional[_builtins.int]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetXoaPifResult]:
     """
+    Provides information about a physical network interface (PIF) of a XenServer host specified by the interface name or whether it is the management interface.
+
+    **Note:** If there are multiple PIFs that match terraform will fail.
+    Ensure that your device, vlan, host_id and other arguments identify a unique PIF.
+
     ## Example Usage
 
     ```python

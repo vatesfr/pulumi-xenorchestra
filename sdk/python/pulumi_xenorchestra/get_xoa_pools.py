@@ -16,30 +16,24 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
-    'GetXoaHostsResult',
-    'AwaitableGetXoaHostsResult',
-    'get_xoa_hosts',
-    'get_xoa_hosts_output',
+    'GetXoaPoolsResult',
+    'AwaitableGetXoaPoolsResult',
+    'get_xoa_pools',
+    'get_xoa_pools_output',
 ]
 
 @pulumi.output_type
-class GetXoaHostsResult:
+class GetXoaPoolsResult:
     """
-    A collection of values returned by getXoaHosts.
+    A collection of values returned by getXoaPools.
     """
-    def __init__(__self__, hosts=None, id=None, master=None, pool_id=None, sort_by=None, sort_order=None, tags=None):
-        if hosts and not isinstance(hosts, list):
-            raise TypeError("Expected argument 'hosts' to be a list")
-        pulumi.set(__self__, "hosts", hosts)
+    def __init__(__self__, id=None, pools=None, sort_by=None, sort_order=None, tags=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if master and not isinstance(master, str):
-            raise TypeError("Expected argument 'master' to be a str")
-        pulumi.set(__self__, "master", master)
-        if pool_id and not isinstance(pool_id, str):
-            raise TypeError("Expected argument 'pool_id' to be a str")
-        pulumi.set(__self__, "pool_id", pool_id)
+        if pools and not isinstance(pools, list):
+            raise TypeError("Expected argument 'pools' to be a list")
+        pulumi.set(__self__, "pools", pools)
         if sort_by and not isinstance(sort_by, str):
             raise TypeError("Expected argument 'sort_by' to be a str")
         pulumi.set(__self__, "sort_by", sort_by)
@@ -52,14 +46,6 @@ class GetXoaHostsResult:
 
     @_builtins.property
     @pulumi.getter
-    def hosts(self) -> Sequence['outputs.GetXoaHostsHostResult']:
-        """
-        The resulting hosts after applying the argument filtering. `memory` and `memory_usage` are in bytes.
-        """
-        return pulumi.get(self, "hosts")
-
-    @_builtins.property
-    @pulumi.getter
     def id(self) -> _builtins.str:
         """
         The provider-assigned unique ID for this managed resource.
@@ -68,25 +54,17 @@ class GetXoaHostsResult:
 
     @_builtins.property
     @pulumi.getter
-    def master(self) -> _builtins.str:
+    def pools(self) -> Sequence['outputs.GetXoaPoolsPoolResult']:
         """
-        The primary host of the pool.
+        The resulting pools after applying the argument filtering.
         """
-        return pulumi.get(self, "master")
-
-    @_builtins.property
-    @pulumi.getter(name="poolId")
-    def pool_id(self) -> _builtins.str:
-        """
-        The pool id used to filter the resulting hosts by.
-        """
-        return pulumi.get(self, "pool_id")
+        return pulumi.get(self, "pools")
 
     @_builtins.property
     @pulumi.getter(name="sortBy")
     def sort_by(self) -> Optional[_builtins.str]:
         """
-        The host field to sort the results by (id and name_label are supported).
+        The pool field to sort the results by (id and name_label are supported).
         """
         return pulumi.get(self, "sort_by")
 
@@ -107,77 +85,101 @@ class GetXoaHostsResult:
         return pulumi.get(self, "tags")
 
 
-class AwaitableGetXoaHostsResult(GetXoaHostsResult):
+class AwaitableGetXoaPoolsResult(GetXoaPoolsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetXoaHostsResult(
-            hosts=self.hosts,
+        return GetXoaPoolsResult(
             id=self.id,
-            master=self.master,
-            pool_id=self.pool_id,
+            pools=self.pools,
             sort_by=self.sort_by,
             sort_order=self.sort_order,
             tags=self.tags)
 
 
-def get_xoa_hosts(pool_id: Optional[_builtins.str] = None,
-                  sort_by: Optional[_builtins.str] = None,
+def get_xoa_pools(sort_by: Optional[_builtins.str] = None,
                   sort_order: Optional[_builtins.str] = None,
                   tags: Optional[Sequence[_builtins.str]] = None,
-                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetXoaHostsResult:
+                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetXoaPoolsResult:
     """
-    Use this data source to filter Xenorchestra hosts by certain criteria (name_label, tags) for use in other resources.
+    Use this data source to filter Xenorchestra pools by certain criteria (tags) for use in other resources.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_xenorchestra as xenorchestra
+
+    all = xenorchestra.get_xoa_pools()
+    tagged = xenorchestra.get_xoa_pools(tags=[
+        "production",
+        "web",
+    ])
+    sorted = xenorchestra.get_xoa_pools(sort_by="name_label",
+        sort_order="asc")
+    example = xenorchestra.get_xoa_pools(tags=["terraform-managed"])
+    local_storage = xenorchestra.get_xoa_storage_repository(name_label="Local storage",
+        pool_id=example.pools[0].id)
+    ```
 
 
-    :param _builtins.str pool_id: The pool id used to filter the resulting hosts by.
-    :param _builtins.str sort_by: The host field to sort the results by (id and name_label are supported).
+    :param _builtins.str sort_by: The pool field to sort the results by (id and name_label are supported).
     :param _builtins.str sort_order: Valid options are `asc` or `desc` and sort order is applied to `sort_by` argument.
     :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
     """
     __args__ = dict()
-    __args__['poolId'] = pool_id
     __args__['sortBy'] = sort_by
     __args__['sortOrder'] = sort_order
     __args__['tags'] = tags
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('xenorchestra:index/getXoaHosts:getXoaHosts', __args__, opts=opts, typ=GetXoaHostsResult).value
+    __ret__ = pulumi.runtime.invoke('xenorchestra:index/getXoaPools:getXoaPools', __args__, opts=opts, typ=GetXoaPoolsResult).value
 
-    return AwaitableGetXoaHostsResult(
-        hosts=pulumi.get(__ret__, 'hosts'),
+    return AwaitableGetXoaPoolsResult(
         id=pulumi.get(__ret__, 'id'),
-        master=pulumi.get(__ret__, 'master'),
-        pool_id=pulumi.get(__ret__, 'pool_id'),
+        pools=pulumi.get(__ret__, 'pools'),
         sort_by=pulumi.get(__ret__, 'sort_by'),
         sort_order=pulumi.get(__ret__, 'sort_order'),
         tags=pulumi.get(__ret__, 'tags'))
-def get_xoa_hosts_output(pool_id: pulumi.Input[Optional[_builtins.str]] = None,
-                         sort_by: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+def get_xoa_pools_output(sort_by: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                          sort_order: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                          tags: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
-                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetXoaHostsResult]:
+                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetXoaPoolsResult]:
     """
-    Use this data source to filter Xenorchestra hosts by certain criteria (name_label, tags) for use in other resources.
+    Use this data source to filter Xenorchestra pools by certain criteria (tags) for use in other resources.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_xenorchestra as xenorchestra
+
+    all = xenorchestra.get_xoa_pools()
+    tagged = xenorchestra.get_xoa_pools(tags=[
+        "production",
+        "web",
+    ])
+    sorted = xenorchestra.get_xoa_pools(sort_by="name_label",
+        sort_order="asc")
+    example = xenorchestra.get_xoa_pools(tags=["terraform-managed"])
+    local_storage = xenorchestra.get_xoa_storage_repository(name_label="Local storage",
+        pool_id=example.pools[0].id)
+    ```
 
 
-    :param _builtins.str pool_id: The pool id used to filter the resulting hosts by.
-    :param _builtins.str sort_by: The host field to sort the results by (id and name_label are supported).
+    :param _builtins.str sort_by: The pool field to sort the results by (id and name_label are supported).
     :param _builtins.str sort_order: Valid options are `asc` or `desc` and sort order is applied to `sort_by` argument.
     :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
     """
     __args__ = dict()
-    __args__['poolId'] = pool_id
     __args__['sortBy'] = sort_by
     __args__['sortOrder'] = sort_order
     __args__['tags'] = tags
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('xenorchestra:index/getXoaHosts:getXoaHosts', __args__, opts=opts, typ=GetXoaHostsResult)
-    return __ret__.apply(lambda __response__: GetXoaHostsResult(
-        hosts=pulumi.get(__response__, 'hosts'),
+    __ret__ = pulumi.runtime.invoke_output('xenorchestra:index/getXoaPools:getXoaPools', __args__, opts=opts, typ=GetXoaPoolsResult)
+    return __ret__.apply(lambda __response__: GetXoaPoolsResult(
         id=pulumi.get(__response__, 'id'),
-        master=pulumi.get(__response__, 'master'),
-        pool_id=pulumi.get(__response__, 'pool_id'),
+        pools=pulumi.get(__response__, 'pools'),
         sort_by=pulumi.get(__response__, 'sort_by'),
         sort_order=pulumi.get(__response__, 'sort_order'),
         tags=pulumi.get(__response__, 'tags')))

@@ -11,6 +11,10 @@ import (
 	"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra/internal"
 )
 
+// Provides information about cloud config.
+//
+// **NOTE:** If there are multiple cloud configs with the same name Terraform will fail. Ensure that your names are unique when using the data source.
+//
 // ## Example Usage
 //
 // ```go

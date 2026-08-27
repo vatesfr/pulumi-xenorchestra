@@ -5,6 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Provides information about cloud config.
+ *
+ * **NOTE:** If there are multiple cloud configs with the same name Terraform will fail. Ensure that your names are unique when using the data source.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -51,6 +55,10 @@ export interface GetXoaCloudConfigResult {
     readonly template: string;
 }
 /**
+ * Provides information about cloud config.
+ *
+ * **NOTE:** If there are multiple cloud configs with the same name Terraform will fail. Ensure that your names are unique when using the data source.
+ *
  * ## Example Usage
  *
  * ```typescript
