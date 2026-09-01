@@ -41,7 +41,7 @@ jobs:
         repository: pulumi/examples
         path: p-examples
     - name: Install mise
-      uses: jdx/mise-action@c1a019b8d2586943b4dbebc456323b516910e310
+      uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
       env:
         MISE_ENV: test
         MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
