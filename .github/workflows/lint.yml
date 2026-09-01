@@ -31,7 +31,7 @@ jobs:
         MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
       with:
         version: 2026.3.7
-        github_token: ${{ secrets.PULUMI_PROVIDER_AUTOMATION_TOKEN }}
+        github_token: ${{ github.token }}
         cache_save: false # A different job handles caching our tools.
     - name: disarm go:embed directives to enable lint
       continue-on-error: true # this fails if there are no go:embed directives
