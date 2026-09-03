@@ -67,12 +67,8 @@ type GetXoaResourceSetResult struct {
 }
 
 func GetXoaResourceSetOutput(ctx *pulumi.Context, args GetXoaResourceSetOutputArgs, opts ...pulumi.InvokeOption) GetXoaResourceSetResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetXoaResourceSetResultOutput, error) {
-			args := v.(GetXoaResourceSetArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("xenorchestra:index/getXoaResourceSet:getXoaResourceSet", args, GetXoaResourceSetResultOutput{}, options).(GetXoaResourceSetResultOutput), nil
-		}).(GetXoaResourceSetResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("xenorchestra:index/getXoaResourceSet:getXoaResourceSet", args, GetXoaResourceSetResultOutput{}, options).(GetXoaResourceSetResultOutput)
 }
 
 // A collection of arguments for invoking getXoaResourceSet.

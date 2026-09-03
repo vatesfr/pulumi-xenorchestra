@@ -45,12 +45,8 @@ type GetXoaVmsResult struct {
 }
 
 func GetXoaVmsOutput(ctx *pulumi.Context, args GetXoaVmsOutputArgs, opts ...pulumi.InvokeOption) GetXoaVmsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetXoaVmsResultOutput, error) {
-			args := v.(GetXoaVmsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("xenorchestra:index/getXoaVms:getXoaVms", args, GetXoaVmsResultOutput{}, options).(GetXoaVmsResultOutput), nil
-		}).(GetXoaVmsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("xenorchestra:index/getXoaVms:getXoaVms", args, GetXoaVmsResultOutput{}, options).(GetXoaVmsResultOutput)
 }
 
 // A collection of arguments for invoking getXoaVms.

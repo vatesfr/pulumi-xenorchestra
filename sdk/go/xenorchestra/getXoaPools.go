@@ -102,12 +102,8 @@ type GetXoaPoolsResult struct {
 }
 
 func GetXoaPoolsOutput(ctx *pulumi.Context, args GetXoaPoolsOutputArgs, opts ...pulumi.InvokeOption) GetXoaPoolsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetXoaPoolsResultOutput, error) {
-			args := v.(GetXoaPoolsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("xenorchestra:index/getXoaPools:getXoaPools", args, GetXoaPoolsResultOutput{}, options).(GetXoaPoolsResultOutput), nil
-		}).(GetXoaPoolsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("xenorchestra:index/getXoaPools:getXoaPools", args, GetXoaPoolsResultOutput{}, options).(GetXoaPoolsResultOutput)
 }
 
 // A collection of arguments for invoking getXoaPools.

@@ -83,12 +83,8 @@ type LookupXoaNetworkResult struct {
 }
 
 func LookupXoaNetworkOutput(ctx *pulumi.Context, args LookupXoaNetworkOutputArgs, opts ...pulumi.InvokeOption) LookupXoaNetworkResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupXoaNetworkResultOutput, error) {
-			args := v.(LookupXoaNetworkArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("xenorchestra:index/getXoaNetwork:getXoaNetwork", args, LookupXoaNetworkResultOutput{}, options).(LookupXoaNetworkResultOutput), nil
-		}).(LookupXoaNetworkResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("xenorchestra:index/getXoaNetwork:getXoaNetwork", args, LookupXoaNetworkResultOutput{}, options).(LookupXoaNetworkResultOutput)
 }
 
 // A collection of arguments for invoking getXoaNetwork.

@@ -103,12 +103,8 @@ type GetXoaPifResult struct {
 }
 
 func GetXoaPifOutput(ctx *pulumi.Context, args GetXoaPifOutputArgs, opts ...pulumi.InvokeOption) GetXoaPifResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetXoaPifResultOutput, error) {
-			args := v.(GetXoaPifArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("xenorchestra:index/getXoaPif:getXoaPif", args, GetXoaPifResultOutput{}, options).(GetXoaPifResultOutput), nil
-		}).(GetXoaPifResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("xenorchestra:index/getXoaPif:getXoaPif", args, GetXoaPifResultOutput{}, options).(GetXoaPifResultOutput)
 }
 
 // A collection of arguments for invoking getXoaPif.

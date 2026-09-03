@@ -63,12 +63,8 @@ type GetXoaStorageRepositoriesResult struct {
 }
 
 func GetXoaStorageRepositoriesOutput(ctx *pulumi.Context, args GetXoaStorageRepositoriesOutputArgs, opts ...pulumi.InvokeOption) GetXoaStorageRepositoriesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetXoaStorageRepositoriesResultOutput, error) {
-			args := v.(GetXoaStorageRepositoriesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("xenorchestra:index/getXoaStorageRepositories:getXoaStorageRepositories", args, GetXoaStorageRepositoriesResultOutput{}, options).(GetXoaStorageRepositoriesResultOutput), nil
-		}).(GetXoaStorageRepositoriesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("xenorchestra:index/getXoaStorageRepositories:getXoaStorageRepositories", args, GetXoaStorageRepositoriesResultOutput{}, options).(GetXoaStorageRepositoriesResultOutput)
 }
 
 // A collection of arguments for invoking getXoaStorageRepositories.

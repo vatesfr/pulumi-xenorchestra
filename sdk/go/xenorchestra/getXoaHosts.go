@@ -53,12 +53,8 @@ type GetXoaHostsResult struct {
 }
 
 func GetXoaHostsOutput(ctx *pulumi.Context, args GetXoaHostsOutputArgs, opts ...pulumi.InvokeOption) GetXoaHostsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetXoaHostsResultOutput, error) {
-			args := v.(GetXoaHostsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("xenorchestra:index/getXoaHosts:getXoaHosts", args, GetXoaHostsResultOutput{}, options).(GetXoaHostsResultOutput), nil
-		}).(GetXoaHostsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("xenorchestra:index/getXoaHosts:getXoaHosts", args, GetXoaHostsResultOutput{}, options).(GetXoaHostsResultOutput)
 }
 
 // A collection of arguments for invoking getXoaHosts.

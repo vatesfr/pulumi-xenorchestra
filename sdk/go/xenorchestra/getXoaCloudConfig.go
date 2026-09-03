@@ -67,12 +67,8 @@ type GetXoaCloudConfigResult struct {
 }
 
 func GetXoaCloudConfigOutput(ctx *pulumi.Context, args GetXoaCloudConfigOutputArgs, opts ...pulumi.InvokeOption) GetXoaCloudConfigResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetXoaCloudConfigResultOutput, error) {
-			args := v.(GetXoaCloudConfigArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("xenorchestra:index/getXoaCloudConfig:getXoaCloudConfig", args, GetXoaCloudConfigResultOutput{}, options).(GetXoaCloudConfigResultOutput), nil
-		}).(GetXoaCloudConfigResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("xenorchestra:index/getXoaCloudConfig:getXoaCloudConfig", args, GetXoaCloudConfigResultOutput{}, options).(GetXoaCloudConfigResultOutput)
 }
 
 // A collection of arguments for invoking getXoaCloudConfig.

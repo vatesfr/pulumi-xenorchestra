@@ -80,12 +80,8 @@ type GetXoaTemplateResult struct {
 }
 
 func GetXoaTemplateOutput(ctx *pulumi.Context, args GetXoaTemplateOutputArgs, opts ...pulumi.InvokeOption) GetXoaTemplateResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetXoaTemplateResultOutput, error) {
-			args := v.(GetXoaTemplateArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("xenorchestra:index/getXoaTemplate:getXoaTemplate", args, GetXoaTemplateResultOutput{}, options).(GetXoaTemplateResultOutput), nil
-		}).(GetXoaTemplateResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("xenorchestra:index/getXoaTemplate:getXoaTemplate", args, GetXoaTemplateResultOutput{}, options).(GetXoaTemplateResultOutput)
 }
 
 // A collection of arguments for invoking getXoaTemplate.
