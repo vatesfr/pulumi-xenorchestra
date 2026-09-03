@@ -12,6 +12,10 @@ namespace Pulumi.Xenorchestra
     public static class GetXoaNetwork
     {
         /// <summary>
+        /// Provides information about a network of a Xenserver pool.
+        /// 
+        /// **Note:** If there are multiple networks with the same name terraform will fail. Ensure that your network, PoolId and other arguments identify a unique network.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -45,6 +49,10 @@ namespace Pulumi.Xenorchestra
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetXoaNetworkResult>("xenorchestra:index/getXoaNetwork:getXoaNetwork", args ?? new GetXoaNetworkArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Provides information about a network of a Xenserver pool.
+        /// 
+        /// **Note:** If there are multiple networks with the same name terraform will fail. Ensure that your network, PoolId and other arguments identify a unique network.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -78,6 +86,10 @@ namespace Pulumi.Xenorchestra
             => global::Pulumi.Deployment.Instance.Invoke<GetXoaNetworkResult>("xenorchestra:index/getXoaNetwork:getXoaNetwork", args ?? new GetXoaNetworkInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Provides information about a network of a Xenserver pool.
+        /// 
+        /// **Note:** If there are multiple networks with the same name terraform will fail. Ensure that your network, PoolId and other arguments identify a unique network.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp

@@ -101,6 +101,11 @@ def get_xoa_template(name_label: Optional[_builtins.str] = None,
                      pool_id: Optional[_builtins.str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetXoaTemplateResult:
     """
+    Provides information about a VM template that can be used for creating new VMs.
+
+    **Note:** If there are multiple templates that match terraform will fail.
+    Ensure that your name_label and pool_id identify a unique template.
+
     ## Example Usage
 
     ```python
@@ -128,10 +133,15 @@ def get_xoa_template(name_label: Optional[_builtins.str] = None,
         name_label=pulumi.get(__ret__, 'name_label'),
         pool_id=pulumi.get(__ret__, 'pool_id'),
         uuid=pulumi.get(__ret__, 'uuid'))
-def get_xoa_template_output(name_label: Optional[pulumi.Input[_builtins.str]] = None,
-                            pool_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_xoa_template_output(name_label: pulumi.Input[Optional[_builtins.str]] = None,
+                            pool_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetXoaTemplateResult]:
     """
+    Provides information about a VM template that can be used for creating new VMs.
+
+    **Note:** If there are multiple templates that match terraform will fail.
+    Ensure that your name_label and pool_id identify a unique template.
+
     ## Example Usage
 
     ```python

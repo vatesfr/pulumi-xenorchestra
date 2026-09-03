@@ -43,6 +43,9 @@ namespace Pulumi.Xenorchestra.Inputs
             set => _ipv6Addresses = value;
         }
 
+        /// <summary>
+        /// The mac address of the network interface. This must be parsable by go's [net.ParseMAC function](https://golang.org/pkg/net/#ParseMAC). All mac addresses are stored in Terraform's state with [HardwareAddr's string representation](https://golang.org/pkg/net/#HardwareAddr.String) i.e. 00:00:5e:00:53:01
+        /// </summary>
         [Input("macAddress")]
         public Input<string>? MacAddress { get; set; }
 

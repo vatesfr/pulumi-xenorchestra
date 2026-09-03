@@ -57,7 +57,6 @@ import * as utilities from "./utilities";
  * The `pulumi import` command can be used, for example:
  *
  * ID can be found from the following command:
- *
  * $ xo-cli resourceSet.getAll
  *
  * ```sh
@@ -148,19 +147,19 @@ export interface ResourceSetState {
     /**
      * The limit applied to the resource set.
      */
-    limits?: pulumi.Input<pulumi.Input<inputs.ResourceSetLimit>[]>;
+    limits?: pulumi.Input<pulumi.Input<inputs.ResourceSetLimit>[] | undefined>;
     /**
      * The name of the resource set.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The uuids of the objects that are within scope of the resource set. A minimum of a storage repository, network and VM template are required for users to launch VMs.
      */
-    objects?: pulumi.Input<pulumi.Input<string>[]>;
+    objects?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The uuids of the user accounts that should have access to the resource set.
      */
-    subjects?: pulumi.Input<pulumi.Input<string>[]>;
+    subjects?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -174,13 +173,13 @@ export interface ResourceSetArgs {
     /**
      * The name of the resource set.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The uuids of the objects that are within scope of the resource set. A minimum of a storage repository, network and VM template are required for users to launch VMs.
      */
-    objects?: pulumi.Input<pulumi.Input<string>[]>;
+    objects?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The uuids of the user accounts that should have access to the resource set.
      */
-    subjects?: pulumi.Input<pulumi.Input<string>[]>;
+    subjects?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

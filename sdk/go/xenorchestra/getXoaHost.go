@@ -11,6 +11,12 @@ import (
 	"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra/internal"
 )
 
+// Provides information about a host.
+//
+// **NOTE:** If there are multiple hosts with the same name
+// Terraform will fail. Ensure that your names are unique when
+// using the data source.
+//
 // ## Example Usage
 //
 // ```go
@@ -66,9 +72,9 @@ type GetXoaHostResult struct {
 	Cpus map[string]int `pulumi:"cpus"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// The memory size of the host.
+	// The total memory size of the host in bytes.
 	Memory float64 `pulumi:"memory"`
-	// The memory usage of the host.
+	// The current memory usage of the host in bytes.
 	MemoryUsage float64 `pulumi:"memoryUsage"`
 	// The name label of the host.
 	NameLabel string `pulumi:"nameLabel"`
@@ -79,12 +85,8 @@ type GetXoaHostResult struct {
 }
 
 func GetXoaHostOutput(ctx *pulumi.Context, args GetXoaHostOutputArgs, opts ...pulumi.InvokeOption) GetXoaHostResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetXoaHostResultOutput, error) {
-			args := v.(GetXoaHostArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("xenorchestra:index/getXoaHost:getXoaHost", args, GetXoaHostResultOutput{}, options).(GetXoaHostResultOutput), nil
-		}).(GetXoaHostResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("xenorchestra:index/getXoaHost:getXoaHost", args, GetXoaHostResultOutput{}, options).(GetXoaHostResultOutput)
 }
 
 // A collection of arguments for invoking getXoaHost.
@@ -124,12 +126,12 @@ func (o GetXoaHostResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetXoaHostResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The memory size of the host.
+// The total memory size of the host in bytes.
 func (o GetXoaHostResultOutput) Memory() pulumi.Float64Output {
 	return o.ApplyT(func(v GetXoaHostResult) float64 { return v.Memory }).(pulumi.Float64Output)
 }
 
-// The memory usage of the host.
+// The current memory usage of the host in bytes.
 func (o GetXoaHostResultOutput) MemoryUsage() pulumi.Float64Output {
 	return o.ApplyT(func(v GetXoaHostResult) float64 { return v.MemoryUsage }).(pulumi.Float64Output)
 }

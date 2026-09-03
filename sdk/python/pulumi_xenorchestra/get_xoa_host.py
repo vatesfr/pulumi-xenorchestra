@@ -69,7 +69,7 @@ class GetXoaHostResult:
     @pulumi.getter
     def memory(self) -> _builtins.float:
         """
-        The memory size of the host.
+        The total memory size of the host in bytes.
         """
         return pulumi.get(self, "memory")
 
@@ -77,7 +77,7 @@ class GetXoaHostResult:
     @pulumi.getter(name="memoryUsage")
     def memory_usage(self) -> _builtins.float:
         """
-        The memory usage of the host.
+        The current memory usage of the host in bytes.
         """
         return pulumi.get(self, "memory_usage")
 
@@ -125,6 +125,12 @@ def get_xoa_host(name_label: Optional[_builtins.str] = None,
                  tags: Optional[Sequence[_builtins.str]] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetXoaHostResult:
     """
+    Provides information about a host.
+
+    **NOTE:** If there are multiple hosts with the same name
+    Terraform will fail. Ensure that your names are unique when
+    using the data source.
+
     ## Example Usage
 
     ```python
@@ -154,10 +160,16 @@ def get_xoa_host(name_label: Optional[_builtins.str] = None,
         name_label=pulumi.get(__ret__, 'name_label'),
         pool_id=pulumi.get(__ret__, 'pool_id'),
         tags=pulumi.get(__ret__, 'tags'))
-def get_xoa_host_output(name_label: Optional[pulumi.Input[_builtins.str]] = None,
-                        tags: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
+def get_xoa_host_output(name_label: pulumi.Input[Optional[_builtins.str]] = None,
+                        tags: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetXoaHostResult]:
     """
+    Provides information about a host.
+
+    **NOTE:** If there are multiple hosts with the same name
+    Terraform will fail. Ensure that your names are unique when
+    using the data source.
+
     ## Example Usage
 
     ```python

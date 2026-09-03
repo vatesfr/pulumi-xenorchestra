@@ -26,10 +26,13 @@ class GetXoaStorageRepositoryResult:
     """
     A collection of values returned by getXoaStorageRepository.
     """
-    def __init__(__self__, container=None, id=None, name_label=None, physical_usage=None, pool_id=None, size=None, sr_type=None, tags=None, usage=None, uuid=None):
+    def __init__(__self__, container=None, host_id=None, id=None, name_label=None, physical_usage=None, pool_id=None, size=None, sr_type=None, tags=None, usage=None, uuid=None):
         if container and not isinstance(container, str):
             raise TypeError("Expected argument 'container' to be a str")
         pulumi.set(__self__, "container", container)
+        if host_id and not isinstance(host_id, str):
+            raise TypeError("Expected argument 'host_id' to be a str")
+        pulumi.set(__self__, "host_id", host_id)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -62,15 +65,23 @@ class GetXoaStorageRepositoryResult:
     @pulumi.getter
     def container(self) -> _builtins.str:
         """
-        The storage container.
+        The storage container. For host-local storage repositories this is the id of the hosting host.
         """
         return pulumi.get(self, "container")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> Optional[_builtins.str]:
+        """
+        The Id of the host the storage repository exists on. For host-local storage repositories the SR's `container` is the host itself, so this filters the repositories down to a single host when several hosts in the pool share the same SR name.
+        """
+        return pulumi.get(self, "host_id")
 
     @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The ID of this resource.
         """
         return pulumi.get(self, "id")
 
@@ -86,7 +97,7 @@ class GetXoaStorageRepositoryResult:
     @pulumi.getter(name="physicalUsage")
     def physical_usage(self) -> _builtins.float:
         """
-        The physical storage size.
+        The physical storage usage in bytes.
         """
         return pulumi.get(self, "physical_usage")
 
@@ -102,7 +113,7 @@ class GetXoaStorageRepositoryResult:
     @pulumi.getter
     def size(self) -> _builtins.float:
         """
-        The storage size.
+        The total storage size in bytes.
         """
         return pulumi.get(self, "size")
 
@@ -126,7 +137,7 @@ class GetXoaStorageRepositoryResult:
     @pulumi.getter
     def usage(self) -> _builtins.float:
         """
-        The current usage for this storage repository.
+        The current storage usage in bytes.
         """
         return pulumi.get(self, "usage")
 
@@ -146,6 +157,7 @@ class AwaitableGetXoaStorageRepositoryResult(GetXoaStorageRepositoryResult):
             yield self
         return GetXoaStorageRepositoryResult(
             container=self.container,
+            host_id=self.host_id,
             id=self.id,
             name_label=self.name_label,
             physical_usage=self.physical_usage,
@@ -157,11 +169,17 @@ class AwaitableGetXoaStorageRepositoryResult(GetXoaStorageRepositoryResult):
             uuid=self.uuid)
 
 
-def get_xoa_storage_repository(name_label: Optional[_builtins.str] = None,
+def get_xoa_storage_repository(host_id: Optional[_builtins.str] = None,
+                               name_label: Optional[_builtins.str] = None,
                                pool_id: Optional[_builtins.str] = None,
                                tags: Optional[Sequence[_builtins.str]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetXoaStorageRepositoryResult:
     """
+    Provides information about a Storage repository to ease the lookup of VM storage information.
+
+    **Note:** If there are multiple storage repositories that match terraform will fail.
+    Ensure that your name_label, pool_id, host_id and tags identify a unique storage repository.
+
     ## Example Usage
 
     ```python
@@ -178,11 +196,13 @@ def get_xoa_storage_repository(name_label: Optional[_builtins.str] = None,
     ```
 
 
+    :param _builtins.str host_id: The Id of the host the storage repository exists on. For host-local storage repositories the SR's `container` is the host itself, so this filters the repositories down to a single host when several hosts in the pool share the same SR name.
     :param _builtins.str name_label: The name of the storage repository to look up
     :param _builtins.str pool_id: The Id of the pool the storage repository exists on.
     :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
     """
     __args__ = dict()
+    __args__['hostId'] = host_id
     __args__['nameLabel'] = name_label
     __args__['poolId'] = pool_id
     __args__['tags'] = tags
@@ -191,6 +211,7 @@ def get_xoa_storage_repository(name_label: Optional[_builtins.str] = None,
 
     return AwaitableGetXoaStorageRepositoryResult(
         container=pulumi.get(__ret__, 'container'),
+        host_id=pulumi.get(__ret__, 'host_id'),
         id=pulumi.get(__ret__, 'id'),
         name_label=pulumi.get(__ret__, 'name_label'),
         physical_usage=pulumi.get(__ret__, 'physical_usage'),
@@ -200,11 +221,17 @@ def get_xoa_storage_repository(name_label: Optional[_builtins.str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         usage=pulumi.get(__ret__, 'usage'),
         uuid=pulumi.get(__ret__, 'uuid'))
-def get_xoa_storage_repository_output(name_label: Optional[pulumi.Input[_builtins.str]] = None,
-                                      pool_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                      tags: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
+def get_xoa_storage_repository_output(host_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                      name_label: pulumi.Input[Optional[_builtins.str]] = None,
+                                      pool_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                      tags: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetXoaStorageRepositoryResult]:
     """
+    Provides information about a Storage repository to ease the lookup of VM storage information.
+
+    **Note:** If there are multiple storage repositories that match terraform will fail.
+    Ensure that your name_label, pool_id, host_id and tags identify a unique storage repository.
+
     ## Example Usage
 
     ```python
@@ -221,11 +248,13 @@ def get_xoa_storage_repository_output(name_label: Optional[pulumi.Input[_builtin
     ```
 
 
+    :param _builtins.str host_id: The Id of the host the storage repository exists on. For host-local storage repositories the SR's `container` is the host itself, so this filters the repositories down to a single host when several hosts in the pool share the same SR name.
     :param _builtins.str name_label: The name of the storage repository to look up
     :param _builtins.str pool_id: The Id of the pool the storage repository exists on.
     :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
     """
     __args__ = dict()
+    __args__['hostId'] = host_id
     __args__['nameLabel'] = name_label
     __args__['poolId'] = pool_id
     __args__['tags'] = tags
@@ -233,6 +262,7 @@ def get_xoa_storage_repository_output(name_label: Optional[pulumi.Input[_builtin
     __ret__ = pulumi.runtime.invoke_output('xenorchestra:index/getXoaStorageRepository:getXoaStorageRepository', __args__, opts=opts, typ=GetXoaStorageRepositoryResult)
     return __ret__.apply(lambda __response__: GetXoaStorageRepositoryResult(
         container=pulumi.get(__response__, 'container'),
+        host_id=pulumi.get(__response__, 'host_id'),
         id=pulumi.get(__response__, 'id'),
         name_label=pulumi.get(__response__, 'name_label'),
         physical_usage=pulumi.get(__response__, 'physical_usage'),

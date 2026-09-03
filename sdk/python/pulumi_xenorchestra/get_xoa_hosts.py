@@ -54,7 +54,7 @@ class GetXoaHostsResult:
     @pulumi.getter
     def hosts(self) -> Sequence['outputs.GetXoaHostsHostResult']:
         """
-        The resulting hosts after applying the argument filtering.
+        The resulting hosts after applying the argument filtering. `memory` and `memory_usage` are in bytes.
         """
         return pulumi.get(self, "hosts")
 
@@ -152,10 +152,10 @@ def get_xoa_hosts(pool_id: Optional[_builtins.str] = None,
         sort_by=pulumi.get(__ret__, 'sort_by'),
         sort_order=pulumi.get(__ret__, 'sort_order'),
         tags=pulumi.get(__ret__, 'tags'))
-def get_xoa_hosts_output(pool_id: Optional[pulumi.Input[_builtins.str]] = None,
-                         sort_by: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                         sort_order: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                         tags: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
+def get_xoa_hosts_output(pool_id: pulumi.Input[Optional[_builtins.str]] = None,
+                         sort_by: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                         sort_order: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                         tags: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetXoaHostsResult]:
     """
     Use this data source to filter Xenorchestra hosts by certain criteria (name_label, tags) for use in other resources.

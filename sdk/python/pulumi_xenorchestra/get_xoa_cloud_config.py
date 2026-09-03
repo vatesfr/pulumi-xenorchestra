@@ -76,6 +76,10 @@ class AwaitableGetXoaCloudConfigResult(GetXoaCloudConfigResult):
 def get_xoa_cloud_config(name: Optional[_builtins.str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetXoaCloudConfigResult:
     """
+    Provides information about cloud config.
+
+    **NOTE:** If there are multiple cloud configs with the same name Terraform will fail. Ensure that your names are unique when using the data source.
+
     ## Example Usage
 
     ```python
@@ -97,9 +101,13 @@ def get_xoa_cloud_config(name: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         template=pulumi.get(__ret__, 'template'))
-def get_xoa_cloud_config_output(name: Optional[pulumi.Input[_builtins.str]] = None,
+def get_xoa_cloud_config_output(name: pulumi.Input[Optional[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetXoaCloudConfigResult]:
     """
+    Provides information about cloud config.
+
+    **NOTE:** If there are multiple cloud configs with the same name Terraform will fail. Ensure that your names are unique when using the data source.
+
     ## Example Usage
 
     ```python

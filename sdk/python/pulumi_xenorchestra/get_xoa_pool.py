@@ -26,10 +26,13 @@ class GetXoaPoolResult:
     """
     A collection of values returned by getXoaPool.
     """
-    def __init__(__self__, cpus=None, description=None, id=None, master=None, name_label=None):
+    def __init__(__self__, cpus=None, default_sr=None, description=None, id=None, master=None, name_label=None):
         if cpus and not isinstance(cpus, dict):
             raise TypeError("Expected argument 'cpus' to be a dict")
         pulumi.set(__self__, "cpus", cpus)
+        if default_sr and not isinstance(default_sr, str):
+            raise TypeError("Expected argument 'default_sr' to be a str")
+        pulumi.set(__self__, "default_sr", default_sr)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -52,6 +55,14 @@ class GetXoaPoolResult:
         return pulumi.get(self, "cpus")
 
     @_builtins.property
+    @pulumi.getter(name="defaultSr")
+    def default_sr(self) -> _builtins.str:
+        """
+        The default storage repository for the pool.
+        """
+        return pulumi.get(self, "default_sr")
+
+    @_builtins.property
     @pulumi.getter
     def description(self) -> _builtins.str:
         """
@@ -63,7 +74,7 @@ class GetXoaPoolResult:
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The id of the pool.
         """
         return pulumi.get(self, "id")
 
@@ -91,6 +102,7 @@ class AwaitableGetXoaPoolResult(GetXoaPoolResult):
             yield self
         return GetXoaPoolResult(
             cpus=self.cpus,
+            default_sr=self.default_sr,
             description=self.description,
             id=self.id,
             master=self.master,
@@ -123,11 +135,12 @@ def get_xoa_pool(name_label: Optional[_builtins.str] = None,
 
     return AwaitableGetXoaPoolResult(
         cpus=pulumi.get(__ret__, 'cpus'),
+        default_sr=pulumi.get(__ret__, 'default_sr'),
         description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
         master=pulumi.get(__ret__, 'master'),
         name_label=pulumi.get(__ret__, 'name_label'))
-def get_xoa_pool_output(name_label: Optional[pulumi.Input[_builtins.str]] = None,
+def get_xoa_pool_output(name_label: pulumi.Input[Optional[_builtins.str]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetXoaPoolResult]:
     """
     Provides information about a pool.
@@ -152,6 +165,7 @@ def get_xoa_pool_output(name_label: Optional[pulumi.Input[_builtins.str]] = None
     __ret__ = pulumi.runtime.invoke_output('xenorchestra:index/getXoaPool:getXoaPool', __args__, opts=opts, typ=GetXoaPoolResult)
     return __ret__.apply(lambda __response__: GetXoaPoolResult(
         cpus=pulumi.get(__response__, 'cpus'),
+        default_sr=pulumi.get(__response__, 'default_sr'),
         description=pulumi.get(__response__, 'description'),
         id=pulumi.get(__response__, 'id'),
         master=pulumi.get(__response__, 'master'),

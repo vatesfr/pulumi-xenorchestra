@@ -25,20 +25,15 @@ __all__ = [
     'VmNetworkArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ResourceSetLimitArgsDict(TypedDict):
-        quantity: pulumi.Input[_builtins.int]
-        """
-        The numerical limit for the given type.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        The type of resource set limit. Must be cpus, memory or disk.
-        """
-elif False:
-    ResourceSetLimitArgsDict: TypeAlias = Mapping[str, Any]
+class ResourceSetLimitArgsDict(TypedDict):
+    quantity: pulumi.Input[_builtins.int]
+    """
+    The numerical limit for the given type.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    The type of resource set limit. Must be cpus, memory or disk.
+    """
 
 @pulumi.input_type
 class ResourceSetLimitArgs:
@@ -77,14 +72,11 @@ class ResourceSetLimitArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class VmCdromArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        The ID of the ISO (VDI) to attach to the VM. This can be easily provided by using the `vdi` data source.
-        """
-elif False:
-    VmCdromArgsDict: TypeAlias = Mapping[str, Any]
+class VmCdromArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    The ID of the ISO (VDI) to attach to the VM. This can be easily provided by using the `vdi` data source.
+    """
 
 @pulumi.input_type
 class VmCdromArgs:
@@ -108,36 +100,33 @@ class VmCdromArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class VmDiskArgsDict(TypedDict):
-        name_label: pulumi.Input[_builtins.str]
-        """
-        The name for the disk
-        """
-        size: pulumi.Input[_builtins.float]
-        """
-        The size in bytes for the disk.
-        """
-        sr_id: pulumi.Input[_builtins.str]
-        """
-        The storage repository ID to use.
-        """
-        attached: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the device should be attached to the VM.
-        """
-        name_description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The description for the disk
-        """
-        position: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the order of the block device.
-        """
-        vbd_id: NotRequired[pulumi.Input[_builtins.str]]
-        vdi_id: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    VmDiskArgsDict: TypeAlias = Mapping[str, Any]
+class VmDiskArgsDict(TypedDict):
+    name_label: pulumi.Input[_builtins.str]
+    """
+    The name for the disk
+    """
+    size: pulumi.Input[_builtins.float]
+    """
+    The size in bytes for the disk.
+    """
+    sr_id: pulumi.Input[_builtins.str]
+    """
+    The storage repository ID to use.
+    """
+    attached: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    """
+    Whether the device should be attached to the VM.
+    """
+    name_description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The description for the disk
+    """
+    position: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Indicates the order of the block device.
+    """
+    vbd_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    vdi_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class VmDiskArgs:
@@ -145,11 +134,11 @@ class VmDiskArgs:
                  name_label: pulumi.Input[_builtins.str],
                  size: pulumi.Input[_builtins.float],
                  sr_id: pulumi.Input[_builtins.str],
-                 attached: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name_description: Optional[pulumi.Input[_builtins.str]] = None,
-                 position: Optional[pulumi.Input[_builtins.str]] = None,
-                 vbd_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 vdi_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 attached: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name_description: pulumi.Input[Optional[_builtins.str]] = None,
+                 position: pulumi.Input[Optional[_builtins.str]] = None,
+                 vbd_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 vdi_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name_label: The name for the disk
         :param pulumi.Input[_builtins.float] size: The size in bytes for the disk.
@@ -210,94 +199,95 @@ class VmDiskArgs:
 
     @_builtins.property
     @pulumi.getter
-    def attached(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def attached(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the device should be attached to the VM.
         """
         return pulumi.get(self, "attached")
 
     @attached.setter
-    def attached(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def attached(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "attached", value)
 
     @_builtins.property
     @pulumi.getter(name="nameDescription")
-    def name_description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description for the disk
         """
         return pulumi.get(self, "name_description")
 
     @name_description.setter
-    def name_description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_description", value)
 
     @_builtins.property
     @pulumi.getter
-    def position(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def position(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Indicates the order of the block device.
         """
         return pulumi.get(self, "position")
 
     @position.setter
-    def position(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def position(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "position", value)
 
     @_builtins.property
     @pulumi.getter(name="vbdId")
-    def vbd_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vbd_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "vbd_id")
 
     @vbd_id.setter
-    def vbd_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vbd_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vbd_id", value)
 
     @_builtins.property
     @pulumi.getter(name="vdiId")
-    def vdi_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vdi_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "vdi_id")
 
     @vdi_id.setter
-    def vdi_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vdi_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vdi_id", value)
 
 
-if not MYPY:
-    class VmNetworkArgsDict(TypedDict):
-        network_id: pulumi.Input[_builtins.str]
-        """
-        The ID of the network the VM will be on.
-        """
-        attached: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the device should be attached to the VM.
-        """
-        device: NotRequired[pulumi.Input[_builtins.str]]
-        expected_ip_cidr: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `wait_for_ip` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
-        """
-        ipv4_addresses: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        ipv6_addresses: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        mac_address: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    VmNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class VmNetworkArgsDict(TypedDict):
+    network_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the network the VM will be on.
+    """
+    attached: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    """
+    Whether the device should be attached to the VM.
+    """
+    device: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    expected_ip_cidr: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `wait_for_ip` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
+    """
+    ipv4_addresses: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    ipv6_addresses: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    mac_address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The mac address of the network interface. This must be parsable by go's [net.ParseMAC function](https://golang.org/pkg/net/#ParseMAC). All mac addresses are stored in Terraform's state with [HardwareAddr's string representation](https://golang.org/pkg/net/#HardwareAddr.String) i.e. 00:00:5e:00:53:01
+    """
 
 @pulumi.input_type
 class VmNetworkArgs:
     def __init__(__self__, *,
                  network_id: pulumi.Input[_builtins.str],
-                 attached: Optional[pulumi.Input[_builtins.bool]] = None,
-                 device: Optional[pulumi.Input[_builtins.str]] = None,
-                 expected_ip_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 mac_address: Optional[pulumi.Input[_builtins.str]] = None):
+                 attached: pulumi.Input[Optional[_builtins.bool]] = None,
+                 device: pulumi.Input[Optional[_builtins.str]] = None,
+                 expected_ip_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipv4_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ipv6_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 mac_address: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] network_id: The ID of the network the VM will be on.
         :param pulumi.Input[_builtins.bool] attached: Whether the device should be attached to the VM.
         :param pulumi.Input[_builtins.str] expected_ip_cidr: Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `wait_for_ip` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
+        :param pulumi.Input[_builtins.str] mac_address: The mac address of the network interface. This must be parsable by go's [net.ParseMAC function](https://golang.org/pkg/net/#ParseMAC). All mac addresses are stored in Terraform's state with [HardwareAddr's string representation](https://golang.org/pkg/net/#HardwareAddr.String) i.e. 00:00:5e:00:53:01
         """
         pulumi.set(__self__, "network_id", network_id)
         if attached is not None:
@@ -327,62 +317,65 @@ class VmNetworkArgs:
 
     @_builtins.property
     @pulumi.getter
-    def attached(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def attached(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the device should be attached to the VM.
         """
         return pulumi.get(self, "attached")
 
     @attached.setter
-    def attached(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def attached(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "attached", value)
 
     @_builtins.property
     @pulumi.getter
-    def device(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def device(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "device")
 
     @device.setter
-    def device(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def device(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "device", value)
 
     @_builtins.property
     @pulumi.getter(name="expectedIpCidr")
-    def expected_ip_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def expected_ip_cidr(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `wait_for_ip` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
         """
         return pulumi.get(self, "expected_ip_cidr")
 
     @expected_ip_cidr.setter
-    def expected_ip_cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def expected_ip_cidr(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "expected_ip_cidr", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv4Addresses")
-    def ipv4_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ipv4_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "ipv4_addresses")
 
     @ipv4_addresses.setter
-    def ipv4_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ipv4_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ipv4_addresses", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv6Addresses")
-    def ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ipv6_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "ipv6_addresses")
 
     @ipv6_addresses.setter
-    def ipv6_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ipv6_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ipv6_addresses", value)
 
     @_builtins.property
     @pulumi.getter(name="macAddress")
-    def mac_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mac_address(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The mac address of the network interface. This must be parsable by go's [net.ParseMAC function](https://golang.org/pkg/net/#ParseMAC). All mac addresses are stored in Terraform's state with [HardwareAddr's string representation](https://golang.org/pkg/net/#HardwareAddr.String) i.e. 00:00:5e:00:53:01
+        """
         return pulumi.get(self, "mac_address")
 
     @mac_address.setter
-    def mac_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mac_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mac_address", value)
 
 

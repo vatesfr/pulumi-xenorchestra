@@ -11,6 +11,10 @@ import (
 	"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra/internal"
 )
 
+// Provides information about a network of a Xenserver pool.
+//
+// **Note:** If there are multiple networks with the same name terraform will fail. Ensure that your network, poolId and other arguments identify a unique network.
+//
 // ## Example Usage
 //
 // ```go
@@ -25,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			net, err := xenorchestra.LookupXoaNetwork(ctx, &xenorchestra.LookupXoaNetworkArgs{
+//			net, err := xenorchestra.GetXoaNetwork(ctx, &xenorchestra.LookupXoaNetworkArgs{
 //				NameLabel: "Pool-wide network associated with eth0",
 //			}, nil)
 //			if err != nil {
@@ -79,12 +83,8 @@ type LookupXoaNetworkResult struct {
 }
 
 func LookupXoaNetworkOutput(ctx *pulumi.Context, args LookupXoaNetworkOutputArgs, opts ...pulumi.InvokeOption) LookupXoaNetworkResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupXoaNetworkResultOutput, error) {
-			args := v.(LookupXoaNetworkArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("xenorchestra:index/getXoaNetwork:getXoaNetwork", args, LookupXoaNetworkResultOutput{}, options).(LookupXoaNetworkResultOutput), nil
-		}).(LookupXoaNetworkResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("xenorchestra:index/getXoaNetwork:getXoaNetwork", args, LookupXoaNetworkResultOutput{}, options).(LookupXoaNetworkResultOutput)
 }
 
 // A collection of arguments for invoking getXoaNetwork.

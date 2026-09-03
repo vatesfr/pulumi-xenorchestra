@@ -45,10 +45,20 @@ export const getXoaPool: typeof import("./getXoaPool").getXoaPool = null as any;
 export const getXoaPoolOutput: typeof import("./getXoaPool").getXoaPoolOutput = null as any;
 utilities.lazyLoad(exports, ["getXoaPool","getXoaPoolOutput"], () => require("./getXoaPool"));
 
+export { GetXoaPoolsArgs, GetXoaPoolsResult, GetXoaPoolsOutputArgs } from "./getXoaPools";
+export const getXoaPools: typeof import("./getXoaPools").getXoaPools = null as any;
+export const getXoaPoolsOutput: typeof import("./getXoaPools").getXoaPoolsOutput = null as any;
+utilities.lazyLoad(exports, ["getXoaPools","getXoaPoolsOutput"], () => require("./getXoaPools"));
+
 export { GetXoaResourceSetArgs, GetXoaResourceSetResult, GetXoaResourceSetOutputArgs } from "./getXoaResourceSet";
 export const getXoaResourceSet: typeof import("./getXoaResourceSet").getXoaResourceSet = null as any;
 export const getXoaResourceSetOutput: typeof import("./getXoaResourceSet").getXoaResourceSetOutput = null as any;
 utilities.lazyLoad(exports, ["getXoaResourceSet","getXoaResourceSetOutput"], () => require("./getXoaResourceSet"));
+
+export { GetXoaStorageRepositoriesArgs, GetXoaStorageRepositoriesResult, GetXoaStorageRepositoriesOutputArgs } from "./getXoaStorageRepositories";
+export const getXoaStorageRepositories: typeof import("./getXoaStorageRepositories").getXoaStorageRepositories = null as any;
+export const getXoaStorageRepositoriesOutput: typeof import("./getXoaStorageRepositories").getXoaStorageRepositoriesOutput = null as any;
+utilities.lazyLoad(exports, ["getXoaStorageRepositories","getXoaStorageRepositoriesOutput"], () => require("./getXoaStorageRepositories"));
 
 export { GetXoaStorageRepositoryArgs, GetXoaStorageRepositoryResult, GetXoaStorageRepositoryOutputArgs } from "./getXoaStorageRepository";
 export const getXoaStorageRepository: typeof import("./getXoaStorageRepository").getXoaStorageRepository = null as any;

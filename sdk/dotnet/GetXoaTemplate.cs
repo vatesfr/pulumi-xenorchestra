@@ -12,6 +12,11 @@ namespace Pulumi.Xenorchestra
     public static class GetXoaTemplate
     {
         /// <summary>
+        /// Provides information about a VM template that can be used for creating new VMs.
+        /// 
+        /// **Note:** If there are multiple templates that match terraform will fail.
+        /// Ensure that your NameLabel and PoolId identify a unique template.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -40,6 +45,11 @@ namespace Pulumi.Xenorchestra
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetXoaTemplateResult>("xenorchestra:index/getXoaTemplate:getXoaTemplate", args ?? new GetXoaTemplateArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Provides information about a VM template that can be used for creating new VMs.
+        /// 
+        /// **Note:** If there are multiple templates that match terraform will fail.
+        /// Ensure that your NameLabel and PoolId identify a unique template.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -68,6 +78,11 @@ namespace Pulumi.Xenorchestra
             => global::Pulumi.Deployment.Instance.Invoke<GetXoaTemplateResult>("xenorchestra:index/getXoaTemplate:getXoaTemplate", args ?? new GetXoaTemplateInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Provides information about a VM template that can be used for creating new VMs.
+        /// 
+        /// **Note:** If there are multiple templates that match terraform will fail.
+        /// Ensure that your NameLabel and PoolId identify a unique template.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp

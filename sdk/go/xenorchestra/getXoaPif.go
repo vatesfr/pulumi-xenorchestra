@@ -11,6 +11,11 @@ import (
 	"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra/internal"
 )
 
+// Provides information about a physical network interface (PIF) of a XenServer host specified by the interface name or whether it is the management interface.
+//
+// **Note:** If there are multiple PIFs that match terraform will fail.
+// Ensure that your device, vlan, hostId and other arguments identify a unique PIF.
+//
 // ## Example Usage
 //
 // ```go
@@ -98,12 +103,8 @@ type GetXoaPifResult struct {
 }
 
 func GetXoaPifOutput(ctx *pulumi.Context, args GetXoaPifOutputArgs, opts ...pulumi.InvokeOption) GetXoaPifResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetXoaPifResultOutput, error) {
-			args := v.(GetXoaPifArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("xenorchestra:index/getXoaPif:getXoaPif", args, GetXoaPifResultOutput{}, options).(GetXoaPifResultOutput), nil
-		}).(GetXoaPifResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("xenorchestra:index/getXoaPif:getXoaPif", args, GetXoaPifResultOutput{}, options).(GetXoaPifResultOutput)
 }
 
 // A collection of arguments for invoking getXoaPif.

@@ -10,7 +10,17 @@ using Pulumi.Serialization;
 namespace Pulumi.Xenorchestra
 {
     /// <summary>
-    /// ## Example Usage
+    /// Creates a Xen Orchestra vm resource.
+    /// 
+    /// ## Differences with the Xen Orchestra UI
+    /// 
+    /// ### Cloudinit
+    /// 
+    /// Xen Orchestra allows templating cloudinit config through its own custom mechanism:
+    /// * "{name}" is replaced with the VM's name
+    /// * "%" is replaced with the VM's index
+    /// 
+    /// This does not work in terraform since that is applied on Xen Orchestra's client side (Javascript). Terraform provides a "templatefile" function that allows for a similar substitution. Please see the example below for more details.
     /// </summary>
     [XenorchestraResourceType("xenorchestra:index/vm:Vm")]
     public partial class Vm : global::Pulumi.CustomResource
@@ -60,9 +70,21 @@ namespace Pulumi.Xenorchestra
         [Output("coreOs")]
         public Output<bool?> CoreOs { get; private set; } = null!;
 
+        /// <summary>
+        /// The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+        /// </summary>
+        [Output("coresPerSocket")]
+        public Output<int> CoresPerSocket { get; private set; } = null!;
+
+        /// <summary>
+        /// The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+        /// </summary>
         [Output("cpuCap")]
         public Output<int?> CpuCap { get; private set; } = null!;
 
+        /// <summary>
+        /// The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
+        /// </summary>
         [Output("cpuWeight")]
         public Output<int?> CpuWeight { get; private set; } = null!;
 
@@ -122,6 +144,9 @@ namespace Pulumi.Xenorchestra
         [Output("installationMethod")]
         public Output<string?> InstallationMethod { get; private set; } = null!;
 
+        /// <summary>
+        /// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv4 addresses, the presence of an IP address is only guaranteed if `ExpectedIpCidr` is set for that interface. The list contains the ipv4 addresses across all network interfaces in order. See the example terraform code for more details.
+        /// </summary>
         [Output("ipv4Addresses")]
         public Output<ImmutableArray<string>> Ipv4Addresses { get; private set; } = null!;
 
@@ -177,6 +202,18 @@ namespace Pulumi.Xenorchestra
         public Output<bool?> SecureBoot { get; private set; } = null!;
 
         /// <summary>
+        /// Allow the subjects of the resource set to use the VM. Only applies when ResourceSet is set. Can be changed on an existing VM, but setting it to `False` requires the VM to leave its resource set at the same time, since a VM shared in a resource set is always shared in Xen Orchestra (there is no unshare operation).
+        /// </summary>
+        [Output("share")]
+        public Output<bool?> Share { get; private set; } = null!;
+
+        /// <summary>
+        /// The number of CPU sockets. This is computed as cpus / cores_per_socket.
+        /// </summary>
+        [Output("sockets")]
+        public Output<int> Sockets { get; private set; } = null!;
+
+        /// <summary>
         /// Number of seconds the VM should be delayed from starting.
         /// </summary>
         [Output("startDelay")]
@@ -201,7 +238,7 @@ namespace Pulumi.Xenorchestra
         public Output<string?> Vga { get; private set; } = null!;
 
         /// <summary>
-        /// The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+        /// The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
         /// </summary>
         [Output("videoram")]
         public Output<int?> Videoram { get; private set; } = null!;
@@ -310,9 +347,21 @@ namespace Pulumi.Xenorchestra
         [Input("coreOs")]
         public Input<bool>? CoreOs { get; set; }
 
+        /// <summary>
+        /// The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+        /// </summary>
+        [Input("coresPerSocket")]
+        public Input<int>? CoresPerSocket { get; set; }
+
+        /// <summary>
+        /// The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+        /// </summary>
         [Input("cpuCap")]
         public Input<int>? CpuCap { get; set; }
 
+        /// <summary>
+        /// The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
+        /// </summary>
         [Input("cpuWeight")]
         public Input<int>? CpuWeight { get; set; }
 
@@ -430,6 +479,12 @@ namespace Pulumi.Xenorchestra
         public Input<bool>? SecureBoot { get; set; }
 
         /// <summary>
+        /// Allow the subjects of the resource set to use the VM. Only applies when ResourceSet is set. Can be changed on an existing VM, but setting it to `False` requires the VM to leave its resource set at the same time, since a VM shared in a resource set is always shared in Xen Orchestra (there is no unshare operation).
+        /// </summary>
+        [Input("share")]
+        public Input<bool>? Share { get; set; }
+
+        /// <summary>
         /// Number of seconds the VM should be delayed from starting.
         /// </summary>
         [Input("startDelay")]
@@ -460,7 +515,7 @@ namespace Pulumi.Xenorchestra
         public Input<string>? Vga { get; set; }
 
         /// <summary>
-        /// The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+        /// The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
         /// </summary>
         [Input("videoram")]
         public Input<int>? Videoram { get; set; }
@@ -536,9 +591,21 @@ namespace Pulumi.Xenorchestra
         [Input("coreOs")]
         public Input<bool>? CoreOs { get; set; }
 
+        /// <summary>
+        /// The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+        /// </summary>
+        [Input("coresPerSocket")]
+        public Input<int>? CoresPerSocket { get; set; }
+
+        /// <summary>
+        /// The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+        /// </summary>
         [Input("cpuCap")]
         public Input<int>? CpuCap { get; set; }
 
+        /// <summary>
+        /// The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
+        /// </summary>
         [Input("cpuWeight")]
         public Input<int>? CpuWeight { get; set; }
 
@@ -606,6 +673,10 @@ namespace Pulumi.Xenorchestra
 
         [Input("ipv4Addresses")]
         private InputList<string>? _ipv4Addresses;
+
+        /// <summary>
+        /// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv4 addresses, the presence of an IP address is only guaranteed if `ExpectedIpCidr` is set for that interface. The list contains the ipv4 addresses across all network interfaces in order. See the example terraform code for more details.
+        /// </summary>
         public InputList<string> Ipv4Addresses
         {
             get => _ipv4Addresses ?? (_ipv4Addresses = new InputList<string>());
@@ -676,6 +747,18 @@ namespace Pulumi.Xenorchestra
         public Input<bool>? SecureBoot { get; set; }
 
         /// <summary>
+        /// Allow the subjects of the resource set to use the VM. Only applies when ResourceSet is set. Can be changed on an existing VM, but setting it to `False` requires the VM to leave its resource set at the same time, since a VM shared in a resource set is always shared in Xen Orchestra (there is no unshare operation).
+        /// </summary>
+        [Input("share")]
+        public Input<bool>? Share { get; set; }
+
+        /// <summary>
+        /// The number of CPU sockets. This is computed as cpus / cores_per_socket.
+        /// </summary>
+        [Input("sockets")]
+        public Input<int>? Sockets { get; set; }
+
+        /// <summary>
         /// Number of seconds the VM should be delayed from starting.
         /// </summary>
         [Input("startDelay")]
@@ -706,7 +789,7 @@ namespace Pulumi.Xenorchestra
         public Input<string>? Vga { get; set; }
 
         /// <summary>
-        /// The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+        /// The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
         /// </summary>
         [Input("videoram")]
         public Input<int>? Videoram { get; set; }

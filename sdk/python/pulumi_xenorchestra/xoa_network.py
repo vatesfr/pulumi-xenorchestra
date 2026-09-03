@@ -21,15 +21,16 @@ class XoaNetworkArgs:
     def __init__(__self__, *,
                  name_label: pulumi.Input[_builtins.str],
                  pool_id: pulumi.Input[_builtins.str],
-                 automatic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 default_is_locked: Optional[pulumi.Input[_builtins.bool]] = None,
-                 mtu: Optional[pulumi.Input[_builtins.int]] = None,
-                 name_description: Optional[pulumi.Input[_builtins.str]] = None,
-                 nbd: Optional[pulumi.Input[_builtins.bool]] = None,
-                 source_pif_device: Optional[pulumi.Input[_builtins.str]] = None,
-                 vlan: Optional[pulumi.Input[_builtins.int]] = None):
+                 automatic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 default_is_locked: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mtu: pulumi.Input[Optional[_builtins.int]] = None,
+                 name_description: pulumi.Input[Optional[_builtins.str]] = None,
+                 nbd: pulumi.Input[Optional[_builtins.bool]] = None,
+                 source_pif_device: pulumi.Input[Optional[_builtins.str]] = None,
+                 vlan: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a XoaNetwork resource.
+
         :param pulumi.Input[_builtins.str] name_label: The name label of the network.
         :param pulumi.Input[_builtins.str] pool_id: The pool id that this network should belong to.
         :param pulumi.Input[_builtins.bool] default_is_locked: This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
@@ -81,97 +82,98 @@ class XoaNetworkArgs:
 
     @_builtins.property
     @pulumi.getter
-    def automatic(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def automatic(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "automatic")
 
     @automatic.setter
-    def automatic(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def automatic(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "automatic", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultIsLocked")
-    def default_is_locked(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def default_is_locked(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
         """
         return pulumi.get(self, "default_is_locked")
 
     @default_is_locked.setter
-    def default_is_locked(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def default_is_locked(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "default_is_locked", value)
 
     @_builtins.property
     @pulumi.getter
-    def mtu(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def mtu(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The MTU of the network. Defaults to `1500` if unspecified.
         """
         return pulumi.get(self, "mtu")
 
     @mtu.setter
-    def mtu(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def mtu(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "mtu", value)
 
     @_builtins.property
     @pulumi.getter(name="nameDescription")
-    def name_description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "name_description")
 
     @name_description.setter
-    def name_description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_description", value)
 
     @_builtins.property
     @pulumi.getter
-    def nbd(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def nbd(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the network should use a network block device. Defaults to `false` if unspecified.
         """
         return pulumi.get(self, "nbd")
 
     @nbd.setter
-    def nbd(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def nbd(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "nbd", value)
 
     @_builtins.property
     @pulumi.getter(name="sourcePifDevice")
-    def source_pif_device(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def source_pif_device(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PIF device (eth0, eth1, etc) that will be used as an input during network creation. This parameter is required if a vlan is specified.
         """
         return pulumi.get(self, "source_pif_device")
 
     @source_pif_device.setter
-    def source_pif_device(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def source_pif_device(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source_pif_device", value)
 
     @_builtins.property
     @pulumi.getter
-    def vlan(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def vlan(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The vlan to use for the network. Defaults to `0` meaning no VLAN.
         """
         return pulumi.get(self, "vlan")
 
     @vlan.setter
-    def vlan(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def vlan(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "vlan", value)
 
 
 @pulumi.input_type
 class _XoaNetworkState:
     def __init__(__self__, *,
-                 automatic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 default_is_locked: Optional[pulumi.Input[_builtins.bool]] = None,
-                 mtu: Optional[pulumi.Input[_builtins.int]] = None,
-                 name_description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_label: Optional[pulumi.Input[_builtins.str]] = None,
-                 nbd: Optional[pulumi.Input[_builtins.bool]] = None,
-                 pool_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_pif_device: Optional[pulumi.Input[_builtins.str]] = None,
-                 vlan: Optional[pulumi.Input[_builtins.int]] = None):
+                 automatic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 default_is_locked: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mtu: pulumi.Input[Optional[_builtins.int]] = None,
+                 name_description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_label: pulumi.Input[Optional[_builtins.str]] = None,
+                 nbd: pulumi.Input[Optional[_builtins.bool]] = None,
+                 pool_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_pif_device: pulumi.Input[Optional[_builtins.str]] = None,
+                 vlan: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering XoaNetwork resources.
+
         :param pulumi.Input[_builtins.bool] default_is_locked: This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
         :param pulumi.Input[_builtins.int] mtu: The MTU of the network. Defaults to `1500` if unspecified.
         :param pulumi.Input[_builtins.str] name_label: The name label of the network.
@@ -201,104 +203,104 @@ class _XoaNetworkState:
 
     @_builtins.property
     @pulumi.getter
-    def automatic(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def automatic(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "automatic")
 
     @automatic.setter
-    def automatic(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def automatic(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "automatic", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultIsLocked")
-    def default_is_locked(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def default_is_locked(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
         """
         return pulumi.get(self, "default_is_locked")
 
     @default_is_locked.setter
-    def default_is_locked(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def default_is_locked(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "default_is_locked", value)
 
     @_builtins.property
     @pulumi.getter
-    def mtu(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def mtu(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The MTU of the network. Defaults to `1500` if unspecified.
         """
         return pulumi.get(self, "mtu")
 
     @mtu.setter
-    def mtu(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def mtu(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "mtu", value)
 
     @_builtins.property
     @pulumi.getter(name="nameDescription")
-    def name_description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "name_description")
 
     @name_description.setter
-    def name_description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_description", value)
 
     @_builtins.property
     @pulumi.getter(name="nameLabel")
-    def name_label(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_label(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name label of the network.
         """
         return pulumi.get(self, "name_label")
 
     @name_label.setter
-    def name_label(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_label(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_label", value)
 
     @_builtins.property
     @pulumi.getter
-    def nbd(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def nbd(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the network should use a network block device. Defaults to `false` if unspecified.
         """
         return pulumi.get(self, "nbd")
 
     @nbd.setter
-    def nbd(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def nbd(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "nbd", value)
 
     @_builtins.property
     @pulumi.getter(name="poolId")
-    def pool_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pool_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The pool id that this network should belong to.
         """
         return pulumi.get(self, "pool_id")
 
     @pool_id.setter
-    def pool_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pool_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pool_id", value)
 
     @_builtins.property
     @pulumi.getter(name="sourcePifDevice")
-    def source_pif_device(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def source_pif_device(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PIF device (eth0, eth1, etc) that will be used as an input during network creation. This parameter is required if a vlan is specified.
         """
         return pulumi.get(self, "source_pif_device")
 
     @source_pif_device.setter
-    def source_pif_device(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def source_pif_device(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source_pif_device", value)
 
     @_builtins.property
     @pulumi.getter
-    def vlan(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def vlan(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The vlan to use for the network. Defaults to `0` meaning no VLAN.
         """
         return pulumi.get(self, "vlan")
 
     @vlan.setter
-    def vlan(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def vlan(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "vlan", value)
 
 
@@ -308,15 +310,15 @@ class XoaNetwork(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 automatic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 default_is_locked: Optional[pulumi.Input[_builtins.bool]] = None,
-                 mtu: Optional[pulumi.Input[_builtins.int]] = None,
-                 name_description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_label: Optional[pulumi.Input[_builtins.str]] = None,
-                 nbd: Optional[pulumi.Input[_builtins.bool]] = None,
-                 pool_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_pif_device: Optional[pulumi.Input[_builtins.str]] = None,
-                 vlan: Optional[pulumi.Input[_builtins.int]] = None,
+                 automatic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 default_is_locked: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mtu: pulumi.Input[Optional[_builtins.int]] = None,
+                 name_description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_label: pulumi.Input[Optional[_builtins.str]] = None,
+                 nbd: pulumi.Input[Optional[_builtins.bool]] = None,
+                 pool_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_pif_device: pulumi.Input[Optional[_builtins.str]] = None,
+                 vlan: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -337,6 +339,7 @@ class XoaNetwork(pulumi.CustomResource):
             source_pif_device="eth0",
             vlan=22)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -374,6 +377,7 @@ class XoaNetwork(pulumi.CustomResource):
             vlan=22)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param XoaNetworkArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -389,15 +393,15 @@ class XoaNetwork(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 automatic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 default_is_locked: Optional[pulumi.Input[_builtins.bool]] = None,
-                 mtu: Optional[pulumi.Input[_builtins.int]] = None,
-                 name_description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_label: Optional[pulumi.Input[_builtins.str]] = None,
-                 nbd: Optional[pulumi.Input[_builtins.bool]] = None,
-                 pool_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_pif_device: Optional[pulumi.Input[_builtins.str]] = None,
-                 vlan: Optional[pulumi.Input[_builtins.int]] = None,
+                 automatic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 default_is_locked: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mtu: pulumi.Input[Optional[_builtins.int]] = None,
+                 name_description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_label: pulumi.Input[Optional[_builtins.str]] = None,
+                 nbd: pulumi.Input[Optional[_builtins.bool]] = None,
+                 pool_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_pif_device: pulumi.Input[Optional[_builtins.str]] = None,
+                 vlan: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -432,15 +436,15 @@ class XoaNetwork(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            automatic: Optional[pulumi.Input[_builtins.bool]] = None,
-            default_is_locked: Optional[pulumi.Input[_builtins.bool]] = None,
-            mtu: Optional[pulumi.Input[_builtins.int]] = None,
-            name_description: Optional[pulumi.Input[_builtins.str]] = None,
-            name_label: Optional[pulumi.Input[_builtins.str]] = None,
-            nbd: Optional[pulumi.Input[_builtins.bool]] = None,
-            pool_id: Optional[pulumi.Input[_builtins.str]] = None,
-            source_pif_device: Optional[pulumi.Input[_builtins.str]] = None,
-            vlan: Optional[pulumi.Input[_builtins.int]] = None) -> 'XoaNetwork':
+            automatic: pulumi.Input[Optional[_builtins.bool]] = None,
+            default_is_locked: pulumi.Input[Optional[_builtins.bool]] = None,
+            mtu: pulumi.Input[Optional[_builtins.int]] = None,
+            name_description: pulumi.Input[Optional[_builtins.str]] = None,
+            name_label: pulumi.Input[Optional[_builtins.str]] = None,
+            nbd: pulumi.Input[Optional[_builtins.bool]] = None,
+            pool_id: pulumi.Input[Optional[_builtins.str]] = None,
+            source_pif_device: pulumi.Input[Optional[_builtins.str]] = None,
+            vlan: pulumi.Input[Optional[_builtins.int]] = None) -> 'XoaNetwork':
         """
         Get an existing XoaNetwork resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

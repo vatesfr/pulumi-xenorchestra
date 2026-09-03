@@ -38,7 +38,17 @@ namespace Pulumi.Xenorchestra.Outputs
         /// </summary>
         public readonly string? CloudNetworkConfig;
         public readonly bool? CoreOs;
+        /// <summary>
+        /// The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+        /// </summary>
+        public readonly int CoresPerSocket;
+        /// <summary>
+        /// The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+        /// </summary>
         public readonly int? CpuCap;
+        /// <summary>
+        /// The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
+        /// </summary>
         public readonly int? CpuWeight;
         /// <summary>
         /// The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
@@ -73,6 +83,9 @@ namespace Pulumi.Xenorchestra.Outputs
         /// </summary>
         public readonly string? HvmBootFirmware;
         public readonly string Id;
+        /// <summary>
+        /// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv4 addresses, the presence of an IP address is only guaranteed if `ExpectedIpCidr` is set for that interface. The list contains the ipv4 addresses across all network interfaces in order. See the example terraform code for more details.
+        /// </summary>
         public readonly ImmutableArray<string> Ipv4Addresses;
         /// <summary>
         /// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `ExpectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
@@ -108,6 +121,10 @@ namespace Pulumi.Xenorchestra.Outputs
         /// </summary>
         public readonly bool? SecureBoot;
         /// <summary>
+        /// The number of CPU sockets. This is computed as cpus / cores_per_socket.
+        /// </summary>
+        public readonly int Sockets;
+        /// <summary>
         /// Number of seconds the VM should be delayed from starting.
         /// </summary>
         public readonly int? StartDelay;
@@ -124,7 +141,7 @@ namespace Pulumi.Xenorchestra.Outputs
         /// </summary>
         public readonly string? Vga;
         /// <summary>
-        /// The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+        /// The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
         /// </summary>
         public readonly int? Videoram;
         /// <summary>
@@ -147,6 +164,8 @@ namespace Pulumi.Xenorchestra.Outputs
             string? cloudNetworkConfig,
 
             bool? coreOs,
+
+            int coresPerSocket,
 
             int? cpuCap,
 
@@ -186,6 +205,8 @@ namespace Pulumi.Xenorchestra.Outputs
 
             bool? secureBoot,
 
+            int sockets,
+
             int? startDelay,
 
             ImmutableArray<string> tags,
@@ -205,6 +226,7 @@ namespace Pulumi.Xenorchestra.Outputs
             CloudConfig = cloudConfig;
             CloudNetworkConfig = cloudNetworkConfig;
             CoreOs = coreOs;
+            CoresPerSocket = coresPerSocket;
             CpuCap = cpuCap;
             CpuWeight = cpuWeight;
             Cpus = cpus;
@@ -224,6 +246,7 @@ namespace Pulumi.Xenorchestra.Outputs
             PowerState = powerState;
             ResourceSet = resourceSet;
             SecureBoot = secureBoot;
+            Sockets = sockets;
             StartDelay = startDelay;
             Tags = tags;
             Template = template;
