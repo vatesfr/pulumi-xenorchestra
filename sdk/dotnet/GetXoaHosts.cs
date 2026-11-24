@@ -112,7 +112,7 @@ namespace Pulumi.Xenorchestra
     public sealed class GetXoaHostsResult
     {
         /// <summary>
-        /// The resulting hosts after applying the argument filtering.
+        /// The resulting hosts after applying the argument filtering. `Memory` and `MemoryUsage` are in bytes.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetXoaHostsHostResult> Hosts;
         /// <summary>

@@ -90,31 +90,31 @@ export interface ProviderArgs {
     /**
      * Whether SSL should be verified or not. Can be set via the XOA_INSECURE environment variable.
      */
-    insecure?: pulumi.Input<boolean>;
+    insecure?: pulumi.Input<boolean | undefined>;
     /**
      * Password for xoa api. Can be set via the XOA_PASSWORD environment variable.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * If `retryMode` is set, this specifies the duration for which the backoff method will continue retries. Can be set via the `XOA_RETRY_MAX_TIME` environment variable
      */
-    retryMaxTime?: pulumi.Input<string>;
+    retryMaxTime?: pulumi.Input<string | undefined>;
     /**
      * Specifies if retries should be attempted for requests that require eventual . Can be set via the XOA_RETRY_MODE environment variable.
      */
-    retryMode?: pulumi.Input<string>;
+    retryMode?: pulumi.Input<string | undefined>;
     /**
      * Password for xoa api. Can be set via the XOA_TOKEN environment variable.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * Hostname of the xoa router. Can be set via the XOA_URL environment variable.
      */
-    url?: pulumi.Input<string>;
+    url?: pulumi.Input<string | undefined>;
     /**
      * User account for xoa api. Can be set via the XOA_USER environment variable.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export namespace Provider {

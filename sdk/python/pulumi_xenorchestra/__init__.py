@@ -14,7 +14,9 @@ from .get_xoa_hosts import *
 from .get_xoa_network import *
 from .get_xoa_pif import *
 from .get_xoa_pool import *
+from .get_xoa_pools import *
 from .get_xoa_resource_set import *
+from .get_xoa_storage_repositories import *
 from .get_xoa_storage_repository import *
 from .get_xoa_template import *
 from .get_xoa_user import *

@@ -140,11 +140,15 @@ namespace Pulumi.Xenorchestra
         /// </summary>
         public readonly ImmutableDictionary<string, string> Cpus;
         /// <summary>
+        /// The default storage repository for the pool.
+        /// </summary>
+        public readonly string DefaultSr;
+        /// <summary>
         /// The description of the pool.
         /// </summary>
         public readonly string Description;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The id of the pool.
         /// </summary>
         public readonly string Id;
         /// <summary>
@@ -160,6 +164,8 @@ namespace Pulumi.Xenorchestra
         private GetXoaPoolResult(
             ImmutableDictionary<string, string> cpus,
 
+            string defaultSr,
+
             string description,
 
             string id,
@@ -169,6 +175,7 @@ namespace Pulumi.Xenorchestra
             string nameLabel)
         {
             Cpus = cpus;
+            DefaultSr = defaultSr;
             Description = description;
             Id = id;
             Master = master;

@@ -21,6 +21,8 @@ __all__ = [
     'VmDisk',
     'VmNetwork',
     'GetXoaHostsHostResult',
+    'GetXoaPoolsPoolResult',
+    'GetXoaStorageRepositoriesSrResult',
     'GetXoaVmsVmResult',
     'GetXoaVmsVmDiskResult',
     'GetXoaVmsVmNetworkResult',
@@ -229,6 +231,7 @@ class VmNetwork(dict):
         :param _builtins.str network_id: The ID of the network the VM will be on.
         :param _builtins.bool attached: Whether the device should be attached to the VM.
         :param _builtins.str expected_ip_cidr: Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `wait_for_ip` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
+        :param _builtins.str mac_address: The mac address of the network interface. This must be parsable by go's [net.ParseMAC function](https://golang.org/pkg/net/#ParseMAC). All mac addresses are stored in Terraform's state with [HardwareAddr's string representation](https://golang.org/pkg/net/#HardwareAddr.String) i.e. 00:00:5e:00:53:01
         """
         pulumi.set(__self__, "network_id", network_id)
         if attached is not None:
@@ -286,6 +289,9 @@ class VmNetwork(dict):
     @_builtins.property
     @pulumi.getter(name="macAddress")
     def mac_address(self) -> Optional[_builtins.str]:
+        """
+        The mac address of the network interface. This must be parsable by go's [net.ParseMAC function](https://golang.org/pkg/net/#ParseMAC). All mac addresses are stored in Terraform's state with [HardwareAddr's string representation](https://golang.org/pkg/net/#HardwareAddr.String) i.e. 00:00:5e:00:53:01
+        """
         return pulumi.get(self, "mac_address")
 
 
@@ -301,8 +307,8 @@ class GetXoaHostsHostResult(dict):
                  tags: Optional[Sequence[_builtins.str]] = None):
         """
         :param Mapping[str, _builtins.int] cpus: CPU information about the host. The 'cores' key will contain the number of cpu cores and the 'sockets' key will contain the number of sockets.
-        :param _builtins.int memory: The memory size of the host.
-        :param _builtins.int memory_usage: The memory usage of the host.
+        :param _builtins.int memory: The total memory size of the host in bytes.
+        :param _builtins.int memory_usage: The current memory usage of the host in bytes.
         :param _builtins.str name_label: The name label of the host.
         :param _builtins.str pool_id: Id of the pool that the host belongs to.
         :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
@@ -333,7 +339,7 @@ class GetXoaHostsHostResult(dict):
     @pulumi.getter
     def memory(self) -> _builtins.int:
         """
-        The memory size of the host.
+        The total memory size of the host in bytes.
         """
         return pulumi.get(self, "memory")
 
@@ -341,7 +347,7 @@ class GetXoaHostsHostResult(dict):
     @pulumi.getter(name="memoryUsage")
     def memory_usage(self) -> _builtins.int:
         """
-        The memory usage of the host.
+        The current memory usage of the host in bytes.
         """
         return pulumi.get(self, "memory_usage")
 
@@ -371,8 +377,200 @@ class GetXoaHostsHostResult(dict):
 
 
 @pulumi.output_type
+class GetXoaPoolsPoolResult(dict):
+    def __init__(__self__, *,
+                 cpus: Mapping[str, _builtins.str],
+                 default_sr: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 master: _builtins.str,
+                 name_label: _builtins.str):
+        """
+        :param Mapping[str, _builtins.str] cpus: CPU information about the pool. The 'cores' key will contain the number of cpu cores and the 'sockets' key will contain the number of sockets.
+        :param _builtins.str default_sr: The default storage repository for the pool.
+        :param _builtins.str description: The description of the pool.
+        :param _builtins.str id: The id of the pool.
+        :param _builtins.str master: The id of the primary instance in the pool.
+        :param _builtins.str name_label: The name label of the pool.
+        """
+        pulumi.set(__self__, "cpus", cpus)
+        pulumi.set(__self__, "default_sr", default_sr)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "master", master)
+        pulumi.set(__self__, "name_label", name_label)
+
+    @_builtins.property
+    @pulumi.getter
+    def cpus(self) -> Mapping[str, _builtins.str]:
+        """
+        CPU information about the pool. The 'cores' key will contain the number of cpu cores and the 'sockets' key will contain the number of sockets.
+        """
+        return pulumi.get(self, "cpus")
+
+    @_builtins.property
+    @pulumi.getter(name="defaultSr")
+    def default_sr(self) -> _builtins.str:
+        """
+        The default storage repository for the pool.
+        """
+        return pulumi.get(self, "default_sr")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the pool.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The id of the pool.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def master(self) -> _builtins.str:
+        """
+        The id of the primary instance in the pool.
+        """
+        return pulumi.get(self, "master")
+
+    @_builtins.property
+    @pulumi.getter(name="nameLabel")
+    def name_label(self) -> _builtins.str:
+        """
+        The name label of the pool.
+        """
+        return pulumi.get(self, "name_label")
+
+
+@pulumi.output_type
+class GetXoaStorageRepositoriesSrResult(dict):
+    def __init__(__self__, *,
+                 container: _builtins.str,
+                 id: _builtins.str,
+                 name_label: _builtins.str,
+                 physical_usage: _builtins.int,
+                 pool_id: _builtins.str,
+                 size: _builtins.int,
+                 sr_type: _builtins.str,
+                 usage: _builtins.int,
+                 uuid: _builtins.str,
+                 tags: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str container: The storage container. For host-local storage repositories this is the id of the hosting host.
+        :param _builtins.str id: The ID of this resource.
+        :param _builtins.str name_label: The name of the storage repository.
+        :param _builtins.int physical_usage: The physical storage usage in bytes.
+        :param _builtins.str pool_id: The Id of the pool the storage repository exists on.
+        :param _builtins.int size: The total storage size in bytes.
+        :param _builtins.str sr_type: The type of storage repository (lvm, udev, iso, user, etc).
+        :param _builtins.int usage: The current storage usage in bytes.
+        :param _builtins.str uuid: uuid of the storage repository. This is equivalent to the id.
+        :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
+        """
+        pulumi.set(__self__, "container", container)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name_label", name_label)
+        pulumi.set(__self__, "physical_usage", physical_usage)
+        pulumi.set(__self__, "pool_id", pool_id)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "sr_type", sr_type)
+        pulumi.set(__self__, "usage", usage)
+        pulumi.set(__self__, "uuid", uuid)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def container(self) -> _builtins.str:
+        """
+        The storage container. For host-local storage repositories this is the id of the hosting host.
+        """
+        return pulumi.get(self, "container")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of this resource.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="nameLabel")
+    def name_label(self) -> _builtins.str:
+        """
+        The name of the storage repository.
+        """
+        return pulumi.get(self, "name_label")
+
+    @_builtins.property
+    @pulumi.getter(name="physicalUsage")
+    def physical_usage(self) -> _builtins.int:
+        """
+        The physical storage usage in bytes.
+        """
+        return pulumi.get(self, "physical_usage")
+
+    @_builtins.property
+    @pulumi.getter(name="poolId")
+    def pool_id(self) -> _builtins.str:
+        """
+        The Id of the pool the storage repository exists on.
+        """
+        return pulumi.get(self, "pool_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> _builtins.int:
+        """
+        The total storage size in bytes.
+        """
+        return pulumi.get(self, "size")
+
+    @_builtins.property
+    @pulumi.getter(name="srType")
+    def sr_type(self) -> _builtins.str:
+        """
+        The type of storage repository (lvm, udev, iso, user, etc).
+        """
+        return pulumi.get(self, "sr_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def usage(self) -> _builtins.int:
+        """
+        The current storage usage in bytes.
+        """
+        return pulumi.get(self, "usage")
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> _builtins.str:
+        """
+        uuid of the storage repository. This is equivalent to the id.
+        """
+        return pulumi.get(self, "uuid")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The tags (labels) applied to the given entity. Not used for filtering if empty.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
 class GetXoaVmsVmResult(dict):
     def __init__(__self__, *,
+                 cores_per_socket: _builtins.int,
                  cpus: _builtins.int,
                  disks: Sequence['outputs.GetXoaVmsVmDiskResult'],
                  id: _builtins.str,
@@ -382,6 +580,7 @@ class GetXoaVmsVmResult(dict):
                  memory_min: _builtins.int,
                  name_label: _builtins.str,
                  networks: Sequence['outputs.GetXoaVmsVmNetworkResult'],
+                 sockets: _builtins.int,
                  template: _builtins.str,
                  affinity_host: Optional[_builtins.str] = None,
                  auto_poweron: Optional[_builtins.bool] = None,
@@ -406,6 +605,7 @@ class GetXoaVmsVmResult(dict):
                  videoram: Optional[_builtins.int] = None,
                  xenstore: Optional[Mapping[str, _builtins.str]] = None):
         """
+        :param _builtins.int cores_per_socket: The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
         :param _builtins.int cpus: The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
                ```
                
@@ -419,11 +619,13 @@ class GetXoaVmsVmResult(dict):
                # Updating the VM to use 5 CPUs would stop/start the VM
                ```
         :param Sequence['GetXoaVmsVmDiskArgs'] disks: The disk the VM will have access to.
+        :param Sequence[_builtins.str] ipv4_addresses: This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv4 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv4 addresses across all network interfaces in order. See the example terraform code for more details.
         :param Sequence[_builtins.str] ipv6_addresses: This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
         :param _builtins.int memory_max: The amount of memory in bytes the VM will have.\\n\\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
         :param _builtins.int memory_min: The amount of memory in bytes the VM will have. Set this value equal to memory_max to have a static memory.
         :param _builtins.str name_label: The name of the VM.
         :param Sequence['GetXoaVmsVmNetworkArgs'] networks: The network for the VM.
+        :param _builtins.int sockets: The number of CPU sockets. This is computed as cpus / cores_per_socket.
         :param _builtins.str template: The ID of the VM template to create the new VM from.
         :param _builtins.str affinity_host: The preferred host you would like the VM to run on. If changed on an existing VM it will require a reboot for the VM to be rescheduled.
         :param _builtins.bool auto_poweron: If the VM will automatically turn on. Defaults to `false`.
@@ -431,6 +633,8 @@ class GetXoaVmsVmResult(dict):
         :param _builtins.str clone_type: The type of clone to perform for the VM. Possible values include `fast` or `full` and defaults to `fast`. In order to perform a `full` clone, the VM template must not be a disk template.
         :param _builtins.str cloud_config: The content of the cloud-init config to use. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
         :param _builtins.str cloud_network_config: The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
+        :param _builtins.int cpu_cap: The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+        :param _builtins.int cpu_weight: The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
         :param _builtins.bool exp_nested_hvm: Boolean parameter that allows a VM to use nested virtualization.
         :param _builtins.str high_availability: The restart priority for the VM. Possible values are `best-effort`, `restart` and empty string (no restarts on failure. Defaults to empty string
         :param _builtins.str hvm_boot_firmware: The firmware to use for the VM. Possible values are `bios` and `uefi`.
@@ -440,9 +644,10 @@ class GetXoaVmsVmResult(dict):
         :param _builtins.int start_delay: Number of seconds the VM should be delayed from starting.
         :param Sequence[_builtins.str] tags: The tags (labels) applied to the given entity. Not used for filtering if empty.
         :param _builtins.str vga: The video adapter the VM should use. Possible values include std and cirrus.
-        :param _builtins.int videoram: The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+        :param _builtins.int videoram: The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
         :param Mapping[str, _builtins.str] xenstore: The key value pairs to be populated in xenstore.
         """
+        pulumi.set(__self__, "cores_per_socket", cores_per_socket)
         pulumi.set(__self__, "cpus", cpus)
         pulumi.set(__self__, "disks", disks)
         pulumi.set(__self__, "id", id)
@@ -452,6 +657,7 @@ class GetXoaVmsVmResult(dict):
         pulumi.set(__self__, "memory_min", memory_min)
         pulumi.set(__self__, "name_label", name_label)
         pulumi.set(__self__, "networks", networks)
+        pulumi.set(__self__, "sockets", sockets)
         pulumi.set(__self__, "template", template)
         if affinity_host is not None:
             pulumi.set(__self__, "affinity_host", affinity_host)
@@ -499,6 +705,14 @@ class GetXoaVmsVmResult(dict):
             pulumi.set(__self__, "xenstore", xenstore)
 
     @_builtins.property
+    @pulumi.getter(name="coresPerSocket")
+    def cores_per_socket(self) -> _builtins.int:
+        """
+        The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+        """
+        return pulumi.get(self, "cores_per_socket")
+
+    @_builtins.property
     @pulumi.getter
     def cpus(self) -> _builtins.int:
         """
@@ -533,6 +747,9 @@ class GetXoaVmsVmResult(dict):
     @_builtins.property
     @pulumi.getter(name="ipv4Addresses")
     def ipv4_addresses(self) -> Sequence[_builtins.str]:
+        """
+        This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv4 addresses, the presence of an IP address is only guaranteed if `expected_ip_cidr` is set for that interface. The list contains the ipv4 addresses across all network interfaces in order. See the example terraform code for more details.
+        """
         return pulumi.get(self, "ipv4_addresses")
 
     @_builtins.property
@@ -574,6 +791,14 @@ class GetXoaVmsVmResult(dict):
         The network for the VM.
         """
         return pulumi.get(self, "networks")
+
+    @_builtins.property
+    @pulumi.getter
+    def sockets(self) -> _builtins.int:
+        """
+        The number of CPU sockets. This is computed as cpus / cores_per_socket.
+        """
+        return pulumi.get(self, "sockets")
 
     @_builtins.property
     @pulumi.getter
@@ -639,11 +864,17 @@ class GetXoaVmsVmResult(dict):
     @_builtins.property
     @pulumi.getter(name="cpuCap")
     def cpu_cap(self) -> Optional[_builtins.int]:
+        """
+        The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+        """
         return pulumi.get(self, "cpu_cap")
 
     @_builtins.property
     @pulumi.getter(name="cpuWeight")
     def cpu_weight(self) -> Optional[_builtins.int]:
+        """
+        The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
+        """
         return pulumi.get(self, "cpu_weight")
 
     @_builtins.property
@@ -732,7 +963,7 @@ class GetXoaVmsVmResult(dict):
     @pulumi.getter
     def videoram(self) -> Optional[_builtins.int]:
         """
-        The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+        The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
         """
         return pulumi.get(self, "videoram")
 
@@ -845,6 +1076,7 @@ class GetXoaVmsVmNetworkResult(dict):
                  attached: Optional[_builtins.bool] = None,
                  expected_ip_cidr: Optional[_builtins.str] = None):
         """
+        :param _builtins.str mac_address: The mac address of the network interface. This must be parsable by go's [net.ParseMAC function](https://golang.org/pkg/net/#ParseMAC). All mac addresses are stored in Terraform's state with [HardwareAddr's string representation](https://golang.org/pkg/net/#HardwareAddr.String) i.e. 00:00:5e:00:53:01
         :param _builtins.str network_id: The ID of the network the VM will be on.
         :param _builtins.bool attached: Whether the device should be attached to the VM.
         :param _builtins.str expected_ip_cidr: Determines the IP CIDR range the provider will wait for on this network interface. Resource creation is not complete until an IP address within the specified range becomes available. This parameter replaces the former `wait_for_ip` functionality. This only works if guest-tools are installed in the VM. Defaults to "", which skips IP address matching.
@@ -877,6 +1109,9 @@ class GetXoaVmsVmNetworkResult(dict):
     @_builtins.property
     @pulumi.getter(name="macAddress")
     def mac_address(self) -> _builtins.str:
+        """
+        The mac address of the network interface. This must be parsable by go's [net.ParseMAC function](https://golang.org/pkg/net/#ParseMAC). All mac addresses are stored in Terraform's state with [HardwareAddr's string representation](https://golang.org/pkg/net/#HardwareAddr.String) i.e. 00:00:5e:00:53:01
+        """
         return pulumi.get(self, "mac_address")
 
     @_builtins.property

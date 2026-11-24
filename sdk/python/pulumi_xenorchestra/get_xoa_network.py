@@ -90,6 +90,10 @@ def get_xoa_network(bridge: Optional[_builtins.str] = None,
                     pool_id: Optional[_builtins.str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetXoaNetworkResult:
     """
+    Provides information about a network of a Xenserver pool.
+
+    **Note:** If there are multiple networks with the same name terraform will fail. Ensure that your network, pool_id and other arguments identify a unique network.
+
     ## Example Usage
 
     ```python
@@ -119,11 +123,15 @@ def get_xoa_network(bridge: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         name_label=pulumi.get(__ret__, 'name_label'),
         pool_id=pulumi.get(__ret__, 'pool_id'))
-def get_xoa_network_output(bridge: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                           name_label: Optional[pulumi.Input[_builtins.str]] = None,
-                           pool_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_xoa_network_output(bridge: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                           name_label: pulumi.Input[Optional[_builtins.str]] = None,
+                           pool_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetXoaNetworkResult]:
     """
+    Provides information about a network of a Xenserver pool.
+
+    **Note:** If there are multiple networks with the same name terraform will fail. Ensure that your network, pool_id and other arguments identify a unique network.
+
     ## Example Usage
 
     ```python

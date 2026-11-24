@@ -67,12 +67,8 @@ type GetXoaUserResult struct {
 }
 
 func GetXoaUserOutput(ctx *pulumi.Context, args GetXoaUserOutputArgs, opts ...pulumi.InvokeOption) GetXoaUserResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetXoaUserResultOutput, error) {
-			args := v.(GetXoaUserArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("xenorchestra:index/getXoaUser:getXoaUser", args, GetXoaUserResultOutput{}, options).(GetXoaUserResultOutput), nil
-		}).(GetXoaUserResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("xenorchestra:index/getXoaUser:getXoaUser", args, GetXoaUserResultOutput{}, options).(GetXoaUserResultOutput)
 }
 
 // A collection of arguments for invoking getXoaUser.

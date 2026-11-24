@@ -5,6 +5,12 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Provides information about a resource set.
+ *
+ * **NOTE:** If there are multiple resource sets with the same name
+ * Terraform will fail. Ensure that your resource set names are unique when
+ * using the data source.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -47,6 +53,12 @@ export interface GetXoaResourceSetResult {
     readonly name: string;
 }
 /**
+ * Provides information about a resource set.
+ *
+ * **NOTE:** If there are multiple resource sets with the same name
+ * Terraform will fail. Ensure that your resource set names are unique when
+ * using the data source.
+ *
  * ## Example Usage
  *
  * ```typescript

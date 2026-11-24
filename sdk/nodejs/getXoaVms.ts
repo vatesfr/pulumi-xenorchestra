@@ -51,7 +51,7 @@ export interface GetXoaVmsResult {
      */
     readonly powerState?: string;
     /**
-     * A list of information for all vms found in this pool.
+     * A list of information for all vms found in this pool. `memoryMin`, `memoryMax` and `size` are in bytes. `videoram` is in MiB. `cpuCap` is in hundredths of vCPU (e.g. 100 = 1 vCPU max, 0 means no cap). `startDelay` is in seconds.
      */
     readonly vms: outputs.GetXoaVmsVm[];
 }
@@ -71,7 +71,7 @@ export function getXoaVmsOutput(args: GetXoaVmsOutputArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getXoaVms.
  */
 export interface GetXoaVmsOutputArgs {
-    host?: pulumi.Input<string>;
+    host?: pulumi.Input<string | undefined>;
     /**
      * The ID of the pool the VM belongs to.
      */
@@ -79,5 +79,5 @@ export interface GetXoaVmsOutputArgs {
     /**
      * The power state of the vms. (Running, Halted)
      */
-    powerState?: pulumi.Input<string>;
+    powerState?: pulumi.Input<string | undefined>;
 }

@@ -20,9 +20,10 @@ __all__ = ['CloudConfigArgs', 'CloudConfig']
 class CloudConfigArgs:
     def __init__(__self__, *,
                  template: pulumi.Input[_builtins.str],
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a CloudConfig resource.
+
         :param pulumi.Input[_builtins.str] template: The cloud init config. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
         :param pulumi.Input[_builtins.str] name: The name of the cloud config.
         """
@@ -44,24 +45,25 @@ class CloudConfigArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the cloud config.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _CloudConfigState:
     def __init__(__self__, *,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 template: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CloudConfig resources.
+
         :param pulumi.Input[_builtins.str] name: The name of the cloud config.
         :param pulumi.Input[_builtins.str] template: The cloud init config. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
         """
@@ -72,26 +74,26 @@ class _CloudConfigState:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the cloud config.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The cloud init config. See the cloud init docs for more [information](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
         """
         return pulumi.get(self, "template")
 
     @template.setter
-    def template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "template", value)
 
 
@@ -101,8 +103,8 @@ class CloudConfig(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 template: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 template: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates a Xen Orchestra cloud config resource.
@@ -124,6 +126,7 @@ class CloudConfig(pulumi.CustomResource):
         bar = xenorchestra.Vm("bar", cloud_config=demo.template)
         # ...
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -157,6 +160,7 @@ class CloudConfig(pulumi.CustomResource):
         # ...
         ```
 
+
         :param str resource_name: The name of the resource.
         :param CloudConfigArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -172,8 +176,8 @@ class CloudConfig(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 template: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 template: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -197,8 +201,8 @@ class CloudConfig(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            template: Optional[pulumi.Input[_builtins.str]] = None) -> 'CloudConfig':
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            template: pulumi.Input[Optional[_builtins.str]] = None) -> 'CloudConfig':
         """
         Get an existing CloudConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

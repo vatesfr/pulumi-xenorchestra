@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Provides information about a physical network interface (PIF) of a XenServer host specified by the interface name or whether it is the management interface.
+ *
+ * **Note:** If there are multiple PIFs that match terraform will fail.
+ * Ensure that your device, vlan, hostId and other arguments identify a unique PIF.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -106,6 +111,11 @@ export interface GetXoaPifResult {
     readonly vlan: number;
 }
 /**
+ * Provides information about a physical network interface (PIF) of a XenServer host specified by the interface name or whether it is the management interface.
+ *
+ * **Note:** If there are multiple PIFs that match terraform will fail.
+ * Ensure that your device, vlan, hostId and other arguments identify a unique PIF.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -142,7 +152,7 @@ export interface GetXoaPifOutputArgs {
     /**
      * The ID of the host that the PIF belongs to.
      */
-    hostId?: pulumi.Input<string>;
+    hostId?: pulumi.Input<string | undefined>;
     /**
      * The VLAN the PIF belongs to.
      */

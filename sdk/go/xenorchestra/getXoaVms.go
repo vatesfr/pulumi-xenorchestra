@@ -40,17 +40,13 @@ type GetXoaVmsResult struct {
 	PoolId string `pulumi:"poolId"`
 	// The power state of the vms. (Running, Halted)
 	PowerState *string `pulumi:"powerState"`
-	// A list of information for all vms found in this pool.
+	// A list of information for all vms found in this pool. `memoryMin`, `memoryMax` and `size` are in bytes. `videoram` is in MiB. `cpuCap` is in hundredths of vCPU (e.g. 100 = 1 vCPU max, 0 means no cap). `startDelay` is in seconds.
 	Vms []GetXoaVmsVm `pulumi:"vms"`
 }
 
 func GetXoaVmsOutput(ctx *pulumi.Context, args GetXoaVmsOutputArgs, opts ...pulumi.InvokeOption) GetXoaVmsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetXoaVmsResultOutput, error) {
-			args := v.(GetXoaVmsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("xenorchestra:index/getXoaVms:getXoaVms", args, GetXoaVmsResultOutput{}, options).(GetXoaVmsResultOutput), nil
-		}).(GetXoaVmsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("xenorchestra:index/getXoaVms:getXoaVms", args, GetXoaVmsResultOutput{}, options).(GetXoaVmsResultOutput)
 }
 
 // A collection of arguments for invoking getXoaVms.
@@ -100,7 +96,7 @@ func (o GetXoaVmsResultOutput) PowerState() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetXoaVmsResult) *string { return v.PowerState }).(pulumi.StringPtrOutput)
 }
 
-// A list of information for all vms found in this pool.
+// A list of information for all vms found in this pool. `memoryMin`, `memoryMax` and `size` are in bytes. `videoram` is in MiB. `cpuCap` is in hundredths of vCPU (e.g. 100 = 1 vCPU max, 0 means no cap). `startDelay` is in seconds.
 func (o GetXoaVmsResultOutput) Vms() GetXoaVmsVmArrayOutput {
 	return o.ApplyT(func(v GetXoaVmsResult) []GetXoaVmsVm { return v.Vms }).(GetXoaVmsVmArrayOutput)
 }

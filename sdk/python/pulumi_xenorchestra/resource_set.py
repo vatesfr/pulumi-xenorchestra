@@ -22,11 +22,12 @@ __all__ = ['ResourceSetArgs', 'ResourceSet']
 class ResourceSetArgs:
     def __init__(__self__, *,
                  limits: pulumi.Input[Sequence[pulumi.Input['ResourceSetLimitArgs']]],
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 objects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 subjects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 objects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 subjects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ResourceSet resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['ResourceSetLimitArgs']]] limits: The limit applied to the resource set.
         :param pulumi.Input[_builtins.str] name: The name of the resource set.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] objects: The uuids of the objects that are within scope of the resource set. A minimum of a storage repository, network and VM template are required for users to launch VMs.
@@ -54,50 +55,51 @@ class ResourceSetArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the resource set.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def objects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def objects(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The uuids of the objects that are within scope of the resource set. A minimum of a storage repository, network and VM template are required for users to launch VMs.
         """
         return pulumi.get(self, "objects")
 
     @objects.setter
-    def objects(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def objects(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "objects", value)
 
     @_builtins.property
     @pulumi.getter
-    def subjects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def subjects(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The uuids of the user accounts that should have access to the resource set.
         """
         return pulumi.get(self, "subjects")
 
     @subjects.setter
-    def subjects(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def subjects(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "subjects", value)
 
 
 @pulumi.input_type
 class _ResourceSetState:
     def __init__(__self__, *,
-                 limits: Optional[pulumi.Input[Sequence[pulumi.Input['ResourceSetLimitArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 objects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 subjects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 limits: pulumi.Input[Optional[Sequence[pulumi.Input['ResourceSetLimitArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 objects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 subjects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering ResourceSet resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['ResourceSetLimitArgs']]] limits: The limit applied to the resource set.
         :param pulumi.Input[_builtins.str] name: The name of the resource set.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] objects: The uuids of the objects that are within scope of the resource set. A minimum of a storage repository, network and VM template are required for users to launch VMs.
@@ -114,50 +116,50 @@ class _ResourceSetState:
 
     @_builtins.property
     @pulumi.getter
-    def limits(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ResourceSetLimitArgs']]]]:
+    def limits(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ResourceSetLimitArgs']]]]:
         """
         The limit applied to the resource set.
         """
         return pulumi.get(self, "limits")
 
     @limits.setter
-    def limits(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ResourceSetLimitArgs']]]]):
+    def limits(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ResourceSetLimitArgs']]]]):
         pulumi.set(self, "limits", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the resource set.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def objects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def objects(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The uuids of the objects that are within scope of the resource set. A minimum of a storage repository, network and VM template are required for users to launch VMs.
         """
         return pulumi.get(self, "objects")
 
     @objects.setter
-    def objects(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def objects(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "objects", value)
 
     @_builtins.property
     @pulumi.getter
-    def subjects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def subjects(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The uuids of the user accounts that should have access to the resource set.
         """
         return pulumi.get(self, "subjects")
 
     @subjects.setter
-    def subjects(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def subjects(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "subjects", value)
 
 
@@ -167,10 +169,10 @@ class ResourceSet(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 limits: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ResourceSetLimitArgs', 'ResourceSetLimitArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 objects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 subjects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ResourceSetLimitArgs', 'ResourceSetLimitArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 objects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 subjects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Creates a Xen Orchestra resource set.
@@ -200,11 +202,11 @@ class ResourceSet(pulumi.CustomResource):
                 },
                 {
                     "type": "disk",
-                    "quantity": 107374182400,
+                    "quantity": int(107374182400),
                 },
                 {
                     "type": "memory",
-                    "quantity": 12884901888,
+                    "quantity": int(12884901888),
                 },
             ])
         ```
@@ -214,12 +216,12 @@ class ResourceSet(pulumi.CustomResource):
         The `pulumi import` command can be used, for example:
 
         ID can be found from the following command:
-
         $ xo-cli resourceSet.getAll
 
         ```sh
         $ pulumi import xenorchestra:index/resourceSet:ResourceSet rs MGSpuwnbtUE
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -262,11 +264,11 @@ class ResourceSet(pulumi.CustomResource):
                 },
                 {
                     "type": "disk",
-                    "quantity": 107374182400,
+                    "quantity": int(107374182400),
                 },
                 {
                     "type": "memory",
-                    "quantity": 12884901888,
+                    "quantity": int(12884901888),
                 },
             ])
         ```
@@ -276,12 +278,12 @@ class ResourceSet(pulumi.CustomResource):
         The `pulumi import` command can be used, for example:
 
         ID can be found from the following command:
-
         $ xo-cli resourceSet.getAll
 
         ```sh
         $ pulumi import xenorchestra:index/resourceSet:ResourceSet rs MGSpuwnbtUE
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ResourceSetArgs args: The arguments to use to populate this resource's properties.
@@ -298,10 +300,10 @@ class ResourceSet(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 limits: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ResourceSetLimitArgs', 'ResourceSetLimitArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 objects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 subjects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ResourceSetLimitArgs', 'ResourceSetLimitArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 objects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 subjects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -327,10 +329,10 @@ class ResourceSet(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            limits: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ResourceSetLimitArgs', 'ResourceSetLimitArgsDict']]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            objects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            subjects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'ResourceSet':
+            limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ResourceSetLimitArgs', 'ResourceSetLimitArgsDict']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            objects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            subjects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'ResourceSet':
         """
         Get an existing ResourceSet resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -36,7 +36,7 @@ type GetXoaHostsArgs struct {
 
 // A collection of values returned by getXoaHosts.
 type GetXoaHostsResult struct {
-	// The resulting hosts after applying the argument filtering.
+	// The resulting hosts after applying the argument filtering. `memory` and `memoryUsage` are in bytes.
 	Hosts []GetXoaHostsHost `pulumi:"hosts"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
@@ -53,12 +53,8 @@ type GetXoaHostsResult struct {
 }
 
 func GetXoaHostsOutput(ctx *pulumi.Context, args GetXoaHostsOutputArgs, opts ...pulumi.InvokeOption) GetXoaHostsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetXoaHostsResultOutput, error) {
-			args := v.(GetXoaHostsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("xenorchestra:index/getXoaHosts:getXoaHosts", args, GetXoaHostsResultOutput{}, options).(GetXoaHostsResultOutput), nil
-		}).(GetXoaHostsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("xenorchestra:index/getXoaHosts:getXoaHosts", args, GetXoaHostsResultOutput{}, options).(GetXoaHostsResultOutput)
 }
 
 // A collection of arguments for invoking getXoaHosts.
@@ -92,7 +88,7 @@ func (o GetXoaHostsResultOutput) ToGetXoaHostsResultOutputWithContext(ctx contex
 	return o
 }
 
-// The resulting hosts after applying the argument filtering.
+// The resulting hosts after applying the argument filtering. `memory` and `memoryUsage` are in bytes.
 func (o GetXoaHostsResultOutput) Hosts() GetXoaHostsHostArrayOutput {
 	return o.ApplyT(func(v GetXoaHostsResult) []GetXoaHostsHost { return v.Hosts }).(GetXoaHostsHostArrayOutput)
 }

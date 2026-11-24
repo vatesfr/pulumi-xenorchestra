@@ -95,7 +95,7 @@ namespace Pulumi.Xenorchestra
         /// </summary>
         public readonly string? PowerState;
         /// <summary>
-        /// A list of information for all vms found in this pool.
+        /// A list of information for all vms found in this pool. `MemoryMin`, `MemoryMax` and `Size` are in bytes. `Videoram` is in MiB. `CpuCap` is in hundredths of vCPU (e.g. 100 = 1 vCPU max, 0 means no cap). `StartDelay` is in seconds.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetXoaVmsVmResult> Vms;
 

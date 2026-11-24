@@ -86,7 +86,7 @@ export interface GetXoaUserOutputArgs {
     /**
      * A boolean which will search for the user in the current session (`session.getUser` Xen Orchestra RPC call). This allows a non admin user to look up their own user account.
      */
-    searchInSession?: pulumi.Input<boolean>;
+    searchInSession?: pulumi.Input<boolean | undefined>;
     /**
      * The username of the XO user.
      */

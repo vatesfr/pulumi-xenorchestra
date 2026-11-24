@@ -162,52 +162,52 @@ export class XoaBondedNetwork extends pulumi.CustomResource {
  * Input properties used for looking up and filtering XoaBondedNetwork resources.
  */
 export interface XoaBondedNetworkState {
-    automatic?: pulumi.Input<boolean>;
+    automatic?: pulumi.Input<boolean | undefined>;
     /**
      * The bond mode that should be used for this network.
      */
-    bondMode?: pulumi.Input<string>;
+    bondMode?: pulumi.Input<string | undefined>;
     /**
      * This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
      */
-    defaultIsLocked?: pulumi.Input<boolean>;
+    defaultIsLocked?: pulumi.Input<boolean | undefined>;
     /**
      * The MTU of the network. Defaults to `1500` if unspecified.
      */
-    mtu?: pulumi.Input<number>;
-    nameDescription?: pulumi.Input<string>;
+    mtu?: pulumi.Input<number | undefined>;
+    nameDescription?: pulumi.Input<string | undefined>;
     /**
      * The name label of the network.
      */
-    nameLabel?: pulumi.Input<string>;
+    nameLabel?: pulumi.Input<string | undefined>;
     /**
      * The PIFs (uuid) that should be used for this network.
      */
-    pifIds?: pulumi.Input<pulumi.Input<string>[]>;
+    pifIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The pool id that this network should belong to.
      */
-    poolId?: pulumi.Input<string>;
+    poolId?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a XoaBondedNetwork resource.
  */
 export interface XoaBondedNetworkArgs {
-    automatic?: pulumi.Input<boolean>;
+    automatic?: pulumi.Input<boolean | undefined>;
     /**
      * The bond mode that should be used for this network.
      */
-    bondMode?: pulumi.Input<string>;
+    bondMode?: pulumi.Input<string | undefined>;
     /**
      * This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
      */
-    defaultIsLocked?: pulumi.Input<boolean>;
+    defaultIsLocked?: pulumi.Input<boolean | undefined>;
     /**
      * The MTU of the network. Defaults to `1500` if unspecified.
      */
-    mtu?: pulumi.Input<number>;
-    nameDescription?: pulumi.Input<string>;
+    mtu?: pulumi.Input<number | undefined>;
+    nameDescription?: pulumi.Input<string | undefined>;
     /**
      * The name label of the network.
      */
@@ -215,7 +215,7 @@ export interface XoaBondedNetworkArgs {
     /**
      * The PIFs (uuid) that should be used for this network.
      */
-    pifIds?: pulumi.Input<pulumi.Input<string>[]>;
+    pifIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The pool id that this network should belong to.
      */

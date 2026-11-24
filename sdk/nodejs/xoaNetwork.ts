@@ -138,52 +138,52 @@ export class XoaNetwork extends pulumi.CustomResource {
  * Input properties used for looking up and filtering XoaNetwork resources.
  */
 export interface XoaNetworkState {
-    automatic?: pulumi.Input<boolean>;
+    automatic?: pulumi.Input<boolean | undefined>;
     /**
      * This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
      */
-    defaultIsLocked?: pulumi.Input<boolean>;
+    defaultIsLocked?: pulumi.Input<boolean | undefined>;
     /**
      * The MTU of the network. Defaults to `1500` if unspecified.
      */
-    mtu?: pulumi.Input<number>;
-    nameDescription?: pulumi.Input<string>;
+    mtu?: pulumi.Input<number | undefined>;
+    nameDescription?: pulumi.Input<string | undefined>;
     /**
      * The name label of the network.
      */
-    nameLabel?: pulumi.Input<string>;
+    nameLabel?: pulumi.Input<string | undefined>;
     /**
      * Whether the network should use a network block device. Defaults to `false` if unspecified.
      */
-    nbd?: pulumi.Input<boolean>;
+    nbd?: pulumi.Input<boolean | undefined>;
     /**
      * The pool id that this network should belong to.
      */
-    poolId?: pulumi.Input<string>;
+    poolId?: pulumi.Input<string | undefined>;
     /**
      * The PIF device (eth0, eth1, etc) that will be used as an input during network creation. This parameter is required if a vlan is specified.
      */
-    sourcePifDevice?: pulumi.Input<string>;
+    sourcePifDevice?: pulumi.Input<string | undefined>;
     /**
      * The vlan to use for the network. Defaults to `0` meaning no VLAN.
      */
-    vlan?: pulumi.Input<number>;
+    vlan?: pulumi.Input<number | undefined>;
 }
 
 /**
  * The set of arguments for constructing a XoaNetwork resource.
  */
 export interface XoaNetworkArgs {
-    automatic?: pulumi.Input<boolean>;
+    automatic?: pulumi.Input<boolean | undefined>;
     /**
      * This argument controls whether the network should enforce VIF locking. This defaults to `false` which means that no filtering rules are applied.
      */
-    defaultIsLocked?: pulumi.Input<boolean>;
+    defaultIsLocked?: pulumi.Input<boolean | undefined>;
     /**
      * The MTU of the network. Defaults to `1500` if unspecified.
      */
-    mtu?: pulumi.Input<number>;
-    nameDescription?: pulumi.Input<string>;
+    mtu?: pulumi.Input<number | undefined>;
+    nameDescription?: pulumi.Input<string | undefined>;
     /**
      * The name label of the network.
      */
@@ -191,7 +191,7 @@ export interface XoaNetworkArgs {
     /**
      * Whether the network should use a network block device. Defaults to `false` if unspecified.
      */
-    nbd?: pulumi.Input<boolean>;
+    nbd?: pulumi.Input<boolean | undefined>;
     /**
      * The pool id that this network should belong to.
      */
@@ -199,9 +199,9 @@ export interface XoaNetworkArgs {
     /**
      * The PIF device (eth0, eth1, etc) that will be used as an input during network creation. This parameter is required if a vlan is specified.
      */
-    sourcePifDevice?: pulumi.Input<string>;
+    sourcePifDevice?: pulumi.Input<string | undefined>;
     /**
      * The vlan to use for the network. Defaults to `0` meaning no VLAN.
      */
-    vlan?: pulumi.Input<number>;
+    vlan?: pulumi.Input<number | undefined>;
 }

@@ -11,6 +11,11 @@ import (
 	"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra/internal"
 )
 
+// Provides information about a VDI (virtual disk image).
+//
+// **Note:** If there are multiple VDIs that match terraform will fail.
+// Ensure that your name_label, poolId and tags identify a unique VDI.
+//
 // ## Example Usage
 //
 // ```go
@@ -79,12 +84,8 @@ type GetXoaVdiResult struct {
 }
 
 func GetXoaVdiOutput(ctx *pulumi.Context, args GetXoaVdiOutputArgs, opts ...pulumi.InvokeOption) GetXoaVdiResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetXoaVdiResultOutput, error) {
-			args := v.(GetXoaVdiArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("xenorchestra:index/getXoaVdi:getXoaVdi", args, GetXoaVdiResultOutput{}, options).(GetXoaVdiResultOutput), nil
-		}).(GetXoaVdiResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("xenorchestra:index/getXoaVdi:getXoaVdi", args, GetXoaVdiResultOutput{}, options).(GetXoaVdiResultOutput)
 }
 
 // A collection of arguments for invoking getXoaVdi.

@@ -12,7 +12,17 @@ import (
 	"github.com/vatesfr/pulumi-xenorchestra/sdk/v2/go/xenorchestra/internal"
 )
 
-// ## Example Usage
+// Creates a Xen Orchestra vm resource.
+//
+// ## Differences with the Xen Orchestra UI
+//
+// ### Cloudinit
+//
+// Xen Orchestra allows templating cloudinit config through its own custom mechanism:
+// * "{name}" is replaced with the VM's name
+// * "%" is replaced with the VM's index
+//
+// This does not work in terraform since that is applied on Xen Orchestra's client side (Javascript). Terraform provides a "templatefile" function that allows for a similar substitution. Please see the example below for more details.
 type Vm struct {
 	pulumi.CustomResourceState
 
@@ -31,8 +41,12 @@ type Vm struct {
 	// The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
 	CloudNetworkConfig pulumi.StringPtrOutput `pulumi:"cloudNetworkConfig"`
 	CoreOs             pulumi.BoolPtrOutput   `pulumi:"coreOs"`
-	CpuCap             pulumi.IntPtrOutput    `pulumi:"cpuCap"`
-	CpuWeight          pulumi.IntPtrOutput    `pulumi:"cpuWeight"`
+	// The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+	CoresPerSocket pulumi.IntOutput `pulumi:"coresPerSocket"`
+	// The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+	CpuCap pulumi.IntPtrOutput `pulumi:"cpuCap"`
+	// The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
+	CpuWeight pulumi.IntPtrOutput `pulumi:"cpuWeight"`
 	// The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
 	Cpus pulumi.IntOutput `pulumi:"cpus"`
 	// Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, powerState must be set to `Running`.
@@ -47,8 +61,9 @@ type Vm struct {
 	// The firmware to use for the VM. Possible values are `bios` and `uefi`.
 	HvmBootFirmware pulumi.StringPtrOutput `pulumi:"hvmBootFirmware"`
 	// This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
-	InstallationMethod pulumi.StringPtrOutput   `pulumi:"installationMethod"`
-	Ipv4Addresses      pulumi.StringArrayOutput `pulumi:"ipv4Addresses"`
+	InstallationMethod pulumi.StringPtrOutput `pulumi:"installationMethod"`
+	// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv4 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv4 addresses across all network interfaces in order. See the example terraform code for more details.
+	Ipv4Addresses pulumi.StringArrayOutput `pulumi:"ipv4Addresses"`
 	// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
 	Ipv6Addresses pulumi.StringArrayOutput `pulumi:"ipv6Addresses"`
 	// The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
@@ -66,6 +81,10 @@ type Vm struct {
 	ResourceSet pulumi.StringPtrOutput `pulumi:"resourceSet"`
 	// Enable UEFI secure boot for the VM.
 	SecureBoot pulumi.BoolPtrOutput `pulumi:"secureBoot"`
+	// Allow the subjects of the resource set to use the VM. Only applies when resourceSet is set. Can be changed on an existing VM, but setting it to `false` requires the VM to leave its resource set at the same time, since a VM shared in a resource set is always shared in Xen Orchestra (there is no unshare operation).
+	Share pulumi.BoolPtrOutput `pulumi:"share"`
+	// The number of CPU sockets. This is computed as cpus / cores_per_socket.
+	Sockets pulumi.IntOutput `pulumi:"sockets"`
 	// Number of seconds the VM should be delayed from starting.
 	StartDelay pulumi.IntPtrOutput `pulumi:"startDelay"`
 	// The tags (labels) applied to the given entity. Not used for filtering if empty.
@@ -74,7 +93,7 @@ type Vm struct {
 	Template pulumi.StringOutput `pulumi:"template"`
 	// The video adapter the VM should use. Possible values include std and cirrus.
 	Vga pulumi.StringPtrOutput `pulumi:"vga"`
-	// The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+	// The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
 	Videoram pulumi.IntPtrOutput `pulumi:"videoram"`
 	// The key value pairs to be populated in xenstore.
 	Xenstore pulumi.StringMapOutput `pulumi:"xenstore"`
@@ -143,8 +162,12 @@ type vmState struct {
 	// The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
 	CloudNetworkConfig *string `pulumi:"cloudNetworkConfig"`
 	CoreOs             *bool   `pulumi:"coreOs"`
-	CpuCap             *int    `pulumi:"cpuCap"`
-	CpuWeight          *int    `pulumi:"cpuWeight"`
+	// The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+	CoresPerSocket *int `pulumi:"coresPerSocket"`
+	// The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+	CpuCap *int `pulumi:"cpuCap"`
+	// The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
+	CpuWeight *int `pulumi:"cpuWeight"`
 	// The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
 	Cpus *int `pulumi:"cpus"`
 	// Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, powerState must be set to `Running`.
@@ -159,8 +182,9 @@ type vmState struct {
 	// The firmware to use for the VM. Possible values are `bios` and `uefi`.
 	HvmBootFirmware *string `pulumi:"hvmBootFirmware"`
 	// This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
-	InstallationMethod *string  `pulumi:"installationMethod"`
-	Ipv4Addresses      []string `pulumi:"ipv4Addresses"`
+	InstallationMethod *string `pulumi:"installationMethod"`
+	// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv4 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv4 addresses across all network interfaces in order. See the example terraform code for more details.
+	Ipv4Addresses []string `pulumi:"ipv4Addresses"`
 	// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
 	Ipv6Addresses []string `pulumi:"ipv6Addresses"`
 	// The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
@@ -178,6 +202,10 @@ type vmState struct {
 	ResourceSet *string `pulumi:"resourceSet"`
 	// Enable UEFI secure boot for the VM.
 	SecureBoot *bool `pulumi:"secureBoot"`
+	// Allow the subjects of the resource set to use the VM. Only applies when resourceSet is set. Can be changed on an existing VM, but setting it to `false` requires the VM to leave its resource set at the same time, since a VM shared in a resource set is always shared in Xen Orchestra (there is no unshare operation).
+	Share *bool `pulumi:"share"`
+	// The number of CPU sockets. This is computed as cpus / cores_per_socket.
+	Sockets *int `pulumi:"sockets"`
 	// Number of seconds the VM should be delayed from starting.
 	StartDelay *int `pulumi:"startDelay"`
 	// The tags (labels) applied to the given entity. Not used for filtering if empty.
@@ -186,7 +214,7 @@ type vmState struct {
 	Template *string `pulumi:"template"`
 	// The video adapter the VM should use. Possible values include std and cirrus.
 	Vga *string `pulumi:"vga"`
-	// The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+	// The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
 	Videoram *int `pulumi:"videoram"`
 	// The key value pairs to be populated in xenstore.
 	Xenstore map[string]string `pulumi:"xenstore"`
@@ -208,8 +236,12 @@ type VmState struct {
 	// The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
 	CloudNetworkConfig pulumi.StringPtrInput
 	CoreOs             pulumi.BoolPtrInput
-	CpuCap             pulumi.IntPtrInput
-	CpuWeight          pulumi.IntPtrInput
+	// The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+	CoresPerSocket pulumi.IntPtrInput
+	// The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+	CpuCap pulumi.IntPtrInput
+	// The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
+	CpuWeight pulumi.IntPtrInput
 	// The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
 	Cpus pulumi.IntPtrInput
 	// Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, powerState must be set to `Running`.
@@ -225,7 +257,8 @@ type VmState struct {
 	HvmBootFirmware pulumi.StringPtrInput
 	// This cannot be used with `cdrom`. Possible values are `network` which allows a VM to boot via PXE.
 	InstallationMethod pulumi.StringPtrInput
-	Ipv4Addresses      pulumi.StringArrayInput
+	// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv4 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv4 addresses across all network interfaces in order. See the example terraform code for more details.
+	Ipv4Addresses pulumi.StringArrayInput
 	// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
 	Ipv6Addresses pulumi.StringArrayInput
 	// The amount of memory in bytes the VM will have.\n\n!!! WARNING: Updates to this field will cause the VM to stop and start, as it sets both dynamic and static maximums.
@@ -243,6 +276,10 @@ type VmState struct {
 	ResourceSet pulumi.StringPtrInput
 	// Enable UEFI secure boot for the VM.
 	SecureBoot pulumi.BoolPtrInput
+	// Allow the subjects of the resource set to use the VM. Only applies when resourceSet is set. Can be changed on an existing VM, but setting it to `false` requires the VM to leave its resource set at the same time, since a VM shared in a resource set is always shared in Xen Orchestra (there is no unshare operation).
+	Share pulumi.BoolPtrInput
+	// The number of CPU sockets. This is computed as cpus / cores_per_socket.
+	Sockets pulumi.IntPtrInput
 	// Number of seconds the VM should be delayed from starting.
 	StartDelay pulumi.IntPtrInput
 	// The tags (labels) applied to the given entity. Not used for filtering if empty.
@@ -251,7 +288,7 @@ type VmState struct {
 	Template pulumi.StringPtrInput
 	// The video adapter the VM should use. Possible values include std and cirrus.
 	Vga pulumi.StringPtrInput
-	// The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+	// The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
 	Videoram pulumi.IntPtrInput
 	// The key value pairs to be populated in xenstore.
 	Xenstore pulumi.StringMapInput
@@ -277,8 +314,12 @@ type vmArgs struct {
 	// The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
 	CloudNetworkConfig *string `pulumi:"cloudNetworkConfig"`
 	CoreOs             *bool   `pulumi:"coreOs"`
-	CpuCap             *int    `pulumi:"cpuCap"`
-	CpuWeight          *int    `pulumi:"cpuWeight"`
+	// The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+	CoresPerSocket *int `pulumi:"coresPerSocket"`
+	// The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+	CpuCap *int `pulumi:"cpuCap"`
+	// The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
+	CpuWeight *int `pulumi:"cpuWeight"`
 	// The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
 	Cpus int `pulumi:"cpus"`
 	// Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, powerState must be set to `Running`.
@@ -309,6 +350,8 @@ type vmArgs struct {
 	ResourceSet *string `pulumi:"resourceSet"`
 	// Enable UEFI secure boot for the VM.
 	SecureBoot *bool `pulumi:"secureBoot"`
+	// Allow the subjects of the resource set to use the VM. Only applies when resourceSet is set. Can be changed on an existing VM, but setting it to `false` requires the VM to leave its resource set at the same time, since a VM shared in a resource set is always shared in Xen Orchestra (there is no unshare operation).
+	Share *bool `pulumi:"share"`
 	// Number of seconds the VM should be delayed from starting.
 	StartDelay *int `pulumi:"startDelay"`
 	// The tags (labels) applied to the given entity. Not used for filtering if empty.
@@ -317,7 +360,7 @@ type vmArgs struct {
 	Template string `pulumi:"template"`
 	// The video adapter the VM should use. Possible values include std and cirrus.
 	Vga *string `pulumi:"vga"`
-	// The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+	// The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
 	Videoram *int `pulumi:"videoram"`
 	// The key value pairs to be populated in xenstore.
 	Xenstore map[string]string `pulumi:"xenstore"`
@@ -340,8 +383,12 @@ type VmArgs struct {
 	// The content of the cloud-init network configuration for the VM (uses [version 1](https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html))
 	CloudNetworkConfig pulumi.StringPtrInput
 	CoreOs             pulumi.BoolPtrInput
-	CpuCap             pulumi.IntPtrInput
-	CpuWeight          pulumi.IntPtrInput
+	// The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+	CoresPerSocket pulumi.IntPtrInput
+	// The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+	CpuCap pulumi.IntPtrInput
+	// The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
+	CpuWeight pulumi.IntPtrInput
 	// The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
 	Cpus pulumi.IntInput
 	// Determines whether the cloud config VDI should be deleted once the VM has booted. Defaults to `false`. If set to `true`, powerState must be set to `Running`.
@@ -372,6 +419,8 @@ type VmArgs struct {
 	ResourceSet pulumi.StringPtrInput
 	// Enable UEFI secure boot for the VM.
 	SecureBoot pulumi.BoolPtrInput
+	// Allow the subjects of the resource set to use the VM. Only applies when resourceSet is set. Can be changed on an existing VM, but setting it to `false` requires the VM to leave its resource set at the same time, since a VM shared in a resource set is always shared in Xen Orchestra (there is no unshare operation).
+	Share pulumi.BoolPtrInput
 	// Number of seconds the VM should be delayed from starting.
 	StartDelay pulumi.IntPtrInput
 	// The tags (labels) applied to the given entity. Not used for filtering if empty.
@@ -380,7 +429,7 @@ type VmArgs struct {
 	Template pulumi.StringInput
 	// The video adapter the VM should use. Possible values include std and cirrus.
 	Vga pulumi.StringPtrInput
-	// The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+	// The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
 	Videoram pulumi.IntPtrInput
 	// The key value pairs to be populated in xenstore.
 	Xenstore pulumi.StringMapInput
@@ -512,10 +561,17 @@ func (o VmOutput) CoreOs() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Vm) pulumi.BoolPtrOutput { return v.CoreOs }).(pulumi.BoolPtrOutput)
 }
 
+// The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+func (o VmOutput) CoresPerSocket() pulumi.IntOutput {
+	return o.ApplyT(func(v *Vm) pulumi.IntOutput { return v.CoresPerSocket }).(pulumi.IntOutput)
+}
+
+// The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
 func (o VmOutput) CpuCap() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Vm) pulumi.IntPtrOutput { return v.CpuCap }).(pulumi.IntPtrOutput)
 }
 
+// The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
 func (o VmOutput) CpuWeight() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Vm) pulumi.IntPtrOutput { return v.CpuWeight }).(pulumi.IntPtrOutput)
 }
@@ -559,6 +615,7 @@ func (o VmOutput) InstallationMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Vm) pulumi.StringPtrOutput { return v.InstallationMethod }).(pulumi.StringPtrOutput)
 }
 
+// This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv4 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv4 addresses across all network interfaces in order. See the example terraform code for more details.
 func (o VmOutput) Ipv4Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Vm) pulumi.StringArrayOutput { return v.Ipv4Addresses }).(pulumi.StringArrayOutput)
 }
@@ -607,6 +664,16 @@ func (o VmOutput) SecureBoot() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Vm) pulumi.BoolPtrOutput { return v.SecureBoot }).(pulumi.BoolPtrOutput)
 }
 
+// Allow the subjects of the resource set to use the VM. Only applies when resourceSet is set. Can be changed on an existing VM, but setting it to `false` requires the VM to leave its resource set at the same time, since a VM shared in a resource set is always shared in Xen Orchestra (there is no unshare operation).
+func (o VmOutput) Share() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Vm) pulumi.BoolPtrOutput { return v.Share }).(pulumi.BoolPtrOutput)
+}
+
+// The number of CPU sockets. This is computed as cpus / cores_per_socket.
+func (o VmOutput) Sockets() pulumi.IntOutput {
+	return o.ApplyT(func(v *Vm) pulumi.IntOutput { return v.Sockets }).(pulumi.IntOutput)
+}
+
 // Number of seconds the VM should be delayed from starting.
 func (o VmOutput) StartDelay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Vm) pulumi.IntPtrOutput { return v.StartDelay }).(pulumi.IntPtrOutput)
@@ -627,7 +694,7 @@ func (o VmOutput) Vga() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Vm) pulumi.StringPtrOutput { return v.Vga }).(pulumi.StringPtrOutput)
 }
 
-// The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+// The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
 func (o VmOutput) Videoram() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Vm) pulumi.IntPtrOutput { return v.Videoram }).(pulumi.IntPtrOutput)
 }

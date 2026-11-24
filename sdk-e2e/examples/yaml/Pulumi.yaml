@@ -1,0 +1,63 @@
+name: e2e-yaml
+runtime: yaml
+description: SDK e2e test (yaml). Output keys are a contract shared by every language, see sdk-e2e/expectations.json.
+# run.sh copies XOA_POOL/STORAGE/NETWORK/TEMPLATE/TEST_PREFIX into this stack config (YAML cannot read env vars)
+config:
+  poolName: {type: string}
+  storageName: {type: string}
+  networkName: {type: string}
+  templateName: {type: string}
+  prefix: {type: string, default: ""}
+variables:
+  pool:
+    fn::invoke:
+      function: xenorchestra:getXoaPool
+      arguments:
+        nameLabel: ${poolName}
+  sr:
+    fn::invoke:
+      function: xenorchestra:getXoaStorageRepository
+      arguments:
+        nameLabel: ${storageName}
+        poolId: ${pool.id}
+  net:
+    fn::invoke:
+      function: xenorchestra:getXoaNetwork
+      arguments:
+        nameLabel: ${networkName}
+        poolId: ${pool.id}
+  tpl:
+    fn::invoke:
+      function: xenorchestra:getXoaTemplate
+      arguments:
+        nameLabel: ${templateName}
+        poolId: ${pool.id}
+resources:
+  vm:
+    type: xenorchestra:Vm
+    properties:
+      nameLabel: ${prefix}pulumi-e2e-yaml
+      nameDescription: pulumi sdk e2e test
+      tags: [pulumi-e2e]
+      cpus: 1
+      memoryMax: 1073741824
+      template: ${tpl.id}
+      disks:
+        - srId: ${sr.id}
+          nameLabel: OS
+          size: 8589934592
+      networks:
+        - networkId: ${net.id}
+      powerState: Running
+outputs:
+  poolId: ${pool.id}
+  srId: ${sr.id}
+  networkId: ${net.id}
+  templateId: ${tpl.id}
+  vmId: ${vm.id}
+  vmNameLabel: ${vm.nameLabel}
+  vmPowerState: ${vm.powerState}
+  vmCpus: ${vm.cpus}
+  vmMemoryMax: ${vm.memoryMax}
+  vmTags: ${vm.tags}
+  vmIpv4Addresses: ${vm.ipv4Addresses}

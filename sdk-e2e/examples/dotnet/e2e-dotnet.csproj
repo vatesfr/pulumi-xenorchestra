@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <!-- run on whatever newer .NET runtime is installed -->
+    <RollForward>Major</RollForward>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Pulumi" Version="3.*" />
+    <!-- always test the locally generated SDK -->
+    <ProjectReference Include="../../../sdk/dotnet/Pulumi.Xenorchestra.csproj" />
+  </ItemGroup>
+
+</Project>

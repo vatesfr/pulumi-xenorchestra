@@ -12,6 +12,10 @@ namespace Pulumi.Xenorchestra
     public static class GetXoaCloudConfig
     {
         /// <summary>
+        /// Provides information about cloud config.
+        /// 
+        /// **NOTE:** If there are multiple cloud configs with the same name Terraform will fail. Ensure that your names are unique when using the data source.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -34,6 +38,10 @@ namespace Pulumi.Xenorchestra
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetXoaCloudConfigResult>("xenorchestra:index/getXoaCloudConfig:getXoaCloudConfig", args ?? new GetXoaCloudConfigArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Provides information about cloud config.
+        /// 
+        /// **NOTE:** If there are multiple cloud configs with the same name Terraform will fail. Ensure that your names are unique when using the data source.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -56,6 +64,10 @@ namespace Pulumi.Xenorchestra
             => global::Pulumi.Deployment.Instance.Invoke<GetXoaCloudConfigResult>("xenorchestra:index/getXoaCloudConfig:getXoaCloudConfig", args ?? new GetXoaCloudConfigInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Provides information about cloud config.
+        /// 
+        /// **NOTE:** If there are multiple cloud configs with the same name Terraform will fail. Ensure that your names are unique when using the data source.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp

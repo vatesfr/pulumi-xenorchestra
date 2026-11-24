@@ -64,6 +64,12 @@ class AwaitableGetXoaResourceSetResult(GetXoaResourceSetResult):
 def get_xoa_resource_set(name: Optional[_builtins.str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetXoaResourceSetResult:
     """
+    Provides information about a resource set.
+
+    **NOTE:** If there are multiple resource sets with the same name
+    Terraform will fail. Ensure that your resource set names are unique when
+    using the data source.
+
     ## Example Usage
 
     ```python
@@ -84,9 +90,15 @@ def get_xoa_resource_set(name: Optional[_builtins.str] = None,
     return AwaitableGetXoaResourceSetResult(
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'))
-def get_xoa_resource_set_output(name: Optional[pulumi.Input[_builtins.str]] = None,
+def get_xoa_resource_set_output(name: pulumi.Input[Optional[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetXoaResourceSetResult]:
     """
+    Provides information about a resource set.
+
+    **NOTE:** If there are multiple resource sets with the same name
+    Terraform will fail. Ensure that your resource set names are unique when
+    using the data source.
+
     ## Example Usage
 
     ```python

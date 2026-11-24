@@ -5,6 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Provides information about a network of a Xenserver pool.
+ *
+ * **Note:** If there are multiple networks with the same name terraform will fail. Ensure that your network, poolId and other arguments identify a unique network.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -68,6 +72,10 @@ export interface GetXoaNetworkResult {
     readonly poolId?: string;
 }
 /**
+ * Provides information about a network of a Xenserver pool.
+ *
+ * **Note:** If there are multiple networks with the same name terraform will fail. Ensure that your network, poolId and other arguments identify a unique network.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -98,7 +106,7 @@ export interface GetXoaNetworkOutputArgs {
     /**
      * The name of the bridge network interface.
      */
-    bridge?: pulumi.Input<string>;
+    bridge?: pulumi.Input<string | undefined>;
     /**
      * The name of the network.
      */
@@ -106,5 +114,5 @@ export interface GetXoaNetworkOutputArgs {
     /**
      * The pool the network is associated with.
      */
-    poolId?: pulumi.Input<string>;
+    poolId?: pulumi.Input<string | undefined>;
 }

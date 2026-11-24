@@ -12,6 +12,11 @@ namespace Pulumi.Xenorchestra
     public static class GetXoaVdi
     {
         /// <summary>
+        /// Provides information about a VDI (virtual disk image).
+        /// 
+        /// **Note:** If there are multiple VDIs that match terraform will fail.
+        /// Ensure that your name_label, PoolId and tags identify a unique VDI.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -39,6 +44,11 @@ namespace Pulumi.Xenorchestra
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetXoaVdiResult>("xenorchestra:index/getXoaVdi:getXoaVdi", args ?? new GetXoaVdiArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Provides information about a VDI (virtual disk image).
+        /// 
+        /// **Note:** If there are multiple VDIs that match terraform will fail.
+        /// Ensure that your name_label, PoolId and tags identify a unique VDI.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -66,6 +76,11 @@ namespace Pulumi.Xenorchestra
             => global::Pulumi.Deployment.Instance.Invoke<GetXoaVdiResult>("xenorchestra:index/getXoaVdi:getXoaVdi", args ?? new GetXoaVdiInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Provides information about a VDI (virtual disk image).
+        /// 
+        /// **Note:** If there are multiple VDIs that match terraform will fail.
+        /// Ensure that your name_label, PoolId and tags identify a unique VDI.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp

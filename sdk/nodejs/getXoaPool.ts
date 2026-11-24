@@ -48,11 +48,15 @@ export interface GetXoaPoolResult {
      */
     readonly cpus: {[key: string]: string};
     /**
+     * The default storage repository for the pool.
+     */
+    readonly defaultSr: string;
+    /**
      * The description of the pool.
      */
     readonly description: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The id of the pool.
      */
     readonly id: string;
     /**

@@ -46,7 +46,7 @@ export interface GetXoaHostsArgs {
  */
 export interface GetXoaHostsResult {
     /**
-     * The resulting hosts after applying the argument filtering.
+     * The resulting hosts after applying the argument filtering. `memory` and `memoryUsage` are in bytes.
      */
     readonly hosts: outputs.GetXoaHostsHost[];
     /**
@@ -98,13 +98,13 @@ export interface GetXoaHostsOutputArgs {
     /**
      * The host field to sort the results by (id and nameLabel are supported).
      */
-    sortBy?: pulumi.Input<string>;
+    sortBy?: pulumi.Input<string | undefined>;
     /**
      * Valid options are `asc` or `desc` and sort order is applied to `sortBy` argument.
      */
-    sortOrder?: pulumi.Input<string>;
+    sortOrder?: pulumi.Input<string | undefined>;
     /**
      * The tags (labels) applied to the given entity. Not used for filtering if empty.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Provides information about a VM template that can be used for creating new VMs.
+ *
+ * **Note:** If there are multiple templates that match terraform will fail.
+ * Ensure that your nameLabel and poolId identify a unique template.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -66,6 +71,11 @@ export interface GetXoaTemplateResult {
     readonly uuid: string;
 }
 /**
+ * Provides information about a VM template that can be used for creating new VMs.
+ *
+ * **Note:** If there are multiple templates that match terraform will fail.
+ * Ensure that your nameLabel and poolId identify a unique template.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -98,5 +108,5 @@ export interface GetXoaTemplateOutputArgs {
     /**
      * The id of the pool that the template belongs to.
      */
-    poolId?: pulumi.Input<string>;
+    poolId?: pulumi.Input<string | undefined>;
 }

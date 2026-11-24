@@ -103,6 +103,11 @@ def get_xoa_vdi(id: Optional[_builtins.str] = None,
                 tags: Optional[Sequence[_builtins.str]] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetXoaVdiResult:
     """
+    Provides information about a VDI (virtual disk image).
+
+    **Note:** If there are multiple VDIs that match terraform will fail.
+    Ensure that your name_label, pool_id and tags identify a unique VDI.
+
     ## Example Usage
 
     ```python
@@ -133,12 +138,17 @@ def get_xoa_vdi(id: Optional[_builtins.str] = None,
         parent=pulumi.get(__ret__, 'parent'),
         pool_id=pulumi.get(__ret__, 'pool_id'),
         tags=pulumi.get(__ret__, 'tags'))
-def get_xoa_vdi_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       name_label: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       pool_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       tags: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
+def get_xoa_vdi_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       name_label: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       pool_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       tags: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetXoaVdiResult]:
     """
+    Provides information about a VDI (virtual disk image).
+
+    **Note:** If there are multiple VDIs that match terraform will fail.
+    Ensure that your name_label, pool_id and tags identify a unique VDI.
+
     ## Example Usage
 
     ```python

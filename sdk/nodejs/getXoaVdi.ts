@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Provides information about a VDI (virtual disk image).
+ *
+ * **Note:** If there are multiple VDIs that match terraform will fail.
+ * Ensure that your name_label, poolId and tags identify a unique VDI.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -76,6 +81,11 @@ export interface GetXoaVdiResult {
     readonly tags?: string[];
 }
 /**
+ * Provides information about a VDI (virtual disk image).
+ *
+ * **Note:** If there are multiple VDIs that match terraform will fail.
+ * Ensure that your name_label, poolId and tags identify a unique VDI.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -106,17 +116,17 @@ export interface GetXoaVdiOutputArgs {
     /**
      * The ID of the VDI.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The name of the VDI to look up.
      */
-    nameLabel?: pulumi.Input<string>;
+    nameLabel?: pulumi.Input<string | undefined>;
     /**
      * The ID of the pool the VDI belongs to. This is useful if you have a VDI with the same name on different pools.
      */
-    poolId?: pulumi.Input<string>;
+    poolId?: pulumi.Input<string | undefined>;
     /**
      * The tags (labels) applied to the given entity. Not used for filtering if empty.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

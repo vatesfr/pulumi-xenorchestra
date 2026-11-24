@@ -25,6 +25,7 @@ class VdiArgs:
                  type: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a Vdi resource.
+
         :param pulumi.Input[_builtins.str] filepath: The file path to the ISO or vdi image that should be uploaded when the VDI is created.
         :param pulumi.Input[_builtins.str] name_label: The name label of the VDI
         :param pulumi.Input[_builtins.str] sr_id: The id of the storage repository the VDI should be created in. Make sure the storage repository supports the file you are uploading! For example, ISOs should only be uploaded to ISO storage repositories.
@@ -87,12 +88,13 @@ class VdiArgs:
 @pulumi.input_type
 class _VdiState:
     def __init__(__self__, *,
-                 filepath: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_label: Optional[pulumi.Input[_builtins.str]] = None,
-                 sr_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 filepath: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_label: pulumi.Input[Optional[_builtins.str]] = None,
+                 sr_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Vdi resources.
+
         :param pulumi.Input[_builtins.str] filepath: The file path to the ISO or vdi image that should be uploaded when the VDI is created.
         :param pulumi.Input[_builtins.str] name_label: The name label of the VDI
         :param pulumi.Input[_builtins.str] sr_id: The id of the storage repository the VDI should be created in. Make sure the storage repository supports the file you are uploading! For example, ISOs should only be uploaded to ISO storage repositories.
@@ -109,50 +111,50 @@ class _VdiState:
 
     @_builtins.property
     @pulumi.getter
-    def filepath(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def filepath(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The file path to the ISO or vdi image that should be uploaded when the VDI is created.
         """
         return pulumi.get(self, "filepath")
 
     @filepath.setter
-    def filepath(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def filepath(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "filepath", value)
 
     @_builtins.property
     @pulumi.getter(name="nameLabel")
-    def name_label(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_label(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name label of the VDI
         """
         return pulumi.get(self, "name_label")
 
     @name_label.setter
-    def name_label(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_label(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_label", value)
 
     @_builtins.property
     @pulumi.getter(name="srId")
-    def sr_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sr_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The id of the storage repository the VDI should be created in. Make sure the storage repository supports the file you are uploading! For example, ISOs should only be uploaded to ISO storage repositories.
         """
         return pulumi.get(self, "sr_id")
 
     @sr_id.setter
-    def sr_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sr_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sr_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Only `raw` uploads are supported today, but vhd support may be added in the future.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -162,10 +164,10 @@ class Vdi(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 filepath: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_label: Optional[pulumi.Input[_builtins.str]] = None,
-                 sr_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 filepath: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_label: pulumi.Input[Optional[_builtins.str]] = None,
+                 sr_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates a Xen Orchestra vdi resource.
@@ -188,6 +190,7 @@ class Vdi(pulumi.CustomResource):
             "id": resource["xenorchestra_vdi"]["bar"]["id"],
         })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -224,6 +227,7 @@ class Vdi(pulumi.CustomResource):
         })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param VdiArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -239,10 +243,10 @@ class Vdi(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 filepath: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_label: Optional[pulumi.Input[_builtins.str]] = None,
-                 sr_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 filepath: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_label: pulumi.Input[Optional[_builtins.str]] = None,
+                 sr_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -274,10 +278,10 @@ class Vdi(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            filepath: Optional[pulumi.Input[_builtins.str]] = None,
-            name_label: Optional[pulumi.Input[_builtins.str]] = None,
-            sr_id: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'Vdi':
+            filepath: pulumi.Input[Optional[_builtins.str]] = None,
+            name_label: pulumi.Input[Optional[_builtins.str]] = None,
+            sr_id: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'Vdi':
         """
         Get an existing Vdi resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

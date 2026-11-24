@@ -1,0 +1,3 @@
+name: e2e-go
+runtime: go
+description: SDK e2e test (go)

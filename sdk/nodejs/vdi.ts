@@ -120,19 +120,19 @@ export interface VdiState {
     /**
      * The file path to the ISO or vdi image that should be uploaded when the VDI is created.
      */
-    filepath?: pulumi.Input<string>;
+    filepath?: pulumi.Input<string | undefined>;
     /**
      * The name label of the VDI
      */
-    nameLabel?: pulumi.Input<string>;
+    nameLabel?: pulumi.Input<string | undefined>;
     /**
      * The id of the storage repository the VDI should be created in. Make sure the storage repository supports the file you are uploading! For example, ISOs should only be uploaded to ISO storage repositories.
      */
-    srId?: pulumi.Input<string>;
+    srId?: pulumi.Input<string | undefined>;
     /**
      * Only `raw` uploads are supported today, but vhd support may be added in the future.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**

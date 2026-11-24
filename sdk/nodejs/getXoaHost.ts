@@ -5,6 +5,12 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Provides information about a host.
+ *
+ * **NOTE:** If there are multiple hosts with the same name
+ * Terraform will fail. Ensure that your names are unique when
+ * using the data source.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -53,11 +59,11 @@ export interface GetXoaHostResult {
      */
     readonly id: string;
     /**
-     * The memory size of the host.
+     * The total memory size of the host in bytes.
      */
     readonly memory: number;
     /**
-     * The memory usage of the host.
+     * The current memory usage of the host in bytes.
      */
     readonly memoryUsage: number;
     /**
@@ -74,6 +80,12 @@ export interface GetXoaHostResult {
     readonly tags?: string[];
 }
 /**
+ * Provides information about a host.
+ *
+ * **NOTE:** If there are multiple hosts with the same name
+ * Terraform will fail. Ensure that your names are unique when
+ * using the data source.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -106,5 +118,5 @@ export interface GetXoaHostOutputArgs {
     /**
      * The tags (labels) applied to the given entity. Not used for filtering if empty.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

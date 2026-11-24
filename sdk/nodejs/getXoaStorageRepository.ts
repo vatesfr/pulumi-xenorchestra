@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Provides information about a Storage repository to ease the lookup of VM storage information.
+ *
+ * **Note:** If there are multiple storage repositories that match terraform will fail.
+ * Ensure that your name_label, pool_id, hostId and tags identify a unique storage repository.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -25,6 +30,7 @@ import * as utilities from "./utilities";
 export function getXoaStorageRepository(args: GetXoaStorageRepositoryArgs, opts?: pulumi.InvokeOptions): Promise<GetXoaStorageRepositoryResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("xenorchestra:index/getXoaStorageRepository:getXoaStorageRepository", {
+        "hostId": args.hostId,
         "nameLabel": args.nameLabel,
         "poolId": args.poolId,
         "tags": args.tags,
@@ -35,6 +41,10 @@ export function getXoaStorageRepository(args: GetXoaStorageRepositoryArgs, opts?
  * A collection of arguments for invoking getXoaStorageRepository.
  */
 export interface GetXoaStorageRepositoryArgs {
+    /**
+     * The Id of the host the storage repository exists on. For host-local storage repositories the SR's `container` is the host itself, so this filters the repositories down to a single host when several hosts in the pool share the same SR name.
+     */
+    hostId?: string;
     /**
      * The name of the storage repository to look up
      */
@@ -54,11 +64,15 @@ export interface GetXoaStorageRepositoryArgs {
  */
 export interface GetXoaStorageRepositoryResult {
     /**
-     * The storage container.
+     * The storage container. For host-local storage repositories this is the id of the hosting host.
      */
     readonly container: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The Id of the host the storage repository exists on. For host-local storage repositories the SR's `container` is the host itself, so this filters the repositories down to a single host when several hosts in the pool share the same SR name.
+     */
+    readonly hostId?: string;
+    /**
+     * The ID of this resource.
      */
     readonly id: string;
     /**
@@ -66,7 +80,7 @@ export interface GetXoaStorageRepositoryResult {
      */
     readonly nameLabel: string;
     /**
-     * The physical storage size.
+     * The physical storage usage in bytes.
      */
     readonly physicalUsage: number;
     /**
@@ -74,7 +88,7 @@ export interface GetXoaStorageRepositoryResult {
      */
     readonly poolId?: string;
     /**
-     * The storage size.
+     * The total storage size in bytes.
      */
     readonly size: number;
     /**
@@ -86,7 +100,7 @@ export interface GetXoaStorageRepositoryResult {
      */
     readonly tags?: string[];
     /**
-     * The current usage for this storage repository.
+     * The current storage usage in bytes.
      */
     readonly usage: number;
     /**
@@ -95,6 +109,11 @@ export interface GetXoaStorageRepositoryResult {
     readonly uuid: string;
 }
 /**
+ * Provides information about a Storage repository to ease the lookup of VM storage information.
+ *
+ * **Note:** If there are multiple storage repositories that match terraform will fail.
+ * Ensure that your name_label, pool_id, hostId and tags identify a unique storage repository.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -115,6 +134,7 @@ export interface GetXoaStorageRepositoryResult {
 export function getXoaStorageRepositoryOutput(args: GetXoaStorageRepositoryOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetXoaStorageRepositoryResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("xenorchestra:index/getXoaStorageRepository:getXoaStorageRepository", {
+        "hostId": args.hostId,
         "nameLabel": args.nameLabel,
         "poolId": args.poolId,
         "tags": args.tags,
@@ -126,15 +146,19 @@ export function getXoaStorageRepositoryOutput(args: GetXoaStorageRepositoryOutpu
  */
 export interface GetXoaStorageRepositoryOutputArgs {
     /**
+     * The Id of the host the storage repository exists on. For host-local storage repositories the SR's `container` is the host itself, so this filters the repositories down to a single host when several hosts in the pool share the same SR name.
+     */
+    hostId?: pulumi.Input<string | undefined>;
+    /**
      * The name of the storage repository to look up
      */
     nameLabel: pulumi.Input<string>;
     /**
      * The Id of the pool the storage repository exists on.
      */
-    poolId?: pulumi.Input<string>;
+    poolId?: pulumi.Input<string | undefined>;
     /**
      * The tags (labels) applied to the given entity. Not used for filtering if empty.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

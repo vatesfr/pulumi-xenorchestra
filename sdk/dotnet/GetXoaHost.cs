@@ -12,6 +12,12 @@ namespace Pulumi.Xenorchestra
     public static class GetXoaHost
     {
         /// <summary>
+        /// Provides information about a host.
+        /// 
+        /// **NOTE:** If there are multiple hosts with the same name
+        /// Terraform will fail. Ensure that your names are unique when
+        /// using the data source.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -40,6 +46,12 @@ namespace Pulumi.Xenorchestra
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetXoaHostResult>("xenorchestra:index/getXoaHost:getXoaHost", args ?? new GetXoaHostArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Provides information about a host.
+        /// 
+        /// **NOTE:** If there are multiple hosts with the same name
+        /// Terraform will fail. Ensure that your names are unique when
+        /// using the data source.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -68,6 +80,12 @@ namespace Pulumi.Xenorchestra
             => global::Pulumi.Deployment.Instance.Invoke<GetXoaHostResult>("xenorchestra:index/getXoaHost:getXoaHost", args ?? new GetXoaHostInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Provides information about a host.
+        /// 
+        /// **NOTE:** If there are multiple hosts with the same name
+        /// Terraform will fail. Ensure that your names are unique when
+        /// using the data source.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -162,11 +180,11 @@ namespace Pulumi.Xenorchestra
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The memory size of the host.
+        /// The total memory size of the host in bytes.
         /// </summary>
         public readonly double Memory;
         /// <summary>
-        /// The memory usage of the host.
+        /// The current memory usage of the host in bytes.
         /// </summary>
         public readonly double MemoryUsage;
         /// <summary>

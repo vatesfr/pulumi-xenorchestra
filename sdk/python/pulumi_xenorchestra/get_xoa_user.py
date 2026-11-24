@@ -102,8 +102,8 @@ def get_xoa_user(search_in_session: Optional[_builtins.bool] = None,
         id=pulumi.get(__ret__, 'id'),
         search_in_session=pulumi.get(__ret__, 'search_in_session'),
         username=pulumi.get(__ret__, 'username'))
-def get_xoa_user_output(search_in_session: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                        username: Optional[pulumi.Input[_builtins.str]] = None,
+def get_xoa_user_output(search_in_session: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                        username: pulumi.Input[Optional[_builtins.str]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetXoaUserResult]:
     """
     Provides information about a Xen Orchestra user. If the Xen Orchestra user account you are using is not an admin, see the `search_in_session` parameter.

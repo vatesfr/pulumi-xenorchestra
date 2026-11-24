@@ -12,11 +12,11 @@ export interface GetXoaHostsHost {
     cpus: {[key: string]: number};
     id: string;
     /**
-     * The memory size of the host.
+     * The total memory size of the host in bytes.
      */
     memory: number;
     /**
-     * The memory usage of the host.
+     * The current memory usage of the host in bytes.
      */
     memoryUsage: number;
     /**
@@ -31,6 +31,76 @@ export interface GetXoaHostsHost {
      * The tags (labels) applied to the given entity. Not used for filtering if empty.
      */
     tags?: string[];
+}
+
+export interface GetXoaPoolsPool {
+    /**
+     * CPU information about the pool. The 'cores' key will contain the number of cpu cores and the 'sockets' key will contain the number of sockets.
+     */
+    cpus: {[key: string]: string};
+    /**
+     * The default storage repository for the pool.
+     */
+    defaultSr: string;
+    /**
+     * The description of the pool.
+     */
+    description: string;
+    /**
+     * The id of the pool.
+     */
+    id: string;
+    /**
+     * The id of the primary instance in the pool.
+     */
+    master: string;
+    /**
+     * The name label of the pool.
+     */
+    nameLabel: string;
+}
+
+export interface GetXoaStorageRepositoriesSr {
+    /**
+     * The storage container. For host-local storage repositories this is the id of the hosting host.
+     */
+    container: string;
+    /**
+     * The ID of this resource.
+     */
+    id: string;
+    /**
+     * The name of the storage repository.
+     */
+    nameLabel: string;
+    /**
+     * The physical storage usage in bytes.
+     */
+    physicalUsage: number;
+    /**
+     * The Id of the pool the storage repository exists on.
+     */
+    poolId: string;
+    /**
+     * The total storage size in bytes.
+     */
+    size: number;
+    /**
+     * The type of storage repository (lvm, udev, iso, user, etc).
+     */
+    srType: string;
+    /**
+     * The tags (labels) applied to the given entity. Not used for filtering if empty.
+     */
+    tags?: string[];
+    /**
+     * The current storage usage in bytes.
+     */
+    usage: number;
+    /**
+     * uuid of the storage repository. This is equivalent to the id.
+     */
+    uuid: string;
 }
 
 export interface GetXoaVmsVm {
@@ -59,7 +129,17 @@ export interface GetXoaVmsVm {
      */
     cloudNetworkConfig?: string;
     coreOs?: boolean;
+    /**
+     * The number of cores per socket for the VM's CPU topology. This value must evenly divide the total number of CPUs. If not set, the VM uses XO/XAPI defaults (typically 1 core per socket).
+     */
+    coresPerSocket: number;
+    /**
+     * The CPU usage cap of the VM, in hundredths of vCPU (e.g. 100 = 1 vCPU max). 0 means no cap.
+     */
     cpuCap?: number;
+    /**
+     * The relative CPU scheduling weight for the VM (dimensionless). Higher values give the VM more CPU time relative to others. Valid range is 1-65535. 0 uses the default weight.
+     */
     cpuWeight?: number;
     /**
      * The number of CPUs the VM will have. Updates to this field will cause a stop and start of the VM if the new CPU value is greater than the max CPU value. This can be determined with the following command:
@@ -94,6 +174,9 @@ export interface GetXoaVmsVm {
      */
     hvmBootFirmware?: string;
     id: string;
+    /**
+     * This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv4 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv4 addresses across all network interfaces in order. See the example terraform code for more details.
+     */
     ipv4Addresses: string[];
     /**
      * This is only accessible if guest-tools is installed in the VM. While the output contains a list of ipv6 addresses, the presence of an IP address is only guaranteed if `expectedIpCidr` is set for that interface. The list contains the ipv6 addresses across all network interfaces in order.
@@ -129,6 +212,10 @@ export interface GetXoaVmsVm {
      */
     secureBoot?: boolean;
     /**
+     * The number of CPU sockets. This is computed as cpus / cores_per_socket.
+     */
+    sockets: number;
+    /**
      * Number of seconds the VM should be delayed from starting.
      */
     startDelay?: number;
@@ -145,7 +232,7 @@ export interface GetXoaVmsVm {
      */
     vga?: string;
     /**
-     * The videoram option the VM should use. Possible values include 1, 2, 4, 8, 16
+     * The videoram amount in MiB the VM should use. Possible values include 1, 2, 4, 8, 16.
      */
     videoram?: number;
     /**
@@ -195,6 +282,9 @@ export interface GetXoaVmsVmNetwork {
     expectedIpCidr?: string;
     ipv4Addresses: string[];
     ipv6Addresses: string[];
+    /**
+     * The mac address of the network interface. This must be parsable by go's [net.ParseMAC function](https://golang.org/pkg/net/#ParseMAC). All mac addresses are stored in Terraform's state with [HardwareAddr's string representation](https://golang.org/pkg/net/#HardwareAddr.String) i.e. 00:00:5e:00:53:01
+     */
     macAddress: string;
     /**
      * The ID of the network the VM will be on.
@@ -261,6 +351,9 @@ export interface VmNetwork {
     expectedIpCidr?: string;
     ipv4Addresses: string[];
     ipv6Addresses: string[];
+    /**
+     * The mac address of the network interface. This must be parsable by go's [net.ParseMAC function](https://golang.org/pkg/net/#ParseMAC). All mac addresses are stored in Terraform's state with [HardwareAddr's string representation](https://golang.org/pkg/net/#HardwareAddr.String) i.e. 00:00:5e:00:53:01
+     */
     macAddress: string;
     /**
      * The ID of the network the VM will be on.

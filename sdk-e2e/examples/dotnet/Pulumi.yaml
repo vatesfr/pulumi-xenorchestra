@@ -1,0 +1,3 @@
+name: e2e-dotnet
+runtime: dotnet
+description: SDK e2e test (dotnet)

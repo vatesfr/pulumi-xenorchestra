@@ -237,6 +237,8 @@ func Provider() tfbridge.ProviderInfo {
 			"xenorchestra_user":     {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaUser")},
 			"xenorchestra_vdi":      {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaVdi")},
 			"xenorchestra_vms":      {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaVms")},
+			"xenorchestra_pools":    {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaPools")},
+			"xenorchestra_srs":      {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getXoaStorageRepositories")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			PackageName: "@vates/pulumi-xenorchestra",
