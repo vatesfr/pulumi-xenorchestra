@@ -1,0 +1,7 @@
+.out/
+.state/
+examples/nodejs/node_modules/
+examples/python/venv/
+examples/python/__pycache__/
+examples/dotnet/bin/
+examples/dotnet/obj/

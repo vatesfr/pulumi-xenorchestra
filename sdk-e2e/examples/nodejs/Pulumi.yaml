@@ -1,0 +1,6 @@
+name: e2e-nodejs
+runtime:
+  name: nodejs
+  options:
+    packagemanager: npm
+description: SDK e2e test (nodejs)

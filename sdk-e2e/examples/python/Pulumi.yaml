@@ -1,0 +1,7 @@
+name: e2e-python
+runtime:
+  name: python
+  options:
+    toolchain: pip
+    virtualenv: venv
+description: SDK e2e test (python)

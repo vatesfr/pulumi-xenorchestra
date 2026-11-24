@@ -1,0 +1,28 @@
+{
+  "_doc": "Contract shared by every example in sdk-e2e/examples: each key under outputs must be exported (same camelCase name) by every language. Checks: type (string|number|boolean|array|object|null), equals, regex, nonEmpty, same (identical value across languages). covers: schema-diff.sh keys this output validates; skipped: {key: reason} for changes deliberately not tested. Both are hidden from later diffs. stateIgnore: regexes on flattened state paths that legitimately differ between languages.",
+  "outputs": {
+    "poolId": {"type": "string", "nonEmpty": true, "same": true},
+    "srId": {"type": "string", "nonEmpty": true, "same": true},
+    "networkId": {"type": "string", "nonEmpty": true, "same": true},
+    "templateId": {"type": "string", "nonEmpty": true, "same": true},
+    "vmId": {"type": "string", "nonEmpty": true},
+    "vmNameLabel": {"type": "string", "regex": "pulumi-e2e-"},
+    "vmPowerState": {"equals": "Running", "same": true},
+    "vmCpus": {"equals": 1, "same": true},
+    "vmMemoryMax": {"equals": 1073741824, "same": true},
+    "vmTags": {"equals": ["pulumi-e2e"], "same": true},
+    "vmIpv4Addresses": {"type": "array"}
+  },
+  "skipped": {},
+  "stateIgnore": [
+    "(^|\\.)id$",
+    "(^|\\.)nameLabel$",
+    "[Uu]uid$",
+    "(^|\\.)macAddress$",
+    "(^|\\.)ipv[46]Addresses",
+    "(^|\\.)host$",
+    "(^|\\.)vdiUuid$",
+    "(^|\\.)vdiId$",
+    "(^|\\.)vbdId$"
+  ]
+}
